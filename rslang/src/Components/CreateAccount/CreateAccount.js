@@ -7,9 +7,9 @@ const Login = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="registeration-form">
-                <div className="Registration">
+                <div className="CreateAccount">
                     <form>
-                        <h2 className="text-center">Log in</h2>
+                        <h2 className="text-center">Sign in</h2>
                         <div className="form-group">
                             <input type="text" class="form-control" placeholder="Username" required="required"></input>
                         </div>
@@ -26,6 +26,7 @@ const Login = () => {
                             <a href="#ForgotPassword" className="pull-right">Forgot Password?</a>
                         </div>
                     </form>
+                    <p class="text-center"><a href="#Login">Log in</a></p>
                 </div>                                
             </div>
           </div>
