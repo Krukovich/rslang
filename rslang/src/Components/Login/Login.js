@@ -14,10 +14,10 @@ const Login = () => {
                     <form>
                         <h2 className="text-center">Log in</h2>
                         <div className="form-group">
-                            <input type="text" class="form-control" placeholder="Username" required="required"></input>
+                            <input type="email" className="form-control" placeholder="Email" required="required"></input>
                         </div>
                         <div className="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required="required"></input>
+                            <input type="password" className="form-control" placeholder="Password" required="required"></input>
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary btn-block">Log in</button>
@@ -29,7 +29,7 @@ const Login = () => {
                             <a href="#ForgotPassword" className="pull-right">Forgot Password?</a>
                         </div>
                     </form>
-                    <p class="text-center"><a href="#CreateAnAccount">Create an Account</a></p>
+                    <p className="text-center"><a href="#CreateAnAccount">Create an Account</a></p>
                 </div>                                
             </div>
           </div>
