@@ -14,7 +14,7 @@ const App = () => {
         <div className="col-lg-12">
           <PlayZonePage />
         </div>
-        <Login />
+        {/* <Login /> */}
         <CreateAccount />
       </div>
       <Switch>
