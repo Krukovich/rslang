@@ -1,10 +1,12 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
+import Login from '../Authentication/Login/Login'
+import CreateAccount from '../Authentication/CreateAccount/CreateAccount'
 
 const sourceRoutes = [
   {
-    path: "/",
-    component: () => <h1>Home Page</h1>,
+    path: "/main",
+    component: () => <h1>main</h1>,
     exact: true,
   },
   {
@@ -18,8 +20,13 @@ const sourceRoutes = [
     exact: true,
   },
   {
-    path: "/login",
-    component: () => <h1>Login</h1>,
+    path: "/",
+    component: Login,
+    exact: true,
+  },
+  {
+    path: "/createanaccount",
+    component: CreateAccount,
     exact: true,
   },
   {
