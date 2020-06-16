@@ -3,6 +3,7 @@ import React from 'react';
 const Button = ({ decrementPlayStep, incrementPlayStep, label, isNotAgree }) => {
   const func = decrementPlayStep ? decrementPlayStep : incrementPlayStep;
   const flag = isNotAgree ? isNotAgree : '';
+  
   return(
     <button
       type="button"

@@ -25,7 +25,7 @@ export const renderPlayString = (data) => {
       return(
         <span className="m-1" key={ index }>
           <input
-            className="word-input"
+            className="WordInput"
             type="text"
             autoFocus
             maxLength={ word.length }

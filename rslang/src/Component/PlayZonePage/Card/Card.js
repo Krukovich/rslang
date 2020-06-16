@@ -7,7 +7,7 @@ import {
 
 const Card = ({ cards, playStep, handlerSubmit }) => {
   return(
-    <div className="card play-card">
+    <div className="card PlayCard">
       <img
         className="card-img-top"
         src={ imageRender(cards[playStep].image) }
@@ -19,7 +19,7 @@ const Card = ({ cards, playStep, handlerSubmit }) => {
         >
           <div className="form-row">
             <div className="col-12 mt-3">
-              <div className="row play-string">
+              <div className="row PlayString">
                 { renderPlayString(cards[playStep]) }
               </div>
             </div>

@@ -1,13 +1,13 @@
-.play-card {
+.PlayCard {
   width: 300px;
   box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
 
-  .play-string {
+  .PlayString {
     font-size: 1.5rem;
     text-align: justify;
   }
 
-  .word-input {
+  .WordInput {
     border: none;
     color: #338c99;
     background-color: #e0ebef;
@@ -20,13 +20,13 @@
     }
   }
 
-  .mistake {
+  .PlayCard_Mistake {
     transition: 1s;
     color: red;
     border-bottom: 2px solid red;
   }
 
-  .agree {
+  .PlayCard_Agree {
     transition: 1s;
     color: green;
     border-bottom: 2px solid green;
