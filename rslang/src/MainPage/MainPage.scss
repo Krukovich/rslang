@@ -1,0 +1,9 @@
+.card {
+    transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
