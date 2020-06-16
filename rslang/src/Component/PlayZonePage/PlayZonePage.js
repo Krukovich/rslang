@@ -50,16 +50,18 @@ class PlayZonePage extends React.Component {
     } else {
       if (char === agreeWord) {
         playExampleSound(cards[playStep].audioExample);
-        input.classList.add('agree');
+        input.classList.remove('PlayCard_Mistake');
+        input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
       } else {
         playExampleSound(cards[playStep].audio);
         input.value = agreeWord;
-        input.classList.add('mistake');
+        input.classList.remove('PlayCard_Agree');
+        input.classList.add('PlayCard_Mistake');
         this.setState({ isNotAgree: true });
         setTimeout(() => {
           input.value = '';
-          input.classList.remove('mistake');
+          input.classList.remove('PlayCard_Mistake');
         }, 2000);
       }
     }
@@ -71,17 +73,17 @@ class PlayZonePage extends React.Component {
     return(
       <div className="container">
         <div className="row justify-content-center mt-5">
-          <div className="col-12 col-md-4 d-flex align-items-center d-flex justify-content-end">
+          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-end">
             { !playStep ? '' : <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } /> }
           </div>
-          <div className="col-12 col-md-4 d-flex justify-content-center">
+          <div className="col-12 col-md-8 col-lg-4 d-flex justify-content-center">
             <Card
               cards={ cards }
               playStep={ playStep }
               handlerSubmit={ this.handlerSubmit }
             />
           </div>
-          <div className="col-12 col-md-4 d-flex align-items-center d-flex justify-content-start">
+          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-start">
             <Button
               incrementPlayStep={ this.incrementPlayStep }
               label={ BTN_LABEL.NEXT }
