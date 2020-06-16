@@ -1,3 +1,8 @@
+export const BTN_LABEL = {
+  NEXT: 'Next',
+  PREV: 'Prev',
+}
+
 export const wordCards = {
   1: [
     {

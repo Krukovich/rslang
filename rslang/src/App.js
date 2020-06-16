@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import PlayZone from './Component/PlayZone/PlayZone';
+import PlayZonePage from './Component/PlayZonePage/PlayZonePage';
 import Route from './Router/Routes';
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-12">
-          <PlayZone />
+          <PlayZonePage />
         </div>
       </div>
       <Switch>
