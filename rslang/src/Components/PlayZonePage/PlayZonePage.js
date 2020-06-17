@@ -8,7 +8,7 @@ import Button from './Button/Button';
 import './playZonePage.scss';
 
 class PlayZonePage extends React.Component {
-  constructor({ props }) {
+  constructor(props) {
     super();
     this.state = {
       cards: props.cards,

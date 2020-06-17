@@ -13,7 +13,7 @@ const Card = ({ cards, playStep, handlerSubmit }) => {
       <img
         className="card-img-top"
         src={ imageRender(cards[playStep].image) }
-        alt="image"
+        alt="play"
       />
       <div className="card-body">
         <form
