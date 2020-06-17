@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
+import './longStats.scss';
 
 const state = {
   labels: ['1', '2', '3',
