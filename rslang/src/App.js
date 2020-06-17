@@ -1,9 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import PlayZonePage from './Components/PlayZonePage/PlayZonePage';
-import Route from './Components/Router/Routes'
-
-
+import { RouteMap } from './Components/Router/Routes';
 
 const App = () => {
   
@@ -15,7 +13,7 @@ const App = () => {
         </div>
       </div>
       <Switch>
-        {Route}
+        {RouteMap}
       </Switch>
     </div>
   );
