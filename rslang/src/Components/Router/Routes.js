@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
+import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 
 const sourceRoutes = [
   {
@@ -28,6 +29,11 @@ const sourceRoutes = [
   {
     path: '/createanaccount',
     component: CreateAccount,
+    exact: true,
+  },
+  {
+    path: '/PlayZonePage',
+    component: PlayZonePage,
     exact: true,
   },
   {

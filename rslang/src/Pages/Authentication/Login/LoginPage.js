@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Login.scss";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
-import * as Const from "../../../Constants/Constatnt";
+import * as Const from "../../../constant";
 
 export class Login extends React.Component {
   constructor(props) {

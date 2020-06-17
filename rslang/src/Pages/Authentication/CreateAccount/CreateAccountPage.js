@@ -3,7 +3,7 @@ import "./CreateAccount.scss";
 import { NavLink } from "react-router-dom";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { CreateAccountLayout } from "./CreateAccountLayout";
-import * as Const from "../../../Constants/Constatnt";
+import * as Const from "../../../constant";
 
 export class CreateAccount extends React.Component {
 
