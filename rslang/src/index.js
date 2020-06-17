@@ -14,8 +14,10 @@ const store = createStore(rootReducer);
 
 const mapStateToProps = (store) => {
   return {
+    settings: store.playZonePage,
     cards: store.playZonePage.cards,
-    isNotAgree: store.playZonePage.isNotAgree,
+    difficult_words: store.playZonePage.difficult_words,
+    day_learning_words: store.playZonePage.day_learning_words,
   }
 }
 

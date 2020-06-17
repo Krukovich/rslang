@@ -12,7 +12,7 @@ class PlayZonePage extends React.Component {
     super();
     this.state = {
       cards: props.cards,
-      isNotAgree: props.isNotAgree,
+      isNotAgree: false,
       playStep: 0,
       agreeWord: props.cards[0].word,
     }
