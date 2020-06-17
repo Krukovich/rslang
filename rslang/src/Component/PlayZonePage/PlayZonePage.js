@@ -14,7 +14,7 @@ class PlayZonePage extends React.Component {
       cards: props.cards,
       isNotAgree: props.isNotAgree,
       playStep: 0,
-      agreeWord: '',
+      agreeWord: props.cards[0].word,
     }
   }
 
@@ -72,7 +72,7 @@ class PlayZonePage extends React.Component {
     return(
       <div className="container">
         <div className="row justify-content-center mt-5">
-          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-end">
+          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-end mt-5 mb-5">
             { !playStep ? '' : <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } /> }
           </div>
           <div className="col-12 col-md-8 col-lg-4 d-flex justify-content-center">
@@ -82,7 +82,7 @@ class PlayZonePage extends React.Component {
               handlerSubmit={ this.handlerSubmit }
             />
           </div>
-          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-start">
+          <div className="col-12 col-md-2 col-lg-4 d-flex align-items-center d-flex justify-content-start mt-5 mb-5">
             <Button
               incrementPlayStep={ this.incrementPlayStep }
               label={ BTN_LABEL.NEXT }
