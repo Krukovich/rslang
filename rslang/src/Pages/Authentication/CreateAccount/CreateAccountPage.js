@@ -41,7 +41,7 @@ export class CreateAccount extends React.Component {
     console.log(content);
   };
 
-  registrationResult(answer) {
+  registrationResult = (answer) => {
     if (answer.email) {
       this.setState({
         registrationStatus: "correct",
@@ -57,11 +57,11 @@ export class CreateAccount extends React.Component {
     });
   };
 
-  emailInputHandler (event) {
+  emailInputHandler = (event) => {
     this.setState({inputEmail: event.target.value});
   }
 
-  passwordInputHandler (event) {
+  passwordInputHandler = (event) => {
     this.setState({inputPassword: event.target.value});
   }
 
