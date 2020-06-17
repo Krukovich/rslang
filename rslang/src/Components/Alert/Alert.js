@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
 
-function AlertRed(props) {
+const AlertRed = (props) => {
   if (props.showAlert) {
     return (
       <Alert variant="danger" onClose={props.onSubmit} dismissible>

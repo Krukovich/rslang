@@ -1,13 +1,13 @@
 import React from "react";
 
-function bootstrapContainer() {
+export const bootstrapContainer = () => {
     return (
         <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="registeration-form">
               <div className="CreateAccount">
-                {123123123}
+                {props.children}
               </div>
             </div>
           </div>
@@ -15,6 +15,3 @@ function bootstrapContainer() {
       </div>
     );
 }
-
-
-export default bootstrapContainer;

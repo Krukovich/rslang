@@ -39,7 +39,7 @@ export class Login extends React.Component {
     console.log(content);
   };
 
-  loginResult(answer) {
+  loginResult = (answer) => {
     if (answer.message === "Authenticated") {
       this.setState({ loginStatus: "correct", alertMessage: "Hellow User" });
       this.setLoginCookie(answer.userId, answer.token);
@@ -47,12 +47,12 @@ export class Login extends React.Component {
     this.setState({ showAlert: true });
   }
 
-  setLoginCookie(userId, token) {
+  setLoginCookie = (userId, token) => {
     document.cookie = `userId=${userId}; max-age=14400`;
     document.cookie = `token=${token}; max-age=14400`;
   }
 
-  getCookie(name) {
+  getCookie = (name) => {
     let matches = document.cookie.match(
       new RegExp(
         "(?:^|; )" +
@@ -63,7 +63,7 @@ export class Login extends React.Component {
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
 
-  checkCookie() {
+  checkCookie = () => {
     if (this.getCookie("userId") !== undefined) {
       return true;
     }
@@ -76,11 +76,11 @@ export class Login extends React.Component {
     });
   };
 
-  emailInputHandler (event) {
+  emailInputHandler = (event) => {
     this.setState({inputEmail: event.target.value});
   }
 
-  passwordInputHandler (event) {
+  passwordInputHandler = (event) => {
     this.setState({inputPassword: event.target.value});
   }
 
