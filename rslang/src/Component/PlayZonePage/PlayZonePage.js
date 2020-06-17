@@ -1,5 +1,4 @@
 import React from 'react';
-import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import ProgressBar from './ProgressBar/ProgressBar';
@@ -9,13 +8,13 @@ import Button from './Button/Button';
 import './playZonePage.scss';
 
 class PlayZonePage extends React.Component {
-  constructor() {
+  constructor({ props }) {
     super();
     this.state = {
-      cards: wordCards[1],
+      cards: props.cards,
+      isNotAgree: props.isNotAgree,
       playStep: 0,
-      agreeWord: wordCards[1][0].word,
-      isNotAgree: true,
+      agreeWord: '',
     }
   }
 
