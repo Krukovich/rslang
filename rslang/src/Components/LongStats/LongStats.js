@@ -8,8 +8,8 @@ const state = {
   datasets: [
     {
       label: 'Progress',
-      backgroundColor: 'rgba(75,192,192,1)',
       borderColor: 'rgba(0,0,0,1)',
+      backgroundColor: 'orange',
       borderWidth: 2,
       data: [0, 10, 15, 20, 30, 40, 55, 65, 70, 75]
     }
@@ -17,9 +17,9 @@ const state = {
 }
 
 export default class LongStats extends React.Component {
-  render() {
+  render() {  
     return (
-      <div>
+      <div className="graph">
         <Line
           data={state}
           options={{
@@ -37,4 +37,5 @@ export default class LongStats extends React.Component {
       </div>
     );
   }
-}
+ }
+  
