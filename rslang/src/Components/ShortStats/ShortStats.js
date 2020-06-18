@@ -23,14 +23,14 @@ const ShortStatsHeader = () => {
     )
 }
 
-const ShortStatsInfo = () => {
+const ShortStatsInfo = ({props}) => {
     const { total, right, newWords, rightInARow } = dataInfo; 
     return (
         <ul className="row align-items-center flex-column shortStatsInfo">
             <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faDragon } /> Карточек завершено:  </span><span>{total}</span></li>
-            <li className="shortStatsInfo-item"><FontAwesomeIcon icon={ faCrown } /> Правильные ответы: {right} %</li>
-            <li className="shortStatsInfo-item"><FontAwesomeIcon icon={ faCartPlus } /> Новые слова: {newWords}</li>
-            <li className="shortStatsInfo-item"><FontAwesomeIcon icon={ faUserGraduate } /> Правильных ответов подряд: {rightInARow}</li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCrown } /> Правильные ответы: </span> <span>{right} %</span></li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCartPlus } /> Новые слова: </span> <span>{newWords}</span> </li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faUserGraduate } /> Правильных ответов подряд: </span> <span>{rightInARow}</span> </li>
         </ul>
     )
 }
