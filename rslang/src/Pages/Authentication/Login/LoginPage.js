@@ -25,7 +25,7 @@ export class Login extends React.Component {
   loginUser = async (event) => {
     event.preventDefault();
     console.log(event);
-    const rawResponse = await fetch(Const.apiLinck + "signin", {
+    const rawResponse = await fetch(Const.API_LINK + "signin", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -108,7 +108,7 @@ export class Login extends React.Component {
               <div className="form-group">
                 <input
                   type="password"
-                  pattern={Const.passwordPattern}
+                  pattern={Const.PASSWORD_PATTERN}
                   className="form-control"
                   placeholder="Password"
                   required="required"

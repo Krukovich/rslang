@@ -25,7 +25,7 @@ export class CreateAccount extends React.Component {
 
   createUser = async (event) => {
     event.preventDefault();
-    const rawResponse = await fetch(Const.apiLinck + 'users',
+    const rawResponse = await fetch(Const.API_LINK + 'users',
       {
         method: "POST",
         headers: {
@@ -88,8 +88,8 @@ export class CreateAccount extends React.Component {
             <div className="form-group">
               <input
                 type="password"
-                title={Const.passwordRequirements}
-                pattern={Const.passwordPattern}
+                title={Const.PASSWORD_REQUIREMENTS}
+                pattern={Const.PASSWORD_PATTERN}
                 className="form-control"
                 placeholder="Password"
                 required="required"
