@@ -1,11 +1,32 @@
 import React from 'react';
-import { playExampleSound } from '../../service';
-import { BTN_LABEL } from '../../constant';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
+import { setWordCards } from '../../Store/PlayZonePage/actions';
+import {connect } from 'react-redux';
+import { playExampleSound } from '../../service';
+import { BTN_LABEL } from '../../constant';
 import './playZonePage.scss';
+
+const mapStateToProps = (store) => {
+  const {
+    settings,
+    dayLearningWords,
+    difficultWords,
+  } = store.appSettings;
+
+  return {
+    settings: settings,
+    difficultWords: difficultWords,
+    dayLearningWords: dayLearningWords,
+    cards: store.playZone.cards,
+  }
+}
+
+const mapActionToProps = {
+  setWordCards,
+}
 
 class PlayZonePage extends React.Component {
   constructor(props) {
@@ -110,4 +131,4 @@ class PlayZonePage extends React.Component {
   }
 }
 
-export default PlayZonePage;
+export default connect(mapStateToProps, mapActionToProps)(PlayZonePage);
