@@ -11,6 +11,7 @@ import './Style/main.scss';
 
 const store = createStore(rootReducer);
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store }>
