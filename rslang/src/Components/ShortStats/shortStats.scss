@@ -1,0 +1,40 @@
+.shortStats {
+    background-color: rgba(135, 207, 235, 0.3);
+    font-family: cursive;
+}
+
+.shortStatsHeader {
+    font-size: 2rem;
+    font-weight: bold;
+    color: blue;
+    margin-top: 2 rem;
+    h1 {
+        margin-top: 2rem;
+    }
+    img {
+        border-radius: 30px;
+    }
+}
+
+.shortStatsInfo {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    &-item {
+        margin-top: 2rem;
+        width: 459px;
+        justify-content: space-between;
+        &:first-child {
+            color: tomato;
+        }
+        &:nth-child(2) {
+            color: green;
+        }
+        &:nth-child(3) {
+            color: rgb(131, 94, 2);
+        }
+        &:last-child {
+            color: darkred;
+            margin-bottom: 2rem;
+        }
+    }
+}
