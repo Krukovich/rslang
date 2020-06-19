@@ -1,6 +1,7 @@
 export const BTN_LABEL = {
-  NEXT: 'Next',
-  PREV: 'Prev',
+  NEXT: 'Дальше',
+  CHECK: 'Проверить',
+  PREV: 'Назад',
 }
 
 export const wordCards = {

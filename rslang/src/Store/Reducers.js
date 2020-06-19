@@ -5,6 +5,7 @@ import * as Actions from './Actions';
 const initialState = {
   settings: { // global app settings
     level: 1, // number indicating difficult level
+    playExampleSound: true, // play example words after selected agree word
     showTranslateWord: true, // show translate word
     showExampleString: true, // show example string
     showExplanationString: true, // show explanation string

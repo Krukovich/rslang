@@ -7,7 +7,16 @@ import {
   renderPlayString,
  } from '../../../service'; 
 
-const Card = ({ cards, playStep, handlerSubmit }) => {
+const Card = (props) => {
+  const {
+    cards,
+    playStep,
+    handlerSubmit,
+    handlerChange,
+    settings,
+    isNotAgree
+  } = props;
+
   return(
     <div className="card PlayCard">
       <img
@@ -22,20 +31,26 @@ const Card = ({ cards, playStep, handlerSubmit }) => {
           <div className="form-row">
             <div className="col-12 mt-3">
               <div className="row PlayString">
-                { renderPlayString(cards[playStep]) }
+                { renderPlayString(cards[playStep], handlerChange) }
               </div>
             </div>
             <div className="col-12">
               <hr />
+              { settings.showTranslateWord && !isNotAgree ?
+                cards[playStep].wordTranslate : '' 
+              } 
+            </div>
+            <div className="col-12">
+              <hr />
               <span>
-                { cards[playStep].textExampleTranslate }
+                { settings.showExplanationString && !isNotAgree ? cards[playStep].textExampleTranslate : '' }
               </span>
             </div>
           </div>
           <div className="col-12 text-right mt-3">
             <button
               type="button"
-              className="btn btn-outline-info btn-sm"
+              className="btn btn-outline-primary btn-sm"
               data-toggle="tooltip"
               data-placement="bottom"
               title="Play example sound"
