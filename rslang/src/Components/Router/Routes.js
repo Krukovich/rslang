@@ -4,6 +4,8 @@ import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
+import ShortStats from '../ShortStats/ShortStats';
+import LongStats from '../LongStats/LongStats';
 
 const sourceRoutes = [
   {
@@ -22,8 +24,18 @@ const sourceRoutes = [
     exact: true,
   },
   {
+    path: '/short-stats',
+    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} />,
+    exact: true,
+  },
+  {
     path: '/',
     component: Login,
+    exact: true,
+  },
+  {
+    path: '/long-stats',
+    component: LongStats,
     exact: true,
   },
   {
