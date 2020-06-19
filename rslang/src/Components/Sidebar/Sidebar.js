@@ -8,6 +8,7 @@ class Sidebar extends Component {
             <aside className="aside flex-shrink-1 vh-100 p-5 bg-secondary position-fixed">
                 <ul className="nav nav-pills flex-column align-items-center">
                     <NavItem href='/' title='Home' />
+                    <NavItem href='/minigames' title='Mini games' />
                     <NavItem href='/about' title='About' />
                     <NavItem href='/settings' title='Settings' />
                 </ul>

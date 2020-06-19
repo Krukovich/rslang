@@ -18,9 +18,9 @@ class Header extends Component {
                     />
                 </div>
                 <div className="header__right w-25 d-flex justify-content-end">
-                    {/* <Button
+                    <Button
                         title='Log Out'
-                    /> */}
+                    />
                 </div>
             </header>
         )
