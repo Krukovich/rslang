@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import { RouteMap } from './Components/Router/Routes';
+import Vocabulary from './Vocabulary/vocabulary';
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
         <Switch>
           {RouteMap}
         </Switch>
+        <Vocabulary />
         </div>
       </div>
     </div>
