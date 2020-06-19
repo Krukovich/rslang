@@ -4,6 +4,7 @@ import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
+import LongStats from '../LongStats/LongStats';
 
 const sourceRoutes = [
   {
@@ -24,6 +25,11 @@ const sourceRoutes = [
   {
     path: '/',
     component: Login,
+    exact: true,
+  },
+  {
+    path: '/long-stats',
+    component: LongStats,
     exact: true,
   },
   {
