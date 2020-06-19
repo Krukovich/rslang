@@ -8,6 +8,7 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
+import VerticalMenu from './VerticalMenu/VerticalMenu';
 import './playZonePage.scss';
 
 
@@ -152,6 +153,7 @@ class PlayZonePage extends React.Component {
               handlerChange={ this.handlerInputChange }
               handlerSubmit={ this.handlerSubmit }
             />
+            <VerticalMenu />
           </div>
         </div>
         <div className="row">
@@ -166,7 +168,7 @@ class PlayZonePage extends React.Component {
               </button>
               <Button incrementPlayStep={ this.incrementPlayStep } label={ BTN_LABEL.NEXT } isNotAgree={ isNotAgree } />
             </div>
-          </div> 
+          </div>
         </div>
         <div className="row justify-content-center mt-5">
           <div className="col-12 col-md-6">
