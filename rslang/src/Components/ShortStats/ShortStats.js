@@ -7,13 +7,6 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 import english from './english.gif';
 
-// const dataInfo = {
-//     total: 50,
-//     right: 75,
-//     newWords: 43,
-//     rightInARow: 15,
-// }
-
 const ShortStatsHeader = () => {
     return (
         <div className="row align-items-center flex-column shortStatsHeader">
@@ -41,9 +34,8 @@ export default class ShortStats extends React.Component {
         this.rightAnswer = props.right;
         this.newWords = props.newWords;
         this.correctRow = props.rightInARow;
-        // console.log(props.total, props.right, props.newWords, props.rightInARow);
     }
-    // 
+    
     render() {
         return (
             <div className="container shortStats">
