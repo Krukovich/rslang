@@ -40,3 +40,11 @@
 .nav-link:last-child {
     align-self: flex-end;
 }
+
+.btn_aside {
+    transition: 0.3s !important;
+}
+
+.btn_aside_active {
+    transform: rotate(90deg);
+}

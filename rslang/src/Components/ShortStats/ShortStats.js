@@ -17,13 +17,13 @@ const ShortStatsHeader = () => {
 }
 
 const ShortStatsInfo = (props) => {
-    const { total, right, newWords, rightInARow } = props; 
+    const { total, right, newWords, rightInARow } = props;
     return (
         <ul className="row align-items-center flex-column shortStatsInfo">
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faDragon } /> Карточек завершено:  </span><span>{total}</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCrown } /> Правильные ответы: </span> <span>{right}%</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCartPlus } /> Новые слова: </span> <span>{newWords}</span> </li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faUserGraduate } /> Правильных ответов подряд: </span> <span>{rightInARow}</span> </li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faDragon} /> Карточек завершено:  </span><span>{total}</span></li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faCrown} /> Правильные ответы: </span> <span>{right}%</span></li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span> <span>{newWords}</span> </li>
+            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span> <span>{rightInARow}</span> </li>
         </ul>
     )
 }
@@ -35,7 +35,7 @@ export default class ShortStats extends React.Component {
         this.newWords = props.newWords;
         this.correctRow = props.rightInARow;
     }
-    
+
     render() {
         return (
             <div className="container shortStats">

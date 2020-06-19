@@ -6,11 +6,12 @@ import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../LongStats/LongStats';
+import MainPage from '../../Pages/MainPage/MainPage';
 
 const sourceRoutes = [
   {
     path: '/main',
-    component: LogoutPage,
+    component: MainPage,
     exact: true,
   },
   {
@@ -58,8 +59,8 @@ const sourceRoutes = [
   },
 ];
 
- const RouteMap = sourceRoutes.map(({ path, component }, key) => (
+const RouteMap = sourceRoutes.map(({ path, component }, key) => (
   <Route exact path={path} component={component} key={key} />
 ));
 
-export {RouteMap};
+export { RouteMap };

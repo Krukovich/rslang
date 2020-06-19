@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Line} from 'react-chartjs-2';
-import './longStats.scss';
+import { Line } from 'react-chartjs-2';
+import './LongStats.scss';
 
 const state = {
   labels: ['1', '2', '3',
-           '4', '5', '6', '7', '8', '9', '10'],
+    '4', '5', '6', '7', '8', '9', '10'],
   datasets: [
     {
       label: 'Progress',
@@ -17,25 +17,25 @@ const state = {
 }
 
 export default class LongStats extends React.Component {
-  render() {  
+  render() {
     return (
       <div className="graph">
         <Line
           data={state}
           options={{
-            title:{
-              display:true,
-              text:'All words for the period',
-              fontSize:20
+            title: {
+              display: true,
+              text: 'All words for the period',
+              fontSize: 20
             },
-            legend:{
-              display:true,
-              position:'right'
+            legend: {
+              display: true,
+              position: 'right'
             }
           }}
         />
       </div>
     );
   }
- }
-  
+}
+

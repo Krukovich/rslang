@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = (props) => {
     return (
-        <a className="card border-primary rounded mt-2">
+        <a href={props.href} className="card border-primary rounded mt-2">
             <div className="row no-gutters">
                 <div className="col-md-4 d-flex justify-content-center align-items-center bg-primary">
                     <img className="card-img fluid h-75 w-75" style={{ backgroundColor: 'white' }}></img>
