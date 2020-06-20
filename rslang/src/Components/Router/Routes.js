@@ -6,6 +6,7 @@ import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../LongStats/LongStats';
+import Settings from '../Settings/Settings';
 
 const sourceRoutes = [
   {
@@ -32,6 +33,12 @@ const sourceRoutes = [
     path: '/',
     component: Login,
     exact: true,
+  },
+  {
+    path: '/settings',
+    component: Settings,
+    exact: true,
+
   },
   {
     path: '/long-stats',
