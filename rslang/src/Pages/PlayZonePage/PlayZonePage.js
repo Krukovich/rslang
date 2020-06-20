@@ -76,7 +76,10 @@ class PlayZonePage extends React.Component {
       return;
     }
     const card = cards.splice(playStep, 1);
-    this.setState({ cards: cards });
+    this.setState({
+      cards: cards,
+      agreeWord: cards[playStep].word, 
+    });
     this.props.setDeleteWords(card);
   }
 
