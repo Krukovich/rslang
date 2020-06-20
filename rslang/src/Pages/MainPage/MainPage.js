@@ -5,8 +5,6 @@ import Header from '../../Components/Header/Header';
 
 import pic1 from './pic1.jpg';
 import pic2 from './pic2.jpg';
-import gif1 from './picgif1.gif';
-import gif2 from './picgif2.gif';
 
 class MainPage extends Component {
     constructor() {
@@ -26,7 +24,13 @@ class MainPage extends Component {
                 class: 'Card-Image_learning',
                 pic: pic2
             },
+            clicked: false,
         }
+        this.asideToggle = this.asideToggle.bind(this);
+    }
+
+    asideToggle() {
+        this.setState({ clicked: !this.state.clicked });
     }
 
     render() {
@@ -36,10 +40,10 @@ class MainPage extends Component {
         return (
             <div className="container">
                 <div className="row no-gutters">
-                    <Sidebar />
+                    <Sidebar clicked={this.state.clicked} />
                     <div className="col-md-12">
                         <div className="row no-gutters">
-                            <Header />
+                            <Header asideToggler={this.asideToggle} clicked={this.state.clicked} />
                         </div>
                         <div className="row p-3">
                             <div className="col-md-12">
