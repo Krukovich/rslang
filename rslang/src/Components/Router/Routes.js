@@ -33,7 +33,7 @@ const sourceRoutes = [
   },
   {
     path: '/short-stats',
-    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} />,
+    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} timeNow={1592681867484} />,
     exact: true,
   },
   {
