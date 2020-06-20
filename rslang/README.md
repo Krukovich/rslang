@@ -37,10 +37,14 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-
 ### Font Awesome added to the project
 site with pictures - https://fontawesome.com/icons?d=gallery
 ## how it works
 1. import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 2. import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 3. insert <FontAwesomeIcon icon={ faVolumeUp } /> this into your piece of code
+
+### Redux DevTools Extension added to the project
+https://github.com/zalmoxisus/redux-devtools-extension#installation
+## how it works
+1. install Google Chrome extension - https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
