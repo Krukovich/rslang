@@ -76,7 +76,7 @@ export const appSettingsReducer = (state = initialState, action) => {
     case Actions.CHANGE_DIFFICULT_WORDS:
       return {
         ...state,
-        level: action.payload,
+        difficultWords: [...state.difficultWords, action.payload],
       }
     case Actions.CHANGE_DAY_LEARNING_WORDS:
       return {

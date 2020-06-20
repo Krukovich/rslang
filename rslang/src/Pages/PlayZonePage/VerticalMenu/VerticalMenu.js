@@ -3,6 +3,7 @@ import './verticalMenu.scss';
 
 const VerticalMenu = (props) => {
   const {
+    insertCardToDifficult,
     deleteCard,
     settings,
   } = props;
@@ -11,26 +12,30 @@ const VerticalMenu = (props) => {
     <div className="btn-group-vertical Vertical-Menu ml-3">
       <div className="row">
         <div className="col-12">
-        { settings.showBtnDeleteWord ?
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={ deleteCard }
-          >
-            Удалить
-          </button>
-          : ''
-        }
+          { settings.showBtnDeleteWord ?
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={ deleteCard }
+            >
+              Удалить
+            </button>
+            : ''
+          }
         </div>
       </div>
       <div className="row">
         <div className="col-12">
-          <button
-            type="button"
-            className="btn btn-primary"
-          >
-            Сложное
-          </button>
+          { settings.showBtnDifficultWord ?
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={ insertCardToDifficult }
+            >
+              Сложное
+            </button>
+            : ''
+          }
         </div>
       </div>
       <div className="row">

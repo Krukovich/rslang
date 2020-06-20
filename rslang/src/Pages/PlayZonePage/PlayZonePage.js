@@ -44,6 +44,7 @@ class PlayZonePage extends React.Component {
       isNotAgree: true,
       inputValue: '',
     }
+    this.difficultWordId = '';
     this.form = '';
     this.settings = props.settings
   }
@@ -78,6 +79,16 @@ class PlayZonePage extends React.Component {
     const card = cards.splice(playStep, 1);
     this.setState({ cards: cards });
     this.props.setDeleteWords(card);
+  }
+
+  insertCardToDifficult = () => {
+    const { cards, playStep } = this.state;
+    if (this.difficultWordId === cards[playStep].id) {
+      return;
+    } else {
+      this.difficultWordId = cards[playStep].id;
+      this.props.setDifficultWords(cards[playStep]);
+    }
   }
 
   handlerSubmit = (event) => {
@@ -167,6 +178,7 @@ class PlayZonePage extends React.Component {
               handlerSubmit={ this.handlerSubmit }
             />
             <VerticalMenu
+              insertCardToDifficult={ this.insertCardToDifficult }
               deleteCard={ this.deleteCard }
               settings={ this.settings }
             />
