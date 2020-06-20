@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavItem from './NavItem/NavItem';
+import './Sidebar.scss';
 
 class Sidebar extends Component {
 

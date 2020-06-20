@@ -1,0 +1,10 @@
+.aside {
+    width: 250px;
+    z-index: 1000;
+    left: -250px;
+    transition: 0.3s;
+}
+
+.aside_active {
+    left: 0;
+}
