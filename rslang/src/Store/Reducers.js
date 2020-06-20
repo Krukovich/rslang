@@ -31,47 +31,42 @@ export const appSettingsReducer = (state = initialState, action) => {
     case Actions.CHANGE_SHOW_TRANSLATE_WORD:
       return {
         ...state,
-        level: action.payload,
+        showTranslateWord: action.payload,
       }
     case Actions.CHANGE_SHOW_EXAMPLE_STRING:
       return {
         ...state,
-        level: action.payload,
+        showExampleString: action.payload,
       }
     case Actions.CHANGE_SHOW_EXPLANATION_STRING:
         return {
           ...state,
-          level: action.payload,
+          showExplanationString: action.payload,
       }
     case Actions.CHANGE_SHOW_WORD_TRANSLATE:
       return {
         ...state,
-        level: action.payload,
+        showWordsTranslate: action.payload,
       }
     case Actions.CHANGE_SHOW_WORD_IMAGE:
       return {
         ...state,
-        level: action.payload,
+        showWordImage: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER:
         return {
           ...state,
-          level: action.payload,
+          showBtnShowAgreeAnswer: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_DELETE_WORD:
         return {
           ...state,
-          level: action.payload,
-      }
-    case Actions.CHANGE_SHOW_DIFFICULT_WORDS:
-      return {
-        ...state,
-        level: action.payload,
+          showBtnDeleteWord: action.payload,
       }
     case Actions.CHANGE_NEW_WORDS_COUNT:
       return {
         ...state,
-        level: action.payload,
+        newWordsCount: action.payload,
       }
     case Actions.CHANGE_DIFFICULT_WORDS:
       return {
@@ -81,7 +76,7 @@ export const appSettingsReducer = (state = initialState, action) => {
     case Actions.CHANGE_DAY_LEARNING_WORDS:
       return {
         ...state,
-        level: action.payload,
+        dayLearningWords: action.payload,
       }
     case Actions.CHANGE_DELETE_WORDS:
       return {
