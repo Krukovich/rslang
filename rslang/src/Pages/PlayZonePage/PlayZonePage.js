@@ -35,7 +35,6 @@ const mapActionToProps = {
 
 class PlayZonePage extends React.Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       cards: wordCards[1],
