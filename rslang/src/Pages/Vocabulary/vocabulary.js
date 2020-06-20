@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import wordCards from './vocabulary-data';
-import Posts from './Posts';
-import Pagination from './Pagination';
+import Posts from './Posts/Posts';
+import Pagination from './Pagination/Pagination';
 
 
 const Vocabulary = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import { RouteMap } from './Components/Router/Routes';
-import Vocabulary from './Vocabulary/vocabulary';
+import Vocabulary from './Pages/Vocabulary/vocabulary';
 
 const App = () => {
 
