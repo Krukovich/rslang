@@ -10,6 +10,7 @@ export const CHANGE_SHOW_DIFFICULT_WORDS = 'CHANGE_SHOW_DIFFICULT_WORDS';
 export const CHANGE_NEW_WORDS_COUNT = 'CHANGE_NEW_WORDS_COUNT';
 export const CHANGE_DIFFICULT_WORDS = 'CHANGE_DIFFICULT_WORDS';
 export const CHANGE_DAY_LEARNING_WORDS = 'CHANGE_DAY_LEARNING_WORDS';
+export const CHANGE_DELETE_WORDS = 'CHANGE_DELETE_WORDS';
 
 export const setSitingLevel = (level) => ({
   type: CHANGE_DIFFICULT_LEVEL,
@@ -63,5 +64,10 @@ export const setDifficultWords = (array) => ({
 
 export const setDayLearningWords = (array) => ({
   type: CHANGE_DAY_LEARNING_WORDS,
+  payload: array,
+});
+
+export const setDeleteWords = (array) => ({
+  type: CHANGE_DELETE_WORDS,
   payload: array,
 });

@@ -16,6 +16,7 @@ const initialState = {
     showBtnDifficultWord: true, // show btn add words to a difficult group
     newWordsCount: 5, // number for learning new words
   },
+  deleteWords: [], // an array with delete words
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn
 }
@@ -81,7 +82,12 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         level: action.payload,
-      }          
+      }
+    case Actions.CHANGE_DELETE_WORDS:
+      return {
+        ...state,
+        deleteWords: [...state.deleteWords, action.payload]
+      }            
   }
   return state;
 }
