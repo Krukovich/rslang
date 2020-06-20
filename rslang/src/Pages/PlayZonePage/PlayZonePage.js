@@ -3,6 +3,7 @@ import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
+import { setDifficultWords } from '../../Store/Actions';
 import { connect } from 'react-redux';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
@@ -29,10 +30,12 @@ const mapStateToProps = (store) => {
 
 const mapActionToProps = {
   setWordCards,
+  setDifficultWords,
 }
 
 class PlayZonePage extends React.Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       cards: wordCards[1],
@@ -153,7 +156,11 @@ class PlayZonePage extends React.Component {
               handlerChange={ this.handlerInputChange }
               handlerSubmit={ this.handlerSubmit }
             />
-            <VerticalMenu />
+            <VerticalMenu
+              difficultWords={ this.props.difficultWords }
+              cards={ cards[playStep] }
+              setDifficultWords={ this.props.setDifficultWords }
+            />
           </div>
         </div>
         <div className="row">
@@ -191,3 +198,4 @@ class PlayZonePage extends React.Component {
 }
 
 export default connect(mapStateToProps, mapActionToProps)(PlayZonePage);
+

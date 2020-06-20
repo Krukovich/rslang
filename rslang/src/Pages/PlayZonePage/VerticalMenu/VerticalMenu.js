@@ -1,14 +1,21 @@
 import React from 'react';
 import './verticalMenu.scss';
 
-const VerticalMenu = () => {
+const VerticalMenu = (props) => {
+  const { cards, setDifficultWords, difficultWords } = props;
+
+  const pushWordInDifficult = () => {
+    setDifficultWords(cards);
+    console.log(difficultWords);
+  }
+
   return (
-    <div class="btn-group-vertical Vertical-Menu ml-3">
+    <div className="btn-group-vertical Vertical-Menu ml-3">
       <div className="row">
         <div className="col-12">
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
           >
             Удалить
           </button>
@@ -18,7 +25,8 @@ const VerticalMenu = () => {
         <div className="col-12">
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
+            onClick={ pushWordInDifficult }
           >
             Сложное
           </button>
@@ -28,7 +36,7 @@ const VerticalMenu = () => {
         <div className="col-12">
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
           >
             Показать ответ
           </button>
