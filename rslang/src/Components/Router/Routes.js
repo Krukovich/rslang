@@ -29,7 +29,8 @@ const sourceRoutes = [
   },
   {
     path: '/long-stats',
-    component: LongStats,
+    component: () => <LongStats dataLabels={['1', '2', '3',
+    '4', '5', '6', '7', '8', '9']} totalNewWords={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />,
     exact: true,
   },
   {
