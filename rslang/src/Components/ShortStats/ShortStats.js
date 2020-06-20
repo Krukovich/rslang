@@ -28,14 +28,7 @@ const ShortStatsInfo = (props) => {
     )
 }
 export default class ShortStats extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.totalCards = props.total;
-    //     this.rightAnswer = props.right;
-    //     this.newWords = props.newWords;
-    //     this.correctRow = props.rightInARow;
-    // }
-    //total={this.totalCards} right={this.rightAnswer} newWords={this.newWords} rightInARow={this.correctRow}
+   
     render() {
         return (
             <div className="container shortStats">
