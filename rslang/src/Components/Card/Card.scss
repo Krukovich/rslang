@@ -1,9 +1,30 @@
-.card {
+.Card {
     transition: 0.3s;
     cursor: pointer;
     user-select: none;
+}
 
-    &:hover {
-        opacity: 0.8;
+.Card-Image {
+    img {
+        height: 100%;
     }
+}
+
+.Card:hover {
+    .Card-Image {
+        background-size: cover;
+        background-position: center;
+    }
+
+    img {
+        display: none;
+    }
+}
+
+.Card-Image_training {
+    background-image: url(../../Pages/MainPage/picgif1.gif);
+}
+
+.Card-Image_learning {
+    background-image: url(../../Pages/MainPage/picgif2.gif);
 }

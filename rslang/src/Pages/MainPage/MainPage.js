@@ -3,27 +3,35 @@ import Card from '../../Components/Card/Card';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Header from '../../Components/Header/Header';
 
+import pic1 from './pic1.jpg';
+import pic2 from './pic2.jpg';
+import gif1 from './picgif1.gif';
+import gif2 from './picgif2.gif';
+
 class MainPage extends Component {
     constructor() {
         super();
         this.state = {
-            games: [
-                {
-                    title: 'Training',
-                    description: 'Study English',
-                    href: '#',
-                },
-                {
-                    title: 'Learning',
-                    description: 'Learn English',
-                    href: 'PlayZonePage',
-                },
-            ]
+            trainingCard: {
+                title: 'Training',
+                description: 'Study English',
+                href: '#',
+                class: 'Card-Image_training',
+                pic: pic1
+            },
+            learningCard: {
+                title: 'Learning',
+                description: 'Learn English',
+                href: 'PlayZonePage',
+                class: 'Card-Image_learning',
+                pic: pic2
+            },
         }
     }
 
     render() {
-        const games = this.state.games;
+        const trainingCard = this.state.trainingCard;
+        const learningCard = this.state.learningCard;
 
         return (
             <div className="container">
@@ -37,10 +45,10 @@ class MainPage extends Component {
                             <div className="col-md-12">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <Card href={games[0].href} title={games[0].title} description={games[0].description} />
+                                        <Card class={trainingCard.class} pic={trainingCard.pic} href={trainingCard.href} title={trainingCard.title} description={trainingCard.description} />
                                     </div>
                                     <div className="col-md-6">
-                                        <Card href={games[1].href} title={games[1].title} description={games[1].description} />
+                                        <Card class={learningCard.class} pic={learningCard.pic} href={learningCard.href} title={learningCard.title} description={learningCard.description} />
                                     </div>
                                 </div>
                             </div>
