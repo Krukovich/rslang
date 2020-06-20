@@ -26,20 +26,22 @@ class MainPage extends Component {
         const games = this.state.games;
 
         return (
-            <div className="row no-gutters">
-                <Sidebar />
-                <div className="col-md-12">
-                    <div className="row no-gutters">
-                        <Header />
-                    </div>
-                    <div className="row p-3">
-                        <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <Card href={games[0].href} title={games[0].title} description={games[0].description} />
-                                </div>
-                                <div className="col-md-6">
-                                    <Card href={games[1].href} title={games[1].title} description={games[1].description} />
+            <div className="container">
+                <div className="row no-gutters">
+                    <Sidebar />
+                    <div className="col-md-12">
+                        <div className="row no-gutters">
+                            <Header />
+                        </div>
+                        <div className="row p-3">
+                            <div className="col-md-12">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <Card href={games[0].href} title={games[0].title} description={games[0].description} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <Card href={games[1].href} title={games[1].title} description={games[1].description} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
