@@ -1,54 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import wordCards from './vocabulary-data';
-import Btn from './vocabularyBtn/vocabularyBtn';
-// import Posts from './Posts';
+import Posts from './Posts';
+import Pagination from './Pagination';
 
 
 const Vocabulary = () => {
-  // const [posts, setPosts] = useState([]);
-  const [currentLanguageLevel, setCurrentLanguageLevel] = useState(1);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage, setPostPerPage] = useState(30);
+  const [posts, setPosts] = useState([]);
+  const [currentLanguageLevel] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(30);
 
-  // const res = [];
-  // wordCards[currentLanguageLevel].map((post) => {
-  //   res.push(post)
-  // })
-  // setPosts(res);
-  // console.log(res)
-  // posts.map(post => {
-  //   let arr = [];
-  //   arr.push(post.word);
-  //   console.log(arr.length)
-  // })
+  useEffect(() => {
+    const getPosts = () => {
+      setPosts(wordCards[currentLanguageLevel]);
+    }
 
-  const listItem = wordCards[currentLanguageLevel].map((item) => {
-    return (
-      <li key={ item.id } className="list-group-item">
-        <Btn src={item.audio}/>
-        {item.word}
-        {item.transcription}
-        {item.wordTranslate}
-        {item.textExample}
-        <img src={`https://raw.githubusercontent.com/Nickolay-Dudaryk/rslang-data/master/${item.image}`} width="80px" alt={`${item.word}`}></img>
-      </li>
-    )
-  })
-  // setPosts(listItem);
+    getPosts();
+  }, []);
+
 
   // Get current posts
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
 
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   
   return (
-    <ul className="list-group mb-4">
-      {/* <posts posts={currentPost}/>  */}
-      { listItem }
-    </ul>
-    // <Posts posts={posts} />
-    // null
+    <div className='container mt-5'>
+      <Posts posts={currentPost} />
+      <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+    </div>
   );
 }
 

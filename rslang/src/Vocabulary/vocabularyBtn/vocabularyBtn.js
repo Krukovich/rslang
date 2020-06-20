@@ -10,7 +10,7 @@ const Btn = ({ src }) => {
     }
 
     return (
-        <button type="button" className="btn btn-secondary" onClick={ () => playExampleSound(src) }><span><FontAwesomeIcon icon={ faPlayCircle } /></span></button>
+        <button type="button" className="btn mr-2" onClick={ () => playExampleSound(src) }><span><FontAwesomeIcon icon={ faPlayCircle } /></span></button>
     )
 }
 
