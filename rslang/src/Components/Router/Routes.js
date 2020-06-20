@@ -4,7 +4,7 @@ import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
-import LongStats from '../LongStats/LongStats';
+import LongStats from '../../Pages/LongStats/LongStats';
 
 const sourceRoutes = [
   {
