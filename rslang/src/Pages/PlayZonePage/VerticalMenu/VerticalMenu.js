@@ -3,6 +3,7 @@ import './verticalMenu.scss';
 
 const VerticalMenu = (props) => {
   const {
+    showAnswer,
     insertCardToDifficult,
     deleteCard,
     settings,
@@ -44,6 +45,7 @@ const VerticalMenu = (props) => {
           <button
             type="button"
             className="btn btn-primary"
+            onClick={ showAnswer }
           >
             Показать ответ
           </button>

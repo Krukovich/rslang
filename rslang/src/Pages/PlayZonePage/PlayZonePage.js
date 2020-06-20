@@ -45,8 +45,7 @@ class PlayZonePage extends React.Component {
       inputValue: '',
     }
     this.difficultWordId = '';
-    this.form = '';
-    this.settings = props.settings
+    this.settings = props.settings;
   }
 
   incrementPlayStep = () => {
@@ -123,6 +122,13 @@ class PlayZonePage extends React.Component {
     }
   }
 
+  showAnswer = () => {
+    const { cards, playStep } = this.state;
+    const input = document.querySelector('.WordInput');
+    input.value = cards[playStep].word;
+    this.setState({ isNotAgree: false });
+  }
+
   handlerInputChange = (event) => {
     this.input = event.target;
     this.setState({ inputValue: event.target.value });
@@ -170,6 +176,7 @@ class PlayZonePage extends React.Component {
         <div className="row mt-5">
           <div className="col-12 d-flex justify-content-center">
             <Card
+              input={ this.input }
               isNotAgree={ isNotAgree }
               settings={ this.settings }
               cards={ cards }
@@ -178,6 +185,7 @@ class PlayZonePage extends React.Component {
               handlerSubmit={ this.handlerSubmit }
             />
             <VerticalMenu
+              showAnswer={ this.showAnswer }
               insertCardToDifficult={ this.insertCardToDifficult }
               deleteCard={ this.deleteCard }
               settings={ this.settings }
