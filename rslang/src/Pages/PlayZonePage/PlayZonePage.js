@@ -22,9 +22,11 @@ const mapStateToProps = (store) => {
     showBtnShowAgreeAnswer,
     showTranslateWord,
     showExplanationString,
+    playExampleSound,
   } = store.appSettings;
 
   return {
+    playExampleSound: playExampleSound,
     showExplanationString: showExplanationString,
     showTranslateWord: showTranslateWord,
     showBtnDifficultWord: showBtnDifficultWord,
