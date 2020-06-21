@@ -6,7 +6,7 @@ const state = {
   labels: [],
   datasets: [
     {
-      label: 'Progress',
+      label: 'Прогресс',
       borderColor: 'rgba(0,0,0,1)',
       backgroundColor: 'orange',
       borderWidth: 2,
@@ -29,10 +29,11 @@ export default class LongStats extends React.Component {
       <div className="graph">
         <Line
           data={state}
+          getDatasetAtEvent={dataset => console.log(dataset)} // shows the datasets elements
           options={{
             title:{
               display:true,
-              text:'All words for the period',
+              text:'Все слова',
               fontSize:20
             },
             legend:{

@@ -7,7 +7,6 @@ import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../../Pages/LongStats/LongStats';
 
-
 const sourceRoutes = [
   {
     path: '/main',
