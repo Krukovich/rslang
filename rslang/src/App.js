@@ -8,9 +8,9 @@ const App = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-12">
-        <Switch>
-          {RouteMap}
-        </Switch>
+          <Switch>
+            {RouteMap}
+          </Switch>
         </div>
       </div>
     </div>
@@ -18,4 +18,3 @@ const App = () => {
 };
 
 export default App;
-
