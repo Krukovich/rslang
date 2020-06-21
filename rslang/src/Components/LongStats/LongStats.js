@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
-import './LongStats.scss';
+import './;ongStats.scss';
 
 const state = {
   labels: ['1', '2', '3',
@@ -25,7 +25,7 @@ export default class LongStats extends React.Component {
           options={{
             title:{
               display:true,
-              text:'All words for the period',
+              text:'Всего слов',
               fontSize:20
             },
             legend:{
