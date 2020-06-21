@@ -5,7 +5,7 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
-import LongStats from '../LongStats/LongStats';
+import LongStats from '../../Pages/LongStats/LongStats';
 
 const sourceRoutes = [
   {
@@ -25,7 +25,7 @@ const sourceRoutes = [
   },
   {
     path: '/short-stats',
-    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} />,
+    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} timeNow={1592681867484} />,
     exact: true,
   },
   {
@@ -35,7 +35,8 @@ const sourceRoutes = [
   },
   {
     path: '/long-stats',
-    component: LongStats,
+    component: () => <LongStats dataLabels={['1', '2', '3',
+    '4', '5', '6', '7', '8', '9']} totalNewWords={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />,
     exact: true,
   },
   {
