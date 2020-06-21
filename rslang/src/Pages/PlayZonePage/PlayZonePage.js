@@ -15,13 +15,21 @@ import './playZonePage.scss';
 
 const mapStateToProps = (store) => {
   const {
-    settings,
     dayLearningWords,
     difficultWords,
+    showBtnDeleteWord,
+    showBtnDifficultWord,
+    showBtnShowAgreeAnswer,
+    showTranslateWord,
+    showExplanationString,
   } = store.appSettings;
 
   return {
-    settings: settings,
+    showExplanationString: showExplanationString,
+    showTranslateWord: showTranslateWord,
+    showBtnDifficultWord: showBtnDifficultWord,
+    showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+    showBtnDeleteWord: showBtnDeleteWord,
     difficultWords: difficultWords,
     dayLearningWords: dayLearningWords,
     cards: store.playZone.cards,
@@ -45,7 +53,6 @@ class PlayZonePage extends React.Component {
       inputValue: '',
     }
     this.difficultWordId = '';
-    this.settings = props.settings;
   }
 
   incrementPlayStep = () => {
@@ -103,14 +110,14 @@ class PlayZonePage extends React.Component {
       return;
     } else {
       if (char === agreeWord) {
-        if (this.settings.playExampleSound) {
+        if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audioExample);
         }
         input.classList.remove('PlayCard_Mistake');
         input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
       } else {
-        if (this.settings.playExampleSound) {
+        if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
         }
         input.value = agreeWord;
@@ -149,14 +156,14 @@ class PlayZonePage extends React.Component {
       return;
     } else {
       if (agreeWord === inputValue) {
-        if (this.settings.playExampleSound) {
+        if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audioExample);
         }
         this.input.classList.remove('PlayCard_Mistake');
         this.input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
       } else {
-        if (this.settings.playExampleSound) {
+        if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
         }
         this.input.value = agreeWord;
@@ -181,9 +188,10 @@ class PlayZonePage extends React.Component {
             <Card
               input={ this.input }
               isNotAgree={ isNotAgree }
-              settings={ this.settings }
               cards={ cards }
               playStep={ playStep }
+              showTranslateWord={ this.props.showTranslateWord }
+              showExplanationString={ this.props.showExplanationString }
               handlerChange={ this.handlerInputChange }
               handlerSubmit={ this.handlerSubmit }
             />
@@ -191,13 +199,15 @@ class PlayZonePage extends React.Component {
               showAnswer={ this.showAnswer }
               insertCardToDifficult={ this.insertCardToDifficult }
               deleteCard={ this.deleteCard }
-              settings={ this.settings }
+              showBtnDeleteWord = { this.props.showBtnDeleteWord }
+              showBtnDifficultWord = { this.props.showBtnDifficultWord }
+              showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
             />
           </div>
         </div>
         <div className="row">
           <div className="col-12 d-flex justify-content-center mt-5">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div className="btn-group" role="group" aria-label="Basic example">
               <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } isNotAgree={ !playStep ? true : false }/>
               <button
                 className="btn btn-primary"
