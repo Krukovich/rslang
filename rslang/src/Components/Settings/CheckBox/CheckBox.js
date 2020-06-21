@@ -1,17 +1,11 @@
 import React from 'react';
 import './CheckBox.scss';
 
-
-
-
 class CheckBox extends React.Component{
-
-  
-
   render(){
     const {text, isChecked, onChange} = this.props
     return(
-      <div className="form-check">
+      <div className="CheckBox">
         <label className="form-check-label">
           <input type="checkbox" className="form-check-input" defaultChecked={isChecked} onClick={onChange} />{text}
         </label>
@@ -19,8 +13,4 @@ class CheckBox extends React.Component{
     )
   }
 }
-
-
-
-
 export default CheckBox;
