@@ -4,14 +4,21 @@ import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
+<<<<<<< HEAD
+<<<<<<< HEAD
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../LongStats/LongStats';
-import MainPage from '../../Pages/MainPage/MainPage';
+=======
+import LongStats from '../../Pages/LongStats/LongStats';
+>>>>>>> refactor
+=======
+import LongStats from '../../Pages/LongStats/LongStats';
+>>>>>>> 65eeae1b777444fb8927abfb3ebcdc1bc6978025
 
 const sourceRoutes = [
   {
     path: '/main',
-    component: MainPage,
+    component: LogoutPage,
     exact: true,
   },
   {
@@ -26,7 +33,7 @@ const sourceRoutes = [
   },
   {
     path: '/short-stats',
-    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} />,
+    component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} timeNow={1592681867484} />,
     exact: true,
   },
   {
@@ -36,7 +43,8 @@ const sourceRoutes = [
   },
   {
     path: '/long-stats',
-    component: LongStats,
+    component: () => <LongStats dataLabels={['1', '2', '3',
+    '4', '5', '6', '7', '8', '9']} totalNewWords={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />,
     exact: true,
   },
   {
@@ -59,8 +67,8 @@ const sourceRoutes = [
   },
 ];
 
-const RouteMap = sourceRoutes.map(({ path, component }, key) => (
+ const RouteMap = sourceRoutes.map(({ path, component }, key) => (
   <Route exact path={path} component={component} key={key} />
 ));
 
-export { RouteMap };
+export {RouteMap};
