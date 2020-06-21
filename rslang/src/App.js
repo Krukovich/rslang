@@ -9,10 +9,16 @@ const App = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-12">
+<<<<<<< HEAD
         <Switch>
           {RouteMap}
         </Switch>
         <Vocabulary />
+=======
+          <Switch>
+            {RouteMap}
+          </Switch>
+>>>>>>> develop
         </div>
       </div>
     </div>
@@ -20,4 +26,3 @@ const App = () => {
 };
 
 export default App;
-
