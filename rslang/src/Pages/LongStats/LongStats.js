@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
-import './;ongStats.scss';
+import './longStats.scss';
 
 const state = {
   labels: [],
   datasets: [
     {
-      label: 'Progress',
+      label: 'Прогресс',
       borderColor: 'rgba(0,0,0,1)',
       backgroundColor: 'orange',
       borderWidth: 2,
