@@ -4,8 +4,8 @@ import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
-import ShortStats from '../ShortStats/ShortStats';
-import Settings from '../../Pages/Settings/Settings';
+import ShortStats from './ShortStats';
+import Settings from '../../Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 
 const sourceRoutes = [
