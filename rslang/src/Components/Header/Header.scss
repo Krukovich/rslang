@@ -1,0 +1,8 @@
+.btn_aside {
+    transition: 0.3s !important;
+    z-index: 1001;
+}
+
+.btn_aside_active {
+    transform: rotate(90deg);
+}
