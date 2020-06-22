@@ -6,6 +6,8 @@ import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../../Pages/LongStats/LongStats';
+import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
+
 
 const sourceRoutes = [
   {
@@ -26,6 +28,11 @@ const sourceRoutes = [
   {
     path: '/short-stats',
     component: () => <ShortStats total={100} right={90} newWords={50} rightInARow={3} timeNow={1592681867484} />,
+    exact: true,
+  },
+  {
+    path: '/audiocall',
+    component: () => <AudioCall token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI3MDhjOThmZmJmMDAxNzQ1ODExNiIsImlhdCI6MTU5MjY3NDA0NywiZXhwIjoxNTkyNjg4NDQ3fQ.PwtU073aA-BfxwDgT5E5grLqtVtFTMED9ZMYrUaR3wU'} userId={'5eeb708c98ffbf0017458116'}/>,
     exact: true,
   },
   {
