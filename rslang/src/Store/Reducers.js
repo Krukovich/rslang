@@ -3,18 +3,16 @@ import { playZonePageReducer } from './PlayZonePage/reducers';
 import * as Actions from './Actions';
 
 const initialState = {
-  settings: { // global app settings
-    level: 1, // number indicating difficult level
-    showTranslateWord: true, // show translate word
-    showExampleString: true, // show example string
-    showExplanationString: true, // show explanation string
-    showWordsTranslate: true, // show word transcription
-    showWordImage: true, // show words image example
-    showBtnShowAgreeAnswer: true, // show btn next step
-    showBtnDeleteWord: true, // show btn remove a word from learning
-    showBtnDifficultWord: true, // show btn add words to a difficult group
-    newWordsCount: 5, // number for learning new words
-  },
+  level: 1, // number indicating difficult level
+  showTranslateWord: true, // show translate word
+  showExampleString: true, // show example string
+  showExplanationString: true, // show explanation string
+  showWordsTranslate: true, // show word transcription
+  showWordImage: true, // show words image example
+  showBtnShowAgreeAnswer: true, // show btn next step
+  showBtnDeleteWord: true, // show btn remove a word from learning
+  showBtnDifficultWord: true, // show btn add words to a difficult group
+  newWordsCount: 5, // number for learning new words
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn
 }

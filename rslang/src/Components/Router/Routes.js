@@ -5,7 +5,6 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
-import LongStats from '../LongStats/LongStats';
 import Settings from '../Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 
