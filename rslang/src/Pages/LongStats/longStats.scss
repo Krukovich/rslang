@@ -2,6 +2,10 @@ canvas {
     background-color: lemonchiffon;
 }
 
-.graph {
+.longStatsElem {
     margin-top: 3rem;
+    &-label {
+        margin-top: 1.5rem;
+        font-family: cursive;
+    }
 }
