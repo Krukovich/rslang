@@ -40,25 +40,6 @@ export default class LongStats extends React.Component {
   }
 
   render() {      
-<<<<<<< HEAD
-    return (
-      <div className="graph">
-        <Line
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Всего слов',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-=======
     return ( 
       <div>
         <div className="graph longStatsElem">
@@ -89,7 +70,6 @@ export default class LongStats extends React.Component {
           </div>
         </div>
       </div>  
->>>>>>> feat: progress bar
     );
   }
  }
