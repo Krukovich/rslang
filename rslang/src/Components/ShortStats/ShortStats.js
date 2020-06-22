@@ -29,7 +29,10 @@ const ShortStatsInfo = (props) => {
 }
 export default class ShortStats extends React.Component {
 <<<<<<< HEAD
+<<<<<<< HEAD
    
+=======
+>>>>>>> feat: progress bar
 =======
 >>>>>>> feat: progress bar
     render() {
@@ -37,7 +40,11 @@ export default class ShortStats extends React.Component {
             <div className="container shortStats">
                 <ShortStatsHeader />
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <ShortStatsInfo {...this.props}  />
+=======
+                <ShortStatsInfo {...this.props} />
+>>>>>>> feat: progress bar
 =======
                 <ShortStatsInfo {...this.props} />
 >>>>>>> feat: progress bar

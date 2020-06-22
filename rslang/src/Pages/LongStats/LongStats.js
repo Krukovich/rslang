@@ -41,6 +41,7 @@ export default class LongStats extends React.Component {
 
   render() {      
 <<<<<<< HEAD
+<<<<<<< HEAD
     return (
       <div className="graph">
         <Line
@@ -59,6 +60,8 @@ export default class LongStats extends React.Component {
         />
       </div>
 =======
+=======
+>>>>>>> feat: progress bar
     return ( 
       <div>
         <div className="graph longStatsElem">
@@ -74,10 +77,13 @@ export default class LongStats extends React.Component {
               legend: {
                 display: true,
                 position: 'bottom'
+<<<<<<< HEAD
               },
               tooltips: {
                 mode: 'index',
                 intersect: true
+=======
+>>>>>>> feat: progress bar
               }
             }}
           />
@@ -89,6 +95,9 @@ export default class LongStats extends React.Component {
           </div>
         </div>
       </div>  
+<<<<<<< HEAD
+>>>>>>> feat: progress bar
+=======
 >>>>>>> feat: progress bar
     );
   }
