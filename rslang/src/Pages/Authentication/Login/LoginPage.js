@@ -108,7 +108,7 @@ export class Login extends React.Component {
               <div className="form-group">
                 <input
                   type="password"
-                  // pattern={Const.PASSWORD_PATTERN}
+                  pattern={Const.PASSWORD_PATTERN}
                   className="form-control"
                   placeholder="Password"
                   required="required"
