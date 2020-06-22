@@ -78,12 +78,18 @@ export default class LongStats extends React.Component {
                 display: true,
                 position: 'bottom'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feat: combined tooltip
               },
               tooltips: {
                 mode: 'index',
                 intersect: true
+<<<<<<< HEAD
 =======
 >>>>>>> feat: progress bar
+=======
+>>>>>>> feat: combined tooltip
               }
             }}
           />
