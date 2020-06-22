@@ -55,6 +55,10 @@ export default class LongStats extends React.Component {
               legend: {
                 display: true,
                 position: 'bottom'
+              },
+              tooltips: {
+                mode: 'index',
+                intersect: true
               }
             }}
           />
