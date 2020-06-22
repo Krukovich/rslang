@@ -8,7 +8,7 @@ const ProgressBar = ({ cards, playStep }) => {
 
   return(
     <div className="progress">
-      <div className="progress-bar bg-info" style={ progressWidth }></div>
+      <div className="progress-bar bg-primary" style={ progressWidth }></div>
     </div>
   );
 }
