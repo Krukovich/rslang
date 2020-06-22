@@ -36,7 +36,7 @@ const sourceRoutes = [
   {
     path: '/long-stats',
     component: () => <LongStats dataLabels={['1', '2', '3',
-    '4', '5', '6', '7', '8', '9']} totalNewWords={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />,
+    '4', '5', '6', '7', '8', '9']} totalNewWords={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} totalWords={80} />,
     exact: true,
   },
   {
