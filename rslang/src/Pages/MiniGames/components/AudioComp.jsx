@@ -1,17 +1,19 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 export const AudioComp = (props) => {
-  const { wordsArray, gameStart } = props;
-  const rand = Math.floor(Math.random() * 20);
-  const word = wordsArray[rand];
+  const { gameFindWord, gameStart } = props;
   console.log(props)
   //console.log( wordsArray, gameStart )
   if (gameStart) {
     return (
-      <div>
-        <label>{word.wordTranslate}</label>
+      <div className="text-center">
+        <label>{gameFindWord.wordTranslate}</label>
         <button 
-          onClick={() => audioPlay(word.audio)}>
+        className="btn btn-primary text-center"
+          onClick={() => audioPlay(gameFindWord.audio)}>
+            <FontAwesomeIcon icon={ faVolumeUp } />
           Воспроизвисти
           </button>
       </div>
