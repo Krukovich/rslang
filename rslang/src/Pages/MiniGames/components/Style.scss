@@ -1,7 +1,9 @@
 .Words {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .Word {
-    border: solid 2px black;
+   padding: 10px;
 }

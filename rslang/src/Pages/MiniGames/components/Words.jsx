@@ -2,19 +2,53 @@ import React from "react";
 import "./Style.scss";
 
 export const Words = (props) => {
-  const { wordsArray, gameStart, wordsDisplayCount } = props;
-  //console.log( wordsArray, gameStart )
+  const { wordsArray, gameStart, styleFunction } = props;
+  //console.log( wordsArray, gameStart ) slice(0, wordsDisplayCount)
+  
+  console.log('render words')
   if (gameStart) {
-    const wordRender = wordsArray.slice(0, wordsDisplayCount).map((word, key) => (
-      <div className="Word" key={key}>
-        <span>{word.wordTranslate}</span>
-        <button className="btn btn-primary" type="submit" id={word.id}>
+    const wordRender = shuffle(wordsArray).map((word, key) => (
+      <div className="Word text-center" key={key}>
+        <button className={wordStyle(word)} type="submit" id={word.id} onClick={(event) => styleFunction(event.target.id, key)}>
           {word.word}
         </button>
       </div>
     ));
 
-    return <div className="Words">{wordRender}</div>;
+    return <div className="Words ">{wordRender}</div>;
   }
   return <div>слова не загружены</div>;
 };
+
+// const onButtonClick = (event, gameFindWord, styleFunction) => {
+//   if (gameFindWord.id === event.target.id) {
+//     styleFunction(event.target.id, 'green')
+//     console.log(true)
+//   } else {
+//     console.log(false)
+//   }
+// }
+
+function shuffle(arr){
+	var j, temp;
+	for(var i = arr.length - 1; i > 0; i--){
+		j = Math.floor(Math.random()*(i + 1));
+		temp = arr[j];
+		arr[j] = arr[i];
+		arr[i] = temp;
+	}
+	return arr;
+}
+
+const wordStyle = (word) => {
+  if(word === "red") {
+    return 'btn btn-danger';
+  } 
+  if (word === "green") {
+    
+    return 'btn btn-success';
+  }
+  else {
+    return 'btn btn-primary'
+  }
+}
