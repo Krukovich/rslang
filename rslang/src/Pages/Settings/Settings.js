@@ -4,13 +4,72 @@ import React from 'react';
 import './Settings.scss';
 import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
+import { connect } from 'react-redux';
+import {
+  setSitingLevel,
+  setShowTranslateWord,
+  setShowExampleString,
+  setShowExplanationString,
+  setWordImage,
+  setShowBtnAgreeAnswer,
+  setShowBtnDeleteWord,
+  setNewWordsCount,
+  setDifficultWords,
+  setDayLearningWords
+} from '../../Store/Actions';
+
+const mapStateToProps =(store) =>{
+  const {  
+    settings,
+    setSetingLevel,
+    setShowTranslateWord,
+    setShowExampleString,
+    setShowExplanationString,
+    setWordImage,
+    setShowBtnAgreeAnswer,
+    setShowBtnDeleteWord,
+    setNewWordsCount,
+    setDifficultWords,
+    setDayLearningWords
+  } = store.appSettings;
+    
+  return{
+    settings: settings,
+    setSetingLevel: setSetingLevel,
+    setShowTranslateWord: setShowTranslateWord,
+    setShowExampleString: setShowExampleString,
+    setShowExplanationString: setShowExplanationString,
+    setWordImage: setWordImage,
+    setShowBtnAgreeAnswer: setShowBtnAgreeAnswer,
+    setShowBtnDeleteWord:setShowBtnDeleteWord,
+    setNewWordsCount: setNewWordsCount,
+    setDifficultWords: setDifficultWords,
+    setDayLearningWords: setDayLearningWords,
+
+  }
+}
+
+const mapActionsToProps ={
+  setSitingLevel,
+  setShowTranslateWord,
+  setShowExampleString,
+  setShowExplanationString,
+  setWordImage,
+  setShowBtnAgreeAnswer,
+  setShowBtnDeleteWord,
+  setNewWordsCount,
+  setDifficultWords,
+  setDayLearningWords
+}
 
 class Settings extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    debugger;
 
 
   }
+
   state = {
     // global app settings
     LEVEL: 1, // number indicating difficult level
@@ -35,16 +94,21 @@ class Settings extends React.Component {
     return (e) => {
       this.setState({ [key]: e.target.checked },
       () => console.log(this.state))
+      this.props[key](e.target.checked)
 
     }
   }
 
+  
+
 
   render() {
     return (
+      
       <div className="settingsContainer">
-        <TextInput text='Уровень' defValue={this.state.LEVEL} onChange={this.togle('LEVEL')} />
-        <CheckBox text='Показывать перевод слов' isChecked={this.state.SHOW_TRANSLATE_WORD} onChange={this.togle('SHOW_TRANSLATE_WORD')} />
+        {console.log(this.props) }
+        <TextInput text='Уровень' defValue={this.props.setSetingLevel} onChange={this.togle('LEVEL')} />
+        <CheckBox text='Показывать перевод слов' isChecked={this.props.setShowTranslateWord} onChange={this.togle('setShowTranslateWord')} />
         <CheckBox text='Пердложения с объяснением значения слова' isChecked={this.state.SHOW_EXPLANATION_STRING} onChange={this.togle('SHOW_EXPLANATION_STRING')} />
         <CheckBox text='Предложение с примером использования слова' isChecked={this.state.SHOW_EXAMPLE_STRING} onChange={this.togle('SHOW_EXAMPLE_STRING')} />
         <CheckBox text='Показать транскрипцию слова' isChecked={this.state.SHOW_WORD_TRANSCRIPTION} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} />
@@ -62,4 +126,4 @@ class Settings extends React.Component {
 
 
 
-export default Settings;
+export default connect(mapStateToProps, mapActionsToProps)(Settings)
