@@ -6,41 +6,42 @@ import Header from '../../Components/Header/Header';
 
 import './longStats.scss';
 
-const state = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Прогресс',
-      borderColor: 'rgba(0,0,0,1)',
-      backgroundColor: 'orange',
-      borderWidth: 2,
-      data: []
-    }
-  ],
-  clicked: false,
-}
-
 export default class LongStats extends React.Component {
   constructor(props) {
+    debugger;
     super(props);
-    this.dataLabels = props.dataLabels;
-    state.labels = this.dataLabels;
-    state.datasets[0].data = props.totalNewWords;
-    console.log(this.totalWords, props.totalNewWords);
+    this.state = {
+      labels: props.dataLabels,
+      datasets: [
+        {
+          label: 'Прогресс',
+          borderColor: 'rgba(0,0,0,1)',
+          backgroundColor: 'orange',
+          borderWidth: 2,
+          data: props.totalNewWords,
+        }
+      ],
+      clicked: false,
+    }
   }
 
-  asideToggle() {
-    state.clicked = !state.clicked;
+  asideToggle = () => {
+    this.setState({ clicked: !this.state.clicked });
   }
 
-  render() {      
+  render() {
+    const data = {
+      labels: this.state.labels,
+      datasets: this.state.datasets,
+    }
+
     return (
       <React.Fragment>
-        <Sidebar clicked={ state.clicked }/>
-        <Header asideToggle={ this.asideToggle } clicked={ state.clicked }/>
+        <Sidebar clicked={ this.state.clicked }/>
+        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked }/>
         <div className="graph pt-5">
           <Line
-            data={state}
+            data={data}
             options={{
               title:{
                 display:true,
