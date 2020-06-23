@@ -15,8 +15,6 @@ import {
   setDayLearningWords,
   setShowBtnDifficultWord
 } from '../../Store/Actions';
-import Sidebar from '../../Components/Sidebar/Sidebar';
-import Header from '../../Components/Header/Header';
 
 const mapStateToProps = (store) =>{
   const {  
@@ -88,8 +86,6 @@ class Settings extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Sidebar clicked={ this.state.clicked } />
-        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked } />
         <div className="container">
           <div className="row">
             <div className="col-12 pt-5">

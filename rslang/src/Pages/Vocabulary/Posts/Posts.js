@@ -1,7 +1,6 @@
 import React from 'react';
 import Btn from '../VocabularyBtn/vocabularyBtn';
 
-
 const Posts = ({ posts }) => {
   return (
     <ul className="list-group mb-4">
@@ -26,6 +25,5 @@ const Posts = ({ posts }) => {
     </ul>
   );
 };
-
 
 export default Posts

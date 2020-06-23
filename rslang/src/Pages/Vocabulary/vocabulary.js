@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import wordCards from './vocabulary-data';
 import Posts from './Posts/Posts';
 import Pagination from './Pagination/Pagination';
-import Header from '../../Components/Header/Header';
-import Sidebar from '../../Components/Sidebar/Sidebar';
 
 
 const Vocabulary = () => {
@@ -37,8 +35,6 @@ const Vocabulary = () => {
   
   return (
     <React.Fragment>
-      <Sidebar clicked={ isClicked } />
-      <Header asideToggle={ asideToggle } clicked={ isClicked } />
       <div className='container pt-5'>
         <div className="row pt-5">
           <div className="col-12">

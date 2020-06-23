@@ -1,9 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Header from '../../Components/Header/Header';
-import Sidebar from '../../Components/Sidebar/Sidebar';
 
 import './longStats.scss';
 
@@ -46,8 +43,6 @@ export default class LongStats extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Sidebar clicked={ this.state.clicked }/>
-        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked } />
         <div className="graph longStatsElem pt-5">
           <Line
             data={this.state}

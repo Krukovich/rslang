@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Card from '../../Components/Card/Card';
-import Sidebar from '../../Components/Sidebar/Sidebar';
+import { Sidebar } from '../../Components/Sidebar/Sidebar';
 import Header from '../../Components/Header/Header';
 
 import pic1 from './pic1.jpg';
@@ -39,13 +39,6 @@ class MainPage extends Component {
     const learningCard = this.state.learningCard;
 
     return (
-      <div className="container">
-        <div className="row no-gutters">
-          <Sidebar clicked={this.state.clicked} />
-          <div className="col-md-12">
-            <div className="row no-gutters">
-              <Header asideToggle={this.asideToggle} clicked={this.state.clicked} />
-            </div>
             <div className="row p-3">
               <div className="col-md-12">
                 <div className="row pt-5">
@@ -70,9 +63,6 @@ class MainPage extends Component {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     )
   }
 }

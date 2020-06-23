@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
-const Header = (props) => {
+export const Header = (props) => {
     let buttonClass = {};
     if (props.clicked) {
         buttonClass.class = 'btn btn_aside btn-primary btn_aside_active';
@@ -15,7 +15,7 @@ const Header = (props) => {
         <header className="Header p-2 w-100 bg-info d-flex justify-content-between">
             <div className="Header-Left w-25 d-flex justify-content-start">
                 <button
-                    onClick={props.asideToggle}
+                    onClick={() => props.asideToggler()}
                     type="button" className={buttonClass.class}><FontAwesomeIcon icon={faBars} />
                 </button>
             </div>
@@ -25,5 +25,3 @@ const Header = (props) => {
         </header>
     )
 }
-
-export default Header
