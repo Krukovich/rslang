@@ -17,7 +17,7 @@ const state = {
       label: 'Слов изучено в день',
       borderColor: 'tomato',
       backgroundColor: 'tomato',
-      data: [4, 2, 7, 5, 5, 2, 6, 5, 4, 5],
+      data: [],
       fill: false,
     }
   ]
@@ -36,6 +36,7 @@ export default class LongStats extends React.Component {
     this.dataLabels = props.dataLabels;
     state.labels = this.dataLabels;
     state.datasets[0].data = props.totalNewWords;
+    state.datasets[1].data = props.dailyNew;
     console.log(this.totalWords, props.totalNewWords);
   }
 
