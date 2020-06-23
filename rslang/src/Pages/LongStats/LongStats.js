@@ -17,7 +17,11 @@ const state = {
       label: 'Слов изучено в день',
       borderColor: 'tomato',
       backgroundColor: 'tomato',
+<<<<<<< HEAD
       data: [],
+=======
+      data: [4, 2, 7, 5, 5, 2, 6, 5, 4, 5],
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
       fill: false,
     }
   ]
@@ -43,6 +47,7 @@ export default class LongStats extends React.Component {
   render() {      
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     return (
       <div className="graph">
         <Line
@@ -63,6 +68,8 @@ export default class LongStats extends React.Component {
 =======
 =======
 >>>>>>> feat: progress bar
+=======
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
     return ( 
       <div>
         <div className="graph longStatsElem">
@@ -80,17 +87,23 @@ export default class LongStats extends React.Component {
                 position: 'bottom'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> feat: combined tooltip
+=======
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
               },
               tooltips: {
                 mode: 'index',
                 intersect: true
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> feat: progress bar
 =======
 >>>>>>> feat: combined tooltip
+=======
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
               }
             }}
           />
@@ -103,9 +116,12 @@ export default class LongStats extends React.Component {
         </div>
       </div>  
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> feat: progress bar
 =======
 >>>>>>> feat: progress bar
+=======
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
     );
   }
  }

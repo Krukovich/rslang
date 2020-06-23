@@ -37,6 +37,7 @@ const sourceRoutes = [
     path: '/long-stats',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: () => <LongStats dataLabels={['день 1', 'день 2', 'день 3',
 <<<<<<< HEAD
     'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']} totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80} />,
@@ -53,6 +54,10 @@ const sourceRoutes = [
     totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80} 
     dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
 >>>>>>> refactor
+=======
+    component: () => <LongStats dataLabels={['день 1', 'день 2', 'день 3',
+    'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']} totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80} />,
+>>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
     exact: true,
   },
   {
