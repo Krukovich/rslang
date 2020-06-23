@@ -16,10 +16,11 @@ const Sidebar = (props) => {
     <aside className={asideClass.class}>
       <ul className="nav nav-pills flex-column align-items-center">
         <NavItem href='/' title='Главная' />
-        <NavItem href='/playzonepage' title='Изучение слов' />
+        <NavItem href='/playzone' title='Изучение слов' />
+        <NavItem href='/long-stats' title='Статистика' />
+        <NavItem href='/vocabulary' title='Словарь' />
         <NavItem href='/minigames' title='Мини игры' />
         <NavItem href='/promo' title='Промо' />
-        <NavItem href='/long-stats' title='Статистика' />
         <NavItem href='/about' title='Команда' />
         <NavItem href='/settings' title='Настройки' />
       </ul>

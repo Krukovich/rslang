@@ -10,6 +10,7 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
+import Vocabulary  from '../../Pages/Vocabulary/Vocabulary';
 
 const sourceRoutes = [
   {
@@ -20,6 +21,11 @@ const sourceRoutes = [
   {
     path: '/about',
     component: () => <h1>about</h1>,
+    exact: true,
+  },
+  {
+    path: '/vocabulary',
+    component: Vocabulary,
     exact: true,
   },
   {
@@ -60,7 +66,7 @@ const sourceRoutes = [
     exact: true,
   },
   {
-    path: '/playzonepage',
+    path: '/playzone',
     component: PlayZonePage,
     exact: true,
   },
