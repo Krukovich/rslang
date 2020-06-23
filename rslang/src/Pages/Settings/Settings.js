@@ -14,8 +14,8 @@ import {
   setShowBtnAgreeAnswer,
   setShowBtnDeleteWord,
   setNewWordsCount,
-  setDifficultWords,
-  setDayLearningWords
+  setDayLearningWords,
+  setShowBtnDifficultWord
 } from '../../Store/Actions';
 import { faThList, faBoxTissue } from '@fortawesome/free-solid-svg-icons';
 
@@ -59,8 +59,8 @@ const mapActionsToProps ={
   setShowBtnAgreeAnswer,
   setShowBtnDeleteWord,
   setNewWordsCount,
-  setDifficultWords,
-  setDayLearningWords
+  setDayLearningWords,
+  setShowBtnDifficultWord,
 }
 
 class Settings extends React.Component {
@@ -82,29 +82,38 @@ class Settings extends React.Component {
     NEW_WORDS_COUNT: 50, // number of new words to learn
 
   }
-  togle = (key)=> {
-    return (e) => {
-      // this.props.key(e.target.checked)
+  // togle = (e)=> {
+  //   console.log(e.target.id)
+
+  //   this.props.setWordImage(false);
+  // }
+
+  togle = (key) =>{
+    if(key == 'setSitingLevel' || key == 'setNewWordsCount'){
+      return (e) =>{
+        this.props[key](e.target.value)
+
+      }
+    }
+    return (e) =>{
+      this.props[key](e.target.checked)
     }
   }
-
-  
-
 
   render() {
     return (
       
       <div className="settingsContainer">
-        <TextInput text='Уровень' defValue={this.props.setSetingLevel} onChange={this.togle('LEVEL')} />
+        <TextInput text='Уровень' defValue={this.props.level} onChange={this.togle('setSitingLevel')} />
         <CheckBox text='Показывать перевод слов' isChecked={this.props.showTranslateWord} onChange={this.togle('setShowTranslateWord')} />
-        <CheckBox text='Пердложения с объяснением значения слова' isChecked={this.props.showExplanationString} onChange={this.togle('SHOW_EXPLANATION_STRING')} />
-        <CheckBox text='Предложение с примером использования слова' isChecked={this.props.showExampleString} onChange={this.togle('SHOW_EXAMPLE_STRING')} />
+        <CheckBox text='Пердложения с объяснением значения слова' isChecked={this.props.showExplanationString} onChange={this.togle('setShowExplanationString')} />
+        <CheckBox text='Предложение с примером использования слова' isChecked={this.props.showExampleString} onChange={this.togle('setShowExampleString')}  />
         {/* <CheckBox text='Показать транскрипцию слова' isChecked={false} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} /> */}
-        <CheckBox text='Показывать изображение на карточке' isChecked={this.props.showWordImage} onChange={this.togle('fd')} />
-        <CheckBox text='Кнопка "Показать ответ"' isChecked={this.props.showBtnShowAgreeAnswer} onChange={this.togle('SHOW_BTN_SHOW_AGREE_ANSWER')} />
-        <CheckBox text='Кнопка "Удалить"' isChecked={this.props.showBtnDeleteWord} onChange={this.togle('SHOW_BTN_DELETE_WORD')} />
-        <CheckBox text='Добавить кнопку "Поместить в сложное"' isChecked={this.props.showBtnDifficultWord} onChange={this.togle('SHOW_BTN_DIFFICULT_WORD')} />
-        <TextInput text='Количество слов, котрое хотите выучить' defValue={12} onChange={this.togle('NEW_WORDS_COUNT')} />
+        <CheckBox text='Показывать изображение на карточке' isChecked={this.props.showWordImage} onChange={this.togle('setWordImage')}/>
+        <CheckBox text='Кнопка "Показать ответ"' isChecked={this.props.showBtnShowAgreeAnswer} onChange={this.togle('setShowBtnAgreeAnswer')} />
+        <CheckBox text='Кнопка "Удалить"' isChecked={this.props.showBtnDeleteWord} onChange={this.togle('setShowBtnDeleteWord')} />
+        <CheckBox text='Добавить кнопку "Поместить в сложное"' isChecked={this.props.showBtnDifficultWord} onChange={this.togle('setShowBtnDifficultWord')} />
+        <TextInput text='Количество слов, котрое хотите выучить' defValue={this.props.newWordsCount} onChange={this.togle('setNewWordsCount')} />
       </div>
     )
 

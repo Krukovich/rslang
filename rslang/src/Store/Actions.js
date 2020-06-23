@@ -10,6 +10,7 @@ export const CHANGE_NEW_WORDS_COUNT = 'CHANGE_NEW_WORDS_COUNT';
 export const CHANGE_DIFFICULT_WORDS = 'CHANGE_DIFFICULT_WORDS';
 export const CHANGE_DAY_LEARNING_WORDS = 'CHANGE_DAY_LEARNING_WORDS';
 export const CHANGE_DELETE_WORDS = 'CHANGE_DELETE_WORDS';
+export const CHANGE_SHOW_BTN_DIFICULT_WORDS = 'CHANGE_SHOW_BTN_DIFICULT_WORDS'
 
 export const setSitingLevel = (level) => ({
   type: CHANGE_DIFFICULT_LEVEL,
@@ -48,6 +49,11 @@ export const setShowBtnAgreeAnswer = (flag) => ({
 
 export const setShowBtnDeleteWord = (flag) => ({
   type: CHANGE_SHOW_BTN_DELETE_WORD,
+  payload: flag,
+});
+
+export const setShowBtnDifficultWord = (flag) => ({
+  type: CHANGE_SHOW_BTN_DIFICULT_WORDS,
   payload: flag,
 });
 

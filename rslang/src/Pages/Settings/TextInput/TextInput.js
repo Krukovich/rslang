@@ -7,7 +7,7 @@ const TextInput = (props) => {
     <div className="form-group row">
       <label htmlFor="inputValue" className="col-sm-3 col-form-label">{text}</label>
       <div className="col-sm-3">
-        <input type="text" className="form-control" onChange={onChange} />
+        <input type="text" className="form-control" defaultValue={defValue} onChange={onChange} />
       </div>
     </div>
   )
