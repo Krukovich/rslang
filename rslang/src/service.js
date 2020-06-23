@@ -10,7 +10,7 @@ export const playExampleSound = (src) => {
   myAudio.play();
 }
 
-export const renderPlayString = (data) => {
+export const renderPlayString = (data, handlerChange) => {
   const regexp = /<[^<>]+>/g;
   const word = data.word;
   const inputStyle = { width: `${ word.length }5px` };
@@ -28,6 +28,7 @@ export const renderPlayString = (data) => {
             className="WordInput"
             type="text"
             autoFocus
+            onChange={ handlerChange }
             maxLength={ word.length }
             style={ inputStyle }
           />
