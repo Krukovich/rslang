@@ -3,13 +3,18 @@ import "./Style.scss";
 
 export const Words = (props) => {
   const { wordsArray, gameStart, styleFunction } = props;
-  //console.log( wordsArray, gameStart ) slice(0, wordsDisplayCount)
-  
-  console.log('render words')
+  //он для меня он нужен console.log( wordsArray, gameStart ) slice(0, wordsDisplayCount)
+
+  console.log("render words");
   if (gameStart) {
     const wordRender = shuffle(wordsArray).map((word, key) => (
       <div className="Word text-center" key={key}>
-        <button className={wordStyle(word)} type="submit" id={word.id} onClick={(event) => styleFunction(event.target.id, key)}>
+        <button
+          className={wordStyle(word)}
+          type="submit"
+          id={word.id}
+          onClick={(event) => styleFunction(event.target.id, key)}
+        >
           {word.word}
         </button>
       </div>
@@ -20,35 +25,24 @@ export const Words = (props) => {
   return <div>слова не загружены</div>;
 };
 
-// const onButtonClick = (event, gameFindWord, styleFunction) => {
-//   if (gameFindWord.id === event.target.id) {
-//     styleFunction(event.target.id, 'green')
-//     console.log(true)
-//   } else {
-//     console.log(false)
-//   }
-// }
-
-function shuffle(arr){
-	var j, temp;
-	for(var i = arr.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = arr[j];
-		arr[j] = arr[i];
-		arr[i] = temp;
-	}
-	return arr;
+function shuffle(arr) {
+  var j, temp;
+  for (var i = arr.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = arr[j];
+    arr[j] = arr[i];
+    arr[i] = temp;
+  }
+  return arr;
 }
 
 const wordStyle = (word) => {
-  if(word === "red") {
-    return 'btn btn-danger';
-  } 
+  if (word === "red") {
+    return "btn btn-danger";
+  }
   if (word === "green") {
-    
-    return 'btn btn-success';
+    return "btn btn-success";
+  } else {
+    return "btn btn-primary";
   }
-  else {
-    return 'btn btn-primary'
-  }
-}
+};
