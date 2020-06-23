@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import './Settings.scss';
-import CheckBox from './CheckBox/CheckBox';
-import TextInput from './TextInput/TextInput';
+import CheckBox from '../../Components/CheckBox/CheckBox';
+import TextInput from '../../Components/TextInput/TextInput';
 import { connect } from 'react-redux';
 import {
   setSitingLevel,
@@ -35,17 +35,17 @@ const mapStateToProps =(store) =>{
   } = store.appSettings;
     
   return{
-    level:level,
-    playExampleSound:playExampleSound,
-    showTranslateWord:showTranslateWord,
-    showExampleString:showExampleString,
-    showExplanationString:showExplanationString,
-    showWordsTranslate:showWordsTranslate,
-    showWordImage:showWordImage,
-    showBtnShowAgreeAnswer:showBtnShowAgreeAnswer,
-    showBtnDeleteWord:showBtnDeleteWord,
-    showBtnDifficultWord:showBtnDifficultWord,
-    newWordsCount:newWordsCount,
+    level,
+    playExampleSound,
+    showTranslateWord,
+    showExampleString,
+    showExplanationString,
+    showWordsTranslate,
+    showWordImage,
+    showBtnShowAgreeAnswer,
+    showBtnDeleteWord,
+    showBtnDifficultWord,
+    newWordsCount,
 
   }
 }
@@ -68,26 +68,6 @@ class Settings extends React.Component {
     super(props);
   }
 
-  state = {
-    // global app settings
-    LEVEL: 1, // number indicating difficult level
-    SHOW_TRANSLATE_WORD: true, // show translate word
-    SHOW_EXAMPLE_STRING: true, // show example string
-    SHOW_EXPLANATION_STRING: true, // show explanation string
-    SHOW_WORD_TRANSCRIPTION: false, // show word transcription
-    SHOW_WORD_IMAGE: true, // show words image example
-    SHOW_BTN_SHOW_AGREE_ANSWER: true, // show btn next step
-    SHOW_BTN_DELETE_WORD: true, // show btn removal a word from learning
-    SHOW_BTN_DIFFICULT_WORD: true, // show btn add words to a difficult group
-    NEW_WORDS_COUNT: 50, // number of new words to learn
-
-  }
-  // togle = (e)=> {
-  //   console.log(e.target.id)
-
-  //   this.props.setWordImage(false);
-  // }
-
   togle = (key) =>{
     if(key == 'setSitingLevel' || key == 'setNewWordsCount'){
       return (e) =>{
@@ -102,7 +82,6 @@ class Settings extends React.Component {
 
   render() {
     return (
-      
       <div className="settingsContainer">
         <TextInput text='Уровень' defValue={this.props.level} onChange={this.togle('setSitingLevel')} />
         <CheckBox text='Показывать перевод слов' isChecked={this.props.showTranslateWord} onChange={this.togle('setShowTranslateWord')} />
@@ -119,8 +98,5 @@ class Settings extends React.Component {
 
   }
 }
-
-
-
 
 export default connect(mapStateToProps, mapActionsToProps)(Settings)
