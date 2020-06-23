@@ -10,11 +10,17 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
-import Vocabulary  from '../../Pages/Vocabulary/Vocabulary';
+import Vocabulary  from '../../Pages/Vocabulary/vocabulary';
+
 
 const sourceRoutes = [
   {
     path: '/main',
+    component: MainPage,
+    exact: true,
+  },
+  {
+    path: '/mainpage',
     component: MainPage,
     exact: true,
   },

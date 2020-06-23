@@ -12,8 +12,6 @@ import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
-import Header from '../../Components/Header/Header'
-import Sidebar from '../../Components/Sidebar/Sidebar';
 
 import './playZonePage.scss';
 
@@ -196,8 +194,6 @@ class PlayZonePage extends React.Component {
 
     return(
       <>
-        <Sidebar clicked={ this.state.clicked } />
-        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked } />
         <div className="container">
           <div className="row mt-5">
             <div className="col-12 d-flex justify-content-center mt-5">
