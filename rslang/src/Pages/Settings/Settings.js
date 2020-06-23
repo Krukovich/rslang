@@ -17,34 +17,35 @@ import {
   setDifficultWords,
   setDayLearningWords
 } from '../../Store/Actions';
+import { faThList, faBoxTissue } from '@fortawesome/free-solid-svg-icons';
 
 const mapStateToProps =(store) =>{
   const {  
-    settings,
-    setSetingLevel,
-    setShowTranslateWord,
-    setShowExampleString,
-    setShowExplanationString,
-    setWordImage,
-    setShowBtnAgreeAnswer,
-    setShowBtnDeleteWord,
-    setNewWordsCount,
-    setDifficultWords,
-    setDayLearningWords
+    level,
+    playExampleSound,
+    showTranslateWord,
+    showExampleString,
+    showExplanationString,
+    showWordsTranslate,
+    showWordImage,
+    showBtnShowAgreeAnswer,
+    showBtnDeleteWord,
+    showBtnDifficultWord,
+    newWordsCount,
   } = store.appSettings;
     
   return{
-    settings: settings,
-    setSetingLevel: setSetingLevel,
-    setShowTranslateWord: setShowTranslateWord,
-    setShowExampleString: setShowExampleString,
-    setShowExplanationString: setShowExplanationString,
-    setWordImage: setWordImage,
-    setShowBtnAgreeAnswer: setShowBtnAgreeAnswer,
-    setShowBtnDeleteWord:setShowBtnDeleteWord,
-    setNewWordsCount: setNewWordsCount,
-    setDifficultWords: setDifficultWords,
-    setDayLearningWords: setDayLearningWords,
+    level:level,
+    playExampleSound:playExampleSound,
+    showTranslateWord:showTranslateWord,
+    showExampleString:showExampleString,
+    showExplanationString:showExplanationString,
+    showWordsTranslate:showWordsTranslate,
+    showWordImage:showWordImage,
+    showBtnShowAgreeAnswer:showBtnShowAgreeAnswer,
+    showBtnDeleteWord:showBtnDeleteWord,
+    showBtnDifficultWord:showBtnDifficultWord,
+    newWordsCount:newWordsCount,
 
   }
 }
@@ -65,9 +66,6 @@ const mapActionsToProps ={
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
-
-
   }
 
   state = {
@@ -84,18 +82,9 @@ class Settings extends React.Component {
     NEW_WORDS_COUNT: 50, // number of new words to learn
 
   }
-  togle(key) {
-    if (key === 'LEVEL' || 'key==NEW_WORDS_COUNT') {
-      return (e) => {
-        console.log(this.state)
-        this.setState({ [key]: e.target.value })
-      }
-    }
+  togle = (key)=> {
     return (e) => {
-      this.setState({ [key]: e.target.checked },
-      () => console.log(this.state))
-      this.props[key](e.target.checked)
-
+      // this.props.key(e.target.checked)
     }
   }
 
@@ -106,17 +95,16 @@ class Settings extends React.Component {
     return (
       
       <div className="settingsContainer">
-        {console.log(this.props) }
         <TextInput text='Уровень' defValue={this.props.setSetingLevel} onChange={this.togle('LEVEL')} />
-        <CheckBox text='Показывать перевод слов' isChecked={this.props.setShowTranslateWord} onChange={this.togle('setShowTranslateWord')} />
-        <CheckBox text='Пердложения с объяснением значения слова' isChecked={this.state.SHOW_EXPLANATION_STRING} onChange={this.togle('SHOW_EXPLANATION_STRING')} />
-        <CheckBox text='Предложение с примером использования слова' isChecked={this.state.SHOW_EXAMPLE_STRING} onChange={this.togle('SHOW_EXAMPLE_STRING')} />
-        <CheckBox text='Показать транскрипцию слова' isChecked={this.state.SHOW_WORD_TRANSCRIPTION} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} />
-        <CheckBox text='Показывать изображение на карточке' isChecked={this.state.SHOW_WORD_IMAGE} onChange={this.togle('SHOW_WORD_IMAGE')} />
-        <CheckBox text='Кнопка "Показать ответ"' isChecked={this.state.SHOW_BTN_SHOW_AGREE_ANSWER} onChange={this.togle('SHOW_BTN_SHOW_AGREE_ANSWER')} />
-        <CheckBox text='Кнопка "Удалить"' isChecked={this.state.SHOW_BTN_DELETE_WORD} onChange={this.togle('SHOW_BTN_DELETE_WORD')} />
-        <CheckBox text='Добавить кнопку "Поместить в сложное"' isChecked={this.state.SHOW_BTN_DIFFICULT_WORD} onChange={this.togle('SHOW_BTN_DIFFICULT_WORD')} />
-        <TextInput text='Количество слов, котрое хотите выучить' defValue={this.state.NEW_WORDS_COUNT} onChange={this.togle('NEW_WORDS_COUNT')} />
+        <CheckBox text='Показывать перевод слов' isChecked={this.props.showTranslateWord} onChange={this.togle('setShowTranslateWord')} />
+        <CheckBox text='Пердложения с объяснением значения слова' isChecked={this.props.showExplanationString} onChange={this.togle('SHOW_EXPLANATION_STRING')} />
+        <CheckBox text='Предложение с примером использования слова' isChecked={this.props.showExampleString} onChange={this.togle('SHOW_EXAMPLE_STRING')} />
+        {/* <CheckBox text='Показать транскрипцию слова' isChecked={false} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} /> */}
+        <CheckBox text='Показывать изображение на карточке' isChecked={this.props.showWordImage} onChange={this.togle('fd')} />
+        <CheckBox text='Кнопка "Показать ответ"' isChecked={this.props.showBtnShowAgreeAnswer} onChange={this.togle('SHOW_BTN_SHOW_AGREE_ANSWER')} />
+        <CheckBox text='Кнопка "Удалить"' isChecked={this.props.showBtnDeleteWord} onChange={this.togle('SHOW_BTN_DELETE_WORD')} />
+        <CheckBox text='Добавить кнопку "Поместить в сложное"' isChecked={this.props.showBtnDifficultWord} onChange={this.togle('SHOW_BTN_DIFFICULT_WORD')} />
+        <TextInput text='Количество слов, котрое хотите выучить' defValue={12} onChange={this.togle('NEW_WORDS_COUNT')} />
       </div>
     )
 
