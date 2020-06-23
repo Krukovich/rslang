@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+
 import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
@@ -8,12 +9,12 @@ import ShortStats from '../ShortStats/ShortStats';
 import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
-
+import MainPage from '../../Pages/MainPage/MainPage';
 
 const sourceRoutes = [
   {
     path: '/main',
-    component: LogoutPage,
+    component: MainPage,
     exact: true,
   },
   {
@@ -59,7 +60,7 @@ const sourceRoutes = [
     exact: true,
   },
   {
-    path: '/PlayZonePage',
+    path: '/playzonepage',
     component: PlayZonePage,
     exact: true,
   },
