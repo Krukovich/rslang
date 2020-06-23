@@ -1,9 +1,14 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Route } from 'react-router-dom';
 
+=======
+import { Route , Redirect} from 'react-router-dom';
+>>>>>>> bce105b... feat: new menu
 import { Login } from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
+import { CheckLogin } from '../../Pages/Authentication/LoginCheck'
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import Settings from '../../Pages/Settings/Settings';
@@ -88,8 +93,29 @@ const sourceRoutes = [
   },
 ];
 
- const RouteMap = sourceRoutes.map(({ path, component }, key) => (
-  <Route exact path={path} component={component} key={key} />
-));
 
-export {RouteMap};
+export class RouteMap extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    debugger
+    let router;
+    if (CheckLogin()) {
+      router = sourceRoutes.map(({ path, component}, key) => (
+        <Route exact path={path} component={component} key={key} />
+      ));
+    } else {
+      router = <Redirect to='/'/>;
+    }
+
+    return (
+      <div>
+        {router}
+        <p>dasdasdasd</p>
+      </div>
+        
+    );
+  }
+}
