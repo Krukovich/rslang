@@ -1,15 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
 import { setDifficultWords, setDeleteWords } from '../../Store/Actions';
-import { connect } from 'react-redux';
+
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
+import Header from '../../Components/Header/Header'
+import Sidebar from '../../Components/Sidebar/Sidebar';
+
 import './playZonePage.scss';
 
 
@@ -53,6 +58,7 @@ class PlayZonePage extends React.Component {
       agreeWord: wordCards[1][0].word,
       isNotAgree: true,
       inputValue: '',
+      clicked: false,
     }
     this.difficultWordId = '';
   }
@@ -180,63 +186,72 @@ class PlayZonePage extends React.Component {
     }
   }
 
+  asideToggle = () => {
+    debugger
+    this.setState({ clicked: !this.state.clicked });
+  }
+
   render() {
     const { cards, playStep, isNotAgree } = this.state;
 
     return(
-      <div className="container">
-        <div className="row mt-5">
-          <div className="col-12 d-flex justify-content-center">
-            <Card
-              input={ this.input }
-              isNotAgree={ isNotAgree }
-              cards={ cards }
-              playStep={ playStep }
-              showTranslateWord={ this.props.showTranslateWord }
-              showExplanationString={ this.props.showExplanationString }
-              handlerChange={ this.handlerInputChange }
-              handlerSubmit={ this.handlerSubmit }
-            />
-            <VerticalMenu
-              showAnswer={ this.showAnswer }
-              insertCardToDifficult={ this.insertCardToDifficult }
-              deleteCard={ this.deleteCard }
-              showBtnDeleteWord = { this.props.showBtnDeleteWord }
-              showBtnDifficultWord = { this.props.showBtnDifficultWord }
-              showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 d-flex justify-content-center mt-5">
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } isNotAgree={ !playStep ? true : false }/>
-              <button
-                className="btn btn-primary"
-                onClick={ this.changeAnswer }
-              >
-                Проверить
-              </button>
-              <Button incrementPlayStep={ this.incrementPlayStep } label={ BTN_LABEL.NEXT } isNotAgree={ isNotAgree } />
+      <>
+        <Sidebar clicked={ this.state.clicked } />
+        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked } />
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <Card
+                input={ this.input }
+                isNotAgree={ isNotAgree }
+                cards={ cards }
+                playStep={ playStep }
+                showTranslateWord={ this.props.showTranslateWord }
+                showExplanationString={ this.props.showExplanationString }
+                handlerChange={ this.handlerInputChange }
+                handlerSubmit={ this.handlerSubmit }
+              />
+              <VerticalMenu
+                showAnswer={ this.showAnswer }
+                insertCardToDifficult={ this.insertCardToDifficult }
+                deleteCard={ this.deleteCard }
+                showBtnDeleteWord = { this.props.showBtnDeleteWord }
+                showBtnDifficultWord = { this.props.showBtnDifficultWord }
+                showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
+              />
             </div>
           </div>
-        </div>
-        <div className="row justify-content-center mt-5">
-          <div className="col-12 col-md-6">
-            <div className="row">
-              <div className="col-2 text-center">
-                <Badge playStep={ playStep } />
-              </div>
-              <div className="col-8">
-                <ProgressBar playStep={ playStep } cards={ cards } />
-              </div>
-              <div className="col-2 text-center">
-                <Badge cards={ cards } />
+          <div className="row">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <div className="btn-group" role="group" aria-label="Basic example">
+                <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } isNotAgree={ !playStep ? true : false }/>
+                <button
+                  className="btn btn-primary"
+                  onClick={ this.changeAnswer }
+                >
+                  Проверить
+                </button>
+                <Button incrementPlayStep={ this.incrementPlayStep } label={ BTN_LABEL.NEXT } isNotAgree={ isNotAgree } />
               </div>
             </div>
           </div>
+          <div className="row justify-content-center mt-5">
+            <div className="col-12 col-md-6">
+              <div className="row">
+                <div className="col-2 text-center">
+                  <Badge playStep={ playStep } />
+                </div>
+                <div className="col-8">
+                  <ProgressBar playStep={ playStep } cards={ cards } />
+                </div>
+                <div className="col-2 text-center">
+                  <Badge cards={ cards } />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

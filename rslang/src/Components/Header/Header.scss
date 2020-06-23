@@ -1,8 +1,17 @@
+Header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 .btn_aside {
-    transition: 0.3s !important;
-    z-index: 1001;
+  position: relative;
+  transition: 0.3s !important;
+  z-index: 90;
 }
 
 .btn_aside_active {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
