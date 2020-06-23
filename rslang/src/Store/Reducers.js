@@ -61,6 +61,11 @@ export const appSettingsReducer = (state = initialState, action) => {
           ...state,
           showBtnDeleteWord: action.payload,
       }
+    case Actions.CHANGE_SHOW_BTN_DIFICULT_WORDS:
+      return {
+        ...state,
+        showBtnDifficultWord: action.payload
+      }
     case Actions.CHANGE_NEW_WORDS_COUNT:
       return {
         ...state,

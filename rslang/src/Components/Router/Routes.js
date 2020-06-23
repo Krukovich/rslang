@@ -5,6 +5,7 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import { LogoutPage } from '../../Pages/Main/MainLogout/MainLogoutPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
+import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 
@@ -39,6 +40,12 @@ const sourceRoutes = [
     path: '/',
     component: Login,
     exact: true,
+  },
+  {
+    path: '/settings',
+    component: Settings,
+    exact: true,
+
   },
   {
     path: '/long-stats',
