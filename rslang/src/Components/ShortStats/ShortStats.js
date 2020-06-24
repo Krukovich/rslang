@@ -28,12 +28,12 @@ const ShortStatsInfo = (props) => {
     )
 }
 export default class ShortStats extends React.Component {
-    render() {
-        return (
-            <div className="container shortStats">
-                <ShortStatsHeader />
-                <ShortStatsInfo {...this.props}  />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="container shortStats">
+        <ShortStatsHeader />
+        <ShortStatsInfo {...this.props} />
+      </div>
+    )
+  }
 };
