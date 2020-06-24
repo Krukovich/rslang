@@ -18,7 +18,7 @@ export class AppWrapper extends Component {
         
         this.setState({ clicked: !this.state.clicked });
     }
-    
+
 
     render() {
         return (
@@ -30,8 +30,8 @@ export class AppWrapper extends Component {
                             <Header asideToggler={this.asideToggle} clicked={this.state.clicked} />
                         </div>
                         <div id="content">
-                        {this.props.children}
-                        </div>                        
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
             </div>
