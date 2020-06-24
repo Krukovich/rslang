@@ -49,6 +49,7 @@ export default class ShortStats extends React.Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
@@ -82,6 +83,8 @@ export default class ShortStats extends React.Component {
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 >>>>>>> fix: token & id
+=======
+>>>>>>> fix: token & id
   render() {
     return (
       <div className="container shortStats">
@@ -90,6 +93,7 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
@@ -166,4 +170,6 @@ export default class ShortStats extends React.Component {
 >>>>>>> fix after update
 =======
 >>>>>>> feat: stats from server BETA
+=======
+>>>>>>> fix: token & id
 };
