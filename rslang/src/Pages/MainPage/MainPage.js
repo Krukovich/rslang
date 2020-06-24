@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import Card from '../../Components/Card/Card';
-import { Sidebar } from '../../Components/Sidebar/Sidebar';
-import Header from '../../Components/Header/Header';
 
 import pic1 from './pic1.jpg';
 import pic2 from './pic2.jpg';

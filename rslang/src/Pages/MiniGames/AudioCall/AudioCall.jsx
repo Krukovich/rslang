@@ -1,7 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { AlertRed } from "../../../Components/Alert/Alert";
-import * as Const from "../../../constant";
 import { Words } from "../components/Words";
 import { AudioComp } from "../components/AudioComp";
 import "./AudioCall.scss";

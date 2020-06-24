@@ -13,7 +13,6 @@ export const Sidebar = (props) => {
     return (
         <aside className={asideClass.class}>
             <ul className="nav nav-pills flex-column align-items-center">
-<<<<<<< HEAD
                 <NavItem href='/' title='Главная' />
                 <NavItem href='/playzone' title='Изучение слов' />
                 <NavItem href='/long-stats' title='Статистика' />
@@ -22,13 +21,6 @@ export const Sidebar = (props) => {
                 <NavItem href='/promo' title='Промо' />
                 <NavItem href='/about' title='Команда' />
                 <NavItem href='/settings' title='Настройки' />
-=======
-                <NavItem href='/' title='Home' />
-                <NavItem href='/playzone' title='PlayZone' />
-                <NavItem href='/minigames' title='Mini games' />
-                <NavItem href='/about' title='About' />
-                <NavItem href='/settings' title='Settings' />
->>>>>>> bce105b... feat: new menu
             </ul>
         </aside>
     )
