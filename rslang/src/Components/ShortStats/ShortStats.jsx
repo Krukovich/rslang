@@ -37,7 +37,13 @@ const ShortStatsInfo = (props) => {
 }
 
 export default class ShortStats extends React.Component {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+=======
+<<<<<<< HEAD
+>>>>>>> feat: stats from server BETA
   render() {
     return (
       <div className="container shortStats">
@@ -46,4 +52,21 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+    render() {
+        return (
+            <div className="container shortStats">
+                <ShortStatsHeader />
+                <ShortStatsInfo {...this.props}  />
+            </div>
+        )
+    }
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+=======
+>>>>>>> feat: stats from server BETA
+>>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+>>>>>>> feat: stats from server BETA
 };
