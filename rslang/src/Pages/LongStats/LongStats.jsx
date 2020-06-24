@@ -78,7 +78,6 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-
     }
     // this.count = 0;
   }
