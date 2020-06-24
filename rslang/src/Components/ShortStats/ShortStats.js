@@ -37,4 +37,3 @@ export default class ShortStats extends React.Component {
         )
     }
 };
-
