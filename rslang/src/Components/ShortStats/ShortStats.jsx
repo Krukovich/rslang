@@ -45,4 +45,8 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 };
+=======
+};
+>>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
