@@ -1,201 +1,48 @@
 import React from 'react';
-import './longStats.scss';
-import { connect } from 'react-redux';
-import { Line } from 'react-chartjs-2';
-import { setSavannaStats } from '../../Store/Savanna/actions';
-import { getCookie } from '../../Components/Tools/GetCoocke';
+import './shortStats.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDragon } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import english from './english.gif';
 
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import BtnsBar from './BtnsBar/BtnsBar';
-import MiniStats from './MiniStats/MiniStats';
-
-const miniGameStats = (store) => {
-  const { minigameSavannaStats } = store.savanna;
-  
-  const { difficulty } = store.fortuneGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-    difficulty: difficulty,
-}}
-
-const changeMiniStats = {
-  setSavannaStats,
-}
-
-// const token = getCookie("token");
-// const userId = getCookie("userId");
-
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  let stats = content.optional.optional;
-  return stats;
-};
-
-const ProgressLabel = () => {
+const ShortStatsHeader = () => {
   return (
-    <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
+    <div className="row align-items-center flex-column shortStatsHeader">
+      <img src={english} alt="stats pic" />
+      <h1>Серия завершена</h1>
+    </div>
   )
 }
 
-class LongStats extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-      labels: [], // props.dataLabels,
-      datasets: [
-        {
-          label: 'Прогресс',
-          borderColor: 'rgba(0,0,0,1)',
-          backgroundColor: 'orange',
-          borderWidth: 2,
-          data: [] //...props.totalNewWords
-        },
-        {
-          label: 'Слов изучено в день',
-          borderColor: 'tomato',
-          backgroundColor: 'tomato',
-          data: [], //...props.dailyNew,
-          fill: false,
-        }
-      ],
-      items: [
-        { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-        { 'id': 2, label: 'Спринт', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false },
-        { 'id': 4, label: 'Паззл', 'visible': false },
-        { 'id': 5, label: 'Скажи Слово', 'visible': false },
-        { 'id': 6, label: 'Поле Чудес', 'visible': false },
-      ],
-      count: [
-        {"timestamp":1593114322795,"newWords":7},
-        {"timestamp":1593224622795,"newWords":2},
-        {newWords: 4, timestamp: 1593375922795},
-      ],
-    }
-    // this.count = 0;
-  }
-
-  toggleProp = (arr, id, propName) => {
-    const idx = arr.findIndex((item) => item.id === id);
-    const oldItem = arr[idx];
-    const value = !oldItem[propName];
-
-    const item = { ...arr[idx], [propName]: value };
-    return [
-      ...arr.slice(0, idx),
-      item,
-      ...arr.slice(idx + 1)
-    ]
-  };
-
-  showStats = (id) => {
-    this.setState((state) => {
-      const items = this.toggleProp(state.items, id, 'visible');
-      switch (id) {
-        case 2 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.state.count;
-          break;
-        case 3: 
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
-          break; 
-        case 4 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
-          this.props.setSavannaStats([10,20,30]);
-          console.log(`${this.props.minigameSavannaStats}`);
-          break;  
-        case 5 :
-          state.count = (state.count).map(elem => elem.newWords + 2);
-          break;
-        case 6 : 
-          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.minigameSavannaStats;
-          break;  
-      }   
-      return { items };  
-    })
-  }
-
-  getSum(arr) {
-    let prev = 0;
-    return arr.map((elem) => {
-      prev += elem;
-      return prev;
-    })
-  }
-
-  componentDidMount() {   
-    this._asyncRequest = getStats().then(
-      result => {
-        const resultWords = result.wordStat.map((item) => {
-          const elem = item.newWords;
-          return elem;
-        }); 
-        const resultDate = result.wordStat.map((item) => {
-          const date = new Date(item.timestamp).toString().slice(4, 15);
-          return date;
-        })
-        this.state.datasets[0].data = this.getSum(resultWords);
-        this.state.datasets[1].data = resultWords;
-        this.state.labels = resultDate;
-        this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
-        this._asyncRequest = null;
-        this.setState({result});
-      }
-    );
-  }
-
-  
-  render() {    
-    const { items } = this.state;  
-    return ( 
-      <React.Fragment>
-      <div className="graph longStatsElem col-md-9">
-          <Line
-            data={this.state}
-            options={{
-              title: {
-                display: true,
-                text: 'Все слова',
-                fontSize: 20
-              },
-              legend: {
-                display: true,
-                position: 'bottom'
-              },
-              tooltips: {
-                mode: 'index',
-                intersect: true
-              }
-            }}
-          />
-        </div>
-        <div className="longStatsElem row d-flex justify-content-center">
-          <div className="col-md-8">
-            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
-            <ProgressLabel />
-           
-            <div className="longStatsElem">
-              <BtnsBar items={items} showStats={this.showStats} />
-              <div className="longStatsElem-field">
-              <MiniStats count={this.state.count} />
-              </div>
-            </div>     
-            </div>     
-        </div>
-      </React.Fragment>
-    );
-  }
+const ShortStatsInfo = (props) => {
+  const { total, right, newWords, rightInArrow } = props;
+  return (
+    <ul className="row align-items-center flex-column shortStatsInfo">
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faDragon} /> Карточек завершено: </span><span>{total}</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faCrown} /> Правильные ответы: </span><span>{right}%</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span><span>{newWords}</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInArrow}</span>
+      </li>
+    </ul>
+  )
 }
 
-export default connect(miniGameStats, changeMiniStats)(LongStats);
+export default class ShortStats extends React.Component {
+  render() {
+    return (
+      <div className="container shortStats">
+        <ShortStatsHeader />
+        <ShortStatsInfo {...this.props} />
+      </div>
+    )
+  }
+};
