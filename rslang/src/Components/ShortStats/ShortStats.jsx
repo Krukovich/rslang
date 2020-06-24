@@ -168,6 +168,7 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD
 >>>>>>> fix after update
 >>>>>>> fix after update
 =======
@@ -346,3 +347,10 @@ export default connect(miniGameStats, changeMiniStats)(LongStats);
 =======
 };
 >>>>>>> feat: stats from server BETA
+=======
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+};
+=======
+};
+>>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
+>>>>>>> fix: token & id
