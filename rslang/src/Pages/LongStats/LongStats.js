@@ -1,12 +1,20 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-
-<<<<<<< HEAD
 import './longStats.scss';
-=======
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAwNDY3NiwiZXhwIjoxNTkzMDE5MDc2fQ.4bChZYLqFi411oUYRTQqyMEfBfb3g962YysjdPqSfkc";
-const userId = "5ef1199aaa245e0017a578f0";
+
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAzMjIzNiwiZXhwIjoxNTkzMDQ2NjM2fQ.UnqZaUaJGZ0uoPWRL8p02d2CObkaly_CAWyAbU53T78";
+// const userId = "5ef1199aaa245e0017a578f0";
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+const token = getCookie("token");
+const userId = getCookie("userId");
 
 const getStats = async () => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
@@ -24,7 +32,6 @@ const getStats = async () => {
   console.log(stats, typeof stats, Array.isArray(stats));
   return stats;
 };
->>>>>>> feat: stats from server BETA
 
 const ProgressLabel = () => {
   return (
@@ -38,35 +45,23 @@ const ProgressLabel = () => {
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
     this.state = {
       clicked: false,
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: props.dataLabels,
-=======
-    this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
-    this.dataLabels = props.dataLabels;
-    this.state = {
-      labels: [...props.dataLabels],
->>>>>>> feat: stats from server BETA
       datasets: [
         {
           label: 'Прогресс',
           borderColor: 'rgba(0,0,0,1)',
           backgroundColor: 'orange',
           borderWidth: 2,
-<<<<<<< HEAD
-          data: props.totalNewWords,
-=======
           data: [] //...props.totalNewWords
->>>>>>> feat: stats from server BETA
         },
         {
           label: 'Слов изучено в день',
           borderColor: 'tomato',
           backgroundColor: 'tomato',
-<<<<<<< HEAD
-          data: props.dailyNew,
+          data: [], //...props.dailyNew,
           fill: false,
         }
       ]
@@ -75,18 +70,6 @@ export default class LongStats extends React.Component {
 
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <div className="graph longStatsElem pt-5">
-=======
-          data: [], //...props.dailyNew
-          fill: false,
-        }
-      ]
-    };
   }
 
   getSum(arr) {
@@ -116,9 +99,8 @@ export default class LongStats extends React.Component {
   
   render() {      
     return ( 
-      <div>
-        <div className="graph longStatsElem">
->>>>>>> feat: stats from server BETA
+      <React.Fragment>
+      <div className="graph longStatsElem pt-5">
           <Line
             data={this.state}
             // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
@@ -141,20 +123,11 @@ export default class LongStats extends React.Component {
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8 ">
-            <ProgressBar variant="success" animated min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
           </div>
         </div>
-<<<<<<< HEAD
       </React.Fragment>
     );
   }
 }
-=======
-      </div>  
-    );
-  }
- }
-
-
->>>>>>> feat: stats from server BETA
