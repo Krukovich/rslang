@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 
+<<<<<<< HEAD
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAzMjIzNiwiZXhwIjoxNTkzMDQ2NjM2fQ.UnqZaUaJGZ0uoPWRL8p02d2CObkaly_CAWyAbU53T78";
 // const userId = "5ef1199aaa245e0017a578f0";
 
@@ -12,6 +13,27 @@ function getCookie(name) {
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+=======
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAwNDY3NiwiZXhwIjoxNTkzMDE5MDc2fQ.4bChZYLqFi411oUYRTQqyMEfBfb3g962YysjdPqSfkc";
+const userId = "5ef1199aaa245e0017a578f0";
+
+const getStats = async () => {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
+    method: 'GET',
+    withCredentials: true,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const content = await rawResponse.json();
+  const stats = JSON.parse(content.optional.dailyNewWords);
+
+  console.log(stats, typeof stats, Array.isArray(stats));
+  return stats;
+};
+>>>>>>> feat: stats from server BETA
 
 const token = getCookie("token");
 const userId = getCookie("userId");
@@ -45,10 +67,17 @@ const ProgressLabel = () => {
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.state = {
       clicked: false,
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: props.dataLabels,
+=======
+    this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
+    this.dataLabels = props.dataLabels;
+    this.state = {
+      labels: [...props.dataLabels],
+>>>>>>> feat: stats from server BETA
       datasets: [
         {
           label: 'Прогресс',
@@ -61,6 +90,7 @@ export default class LongStats extends React.Component {
           label: 'Слов изучено в день',
           borderColor: 'tomato',
           backgroundColor: 'tomato',
+<<<<<<< HEAD
           data: [], //...props.dailyNew,
           fill: false,
         }
@@ -91,6 +121,34 @@ export default class LongStats extends React.Component {
     );
   }
 
+=======
+          data: [], //...props.dailyNew
+          fill: false,
+        }
+      ]
+    };
+  }
+
+  getSum(arr) {
+    let prev = 0;
+    return arr.map((elem) => {
+      prev += elem;
+      return prev;
+    })
+  }
+
+  componentDidMount() {   
+    this._asyncRequest = getStats().then(
+      result => {
+        this.state.datasets[0].data = this.getSum(result);
+        this.state.datasets[1].data = result;
+        this._asyncRequest = null;
+        this.setState({result});
+      }
+    );
+  }
+
+>>>>>>> feat: stats from server BETA
   componentWillUnmount() {
     if(this._asyncRequest) {
       this._asyncRequest.cancel();
@@ -127,7 +185,16 @@ export default class LongStats extends React.Component {
             <ProgressLabel />
           </div>
         </div>
+<<<<<<< HEAD
       </React.Fragment>
     );
   }
 }
+=======
+      </div>  
+    );
+  }
+ }
+
+
+>>>>>>> feat: stats from server BETA
