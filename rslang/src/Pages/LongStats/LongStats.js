@@ -1,27 +1,11 @@
 import React from 'react';
-import {Line} from 'react-chartjs-2';
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import './longStats.scss';
+import { Line } from 'react-chartjs-2';
 
-const state = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Прогресс',
-      borderColor: 'rgba(0,0,0,1)',
-      backgroundColor: 'orange',
-      borderWidth: 2,
-      data: []
-    },
-    {
-      label: 'Слов изучено в день',
-      borderColor: 'tomato',
-      backgroundColor: 'tomato',
-      data: [],
-      fill: false,
-    }
-  ]
-}
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Header from '../../Components/Header/Header';
+import Sidebar from '../../Components/Sidebar/Sidebar';
+
+import './longStats.scss';
 
 const ProgressLabel = () => {
   return (
@@ -32,20 +16,41 @@ const ProgressLabel = () => {
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
-    this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
-    this.dataLabels = props.dataLabels;
-    state.labels = this.dataLabels;
-    state.datasets[0].data = props.totalNewWords;
-    state.datasets[1].data = props.dailyNew;
-    console.log(this.totalWords, props.totalNewWords);
+    this.state = {
+      clicked: false,
+      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+      labels: props.dataLabels,
+      datasets: [
+        {
+          label: 'Прогресс',
+          borderColor: 'rgba(0,0,0,1)',
+          backgroundColor: 'orange',
+          borderWidth: 2,
+          data: props.totalNewWords,
+        },
+        {
+          label: 'Слов изучено в день',
+          borderColor: 'tomato',
+          backgroundColor: 'tomato',
+          data: props.dailyNew,
+          fill: false,
+        }
+      ]
+    }
   }
 
-  render() {      
-    return ( 
-      <div>
-        <div className="graph longStatsElem">
+  asideToggle = () => {
+    this.setState({ clicked: !this.state.clicked });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Sidebar clicked={ this.state.clicked }/>
+        <Header asideToggle={ this.asideToggle } clicked={ this.state.clicked } />
+        <div className="graph longStatsElem pt-5">
           <Line
-            data={state}
+            data={this.state}
             // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
             options={{
               title: {
@@ -66,12 +71,11 @@ export default class LongStats extends React.Component {
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8 ">
-            <ProgressBar variant="success" animated min={0} now={this.wordsNow} label={`${this.wordsNow}%`} />
+            <ProgressBar variant="success" animated min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
           </div>
         </div>
-      </div>  
+      </React.Fragment>
     );
   }
- }
-  
+}
