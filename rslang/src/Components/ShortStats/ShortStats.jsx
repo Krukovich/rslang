@@ -41,10 +41,16 @@ export default class ShortStats extends React.Component {
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> feat: stats from server BETA
+=======
+=======
+>>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
+<<<<<<< HEAD
+>>>>>>> fix: token & id
 =======
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
@@ -60,6 +66,10 @@ export default class ShortStats extends React.Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+<<<<<<< HEAD
+>>>>>>> fix: token & id
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 >>>>>>> fix: token & id
@@ -79,6 +89,11 @@ export default class ShortStats extends React.Component {
 >>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
 <<<<<<< HEAD
 >>>>>>> feat: stats from server BETA
+=======
+=======
+>>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
+<<<<<<< HEAD
+>>>>>>> fix: token & id
 =======
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
