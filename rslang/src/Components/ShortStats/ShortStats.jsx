@@ -38,6 +38,7 @@ const ShortStatsInfo = (props) => {
 
 export default class ShortStats extends React.Component {
 <<<<<<< HEAD
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 <<<<<<< HEAD
 =======
@@ -57,7 +58,12 @@ export default class ShortStats extends React.Component {
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 >>>>>>> fix: token & id
+<<<<<<< HEAD
 >>>>>>> fix: token & id
+=======
+=======
+>>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+>>>>>>> feat: stats from server BETA
   render() {
     return (
       <div className="container shortStats">
@@ -66,6 +72,7 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD
 };
 =======
@@ -81,6 +88,9 @@ export default class ShortStats extends React.Component {
 >>>>>>> fix: token & id
 =======
 >>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+=======
+=======
+>>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
     render() {
         return (
             <div className="container shortStats">
@@ -89,6 +99,7 @@ export default class ShortStats extends React.Component {
             </div>
         )
     }
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 >>>>>>> feat: stats from server BETA
@@ -104,5 +115,8 @@ export default class ShortStats extends React.Component {
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 >>>>>>> fix: token & id
+=======
+>>>>>>> feat: stats from server BETA
+>>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
 };
 >>>>>>> fix: token & id
