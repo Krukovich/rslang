@@ -1,12 +1,10 @@
 import React from 'react';
-import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-import { setSavannaStats } from '../../Store/Savanna/actions';
-import { getCookie } from '../../Components/Tools/GetCoocke';
-
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
+import { setSavannaStats } from '../../Store/Savanna/actions';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -22,15 +20,22 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-// const token = getCookie("token");
-// const userId = getCookie("userId");
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+const token = getCookie("token");
+const userId = getCookie("userId");
 
 const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
     method: 'GET',
     withCredentials: true,
     headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
+      'Authorization': `Bearer ${token}`,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
@@ -81,7 +86,6 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-      
     }
     // this.count = 0;
   }
@@ -106,18 +110,9 @@ class LongStats extends React.Component {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.state.count;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 
-=======
-=======
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
->>>>>>> feat: long stats from redux
->>>>>>> feat: long stats from redux
-=======
->>>>>>> fix after update
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
