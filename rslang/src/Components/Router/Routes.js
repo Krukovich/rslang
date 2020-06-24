@@ -21,7 +21,6 @@ import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/Start
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
 
-<<<<<<< HEAD
 const mapStateToProps = (state) => {
   return {
     level: state.appSettings.level,
@@ -33,8 +32,6 @@ const mapActionToProps = {
   setDayLearningWords,
 }
 
-=======
->>>>>>> feat: long stats from redux
 const sourceOpenRoutes = [
   {
     path: '/logout',
@@ -101,7 +98,6 @@ const sourceCloseRoutes = [
 <<<<<<< HEAD
 <<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
-<<<<<<< HEAD
     exact: true,
   },
   {
@@ -138,13 +134,11 @@ const sourceCloseRoutes = [
   {
     path: '/play-zone',
     component: PlayZonePage,
-=======
     exact: true,
   },
   {
     path: '/createanaccount',
     component: CreateAccount,
->>>>>>> fix after update
     exact: true,
   },
   {

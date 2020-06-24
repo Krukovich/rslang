@@ -48,6 +48,7 @@ export default class ShortStats extends React.Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
@@ -111,6 +112,8 @@ export default class ShortStats extends React.Component {
 >>>>>>> fix
 =======
 >>>>>>> fix after update
+=======
+>>>>>>> feat: stats from server BETA
     render() {
         return (
             <div className="container shortStats">
@@ -121,6 +124,7 @@ export default class ShortStats extends React.Component {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 >>>>>>> feat: stats from server BETA
@@ -160,4 +164,6 @@ export default class ShortStats extends React.Component {
   }
 >>>>>>> fix after update
 >>>>>>> fix after update
+=======
+>>>>>>> feat: stats from server BETA
 };
