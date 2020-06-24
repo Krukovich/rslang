@@ -6,7 +6,7 @@ import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (store) => {
-  return {
+  return { 
     difficultWords: store.appSettings.difficultWords,
     languageLevel: store.appSettings.level,
   }
@@ -26,6 +26,17 @@ const Vocabulary = (props) => {
 
     getPosts();
   }, []);
+
+  
+  // remove words for learn into deleted words
+  const remove = (index) => {
+    const newArr = [
+      ...wordCards[currentLanguageLevel].slice(0, index),
+      ...wordCards[currentLanguageLevel].slice(index + 1)
+    ];
+    
+    setPosts(newArr);
+  }
 
 
   // remove words for learn into deleted words
@@ -48,10 +59,12 @@ const Vocabulary = (props) => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
-    <div className='container mt-5'>
-      <WordsToLearn posts={currentPost} remove={remove} />
-      <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
-    </div>
+    <React.Fragment>
+      <div className='container mt-5'>
+        <WordsToLearn posts={currentPost} remove={remove} />
+        <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+      </div>
+    </React.Fragment>
   );
 }
 
