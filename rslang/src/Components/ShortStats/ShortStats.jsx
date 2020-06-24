@@ -1,27 +1,22 @@
 import React from 'react';
-import './longStats.scss';
-import { connect } from 'react-redux';
-import { Line } from 'react-chartjs-2';
-import { setSavannaStats } from '../../Store/Savanna/actions';
-import { getCookie } from '../../Components/Tools/GetCoocke';
+import './shortStats.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDragon } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import english from './english.gif';
 
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import BtnsBar from './BtnsBar/BtnsBar';
-import MiniStats from './MiniStats/MiniStats';
-
-const miniGameStats = (store) => {
-  const { minigameSavannaStats } = store.savanna;
-  
-  const { difficulty } = store.fortuneGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-    difficulty: difficulty,
-}}
-
-const changeMiniStats = {
-  setSavannaStats,
+const ShortStatsHeader = () => {
+  return (
+    <div className="row align-items-center flex-column shortStatsHeader">
+      <img src={english} alt="stats pic" />
+      <h1>Серия завершена</h1>
+    </div>
+  )
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const ShortStatsInfo = (props) => {
 <<<<<<< HEAD
@@ -200,49 +195,38 @@ const getStats = async () => {
 };
 
 const ProgressLabel = () => {
+=======
+const ShortStatsInfo = (props) => {
+  const { total, right, newWords, rightInArrow } = props;
+>>>>>>> feat: stats from server BETA
   return (
-    <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
+    <ul className="row align-items-center flex-column shortStatsInfo">
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faDragon} /> Карточек завершено: </span><span>{total}</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faCrown} /> Правильные ответы: </span><span>{right}%</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span><span>{newWords}</span>
+      </li>
+      <li className="shortStatsInfo-item d-flex">
+        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInArrow}</span>
+      </li>
+    </ul>
   )
 }
 
-class LongStats extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-      labels: [], // props.dataLabels,
-      datasets: [
-        {
-          label: 'Прогресс',
-          borderColor: 'rgba(0,0,0,1)',
-          backgroundColor: 'orange',
-          borderWidth: 2,
-          data: [] //...props.totalNewWords
-        },
-        {
-          label: 'Слов изучено в день',
-          borderColor: 'tomato',
-          backgroundColor: 'tomato',
-          data: [], //...props.dailyNew,
-          fill: false,
-        }
-      ],
-      items: [
-        { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-        { 'id': 2, label: 'Спринт', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false },
-        { 'id': 4, label: 'Паззл', 'visible': false },
-        { 'id': 5, label: 'Скажи Слово', 'visible': false },
-        { 'id': 6, label: 'Поле Чудес', 'visible': false },
-      ],
-      count: [
-        {"timestamp":1593114322795,"newWords":7},
-        {"timestamp":1593224622795,"newWords":2},
-        {newWords: 4, timestamp: 1593375922795},
-      ],
-    }
-    // this.count = 0;
+export default class ShortStats extends React.Component {
+  render() {
+    return (
+      <div className="container shortStats">
+        <ShortStatsHeader />
+        <ShortStatsInfo {...this.props} />
+      </div>
+    )
   }
+<<<<<<< HEAD
 
   toggleProp = (arr, id, propName) => {
     const idx = arr.findIndex((item) => item.id === id);
@@ -359,3 +343,6 @@ class LongStats extends React.Component {
 
 export default connect(miniGameStats, changeMiniStats)(LongStats);
 >>>>>>> fix: token & id
+=======
+};
+>>>>>>> feat: stats from server BETA
