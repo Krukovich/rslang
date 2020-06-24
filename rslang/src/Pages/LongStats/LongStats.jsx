@@ -57,6 +57,12 @@ const ProgressLabel = () => {
   )
 }
 
+// const ShowTest = ({ count }) => {
+//   return(
+//     <p>{count}</p>
+//   )
+// }
+
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
