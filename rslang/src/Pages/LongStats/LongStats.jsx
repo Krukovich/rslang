@@ -115,10 +115,14 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
+<<<<<<< HEAD
           state.count = this.state.count;
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 
+=======
+          state.count = this.props.counter;
+>>>>>>> fix: token & id
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -126,7 +130,10 @@ class LongStats extends React.Component {
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
+<<<<<<< HEAD
           console.log(`${this.props.minigameSavannaStats}`);
+=======
+>>>>>>> fix: token & id
           break;  
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
