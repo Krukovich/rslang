@@ -7,6 +7,7 @@ import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import LongStats from '../LongStats/LongStats';
 import MainPage from '../../Pages/MainPage/MainPage';
+import SprintGame from '../../Pages/SprintGame/SprintGame';
 
 const sourceRoutes = [
   {
@@ -47,6 +48,11 @@ const sourceRoutes = [
   {
     path: '/PlayZonePage',
     component: PlayZonePage,
+    exact: true,
+  },
+  {
+    path: '/SprintGame',
+    component: SprintGame,
     exact: true,
   },
   {

@@ -4,11 +4,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
 const Header = (props) => {
-    let buttonClass = {};
+    const buttonClass = ['btn', 'btn_aside', 'btn-primary'];
     if (props.clicked) {
-        buttonClass.class = 'btn btn_aside btn-primary btn_aside_active';
-    } else {
-        buttonClass.class = 'btn btn_aside btn-primary';
+        buttonClass.push('btn_aside_active');
     }
 
     return (
@@ -16,7 +14,7 @@ const Header = (props) => {
             <div className="Header-Left w-25 d-flex justify-content-start">
                 <button
                     onClick={props.asideToggler}
-                    type="button" className={buttonClass.class}><FontAwesomeIcon icon={faBars} />
+                    type="button" className={buttonClass.join(' ')}><FontAwesomeIcon icon={faBars} />
                 </button>
             </div>
             <div className="Header-Right w-25 d-flex justify-content-end">
