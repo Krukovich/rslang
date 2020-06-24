@@ -6,13 +6,8 @@ import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
-<<<<<<< HEAD
 import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
-=======
-import './longStats.scss';
-import BtnsBar from './BtnsBar/BtnsBar';
->>>>>>> 1464480... fix, refactor
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
@@ -193,7 +188,6 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
-<<<<<<< HEAD
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
@@ -202,13 +196,6 @@ class LongStats extends React.Component {
               </div>
             </div>     
             </div>     
-=======
-           </div> 
-            <div className="longStatsElem">
-              <BtnsBar items={items} showStats={this.showStats} />
-              <div className="longStatsElem-field"></div>
-            </div>         
->>>>>>> 1464480... fix, refactor
         </div>
       </React.Fragment>
     );
