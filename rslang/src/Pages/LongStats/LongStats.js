@@ -3,29 +3,25 @@ import {Line} from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import './longStats.scss';
 
-const state = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Прогресс',
-      borderColor: 'rgba(0,0,0,1)',
-      backgroundColor: 'orange',
-      borderWidth: 2,
-      data: []
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAwNDY3NiwiZXhwIjoxNTkzMDE5MDc2fQ.4bChZYLqFi411oUYRTQqyMEfBfb3g962YysjdPqSfkc";
+const userId = "5ef1199aaa245e0017a578f0";
+
+const getStats = async () => {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
+    method: 'GET',
+    withCredentials: true,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     },
-    {
-      label: 'Слов изучено в день',
-      borderColor: 'tomato',
-      backgroundColor: 'tomato',
-<<<<<<< HEAD
-      data: [],
-=======
-      data: [4, 2, 7, 5, 5, 2, 6, 5, 4, 5],
->>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
-      fill: false,
-    }
-  ]
-}
+  });
+  const content = await rawResponse.json();
+  const stats = JSON.parse(content.optional.dailyNewWords);
+
+  console.log(stats, typeof stats, Array.isArray(stats));
+  return stats;
+};
 
 const ProgressLabel = () => {
   return (
@@ -33,48 +29,66 @@ const ProgressLabel = () => {
   )
 }
 
+// getStats().then(result => {
+//   console.log(result)});
+
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
     this.dataLabels = props.dataLabels;
-    state.labels = this.dataLabels;
-    state.datasets[0].data = props.totalNewWords;
-    state.datasets[1].data = props.dailyNew;
-    console.log(this.totalWords, props.totalNewWords);
+    this.state = {
+      labels: [...props.dataLabels],
+      datasets: [
+        {
+          label: 'Прогресс',
+          borderColor: 'rgba(0,0,0,1)',
+          backgroundColor: 'orange',
+          borderWidth: 2,
+          data: [] //...props.totalNewWords
+        },
+        {
+          label: 'Слов изучено в день',
+          borderColor: 'tomato',
+          backgroundColor: 'tomato',
+          data: [], //...props.dailyNew
+          fill: false,
+        }
+      ]
+    };
   }
 
+  getSum(arr) {
+    let prev = 0;
+    return arr.map((elem) => {
+      prev += elem;
+      return prev;
+    })
+  }
+
+  componentDidMount() {   
+    this._asyncRequest = getStats().then(
+      result => {
+        this.state.datasets[0].data = this.getSum(result);
+        this.state.datasets[1].data = result;
+        this._asyncRequest = null;
+        this.setState({result});
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    if(this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+  
   render() {      
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    return (
-      <div className="graph">
-        <Line
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Всего слов',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-=======
-=======
->>>>>>> feat: progress bar
-=======
->>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
     return ( 
       <div>
         <div className="graph longStatsElem">
           <Line
-            data={state}
+            data={this.state}
             // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
             options={{
               title: {
@@ -85,25 +99,10 @@ export default class LongStats extends React.Component {
               legend: {
                 display: true,
                 position: 'bottom'
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feat: combined tooltip
-=======
->>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
               },
               tooltips: {
                 mode: 'index',
                 intersect: true
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feat: progress bar
-=======
->>>>>>> feat: combined tooltip
-=======
->>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
               }
             }}
           />
@@ -115,14 +114,8 @@ export default class LongStats extends React.Component {
           </div>
         </div>
       </div>  
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feat: progress bar
-=======
->>>>>>> feat: progress bar
-=======
->>>>>>> 2dc61f565625e0b7c7a744ec555c07e455454490
     );
   }
  }
-  
+
+
