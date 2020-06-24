@@ -88,12 +88,23 @@ const sourceCloseRoutes = [
   },
   {
     path: '/long-stats',
+<<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
     exact: true,
   },
   {
     path: '/createanaccount',
     component: CreateAccount,
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> feat: stats from server BETA
+    component: () => <LongStats dataLabels={['день 1', 'день 2', 'день 3',
+      'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']}
+      totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80}
+      dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
+>>>>>>> feat: stats from server BETA
     exact: true,
   },
   {
