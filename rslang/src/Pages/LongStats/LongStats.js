@@ -1,6 +1,17 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+<<<<<<< HEAD
+=======
+import './longStats.scss';
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+>>>>>>> feat: stats from server BETA
 
 <<<<<<< HEAD
 import './longStats.scss';
@@ -31,9 +42,6 @@ const ProgressLabel = () => {
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
   )
 }
-
-// getStats().then(result => {
-//   console.log(result)});
 
 export default class LongStats extends React.Component {
   constructor(props) {
@@ -72,6 +80,7 @@ export default class LongStats extends React.Component {
     }
   }
 
+<<<<<<< HEAD
   render() {
     return (
       <React.Fragment>
@@ -82,6 +91,10 @@ export default class LongStats extends React.Component {
         }
       ]
     };
+=======
+  asideToggle = () => {
+    this.setState({ clicked: !this.state.clicked });
+>>>>>>> feat: stats from server BETA
   }
 
   getSum(arr) {
@@ -116,7 +129,6 @@ export default class LongStats extends React.Component {
 >>>>>>> feat: stats from server BETA
           <Line
             data={this.state}
-            // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
             options={{
               title: {
                 display: true,
