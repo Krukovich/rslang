@@ -350,8 +350,11 @@ export default connect(miniGameStats, changeMiniStats)(LongStats);
 =======
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 };
 =======
+=======
+>>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 };
