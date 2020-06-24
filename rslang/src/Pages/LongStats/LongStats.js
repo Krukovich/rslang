@@ -3,9 +3,6 @@ import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAzMjIzNiwiZXhwIjoxNTkzMDQ2NjM2fQ.UnqZaUaJGZ0uoPWRL8p02d2CObkaly_CAWyAbU53T78";
-// const userId = "5ef1199aaa245e0017a578f0";
-
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -39,9 +36,6 @@ const ProgressLabel = () => {
   )
 }
 
-// getStats().then(result => {
-//   console.log(result)});
-
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
@@ -67,21 +61,8 @@ export default class LongStats extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-  render() {
-    return (
-      <React.Fragment>
-        <div className="graph longStatsElem pt-5">
-=======
-          data: [], //...props.dailyNew
-          fill: false,
-        }
-      ]
-    };
-=======
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
->>>>>>> fix: token & id
   }
 
   getSum(arr) {
@@ -115,7 +96,6 @@ export default class LongStats extends React.Component {
       <div className="graph longStatsElem pt-5">
           <Line
             data={this.state}
-            // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
             options={{
               title: {
                 display: true,
