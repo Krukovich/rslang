@@ -14,7 +14,8 @@ import {
   setNewWordsCount,
   setDayLearningWords,
   setShowBtnDifficultWord,
-  setShowWordsTrascription
+  setShowWordsTrascription,
+  setPlayExampleSound,
 } from '../../Store/Actions';
 
 const mapStateToProps = (store) =>{
@@ -59,6 +60,7 @@ const mapActionsToProps ={
   setDayLearningWords,
   setShowBtnDifficultWord,
   setShowWordsTrascription,
+  setPlayExampleSound,
 }
 
 class Settings extends React.Component {
@@ -102,6 +104,10 @@ class Settings extends React.Component {
                   isChecked={this.props.showTranslateWord}
                   onChange={this.toggle('setShowTranslateWord')}
                 />
+                <CheckBox
+                 text='Проигрывать слово автоматически'
+                 isChecked={this.props.playExampleSound}
+                 onChange={this.toggle('setPlayExampleSound')}/>
                 <CheckBox
                   text='Пердложения с объяснением значения слова'
                   isChecked={this.props.showExplanationString}
