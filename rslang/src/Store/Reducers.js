@@ -26,6 +26,12 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         level: action.payload,
       }
+    case Actions.CHANGE_PLAY_EXAMPLE_SOUND:
+      return{
+        ...state,
+        playExampleSound: action.payload,
+
+      }
     case Actions.CHANGE_SHOW_TRANSLATE_WORD:
       return {
         ...state,
