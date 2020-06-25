@@ -8,7 +8,7 @@ const initialState = {
   showTranslateWord: true, // show translate word
   showExampleString: true, // show example string
   showExplanationString: true, // show explanation string
-  showWordsTranslate: true, // show word transcription
+  showWordsTrascription: true, // show word transcription
   showWordImage: true, // show words image example
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
@@ -37,14 +37,14 @@ export const appSettingsReducer = (state = initialState, action) => {
         showExampleString: action.payload,
       }
     case Actions.CHANGE_SHOW_EXPLANATION_STRING:
-        return {
-          ...state,
-          showExplanationString: action.payload,
-      }
-    case Actions.CHANGE_SHOW_WORD_TRANSLATE:
       return {
         ...state,
-        showWordsTranslate: action.payload,
+        showExplanationString: action.payload,
+      }
+    case Actions.CHANGE_SHOW_WORD_TRANSCRIPRION:
+      return {
+        ...state,
+        showWordsTrascription: action.payload,
       }
     case Actions.CHANGE_SHOW_WORD_IMAGE:
       return {
@@ -52,14 +52,14 @@ export const appSettingsReducer = (state = initialState, action) => {
         showWordImage: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER:
-        return {
-          ...state,
-          showBtnShowAgreeAnswer: action.payload,
+      return {
+        ...state,
+        showBtnShowAgreeAnswer: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_DELETE_WORD:
-        return {
-          ...state,
-          showBtnDeleteWord: action.payload,
+      return {
+        ...state,
+        showBtnDeleteWord: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_DIFICULT_WORDS:
       return {
@@ -85,7 +85,7 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteWords: [...state.deleteWords, action.payload]
-      }            
+      }
   }
   return state;
 }
