@@ -2,7 +2,7 @@ export const CHANGE_DIFFICULT_LEVEL = 'CHANGE_DIFFICULT_LEVEL';
 export const CHANGE_SHOW_TRANSLATE_WORD = 'CHANGE_SHOW_TRANSLATE_WORD';
 export const CHANGE_SHOW_EXAMPLE_STRING = 'CHANGE_SHOW_EXAMPLE_STRING';
 export const CHANGE_SHOW_EXPLANATION_STRING = 'CHANGE_SHOW_EXPLANATION_STRING';
-export const CHANGE_SHOW_WORD_TRANSLATE = 'CHANGE_SHOW_WORD_TRANSLATE';
+export const CHANGE_SHOW_WORD_TRANSCRIPRION = 'CHANGE_SHOW_WORD_TRANSCRIPTION';
 export const CHANGE_SHOW_WORD_IMAGE = 'CHANGE_SHOW_WORD_IMAGE';
 export const CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER = 'CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER';
 export const CHANGE_SHOW_BTN_DELETE_WORD = 'CHANGE_SHOW_BTN_DELETE_WORD';
@@ -27,15 +27,16 @@ export const setShowExampleString = (flag) => ({
   payload: flag,
 });
 
+export const setShowWordsTrascription = (flag) => ({
+  type: CHANGE_SHOW_WORD_TRANSCRIPRION,
+  payload: flag
+});
+
 export const setShowExplanationString = (flag) => ({
   type: CHANGE_SHOW_EXPLANATION_STRING,
   payload: flag,
 });
 
-export const setShowWordTranslate = (flag) => ({
-  type: CHANGE_SHOW_WORD_TRANSLATE,
-  payload: flag,
-});
 
 export const setWordImage = (flag) => ({
   type: CHANGE_SHOW_WORD_IMAGE,
