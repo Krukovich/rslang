@@ -13,7 +13,8 @@ import {
   setShowBtnDeleteWord,
   setNewWordsCount,
   setDayLearningWords,
-  setShowBtnDifficultWord
+  setShowBtnDifficultWord,
+  setShowWordsTrascription
 } from '../../Store/Actions';
 
 const mapStateToProps = (store) =>{
@@ -23,7 +24,7 @@ const mapStateToProps = (store) =>{
     showTranslateWord,
     showExampleString,
     showExplanationString,
-    showWordsTranslate,
+    showWordsTrascription,
     showWordImage,
     showBtnShowAgreeAnswer,
     showBtnDeleteWord,
@@ -37,12 +38,12 @@ const mapStateToProps = (store) =>{
     showTranslateWord,
     showExampleString,
     showExplanationString,
-    showWordsTranslate,
     showWordImage,
     showBtnShowAgreeAnswer,
     showBtnDeleteWord,
     showBtnDifficultWord,
     newWordsCount,
+    showWordsTrascription,
   }
 }
 
@@ -57,6 +58,7 @@ const mapActionsToProps ={
   setNewWordsCount,
   setDayLearningWords,
   setShowBtnDifficultWord,
+  setShowWordsTrascription,
 }
 
 class Settings extends React.Component {
@@ -110,7 +112,10 @@ class Settings extends React.Component {
                   isChecked={this.props.showExampleString}
                   onChange={this.toggle('setShowExampleString')}
                 />
-                {/* <CheckBox text='Показать транскрипцию слова' isChecked={false} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} /> */}
+                <CheckBox
+                 text='Показать транскрипцию слова' 
+                 isChecked={this.props.showWordsTrascription} 
+                 onChange={this.toggle('setShowWordsTrascription')} />
                 <CheckBox
                   text='Показывать изображение на карточке'
                   isChecked={this.props.showWordImage}
@@ -132,7 +137,7 @@ class Settings extends React.Component {
                   onChange={this.toggle('setShowBtnDifficultWord')}
                 />
                 <TextInput
-                  text='Количество слов, котрое хотите выучить'
+                  text='Количество слов, которое хотите выучить'
                   defValue={this.props.newWordsCount}
                   onChange={this.toggle('setNewWordsCount')}
                 />
