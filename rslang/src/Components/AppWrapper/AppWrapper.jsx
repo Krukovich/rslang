@@ -11,16 +11,25 @@ export class AppWrapper extends Component {
         }
         this.asideToggle = this.asideToggle.bind(this);
         console.log(props.children)
-        
+        this.arrayOfException = [
+            '/start'
+        ]
     }
 
     asideToggle() {
-        
+
         this.setState({ clicked: !this.state.clicked });
     }
 
+    clearLayout () {
+        return (
+            <div id="content">
+                {this.props.children}
+            </div>
+        )
+    }
 
-    render() {
+    HarSbarLayout () {
         return (
             <div className="container-fluid">
                 <div className="row no-gutters">
@@ -35,6 +44,14 @@ export class AppWrapper extends Component {
                     </div>
                 </div>
             </div>
+        )
+    }
+
+
+    render() {
+        return (
+            this.arrayOfException.includes('/start')?
+            this.clearLayout():this.HarSbarLayout()
         )
     }
 }

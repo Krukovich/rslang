@@ -9,9 +9,16 @@ import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import Vocabulary  from '../../Pages/Vocabulary/vocabulary';
+import { Start } from '../../Pages/Start/Start'
+
 
 
 const sourceRoutes = [
+  {
+    path: '/start',
+    component: Start,
+    exact: true,
+  },
   {
     path: '/main',
     component: MainPage,
