@@ -1,8 +1,8 @@
 import React from 'react';
-import NavItem from './NavItem/NavItem';
+import { NavItem } from './NavItem/NavItem';
 import './Sidebar.scss';
 
-const Sidebar = (props) => {
+export const Sidebar = (props) => {
     let asideClass = {};
     if (props.clicked) {
         asideClass.class = 'aside flex-shrink-1 vh-100 p-5 bg-secondary position-fixed aside_active';
@@ -13,13 +13,15 @@ const Sidebar = (props) => {
     return (
         <aside className={asideClass.class}>
             <ul className="nav nav-pills flex-column align-items-center">
-                <NavItem href='/' title='Home' />
-                <NavItem href='/minigames' title='Mini games' />
-                <NavItem href='/about' title='About' />
-                <NavItem href='/settings' title='Settings' />
+                <NavItem href='/' title='Главная' />
+                <NavItem href='/playzone' title='Изучение слов' />
+                <NavItem href='/long-stats' title='Статистика' />
+                <NavItem href='/vocabulary' title='Словарь' />
+                <NavItem href='/minigames' title='Мини игры' />
+                <NavItem href='/promo' title='Промо' />
+                <NavItem href='/about' title='Команда' />
+                <NavItem href='/settings' title='Настройки' />
             </ul>
         </aside>
     )
 }
-
-export default Sidebar

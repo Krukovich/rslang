@@ -2,19 +2,27 @@
     transition: 0.3s;
     cursor: pointer;
     user-select: none;
+    margin-top: 10px;
 }
 
 .Card-Image {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+
     img {
         height: 100%;
     }
 }
 
 .Card:hover {
-    .Card-Image {
-        background-size: cover;
-        background-position: center;
-    }
+    // .Card-Image {
+        
+    // }
 
     img {
         display: none;

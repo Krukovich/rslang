@@ -12,6 +12,10 @@ class SprintGame extends Component {
             maxString: 0,
             modifier: 1,
             isTrue: true,
+            mixedArr: 0,
+            eng: 0,
+            rus: 0,
+            currentCard: 0,
             words: [
                 {
                     eng: 'Whisper',
@@ -30,15 +34,36 @@ class SprintGame extends Component {
     }
 
     mixWords = () => {
-        if (Math.random() > 0.5) {
+        const defaultArr = this.state.words.slice(0);
+        let mixedArr = [];
 
-        }
+        defaultArr.map((a, i) => {
+            let firstPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
+            let secondPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
+            let isTrue = true;
+
+            if (firstPart === secondPart) {
+                isTrue = true;
+            } else {
+                isTrue = false;
+            }
+
+            mixedArr.push({
+                firstPartEng: defaultArr[firstPart].eng,
+                secondPartEng: defaultArr[secondPart].eng,
+                secondPartRus: defaultArr[secondPart].rus,
+            });
+        })
+
+        this.setState({
+            mixedArr: mixedArr
+        });
     }
 
     timer = () => {
         this.setState((prevState) => {
             return {
-                counter: prevState.counter - 1
+                counter: prevState.counter - 1,
             }
         });
     }
@@ -53,11 +78,20 @@ class SprintGame extends Component {
         }
     }
 
+    loadCard = () => {
+        // alert(this.state.mixedArr)
+        this.setState({
+            rus: this.state.mixedArr[this.currentCard],
+            eng: this.state.mixedArr[this.currentCard]
+        });
+    }
+
     rightAnswerHandler = () => {
         this.setState((prevState) => {
             return {
                 maxString: prevState.maxString + 1,
-                score: prevState.score + 10 * prevState.modifier
+                score: prevState.score + 10 * prevState.modifier,
+                currentCard: prevState.currentCard + 1,
             }
         });
 
@@ -72,13 +106,18 @@ class SprintGame extends Component {
     }
 
     wrongAnswerHandler = () => {
-        this.setState({
-            modifier: 1,
-            maxString: 0
+        this.setState((prevState) => {
+            return {
+                modifier: 1,
+                maxString: 0,
+                currentCard: prevState.currentCard + 1,
+            }
         });
     }
 
     componentDidMount() {
+        this.mixWords();
+
         const timer = setInterval(() => {
             this.timer();
 
@@ -103,13 +142,13 @@ class SprintGame extends Component {
                 }
             }
         });
+
+        this.loadCard();
     }
 
-    // endGame = () => {
-    //     return (
-    //         <EndScreen />
-    //     )
-    // }
+    endGame = () => {
+        alert('КОНЕЦ');
+    }
 
     render() {
         return (
@@ -123,8 +162,8 @@ class SprintGame extends Component {
                     <div className="col-md-4"></div>
                     <div className="col-md-4 d-flex justify-content-center">
                         <SprintCard
-                            eng={'Whisper'}
-                            rus={'Говорить шёпотом'}
+                            eng={this.state.eng}
+                            rus={this.state.rus}
                             onclick={this.buttonClickHandler}
                         />
                     </div>
