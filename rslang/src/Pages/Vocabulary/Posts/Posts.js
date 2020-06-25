@@ -1,5 +1,5 @@
 import React from 'react';
-import Btn from '../VocabularyBtn/vocabularyBtn';
+import Btn from '../vocabularyBtn/vocabularyBtn';
 
 const Posts = ({ posts }) => {
   return (

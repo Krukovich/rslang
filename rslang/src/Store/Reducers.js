@@ -11,7 +11,11 @@ const initialState = {
   showTranslateWord: true, // show translate word
   showExampleString: true, // show example string
   showExplanationString: true, // show explanation string
+<<<<<<< HEAD
   showWordTranscription: true, // show word transcription
+=======
+  showWordsTrascription: true, // show word transcription
+>>>>>>> 8d40646... feat: add btn show transcription
   showWordImage: true, // show words image example
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
@@ -45,6 +49,7 @@ export const appSettingsReducer = (state = initialState, action) => {
         showExampleString: action.payload,
       };
     case Actions.CHANGE_SHOW_EXPLANATION_STRING:
+<<<<<<< HEAD
       return {
         ...state,
         showExplanationString: action.payload,
@@ -54,6 +59,17 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         showWordTranscription: action.payload,
       };
+=======
+      return {
+        ...state,
+        showExplanationString: action.payload,
+      }
+    case Actions.CHANGE_SHOW_WORD_TRANSCRIPRION:
+      return {
+        ...state,
+        showWordsTrascription: action.payload,
+      }
+>>>>>>> 8d40646... feat: add btn show transcription
     case Actions.CHANGE_SHOW_WORD_IMAGE:
       return {
         ...state,
@@ -63,8 +79,18 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         showBtnShowAgreeAnswer: action.payload,
+<<<<<<< HEAD
       };
     case Actions.CHANGE_SHOW_BTN_DELETE_WORD:
+=======
+      }
+    case Actions.CHANGE_SHOW_BTN_DELETE_WORD:
+      return {
+        ...state,
+        showBtnDeleteWord: action.payload,
+      }
+    case Actions.CHANGE_SHOW_BTN_DIFICULT_WORDS:
+>>>>>>> 8d40646... feat: add btn show transcription
       return {
         ...state,
         showBtnDeleteWord: action.payload,
@@ -92,8 +118,13 @@ export const appSettingsReducer = (state = initialState, action) => {
     case Actions.CHANGE_DELETE_WORDS:
       return {
         ...state,
+<<<<<<< HEAD
         deleteWords: [...state.deleteWords, action.payload],
       };
+=======
+        deleteWords: [...state.deleteWords, action.payload]
+      }
+>>>>>>> 8d40646... feat: add btn show transcription
   }
   return state;
 };
