@@ -14,8 +14,12 @@ import {
   setNewWordsCount,
   setDayLearningWords,
   setShowBtnDifficultWord,
+<<<<<<< HEAD
   setShowWordTranscription,
   setPlayExampleSound,
+=======
+  setShowWordsTrascription
+>>>>>>> 9011cca... feat: fix button show transcriptiom
 } from '../../Store/Actions';
 
 const mapStateToProps = (store) =>{
@@ -25,7 +29,11 @@ const mapStateToProps = (store) =>{
     showTranslateWord,
     showExampleString,
     showExplanationString,
+<<<<<<< HEAD
     showWordTranscription,
+=======
+    showWordsTrascription,
+>>>>>>> 9011cca... feat: fix button show transcriptiom
     showWordImage,
     showBtnShowAgreeAnswer,
     showBtnDeleteWord,
@@ -44,7 +52,11 @@ const mapStateToProps = (store) =>{
     showBtnDeleteWord,
     showBtnDifficultWord,
     newWordsCount,
+<<<<<<< HEAD
     showWordTranscription,
+=======
+    showWordsTrascription,
+>>>>>>> 9011cca... feat: fix button show transcriptiom
   }
 }
 
@@ -59,8 +71,12 @@ const mapActionsToProps ={
   setNewWordsCount,
   setDayLearningWords,
   setShowBtnDifficultWord,
+<<<<<<< HEAD
   setShowWordTranscription,
   setPlayExampleSound,
+=======
+  setShowWordsTrascription,
+>>>>>>> 9011cca... feat: fix button show transcriptiom
 }
 
 class Settings extends React.Component {
@@ -110,8 +126,13 @@ class Settings extends React.Component {
                 />
                 <CheckBox
                  text='Показать транскрипцию слова' 
+<<<<<<< HEAD
                  isChecked={this.props.showWordTranscription} 
                  onChange={this.toggle('setShowWordTranscription')} />
+=======
+                 isChecked={this.props.showWordsTrascription} 
+                 onChange={this.toggle('setShowWordsTrascription')} />
+>>>>>>> 9011cca... feat: fix button show transcriptiom
                 <CheckBox
                   text='Показывать изображение на карточке'
                   isChecked={this.props.showWordImage}
