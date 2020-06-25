@@ -1,21 +1,19 @@
-export const CHANGE_DIFFICULT_LEVEL = 'CHANGE_DIFFICULT_LEVEL';
-export const CHANGE_PLAY_EXAMPLE_SOUND = 'CHANGE_PLAY_EXAMPLE_SOUND';
-export const CHANGE_SHOW_TRANSLATE_WORD = 'CHANGE_SHOW_TRANSLATE_WORD';
-export const CHANGE_SHOW_EXAMPLE_STRING = 'CHANGE_SHOW_EXAMPLE_STRING';
-export const CHANGE_SHOW_EXPLANATION_STRING = 'CHANGE_SHOW_EXPLANATION_STRING';
-<<<<<<< HEAD
-export const CHANGE_SHOW_WORD_TRANSCRIPTION = 'CHANGE_SHOW_WORD_TRANSCRIPTION';
-=======
-export const CHANGE_SHOW_WORD_TRANSCRIPRION = 'CHANGE_SHOW_WORD_TRANSCRIPTION';
->>>>>>> 8d40646... feat: add btn show transcription
-export const CHANGE_SHOW_WORD_IMAGE = 'CHANGE_SHOW_WORD_IMAGE';
-export const CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER = 'CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER';
-export const CHANGE_SHOW_BTN_DELETE_WORD = 'CHANGE_SHOW_BTN_DELETE_WORD';
-export const CHANGE_NEW_WORDS_COUNT = 'CHANGE_NEW_WORDS_COUNT';
-export const CHANGE_DIFFICULT_WORDS = 'CHANGE_DIFFICULT_WORDS';
-export const CHANGE_DAY_LEARNING_WORDS = 'CHANGE_DAY_LEARNING_WORDS';
-export const CHANGE_DELETE_WORDS = 'CHANGE_DELETE_WORDS';
-export const CHANGE_SHOW_BTN_DIFFICULT_WORDS = 'CHANGE_SHOW_BTN_DIFFICULT_WORDS'
+export const CHANGE_DIFFICULT_LEVEL = "CHANGE_DIFFICULT_LEVEL";
+export const CHANGE_PLAY_EXAMPLE_SOUND = "CHANGE_PLAY_EXAMPLE_SOUND";
+export const CHANGE_SHOW_TRANSLATE_WORD = "CHANGE_SHOW_TRANSLATE_WORD";
+export const CHANGE_SHOW_EXAMPLE_STRING = "CHANGE_SHOW_EXAMPLE_STRING";
+export const CHANGE_SHOW_EXPLANATION_STRING = "CHANGE_SHOW_EXPLANATION_STRING";
+export const CHANGE_SHOW_WORD_TRANSCRIPTION = "CHANGE_SHOW_WORD_TRANSCRIPTION";
+export const CHANGE_SHOW_WORD_IMAGE = "CHANGE_SHOW_WORD_IMAGE";
+export const CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER =
+  "CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER";
+export const CHANGE_SHOW_BTN_DELETE_WORD = "CHANGE_SHOW_BTN_DELETE_WORD";
+export const CHANGE_NEW_WORDS_COUNT = "CHANGE_NEW_WORDS_COUNT";
+export const CHANGE_DIFFICULT_WORDS = "CHANGE_DIFFICULT_WORDS";
+export const CHANGE_DAY_LEARNING_WORDS = "CHANGE_DAY_LEARNING_WORDS";
+export const CHANGE_DELETE_WORDS = "CHANGE_DELETE_WORDS";
+export const CHANGE_SHOW_BTN_DIFFICULT_WORDS =
+  "CHANGE_SHOW_BTN_DIFFICULT_WORDS";
 
 export const setSitingLevel = (level) => ({
   type: CHANGE_DIFFICULT_LEVEL,
@@ -25,7 +23,7 @@ export const setSitingLevel = (level) => ({
 export const setPlayExampleSound = (flag) => ({
   type: CHANGE_PLAY_EXAMPLE_SOUND,
   payload: flag,
-})
+});
 
 export const setShowTranslateWord = (flag) => ({
   type: CHANGE_SHOW_TRANSLATE_WORD,
@@ -37,21 +35,15 @@ export const setShowExampleString = (flag) => ({
   payload: flag,
 });
 
-<<<<<<< HEAD
 export const setShowWordTranscription = (flag) => ({
   type: CHANGE_SHOW_WORD_TRANSCRIPTION,
-=======
-export const setShowWordsTrascription = (flag) => ({
-  type: CHANGE_SHOW_WORD_TRANSCRIPRION,
->>>>>>> 8d40646... feat: add btn show transcription
-  payload: flag
+  payload: flag,
 });
 
 export const setShowExplanationString = (flag) => ({
   type: CHANGE_SHOW_EXPLANATION_STRING,
   payload: flag,
 });
-
 
 export const setWordImage = (flag) => ({
   type: CHANGE_SHOW_WORD_IMAGE,
