@@ -13,6 +13,7 @@ import "./Login.scss";
 const mapStateToProps = (store) => {
   return {
     level: store.appSettings.level,
+    newWordsCount: store.appSettings.newWordsCount,
   }
 }
 
@@ -50,7 +51,7 @@ class Login extends React.Component {
     });
     const content = await rawResponse.json();
     if (content.message === Const.LOGIN.ON) {
-      const data = await getData(this.props.level, getRandomPage(Const.MAX_PAGE));
+      const data = await getData(this.props.level, getRandomPage(Const.MAX_PAGE), this.props.newWordsCount);
       if (data.length !== 0) {
         this.props.setDayLearningWords(data);
       }
