@@ -10,10 +10,6 @@ export const LOGIN = {
   ON: 'Authenticated',
 }
 
-export const LOGIN = {
-  ON: 'Authenticated',
-}
-
 export const API_LINK = 'https://afternoon-falls-25894.herokuapp.com/';
 const PASSWORD_PATTERN_REGEXP =  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&_+-.,[{:;\}\]])[A-Za-z\d@$!%*#?&_+-.,[{:;\}\]]{8,}$/;
 export const PASSWORD_PATTERN = PASSWORD_PATTERN_REGEXP.toString().slice(1).slice(0, -1);
