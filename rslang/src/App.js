@@ -11,9 +11,7 @@ const App = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-lg-12">
-          <Switch>
-            {RouteMap}
-          </Switch>          
+            <RouteMap/>
         </div>
       </div>
     </div>
