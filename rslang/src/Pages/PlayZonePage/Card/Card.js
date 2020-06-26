@@ -16,13 +16,14 @@ const Card = (props) => {
     isNotAgree,
     showTranslateWord,
     showExplanationString,
+    showWordImage,
   } = props;
 
   return(
     <div className="card PlayCard">
       <img
         className="card-img-top"
-        src={ imageRender(cards[playStep].image) }
+        src={ showWordImage ? imageRender(cards[playStep].image) : '/images/playzone/english-language.jpg' }
         alt="image"
       />
       <div className="card-body">

@@ -26,9 +26,11 @@ const mapStateToProps = (store) => {
     showTranslateWord,
     showExplanationString,
     playExampleSound,
+    showWordImage,
   } = store.appSettings;
 
   return {
+    showWordImage: showWordImage,
     playExampleSound: playExampleSound,
     showExplanationString: showExplanationString,
     showTranslateWord: showTranslateWord,
@@ -72,6 +74,7 @@ class PlayZonePage extends React.Component {
       isNotAgree: true,
       inputValue: '',
     });
+    this.input.value = '';
   }
 
   decrementPlayStep = () => {
@@ -198,6 +201,7 @@ class PlayZonePage extends React.Component {
               playStep={ playStep }
               showTranslateWord={ this.props.showTranslateWord }
               showExplanationString={ this.props.showExplanationString }
+              showWordImage={ this.props.showWordImage }
               handlerChange={ this.handlerInputChange }
               handlerSubmit={ this.handlerSubmit }
             />
@@ -205,9 +209,9 @@ class PlayZonePage extends React.Component {
               showAnswer={ this.showAnswer }
               insertCardToDifficult={ this.insertCardToDifficult }
               deleteCard={ this.deleteCard }
-              showBtnDeleteWord = { this.props.showBtnDeleteWord }
-              showBtnDifficultWord = { this.props.showBtnDifficultWord }
-              showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
+              showBtnDeleteWord={ this.props.showBtnDeleteWord }
+              showBtnDifficultWord={ this.props.showBtnDifficultWord }
+              showBtnShowAgreeAnswer={ this.props.showBtnShowAgreeAnswer }
             />
           </div>
         </div>
