@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
 import { setDifficultWords, setDeleteWords } from '../../Store/Actions';
-
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
+import ShortStats from '../../Components/ShortStats/ShortStats';
 
 import './playZonePage.scss';
-
 
 const mapStateToProps = (store) => {
   const {
@@ -60,7 +58,7 @@ class PlayZonePage extends React.Component {
       agreeWord: props.dayLearningWords[0].word,
       isNotAgree: true,
       inputValue: '',
-      clicked: false,
+      isFinish: false,
     }
     this.difficultWordId = '';
   }
@@ -68,15 +66,17 @@ class PlayZonePage extends React.Component {
   incrementPlayStep = () => {
     const { playStep, cards } = this.state;
     if (playStep + 1 === cards.length) {
+      this.setState({ isFinish: true });
       return;
+    } else {
+      this.setState({
+        playStep: playStep + 1,
+        agreeWord: cards[playStep + 1].word,
+        isNotAgree: true,
+        inputValue: '',
+      });
+      this.input.value = '';
     }
-    this.setState({
-      playStep: playStep + 1,
-      agreeWord: cards[playStep + 1].word,
-      isNotAgree: true,
-      inputValue: '',
-    });
-    this.input.value = '';
   }
 
   decrementPlayStep = () => {
@@ -145,8 +145,8 @@ class PlayZonePage extends React.Component {
 
   showAnswer = () => {
     const { cards, playStep } = this.state;
-    const input = document.querySelector('.WordInput');
-    input.value = cards[playStep].word;
+    this.input = document.querySelector('.WordInput');
+    this.input.value = cards[playStep].word;
     this.setState({ isNotAgree: false });
   }
 
@@ -190,32 +190,48 @@ class PlayZonePage extends React.Component {
   }
 
   render() {
-    const { cards, playStep, isNotAgree } = this.state;
+    const {
+      cards,
+      playStep,
+      isNotAgree,
+      isFinish
+    } = this.state;
 
     return(
       <div className="container">
         <div className="row mt-5">
           <div className="col-12 d-flex justify-content-center mt-5">
-            <Card
-              input={ this.input }
-              isNotAgree={ isNotAgree }
-              cards={ cards }
-              playStep={ playStep }
-              showTranslateWord={ this.props.showTranslateWord }
-              showExplanationString={ this.props.showExplanationString }
-              showWordsTranscription={ this.props.showWordsTranscription }
-              showWordImage={ this.props.showWordImage }
-              handlerChange={ this.handlerInputChange }
-              handlerSubmit={ this.handlerSubmit }
-            />
-            <VerticalMenu
-              showAnswer={ this.showAnswer }
-              insertCardToDifficult={ this.insertCardToDifficult }
-              deleteCard={ this.deleteCard }
-              showBtnDeleteWord={ this.props.showBtnDeleteWord }
-              showBtnDifficultWord={ this.props.showBtnDifficultWord }
-              showBtnShowAgreeAnswer={ this.props.showBtnShowAgreeAnswer }
-            />
+            { !isFinish ? 
+              <div>
+                <Card
+                  input={ this.input }
+                  isNotAgree={ isNotAgree }
+                  cards={ cards }
+                  playStep={ playStep }
+                  showTranslateWord={ this.props.showTranslateWord }
+                  showExplanationString={ this.props.showExplanationString }
+                  showWordsTranscription={ this.props.showWordsTranscription }
+                  showWordImage={ this.props.showWordImage }
+                  handlerChange={ this.handlerInputChange }
+                  handlerSubmit={ this.handlerSubmit }
+                />
+                <VerticalMenu
+                  showAnswer={ this.showAnswer }
+                  insertCardToDifficult={ this.insertCardToDifficult }
+                  deleteCard={ this.deleteCard }
+                  showBtnDeleteWord={ this.props.showBtnDeleteWord }
+                  showBtnDifficultWord={ this.props.showBtnDifficultWord }
+                  showBtnShowAgreeAnswer={ this.props.showBtnShowAgreeAnswer }
+                />
+              </div> 
+              : 
+              <ShortStats
+                total={ cards.length }
+                right={ 12 }
+                newWords={ 5 }
+                rightInARow={ 17 }
+              />
+            } 
           </div>
         </div>
         <div className="row">
