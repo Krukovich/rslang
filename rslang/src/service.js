@@ -2,9 +2,8 @@ import React from 'react';
 
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
 
-export const getData = async (group, page) => {
+export const getData = async (group, page, maxLength) => {
   const prepareList = [];
-  const maxLength = 10;
   const maxPage = 20;
 
   const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ page }`;
@@ -12,12 +11,14 @@ export const getData = async (group, page) => {
   const words = await res.json();
 
   if (words.length < maxLength) {
+    prepareList.push(...words);
     const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ getRandomPage(maxPage) }`;
     const res = await fetch(url);
     const words = await res.json();
-    return words;
+    prepareList.push(...words);
+    return prepareList.slice(0, maxLength);
   }
-  return words; 
+  return words.slice(0, maxLength); 
 }
 
 export const imageRender = (src) => {

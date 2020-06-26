@@ -8,7 +8,7 @@ const initialState = {
   showTranslateWord: true, // show translate word
   showExampleString: true, // show example string
   showExplanationString: true, // show explanation string
-  showWordsTranslate: true, // show word transcription
+  showWordsTranscription: true, // show word transcription
   showWordImage: true, // show words image example
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
