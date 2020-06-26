@@ -61,6 +61,7 @@ class PlayZonePage extends React.Component {
       isFinish: false,
     }
     this.difficultWordId = '';
+    this.agreeCountAnswer = 0;
   }
 
   incrementPlayStep = () => {
@@ -127,6 +128,7 @@ class PlayZonePage extends React.Component {
         input.classList.remove('PlayCard_Mistake');
         input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
+        this.agreeCountAnswer += 1;
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -173,6 +175,7 @@ class PlayZonePage extends React.Component {
         this.input.classList.remove('PlayCard_Mistake');
         this.input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
+        this.agreeCountAnswer += 1;
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -227,7 +230,7 @@ class PlayZonePage extends React.Component {
               : 
               <ShortStats
                 total={ cards.length }
-                right={ 12 }
+                right={ (this.agreeCountAnswer / cards.length) * 100 }
                 newWords={ 5 }
                 rightInARow={ 17 }
               />
