@@ -2,7 +2,6 @@ import { CHANGE_WORD_CARDS } from './actions';
 import { wordCards } from '../../constant';
 
 const initialState = {
-  cards: wordCards[1],
 }
 
 export const playZonePageReducer = (state = initialState, action) => {
