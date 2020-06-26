@@ -9,14 +9,14 @@ const SprintCard = (props) => {
                 <h5 className="SprintCard-Title card-title text-center mt-4 mb-4">{props.eng}</h5>
                 <h6 className="SprintCard-Subtitle card-subtitle mb-5 text-muted text-center">{props.rus}</h6>
                 <div className="SprintCard-Footer card-footer p-3 d-flex justify-content-between">
-                    <Button onClick={props.onclick} variant='success' className="SprintCard-Button_success">
+                    <Button ref={props.rightBtnRef} onClick={props.onclick} variant='success' className="SprintCard-Button_success">
                         <span>Yes</span>
                         <div className="SprintCard-Button_prompt">
                             <div></div>
                             <div></div>
                         </div>
                     </Button>
-                    <Button onClick={props.onclick} variant='danger' className="SprintCard-Button_wrong">
+                    <Button ref={props.wrongBtnRef} onClick={props.onclick} variant='danger' className="SprintCard-Button_wrong">
                         <span>No</span>
                         <div className="SprintCard-Button_prompt">
                             <div></div>

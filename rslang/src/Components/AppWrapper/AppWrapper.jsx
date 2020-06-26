@@ -1,7 +1,7 @@
 import React, { Component, Children } from 'react';
 import Card from '../../Components/Card/Card';
 import { Sidebar } from '../../Components/Sidebar/Sidebar';
-import { Header } from '../../Components/Header/Header';
+import Header from '../Header/Header';
 
 export class AppWrapper extends Component {
     constructor(props) {
@@ -11,11 +11,11 @@ export class AppWrapper extends Component {
         }
         this.asideToggle = this.asideToggle.bind(this);
         console.log(props.children)
-        
+
     }
 
     asideToggle() {
-        
+
         this.setState({ clicked: !this.state.clicked });
     }
 

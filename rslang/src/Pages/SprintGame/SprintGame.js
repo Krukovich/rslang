@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SprintCard from '../../Components/SprintCard/SprintCard';
+import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
 import './SprintGame.scss';
 
@@ -7,15 +8,14 @@ class SprintGame extends Component {
     constructor() {
         super();
         this.state = {
+            gameStarted: false,
+            gameEnded: false,
             counter: 60,
             score: 0,
-            maxString: 0,
+            maxStreak: 0,
             modifier: 1,
-            isTrue: true,
             mixedArr: 0,
-            eng: 0,
-            rus: 0,
-            currentCard: 0,
+            activeQuestion: 0,
             words: [
                 {
                     eng: 'Whisper',
@@ -28,156 +28,197 @@ class SprintGame extends Component {
                 {
                     eng: 'Sing',
                     rus: 'Петь'
-                }
+                },
+                {
+                    eng: 'Flex',
+                    rus: 'Отдыхать от души'
+                },
+                {
+                    eng: 'Dance',
+                    rus: 'Танцевать'
+                },
+                {
+                    eng: 'Read',
+                    rus: 'Петь'
+                },
+                {
+                    eng: 'Train',
+                    rus: 'Тренироваться'
+                },
             ],
         }
+        this.rightBtnRef = React.createRef();
+        this.wrongBtnRef = React.createRef();
     }
 
     mixWords = () => {
         const defaultArr = this.state.words.slice(0);
         let mixedArr = [];
-
         defaultArr.map((a, i) => {
-            let firstPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
-            let secondPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
-            let isTrue = true;
+            if (Math.random() > 0.5) {
+                let firstPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
+                let secondPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
+                let isTrue = true;
 
-            if (firstPart === secondPart) {
-                isTrue = true;
+                if (firstPart === secondPart) {
+                    isTrue = true;
+                } else {
+                    isTrue = false;
+                }
+
+                mixedArr.push({
+                    firstPartEng: defaultArr[firstPart].eng,
+                    secondPartRus: defaultArr[secondPart].rus,
+                    isTrue: isTrue
+                });
             } else {
-                isTrue = false;
+                mixedArr.push({
+                    firstPartEng: defaultArr[i].eng,
+                    secondPartRus: defaultArr[i].rus,
+                    isTrue: true
+                });
             }
 
-            mixedArr.push({
-                firstPartEng: defaultArr[firstPart].eng,
-                secondPartEng: defaultArr[secondPart].eng,
-                secondPartRus: defaultArr[secondPart].rus,
-            });
         })
-
+        console.log(mixedArr)
         this.setState({
             mixedArr: mixedArr
         });
     }
 
     timer = () => {
-        this.setState((prevState) => {
-            return {
-                counter: prevState.counter - 1,
+        const timer = setInterval(() => {
+            this.setState((prevState) => {
+                return {
+                    counter: prevState.counter - 1,
+                }
+            });
+
+            if (!this.state.counter) {
+                clearInterval(timer);
             }
-        });
+        }, 1000);
     }
 
-    buttonClickHandler = (event, value = null) => {
+    buttonClickHandler = event => {
         let isRightButton = event.currentTarget.className.includes('SprintCard-Button_success');
 
-        if (isRightButton === this.state.isTrue) {
+        if (isRightButton === this.state.mixedArr[this.state.activeQuestion].isTrue) {
             this.rightAnswerHandler();
         } else {
             this.wrongAnswerHandler();
         }
     }
 
-    loadCard = () => {
-        // alert(this.state.mixedArr)
-        this.setState({
-            rus: this.state.mixedArr[this.currentCard],
-            eng: this.state.mixedArr[this.currentCard]
-        });
-    }
-
     rightAnswerHandler = () => {
+        // this.rightBtnRef.current.focus();
+
         this.setState((prevState) => {
             return {
-                maxString: prevState.maxString + 1,
+                activeQuestion: prevState.activeQuestion + 1,
+                maxStreak: prevState.maxStreak + 1,
                 score: prevState.score + 10 * prevState.modifier,
-                currentCard: prevState.currentCard + 1,
             }
         });
 
-        if (this.state.maxString === 3) {
+        if (this.state.maxStreak === 3) {
             this.setState((prevState) => {
                 return {
                     modifier: prevState.modifier * 2,
-                    maxString: 0
+                    maxStreak: 0
                 }
             });
         }
+
     }
 
     wrongAnswerHandler = () => {
+        // this.wrongBtnRef.current.focus();
         this.setState((prevState) => {
             return {
+                activeQuestion: prevState.activeQuestion + 1,
                 modifier: 1,
-                maxString: 0,
-                currentCard: prevState.currentCard + 1,
+                maxStreak: 0,
             }
         });
     }
 
-    componentDidMount() {
-        this.mixWords();
+    gameEndHandler = () => {
+        if (this.state.activeQuestion === this.state.mixedArr.length) {
+            this.setState({
+                gameEnded: true
+            })
+        }
+    }
 
-        const timer = setInterval(() => {
-            this.timer();
-
-            if (!this.state.counter) {
-                clearInterval(timer);
-                // this.endGame();
-            }
-        }, 1000);
-
+    keyPushHandler = props => {
         document.addEventListener('keydown', (event) => {
             if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
-                if (this.state.isTrue) {
+                if (this.state.mixedArr[this.state.activeQuestion].isTrue) {
                     this.rightAnswerHandler();
                 } else {
                     this.wrongAnswerHandler();
                 }
             } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
-                if (!this.state.isTrue) {
+                if (!this.state.mixedArr[this.state.activeQuestion].isTrue) {
                     this.rightAnswerHandler();
                 } else {
                     this.wrongAnswerHandler();
                 }
             }
         });
-
-        this.loadCard();
     }
 
-    endGame = () => {
-        alert('КОНЕЦ');
+    gameStart = props => {
+        this.timer();
+        this.keyPushHandler();
+        this.setState(
+            { gameStarted: true }
+        )
+    }
+
+    componentDidMount() {
+        this.mixWords();
     }
 
     render() {
-        return (
-            <div className="Sprint container">
-                <div className="Sprint-Scoreboard row p-2 mb-2">
-                    <div className="col-md-12 d-flex justify-content-center">
-                        <h3 className="Sprint-Score text-success">{this.state.score}</h3>
+        if (!this.state.gameStarted) {
+            return <StartScreen gameStart={this.gameStart} />
+        } else if (this.state.gameEnded) {
+            return <EndScreen score={this.state.score} />
+        } else {
+            return (
+                <div className="Sprint container mt-5">
+                    <div className="Sprint-Scoreboard row p-2 mb-2">
+                        <div className="col-md-12 d-flex justify-content-center">
+                            <h3 className="Sprint-Score text-success">{this.state.score}</h3>
+                        </div>
                     </div>
-                </div>
-                <div className="Sprint-Playboard row h-75">
-                    <div className="col-md-4"></div>
-                    <div className="col-md-4 d-flex justify-content-center">
-                        <SprintCard
-                            eng={this.state.eng}
-                            rus={this.state.rus}
-                            onclick={this.buttonClickHandler}
-                        />
+                    <div className="Sprint-Playboard row h-75">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4 d-flex justify-content-center">
+                            <SprintCard
+                                rightBtnRef={this.rightBtnRef}
+                                wrongBtnRef={this.wrongBtnRef}
+
+                                eng={this.state.mixedArr[this.state.activeQuestion].firstPartEng}
+                                rus={this.state.mixedArr[this.state.activeQuestion].secondPartRus}
+                                onclick={this.buttonClickHandler}
+                            />
+                        </div>
+                        <div className="col-md-4"></div>
                     </div>
-                    <div className="col-md-4"></div>
-                </div>
-                <div className="Sprint-Tools row p-2 mt-2">
-                    <div className="col-md-4"></div>
-                    <div className="col-md-4 d-flex justify-content-center">
-                        <h3 className="Sprint-Timer text-success">{this.state.counter}</h3>
+                    <div className="Sprint-Tools row p-2 mt-2">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4 d-flex justify-content-center">
+                            <h3 className="Sprint-Timer text-success">{this.state.counter}</h3>
+                        </div>
+                        <div className="col-md-4"></div>
                     </div>
-                    <div className="col-md-4"></div>
-                </div>
-            </div >
-        )
+                </div >
+            )
+        }
+
     }
 }
 

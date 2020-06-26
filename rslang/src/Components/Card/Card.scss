@@ -2,30 +2,23 @@
     transition: 0.3s;
     cursor: pointer;
     user-select: none;
-    margin-top: 10px;
+    height: 100% !important;
 }
 
 .Card-Image {
     display: flex;
     align-items: center;
-    max-width: 500px;
     overflow: hidden;
     background-position: center;
     background-size: cover;
     position: relative;
-
-    img {
-        height: 100%;
-    }
+    margin: 15px;
 }
 
 .Card:hover {
-    // .Card-Image {
-        
-    // }
 
     img {
-        display: none;
+        visibility: hidden;;
     }
 }
 
@@ -35,4 +28,8 @@
 
 .Card-Image_learning {
     background-image: url(../../Pages/MainPage/picgif2.gif);
+}
+
+.card-body {
+    height: 100%;
 }
