@@ -19,6 +19,7 @@ export const getData = async (group, page, maxLength) => {
     return prepareList.slice(0, maxLength);
   }
   return words.slice(0, maxLength); 
+<<<<<<< HEAD
 }
 
 export const getWords = (group, numberOfWords) => {
@@ -30,6 +31,8 @@ export const getWords = (group, numberOfWords) => {
     proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ i }`).then((res) => res.json()));
   }
   return Promise.allSettled(proms).then((wordLists) => wordLists.flat());
+=======
+>>>>>>> code: refactor
 }
 
 export const imageRender = (src) => {
