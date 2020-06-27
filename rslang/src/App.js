@@ -1,5 +1,4 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
 import { RouteMap } from './Components/Router/Routes';
 import { AppWrapper } from './Components/AppWrapper/AppWrapper'
 

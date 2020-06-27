@@ -4,6 +4,9 @@ import "./Login.scss";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
+import { getCookie } from '../../../Components/Tools/GetCoocke'
+import { Redirect } from "react-router-dom";
+import { fetchAPI } from "../../../Components/Tools/fetchAPI"
 
 export class Login extends React.Component {
   constructor(props) {
@@ -22,22 +25,11 @@ export class Login extends React.Component {
     this.passwordInputHandler = this.passwordInputHandler.bind(this);
   }
 
-  loginUser = async (event) => {
-    event.preventDefault();
-    console.log(event);
-    const rawResponse = await fetch(Const.API_LINK + "signin", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({"email": this.state.inputEmail, "password": this.state.inputPassword}),
-    });
-    const content = await rawResponse.json();
-
+  request = async (e) => {
+    e.preventDefault();
+    const content = await fetchAPI("signin", {email: this.state.inputEmail, password: this.state.inputPassword});
     this.loginResult(content);
-    console.log(content);
-  };
+  }
 
   loginResult = (answer) => {
     if (answer.message === "Authenticated") {
@@ -48,33 +40,16 @@ export class Login extends React.Component {
   }
 
   setLoginCookie = (userId, token) => {
-    document.cookie = `userId=${userId}; max-age=14400`;
-    document.cookie = `token=${token}; max-age=14400`;
-  }
-
-  getCookie = (name) => {
-    let matches = document.cookie.match(
-      new RegExp(
-        "(?:^|; )" +
-          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-          "=([^;]*)"
-      )
-    );
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+    document.cookie = `userId=${userId}; Path=/; max-age=14400`;
+    document.cookie = `token=${token}; Path=/; max-age=14400`;
   }
 
   checkCookie = () => {
-    if (this.getCookie("userId") !== undefined) {
+    if (getCookie("userId") !== undefined) {
       return true;
     }
     return false;
   }
-
-  goToMain = () => {
-    this.props.history.push({
-      pathname: "/main",
-    });
-  };
 
   emailInputHandler = (event) => {
     this.setState({inputEmail: event.target.value});
@@ -89,12 +64,12 @@ export class Login extends React.Component {
       return (
         <AlertRed
           showAlert={this.state.showAlert}
-          onSubmit={this.goToMain}
+          onSubmit={GoToMain}
           HeadText={"Login " + this.state.loginStatus}
           MainText={this.state.alertMessage}
         >
-          <LoginLayout>
-            <form onSubmit={(event) => this.loginUser(event)}>
+          <LoginLayout>            
+            <form onSubmit={(e) => this.request(e)}>
               <h2 className="text-center">Log in</h2>
               <div className="form-group">
                 <input
@@ -133,9 +108,15 @@ export class Login extends React.Component {
           </LoginLayout>
         </AlertRed>
       );
-    } else {
-      this.goToMain();
-      return null;
+    } else { 
+      return <GoToMain/>;
     }
+  }
+}
+
+
+class GoToMain extends React.Component {
+  render () {
+    return <Redirect to="/main"/>;
   }
 }

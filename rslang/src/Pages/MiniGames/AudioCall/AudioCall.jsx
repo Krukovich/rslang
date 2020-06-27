@@ -3,6 +3,7 @@ import { AlertRed } from "../../../Components/Alert/Alert";
 import { Words } from "../components/Words";
 import { AudioComp } from "../components/AudioComp";
 import "./AudioCall.scss";
+import { fetchAPI } from "../../../Components/Tools/fetchAPI"
 
 export class AudioCall extends React.Component {
   constructor(props) {
@@ -56,13 +57,9 @@ export class AudioCall extends React.Component {
   };
 
   randomWords = async (page, group) => {
-    const rawResponse = await fetch(
-      `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`
-    );
-    const content = await rawResponse.json();
+    const content = await fetchAPI("words", {page: page, group: group});
     const arrayOfWords = this.levelGenerator(content);
     this.setState({ wordsArray: arrayOfWords });
-
     console.log("redy to game");
     return content;
   };

@@ -1,7 +1,7 @@
 import React, { Component, Children } from 'react';
-import Card from '../../Components/Card/Card';
 import { Sidebar } from '../../Components/Sidebar/Sidebar';
 import { Header } from '../../Components/Header/Header';
+import { getCookie } from '../../Components/Tools/GetCoocke'
 
 export class AppWrapper extends Component {
     constructor(props) {
@@ -10,20 +10,23 @@ export class AppWrapper extends Component {
             clicked: false,
         }
         this.asideToggle = this.asideToggle.bind(this);
-        console.log(props.children)
         this.arrayOfException = [
-            '/start'
+            '/',
+            '/login',
+            '/createanaccount',
+            '/logout',
+            '/start',
         ]
     }
 
     asideToggle() {
-
         this.setState({ clicked: !this.state.clicked });
     }
 
     clearLayout () {
         return (
             <div id="content">
+                {getCookie("userId")}
                 {this.props.children}
             </div>
         )
@@ -50,7 +53,7 @@ export class AppWrapper extends Component {
 
     render() {
         return (
-            this.arrayOfException.includes('/start')?
+            this.arrayOfException.includes(window.location.pathname) ?
             this.clearLayout():this.HarSbarLayout()
         )
     }

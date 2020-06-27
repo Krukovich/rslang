@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Login } from '../../Pages/Authentication/Login/LoginPage';
-import { LoginFirst } from '../../Pages/Authentication/Login/LoginFirst';
+import { LogOut } from '../../Pages/Authentication/Login/LogOut';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
@@ -27,8 +20,8 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
-    path: '/loginfirst',
-    component: LoginFirst,
+    path: '/logout',
+    component: LogOut,
     exact: true,
   },
   {
@@ -39,6 +32,11 @@ const sourceOpenRoutes = [
   {
     path: '/login',
     component: Login,
+    exact: true,
+  },
+  {
+    path: '/',
+    component: Start,
     exact: true,
   },
   {
@@ -112,50 +110,15 @@ export function RouteMap() {
     <div className="router">
 
       <Switch>
-        {/* Фантастический код рожались эти строки 3 дня за подробностями прошу в ЛС*/}
-        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={key} />)}
+        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a'+key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b'+key} />)}
       </Switch>
     </div>
 
   );
 }
 
-// const fakeAuth = {
-//   isAuthenticated: false,
-//   authenticate(cb) {
-//     fakeAuth.isAuthenticated = true;
-//     setTimeout(cb, 100); // fake async
-//   },
-//   signout(cb) {
-//     fakeAuth.isAuthenticated = false;
-//     setTimeout(cb, 100);
-//   }
-// };
-
-// function AuthButton() {
-//   let history = useHistory();
-
-//   return fakeAuth.isAuthenticated ? (
-//     <p>
-//       Welcome!{" "}
-//       <button
-//         onClick={() => {
-//           fakeAuth.signout(() => history.push("/"));
-//         }}
-//       >
-//         Sign out
-//       </button>
-//     </p>
-//   ) : (
-//       <p>You are not logged in.</p>
-//     );
-// }
-
-// A wrapper for <Route> that redirects to the login
-// screen if you're not yet authenticated.
 function PrivateRoute({ component: Component, ...rest }) {
-  //console.log('private comp', Component)
   return (
     <Route
       {...rest}
@@ -169,28 +132,3 @@ function PrivateRoute({ component: Component, ...rest }) {
     />
   );
 }
-
-// function LoginPage() {
-//   let history = useHistory();
-//   let location = useLocation();
-
-//   let { from } = location.state || { from: { pathname: "/" } };
-//   let login = () => {
-//     fakeAuth.authenticate(() => {
-//       history.replace(from);
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <p>You must log in to view the page at {from.pathname}</p>
-//       <button onClick={login}>Log in</button>
-//     </div>
-//   );
-// }
-
-// const RouteMap = sourceRoutes.map(({ path, component }, key) => (
-//   <Route exact path={path} component={component} key={key} />
-// ));
-
-// export { RouteMap }
