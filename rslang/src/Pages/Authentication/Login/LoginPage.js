@@ -4,9 +4,9 @@ import "./Login.scss";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
-import { getCookie } from '../../../Components/Tools/GetCoocke'
+import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
-import { fetchAPI } from "../../../Components/Tools/fetchAPI"
+import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -27,9 +27,12 @@ export class Login extends React.Component {
 
   request = async (e) => {
     e.preventDefault();
-    const content = await fetchAPI("signin", {email: this.state.inputEmail, password: this.state.inputPassword});
+    const content = await fetchAPI("signin", {
+      email: this.state.inputEmail,
+      password: this.state.inputPassword,
+    });
     this.loginResult(content);
-  }
+  };
 
   loginResult = (answer) => {
     if (answer.message === "Authenticated") {
@@ -37,27 +40,27 @@ export class Login extends React.Component {
       this.setLoginCookie(answer.userId, answer.token);
     }
     this.setState({ showAlert: true });
-  }
+  };
 
   setLoginCookie = (userId, token) => {
     document.cookie = `userId=${userId}; Path=/; max-age=14400`;
     document.cookie = `token=${token}; Path=/; max-age=14400`;
-  }
+  };
 
   checkCookie = () => {
     if (getCookie("userId") !== undefined) {
       return true;
     }
     return false;
-  }
+  };
 
   emailInputHandler = (event) => {
-    this.setState({inputEmail: event.target.value});
-  }
+    this.setState({ inputEmail: event.target.value });
+  };
 
   passwordInputHandler = (event) => {
-    this.setState({inputPassword: event.target.value});
-  }
+    this.setState({ inputPassword: event.target.value });
+  };
 
   render() {
     if (!this.checkCookie()) {
@@ -68,7 +71,7 @@ export class Login extends React.Component {
           HeadText={"Login " + this.state.loginStatus}
           MainText={this.state.alertMessage}
         >
-          <LoginLayout>            
+          <LoginLayout>
             <form onSubmit={(e) => this.request(e)}>
               <h2 className="text-center">Log in</h2>
               <div className="form-group">
@@ -108,15 +111,14 @@ export class Login extends React.Component {
           </LoginLayout>
         </AlertRed>
       );
-    } else { 
-      return <GoToMain/>;
+    } else {
+      return <GoToMain />;
     }
   }
 }
 
-
 class GoToMain extends React.Component {
-  render () {
-    return <Redirect to="/main"/>;
+  render() {
+    return <Redirect to="/main" />;
   }
 }
