@@ -25,6 +25,11 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
+    path: '/mainpage',
+    component: MainPage,
+    exact: true,
+  },
+  {
     path: '/about',
     component: () => <h1>about</h1>,
     exact: true,
@@ -132,3 +137,4 @@ function PrivateRoute({ component: Component, ...rest }) {
     />
   );
 }
+
