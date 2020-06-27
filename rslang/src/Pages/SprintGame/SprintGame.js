@@ -16,6 +16,7 @@ class SprintGame extends Component {
             modifier: 1,
             mixedArr: 0,
             activeQuestion: 0,
+            mistakeCount: 0,
             words: [
                 {
                     eng: 'Whisper',
@@ -80,7 +81,6 @@ class SprintGame extends Component {
             }
 
         })
-        console.log(mixedArr)
         this.setState({
             mixedArr: mixedArr
         });
@@ -111,8 +111,6 @@ class SprintGame extends Component {
     }
 
     rightAnswerHandler = () => {
-        // this.rightBtnRef.current.focus();
-
         this.setState((prevState) => {
             return {
                 activeQuestion: prevState.activeQuestion + 1,
@@ -133,20 +131,26 @@ class SprintGame extends Component {
     }
 
     wrongAnswerHandler = () => {
-        // this.wrongBtnRef.current.focus();
         this.setState((prevState) => {
             return {
                 activeQuestion: prevState.activeQuestion + 1,
+                mistakeCount: prevState.mistakeCount + 1,
                 modifier: 1,
                 maxStreak: 0,
             }
         });
+
+        if (this.state.mistakeCount === 2) {
+            this.setState({
+                gameEnded: true,
+            })
+        }
     }
 
     gameEndHandler = () => {
         if (this.state.activeQuestion === this.state.mixedArr.length) {
             this.setState({
-                gameEnded: true
+                gameEnded: true,
             })
         }
     }
@@ -154,12 +158,14 @@ class SprintGame extends Component {
     keyPushHandler = props => {
         document.addEventListener('keydown', (event) => {
             if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
+                this.rightBtnRef.current.focus();
                 if (this.state.mixedArr[this.state.activeQuestion].isTrue) {
                     this.rightAnswerHandler();
                 } else {
                     this.wrongAnswerHandler();
                 }
             } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
+                this.wrongBtnRef.current.focus();
                 if (!this.state.mixedArr[this.state.activeQuestion].isTrue) {
                     this.rightAnswerHandler();
                 } else {
@@ -173,7 +179,16 @@ class SprintGame extends Component {
         this.timer();
         this.keyPushHandler();
         this.setState(
-            { gameStarted: true }
+            {
+                gameStarted: true,
+                gameEnded: false,
+                // counter: 60,
+                // score: 0,
+                // maxStreak: 0,
+                // modifier: 1,
+                // activeQuestion: 0,
+                // mistakeCount: 0,
+            }
         )
     }
 
@@ -185,11 +200,14 @@ class SprintGame extends Component {
         if (!this.state.gameStarted) {
             return <StartScreen gameStart={this.gameStart} />
         } else if (this.state.gameEnded) {
-            return <EndScreen score={this.state.score} />
+            return <EndScreen
+                score={this.state.score}
+                restart={this.gameStart}
+            />
         } else {
             return (
                 <div className="Sprint container mt-5">
-                    <div className="Sprint-Scoreboard row p-2 mb-2">
+                    <div className="Sprint-Scoreboard row p-2">
                         <div className="col-md-12 d-flex justify-content-center">
                             <h3 className="Sprint-Score text-success">{this.state.score}</h3>
                         </div>
@@ -200,7 +218,7 @@ class SprintGame extends Component {
                             <SprintCard
                                 rightBtnRef={this.rightBtnRef}
                                 wrongBtnRef={this.wrongBtnRef}
-
+                                mistakeCount={this.state.mistakeCount}
                                 eng={this.state.mixedArr[this.state.activeQuestion].firstPartEng}
                                 rus={this.state.mixedArr[this.state.activeQuestion].secondPartRus}
                                 onclick={this.buttonClickHandler}
@@ -208,7 +226,7 @@ class SprintGame extends Component {
                         </div>
                         <div className="col-md-4"></div>
                     </div>
-                    <div className="Sprint-Tools row p-2 mt-2">
+                    <div className="Sprint-Tools row p-2 mt-1">
                         <div className="col-md-4"></div>
                         <div className="col-md-4 d-flex justify-content-center">
                             <h3 className="Sprint-Timer text-success">{this.state.counter}</h3>

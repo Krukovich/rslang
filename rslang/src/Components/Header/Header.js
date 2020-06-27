@@ -18,7 +18,7 @@ const Header = (props) => {
                 </button>
             </div>
             <div className="Header-Right w-25 d-flex justify-content-end">
-                <button type="button" className="btn btn_logout btn-primary">Log out</button>
+                <button type="button" className="btn btn_logout btn-primary">Logout</button>
             </div>
         </header>
     )
