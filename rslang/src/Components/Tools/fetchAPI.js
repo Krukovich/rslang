@@ -23,7 +23,7 @@ export const fetchAPI = async (query, obj) => {
     const content = await rawResponse.json();
     return content;
   }
-  if (query === "users-statistics") {
+  if (query === "users-set-statistics") {
     const rawResponse = await fetch(
       Const.API_LINK + `users/${getCookie("userId")}/statistics`,
       {
@@ -34,9 +34,18 @@ export const fetchAPI = async (query, obj) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(obj),
-      }
-    );
+        body: JSON.stringify({
+          learnedWords: 999,
+          optional: {
+            "minigames": [
+              {
+                gamename: 'audiocall',
+                statistics: [obj]
+              }
+            ]        
+        }
+      })
+    })
     const content = await rawResponse.json();
     return content;
   }

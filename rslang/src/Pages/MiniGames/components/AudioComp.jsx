@@ -4,6 +4,9 @@ import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 export const AudioComp = (props) => {
   const { gameFindWord, gameStart } = props;
+  // if (gameFindWord !== undefined) {
+  //   setInterval(audioPlay(gameFindWord.audio), 1000) 
+  // } 
   console.log(props);
   //console.log( wordsArray, gameStart )
   if (gameStart) {

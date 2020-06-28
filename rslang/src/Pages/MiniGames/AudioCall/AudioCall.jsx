@@ -4,6 +4,7 @@ import { Words } from "../components/Words";
 import { AudioComp } from "../components/AudioComp";
 import "./AudioCall.scss";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
+import { Redirect} from "react-router-dom"
 
 export class AudioCall extends React.Component {
   constructor(props) {
@@ -80,39 +81,22 @@ export class AudioCall extends React.Component {
     console.log("stage", this.state.gameStage);
   };
 
-  endGame() {
+  endGame() {    
+    const time = Date.now();
+    const stats = this.state.gameSuccessAnswer;
+    const obj = {time, stats};
+    this.writeStats(obj);
     this.setState({ showAlert: true });
-    this.writeStats("5ef12d7baa245e0017a5792f", this.state.gameSuccessAnswer);
   }
 
-  writeStats(userIdState, stateStats) {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjEyZDdiYWEyNDVlMDAxN2E1NzkyZiIsImlhdCI6MTU5Mjg4NjM5OCwiZXhwIjoxNTkyOTAwNzk4fQ.XW6eOGXB8D9YJioyDi9L2DZNPwekkHhnJwksHNq1TkU";
-    const createUserWord = async (userId, stats) => {
-      const rawResponse = await fetch(
-        `https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`,
-        {
-          method: "PUT",
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            learnedWords: 1,
-            optional: {
-              rightAnswer: stats,
-            },
-          }),
-        }
-      );
-      const content = await rawResponse.json();
-
-      console.log("statistik", content);
-    };
-    createUserWord(userIdState, stateStats);
-  }
+  writeStats = async (statsObj) => {
+    const content = await fetchAPI("users-set-statistics", statsObj);
+    const arrayOfWords = this.levelGenerator(content);
+    
+    this.setState({ wordsArray: arrayOfWords });
+    console.log("stats write");
+    return content;
+  };
 
   componentDidMount() {
     if (this.state.wordsArray.length === 0) {
@@ -127,6 +111,7 @@ export class AudioCall extends React.Component {
         showAlert={this.state.showAlert}
         HeadText={"Вы прошли уровень"}
         MainText={"верно ответили на " + this.state.gameSuccessAnswer}
+        onSubmit={<Redirect to="/audiocall" />}
       >
         <div className="AudioCall vh-100">
           <h1>AudioCall</h1>
