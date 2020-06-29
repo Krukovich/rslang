@@ -1,14 +1,31 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Login.scss";
+import { connect } from 'react-redux';
+
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
 import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
+import { getRandomPage } from '../../../service';
+import { setDayLearningWords } from '../../../Store/Actions';
 
-export class Login extends React.Component {
+import "./Login.scss";
+
+const mapStateToProps = (store) => {
+  return {
+    level: store.appSettings.level,
+    newWordsCount: store.appSettings.newWordsCount,
+  }
+}
+
+const mapActionToProps = {
+  setDayLearningWords,
+}
+
+
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,13 +42,38 @@ export class Login extends React.Component {
     this.passwordInputHandler = this.passwordInputHandler.bind(this);
   }
 
-  request = async (e) => {
+  requestSignin = async (e) => {
     e.preventDefault();
     const content = await fetchAPI("signin", {
       email: this.state.inputEmail,
       password: this.state.inputPassword,
     });
     this.loginResult(content);
+    if (content.message === Const.LOGIN.ON) {
+    this.requestDayLearningWords()
+    }
+  };
+
+  
+  requestDayLearningWords = async () => {
+    debugger;
+    const prepareList = [];
+
+    let words = await fetchAPI("words", {
+      page: getRandomPage(Const.MAX_PAGE),
+      group: this.props.level,
+    });
+    if (words.length <  this.props.newWordsCount) {
+      prepareList.push(...words);
+      let words = await fetchAPI("words", {
+        page: getRandomPage(Const.MAX_PAGE),
+        group: this.props.level,
+      });
+      prepareList.push(...words);
+      this.props.setDayLearningWords(prepareList.slice(0, this.props.newWordsCount))
+    } else if (words.length !== 0) {
+      this.props.setDayLearningWords(words.slice(0, this.props.newWordsCount));
+    }
   };
 
   loginResult = (answer) => {
@@ -72,7 +114,7 @@ export class Login extends React.Component {
           MainText={this.state.alertMessage}
         >
           <LoginLayout>
-            <form onSubmit={(e) => this.request(e)}>
+            <form onSubmit={(e) => this.requestSignin(e)}>
               <h2 className="text-center">Log in</h2>
               <div className="form-group">
                 <input
@@ -122,3 +164,5 @@ class GoToMain extends React.Component {
     return <Redirect to="/main" />;
   }
 }
+
+export default connect(mapStateToProps, mapActionToProps)(Login);

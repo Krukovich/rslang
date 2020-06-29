@@ -16,13 +16,15 @@ const Card = (props) => {
     isNotAgree,
     showTranslateWord,
     showExplanationString,
+    showWordImage,
+    showWordsTranscription,
   } = props;
 
   return(
     <div className="card PlayCard">
       <img
         className="card-img-top"
-        src={ imageRender(cards[playStep].image) }
+        src={ showWordImage ? imageRender(cards[playStep].image) : '/images/playzone/english-language.jpg' }
         alt="image"
       />
       <div className="card-body">
@@ -49,16 +51,23 @@ const Card = (props) => {
             </div>
           </div>
           <div className="col-12 text-right mt-3">
-            <button
-              type="button"
-              className="btn btn-outline-primary btn-sm"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Play example sound"
-              onClick={ () => playExampleSound(cards[playStep].audio) } 
-            >
-              <FontAwesomeIcon icon={ faVolumeUp } />
-            </button>
+            <div className="row">
+              <div className="col-6">
+                { showWordsTranscription ? cards[playStep].transcription : '' }
+              </div>
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary btn-sm"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Play example sound"
+                  onClick={ () => playExampleSound(cards[playStep].audio) } 
+                >
+                  <FontAwesomeIcon icon={ faVolumeUp } />
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>

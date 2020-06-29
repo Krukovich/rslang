@@ -1,21 +1,18 @@
-import React from 'react';
-import { RouteMap } from './Components/Router/Routes';
-import { AppWrapper } from './Components/AppWrapper/AppWrapper'
+import React from "react";
+import { RouteMap } from "./Components/Router/Routes";
+import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
 
 const App = () => {
-
   return (
-    <>
     <AppWrapper>
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-lg-12">
-            <RouteMap/>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-12">
+            <RouteMap />
+          </div>
         </div>
       </div>
-    </div>
     </AppWrapper>
-    </>
   );
 };
 

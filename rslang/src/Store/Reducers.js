@@ -8,12 +8,12 @@ const initialState = {
   showTranslateWord: true, // show translate word
   showExampleString: true, // show example string
   showExplanationString: true, // show explanation string
-  showWordsTranslate: true, // show word transcription
+  showWordsTranscription: true, // show word transcription
   showWordImage: true, // show words image example
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
   showBtnDifficultWord: true, // show btn add words to a difficult group
-  newWordsCount: 5, // number for learning new words
+  newWordsCount: 21, // number for learning new words
   deleteWords: [], // an array with delete words
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn

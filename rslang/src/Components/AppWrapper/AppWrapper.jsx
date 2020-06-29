@@ -44,7 +44,9 @@ export class AppWrapper extends Component {
                 clicked={this.state.clicked}
               />
             </div>
-            <div id="content">{this.props.children}</div>
+            <div id="content">
+              {this.props.children}
+            </div>
           </div>
         </div>
       </div>

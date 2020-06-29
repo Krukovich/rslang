@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Login } from '../../Pages/Authentication/Login/LoginPage';
+import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
