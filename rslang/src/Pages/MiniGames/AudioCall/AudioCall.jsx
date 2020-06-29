@@ -92,7 +92,7 @@ export class AudioCall extends React.Component {
   writeStats = async (statsObj) => {
     const content = await fetchAPI("users-set-statistics", statsObj);
     const arrayOfWords = this.levelGenerator(content);
-    
+
     this.setState({ wordsArray: arrayOfWords });
     console.log("stats write");
     return content;
@@ -123,11 +123,13 @@ export class AudioCall extends React.Component {
               gameStage={this.state.gameStage}
             />
           </div>
-          <AudioComp
+          {this.state.gameStart?
+            <AudioComp
             gameStart={this.state.gameStart}
             gameFindWord={this.state.gameFindWord}
             gameStage={this.state.gameStage}
-          />
+          /> : null
+          }
           <Words
             wordsArray={this.state.wordsArray}
             gameStart={this.state.gameStart}

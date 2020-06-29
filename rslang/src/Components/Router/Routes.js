@@ -12,6 +12,7 @@ import MainPage from '../../Pages/MainPage/MainPage';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
 import { Start } from '../../Pages/Start/Start'
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin'
+import App from '../../Pages/MiniGames/Savanna/App';
 
 const sourceOpenRoutes = [
   {
@@ -27,6 +28,11 @@ const sourceOpenRoutes = [
   {
     path: '/mainpage',
     component: MainPage,
+    exact: true,
+  },
+  {
+    path: '/savanna',
+    component: App,
     exact: true,
   },
   {
