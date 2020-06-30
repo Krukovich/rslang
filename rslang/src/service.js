@@ -21,6 +21,17 @@ export const getData = async (group, page, maxLength) => {
   return words.slice(0, maxLength); 
 }
 
+export const getWords = (group, numberOfWords) => {
+  const wordsToGet = Math.min(numberOfWords, 600);
+  const count = Math.ceil(wordsToGet / 20);
+  const proms = [];
+
+  for (let i = 0; i < count; i += 1) {
+    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ i }`).then((res) => res.json()));
+  }
+  return Promise.allSettled(proms).then((wordLists) => wordLists.flat());
+}
+
 export const imageRender = (src) => {
   return `https://raw.githubusercontent.com/krukovich/rslang-data/master/${ src }`; 
 }
