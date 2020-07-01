@@ -58,7 +58,6 @@ class PlayZonePage extends React.Component {
       agreeWord: wordCards[1][0].word,
       isNotAgree: true,
       inputValue: '',
-      clicked: false,
     }
     this.difficultWordId = '';
   }
@@ -184,11 +183,6 @@ class PlayZonePage extends React.Component {
         }, 2000);
       }
     }
-  }
-
-  asideToggle = () => {
-    debugger
-    this.setState({ clicked: !this.state.clicked });
   }
 
   render() {

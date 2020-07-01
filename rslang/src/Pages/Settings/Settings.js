@@ -66,13 +66,9 @@ const mapActionsToProps ={
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      clicked: false,
-    }
   }
 
   toggle = (key) =>{
-    debugger;
     if(key == 'setSitingLevel' || key == 'setNewWordsCount'){
       return (e) =>{
         this.props[key](e.target.value)
@@ -82,10 +78,6 @@ class Settings extends React.Component {
     return (e) =>{
       this.props[key](e.target.checked)
     }
-  }
-
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
   }
 
   render() {
