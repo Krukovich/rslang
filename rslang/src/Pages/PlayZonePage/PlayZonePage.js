@@ -27,9 +27,11 @@ const mapStateToProps = (store) => {
     showExplanationString,
     playExampleSound,
     showWordTranscription,
+    showWordImage,
   } = store.appSettings;
 
   return {
+    showWordImage: showWordImage,
     showWordTranscription: showWordTranscription,
     playExampleSound: playExampleSound,
     showExplanationString: showExplanationString,
@@ -198,6 +200,7 @@ class PlayZonePage extends React.Component {
                 isNotAgree={ isNotAgree }
                 cards={ cards }
                 playStep={ playStep }
+                showWordImage={ this.props.showWordImage }
                 showTranslateWord={ this.props.showTranslateWord }
                 showExplanationString={ this.props.showExplanationString }
                 showWordTranscription={ this.props.showWordTranscription }

@@ -17,13 +17,14 @@ const Card = (props) => {
     showTranslateWord,
     showExplanationString,
     showWordTranscription,
+    showWordImage,
   } = props;
 
   return (
     <div className="card PlayCard">
       <img
         className="card-img-top"
-        src={imageRender(cards[playStep].image)}
+        src={ showWordImage ? imageRender(cards[playStep].image) : 'images/enjoy.png' }
         alt="image"
       />
       <div className="card-body">
@@ -33,7 +34,7 @@ const Card = (props) => {
           <div className="form-row">
             <div className="col-12 mt-3">
               <div className="row PlayString">
-                {renderPlayString(cards[playStep], handlerChange)}
+                { renderPlayString(cards[playStep], handlerChange) }
               </div>
             </div>
             <div className="col-12">
