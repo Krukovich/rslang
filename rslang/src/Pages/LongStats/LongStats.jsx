@@ -2,18 +2,11 @@ import React from 'react';
 import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-<<<<<<< HEAD
 import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
-=======
->>>>>>> feat: stats from server BETA
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
-<<<<<<< HEAD
-=======
-import { setSavannaStats } from '../../Store/Savanna/actions';
->>>>>>> feat: stats from server BETA
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -27,16 +20,6 @@ const miniGameStats = (store) => {
 
 const changeMiniStats = {
   setSavannaStats,
-<<<<<<< HEAD
-=======
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
->>>>>>> feat: stats from server BETA
 }
 
 const getStats = async () => {
@@ -102,10 +85,7 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-<<<<<<< HEAD
       
-=======
->>>>>>> feat: stats from server BETA
     }
     // this.count = 0;
   }
@@ -129,11 +109,7 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-<<<<<<< HEAD
           state.count = this.state.count;
-=======
-          
->>>>>>> feat: stats from server BETA
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -141,16 +117,10 @@ class LongStats extends React.Component {
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
-<<<<<<< HEAD
           console.log(`${this.props.minigameSavannaStats}`);
           break;  
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
-=======
-          break;  
-        case 5 :
-          state.count = (state.count).map(elem => elem+2);
->>>>>>> feat: stats from server BETA
           break;
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
