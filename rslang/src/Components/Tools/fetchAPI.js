@@ -18,10 +18,11 @@ export const fetchAPI = async (query, obj) => {
   }
   if (query === "words") {
     const rawResponse = await fetch(
-      Const.API_LINK + query + "?page=" + obj.page + "&group=" + obj.group
+      Const.API_LINK + query + "?page=" + obj.page + "&group=" + obj.group 
     );
     const content = await rawResponse.json();
     return content;
+    
   }
   if (query === "users-set-statistics") {
     const rawResponse = await fetch(

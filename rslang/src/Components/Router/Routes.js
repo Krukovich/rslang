@@ -13,6 +13,7 @@ import Vocabulary from '../../Pages/Vocabulary/vocabulary';
 import { Start } from '../../Pages/Start/Start'
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin'
 import App from '../../Pages/MiniGames/Savanna/App';
+import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage'
 
 const sourceOpenRoutes = [
   {
@@ -32,7 +33,7 @@ const sourceOpenRoutes = [
   },
   {
     path: '/savanna',
-    component: App,
+    component: SavannaStartPage,
     exact: true,
   },
   {

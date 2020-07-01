@@ -56,7 +56,6 @@ class Login extends React.Component {
 
   
   requestDayLearningWords = async () => {
-    debugger;
     const prepareList = [];
 
     let words = await fetchAPI("words", {

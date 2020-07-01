@@ -2,38 +2,55 @@ import React, {Component} from 'react'
 import './Quiz.css'
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
+import { connect } from 'react-redux';
+import { fetchAPI } from "../../../../../Components/Tools/fetchAPI";
+import {createQuize } from '../../components/createQuize'
+import { setSavannaStats } from '../../../../../Store/Savanna/actions';
+
+const mapStateToProps = (store) => {
+  const {
+    dayLearningWords,
+    difficultWords,
+    showBtnShowAgreeAnswer,
+    showTranslateWord,
+    showExplanationString,
+    playExampleSound,
+    showWordImage,
+    showWordsTranscription,
+    minigameSavannaStats,
+  } = store.appSettings;
+
+  return {
+    showWordsTranscription: showWordsTranscription,
+    showWordImage: showWordImage,
+    playExampleSound: playExampleSound,
+    showExplanationString: showExplanationString,
+    showTranslateWord: showTranslateWord,
+    showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+    difficultWords: difficultWords,
+    dayLearningWords: dayLearningWords,
+    cards: store.playZone.cards,
+    stats: minigameSavannaStats,
+  }
+}
+
+const mapActionToProps = {
+  setSavannaStats,
+}
 
 class Quiz extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+  this.state = {
+    gameStart: false,
     results: {}, // {[id]: success error}
     isFinished: false,
     activeQuestion: 0,
     answerState: null, // { [id]: 'success' 'error' }
-    quiz: [
-      {
-        question: 'Какого цвета небо?',
-        rightAnswerId: 2,
-        id: 1,
-        answers: [
-          {text: 'Черный', id: 1},
-          {text: 'Синий', id: 2},
-          {text: 'Красный', id: 3},
-          {text: 'Зеленый', id: 4}
-        ]
-      },
-      {
-        question: 'В каком году основали Санкт-Петербург?',
-        rightAnswerId: 3,
-        id: 2,
-        answers: [
-          {text: '1700', id: 1},
-          {text: '1702', id: 2},
-          {text: '1703', id: 3},
-          {text: '1803', id: 4}
-        ]
-      }
-    ]
+    quiz: this.props.quiz,
   }
+}
+
 
   onAnswerClickHandler = answerId => {
     if (this.state.answerState) {
@@ -120,4 +137,4 @@ class Quiz extends Component {
 }
 
 
-export default Quiz
+export default connect(mapStateToProps, mapActionToProps)(Quiz);
