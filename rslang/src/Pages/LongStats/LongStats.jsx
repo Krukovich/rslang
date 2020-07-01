@@ -7,7 +7,6 @@ import { getCookie } from '../../Components/Tools/GetCoocke';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
-import { setSavannaStats } from '../../Store/Savanna/actions';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -22,9 +21,6 @@ const miniGameStats = (store) => {
 const changeMiniStats = {
   setSavannaStats,
 }
-
-const token = getCookie("token");
-const userId = getCookie("userId");
 
 const getStats = async () => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
@@ -46,12 +42,6 @@ const ProgressLabel = () => {
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
   )
 }
-
-// const ShowTest = ({ count }) => {
-//   return(
-//     <p>{count}</p>
-//   )
-// }
 
 class LongStats extends React.Component {
   constructor(props) {
@@ -88,6 +78,7 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
+      
     }
     // this.count = 0;
   }
@@ -162,11 +153,6 @@ class LongStats extends React.Component {
     );
   }
 
-  // componentWillUnmount() {
-  //   if(this._asyncRequest) {
-  //     this._asyncRequest.cancel();
-  //   }
-  // }
   
   render() {    
     const { items } = this.state;  
@@ -210,4 +196,4 @@ class LongStats extends React.Component {
   }
 }
 
-export default connect(miniGameStats)(LongStats);
+export default connect(miniGameStats, changeMiniStats)(LongStats);
