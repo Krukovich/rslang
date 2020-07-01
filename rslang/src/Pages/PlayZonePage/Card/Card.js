@@ -16,6 +16,7 @@ const Card = (props) => {
     isNotAgree,
     showTranslateWord,
     showExplanationString,
+    showWordTranscription,
   } = props;
 
   return (
@@ -37,8 +38,14 @@ const Card = (props) => {
             </div>
             <div className="col-12">
               <hr />
-              {showTranslateWord && !isNotAgree ?
-                cards[playStep].wordTranslate : ''
+              { showWordTranscription && !isNotAgree ?
+                cards[playStep].transcription : '' 
+              }
+            </div>
+            <div className="col-12">
+              <hr />
+              { showTranslateWord && !isNotAgree ?
+                cards[playStep].wordTranslate : '' 
               }
             </div>
             <div className="col-12">

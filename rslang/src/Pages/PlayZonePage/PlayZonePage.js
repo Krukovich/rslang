@@ -26,9 +26,11 @@ const mapStateToProps = (store) => {
     showTranslateWord,
     showExplanationString,
     playExampleSound,
+    showWordTranscription,
   } = store.appSettings;
 
   return {
+    showWordTranscription: showWordTranscription,
     playExampleSound: playExampleSound,
     showExplanationString: showExplanationString,
     showTranslateWord: showTranslateWord,
@@ -198,14 +200,15 @@ class PlayZonePage extends React.Component {
           <div className="row mt-5">
             <div className="col-12 d-flex justify-content-center mt-5">
               <Card
-                input={this.input}
-                isNotAgree={isNotAgree}
-                cards={cards}
-                playStep={playStep}
-                showTranslateWord={this.props.showTranslateWord}
-                showExplanationString={this.props.showExplanationString}
-                handlerChange={this.handlerInputChange}
-                handlerSubmit={this.handlerSubmit}
+                input={ this.input }
+                isNotAgree={ isNotAgree }
+                cards={ cards }
+                playStep={ playStep }
+                showTranslateWord={ this.props.showTranslateWord }
+                showExplanationString={ this.props.showExplanationString }
+                showWordTranscription={ this.props.showWordTranscription }
+                handlerChange={ this.handlerInputChange }
+                handlerSubmit={ this.handlerSubmit }
               />
               <VerticalMenu
                 showAnswer={this.showAnswer}
