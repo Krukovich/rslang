@@ -19,9 +19,10 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  const stats = JSON.parse(content.optional.dailyNewWords);
+  console.log(content);
+  let stats = content.optional.optional.wordStat;
 
-  console.log(stats, typeof stats, Array.isArray(stats));
+  console.log(stats);
   return stats;
 };
 >>>>>>> feat: stats from server BETA
@@ -41,6 +42,7 @@ export default class LongStats extends React.Component {
 <<<<<<< HEAD
     this.state = {
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+<<<<<<< HEAD
       labels: props.dataLabels,
 =======
     this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
@@ -48,6 +50,9 @@ export default class LongStats extends React.Component {
     this.state = {
       labels: [...props.dataLabels],
 >>>>>>> feat: stats from server BETA
+=======
+      labels: [], // props.dataLabels,
+>>>>>>> fix: data from server
       datasets: [
         {
           label: 'Прогресс',
@@ -95,8 +100,18 @@ export default class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
-        this.state.datasets[0].data = this.getSum(result);
-        this.state.datasets[1].data = result;
+        const resultWords = result.map((item) => {
+          const elem = item.newWords;
+          return elem;
+        }); 
+        const resultDate = result.map((item) => {
+          const date = new Date(item.timestamp).toString().slice(4, 15);
+          return date;
+        })
+        console.log(resultWords)
+        this.state.datasets[0].data = this.getSum(resultWords);
+        this.state.datasets[1].data = resultWords;
+        this.state.labels = resultDate;
         this._asyncRequest = null;
         this.setState({result});
       }
