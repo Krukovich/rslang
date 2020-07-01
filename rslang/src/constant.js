@@ -4,6 +4,12 @@ export const BTN_LABEL = {
   PREV: 'Назад',
 }
 
+export const MAX_PAGE = 20;
+
+export const LOGIN = {
+  ON: 'Authenticated',
+}
+
 export const wordCards = {
   1: [
     {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Login } from '../../Pages/Authentication/Login/LoginPage';
+import Login from '../../Pages/Authentication/Login/LoginPage';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';

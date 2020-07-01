@@ -1,11 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Login.scss";
+import { connect } from 'react-redux';
+
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
+import { getData, getRandomPage } from '../../../service';
+import { setDayLearningWords } from '../../../Store/Actions';
 
-export class Login extends React.Component {
+import "./Login.scss";
+
+const mapStateToProps = (store) => {
+  return {
+    level: store.appSettings.level,
+  }
+}
+
+const mapActionToProps = {
+  setDayLearningWords,
+}
+
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,7 +49,12 @@ export class Login extends React.Component {
       body: JSON.stringify({"email": this.state.inputEmail, "password": this.state.inputPassword}),
     });
     const content = await rawResponse.json();
-
+    if (content.message === Const.LOGIN.ON) {
+      const data = await getData(this.props.level, getRandomPage(Const.MAX_PAGE));
+      if (data.length !== 0) {
+        this.props.setDayLearningWords(data);
+      }
+    }
     this.loginResult(content);
     console.log(content);
   };
@@ -139,3 +159,5 @@ export class Login extends React.Component {
     }
   }
 }
+
+export default connect(mapStateToProps, mapActionToProps)(Login);
