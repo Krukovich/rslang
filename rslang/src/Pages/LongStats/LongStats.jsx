@@ -7,17 +7,11 @@ import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
 
 const miniGameStats = (store) => {
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
   const { minigameSavannaStats } = store.savanna;
   const { counter } = store.sprintGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
     counter: counter,
-=======
-  const { newWordsCount } = store.appSettings;
-  return {
-    newWordsCount: newWordsCount,
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
 }}
 
 function getCookie(name) {
@@ -106,11 +100,7 @@ class LongStats extends React.Component {
       items: [
 <<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 2, label: 'Спринт', 'visible': false },
-=======
-        { 'id': 2, label: 'Паззлы', 'visible': false },
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
         { 'id': 3, label: 'Саванна', 'visible': false }
 =======
         { 'id': 1, label: 'Audio Call', 'visible': false },
@@ -154,7 +144,6 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
@@ -166,10 +155,6 @@ class LongStats extends React.Component {
           break; 
       }   
       return { items };  
-=======
-      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
-      return { items };
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
     })
   }
 
