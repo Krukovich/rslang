@@ -3,9 +3,6 @@ import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAzMjIzNiwiZXhwIjoxNTkzMDQ2NjM2fQ.UnqZaUaJGZ0uoPWRL8p02d2CObkaly_CAWyAbU53T78";
-// const userId = "5ef1199aaa245e0017a578f0";
-
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -27,9 +24,10 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  const stats = JSON.parse(content.optional.dailyNewWords);
+  console.log(content);
+  let stats = content.optional.optional.wordStat;
 
-  console.log(stats, typeof stats, Array.isArray(stats));
+  console.log(stats);
   return stats;
 };
 
@@ -39,16 +37,13 @@ const ProgressLabel = () => {
   )
 }
 
-// getStats().then(result => {
-//   console.log(result)});
-
 export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       clicked: false,
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-      labels: props.dataLabels,
+      labels: [], // props.dataLabels,
       datasets: [
         {
           label: 'Прогресс',
@@ -83,8 +78,18 @@ export default class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
-        this.state.datasets[0].data = this.getSum(result);
-        this.state.datasets[1].data = result;
+        const resultWords = result.map((item) => {
+          const elem = item.newWords;
+          return elem;
+        }); 
+        const resultDate = result.map((item) => {
+          const date = new Date(item.timestamp).toString().slice(4, 15);
+          return date;
+        })
+        console.log(resultWords)
+        this.state.datasets[0].data = this.getSum(resultWords);
+        this.state.datasets[1].data = resultWords;
+        this.state.labels = resultDate;
         this._asyncRequest = null;
         this.setState({result});
       }
