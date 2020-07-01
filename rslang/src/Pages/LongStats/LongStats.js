@@ -29,6 +29,7 @@ const getStats = async () => {
   });
   const content = await rawResponse.json();
 <<<<<<< HEAD
+<<<<<<< HEAD
   let stats = content.optional.optional;
 =======
   console.log(content);
@@ -36,6 +37,9 @@ const getStats = async () => {
 
   console.log(stats);
 >>>>>>> fix: data from server
+=======
+  let stats = content.optional.optional.wordStat;
+>>>>>>> fix, refactor
   return stats;
 };
 
@@ -51,10 +55,14 @@ export default class LongStats extends React.Component {
     this.state = {
       clicked: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
 =======
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
 >>>>>>> fix: data from server
+=======
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix, refactor
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -138,11 +146,14 @@ export default class LongStats extends React.Component {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
         })
-        console.log(resultWords)
         this.state.datasets[0].data = this.getSum(resultWords);
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
+<<<<<<< HEAD
 >>>>>>> fix: data from server
+=======
+        this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
+>>>>>>> fix, refactor
         this._asyncRequest = null;
         this.setState({result});
       }
