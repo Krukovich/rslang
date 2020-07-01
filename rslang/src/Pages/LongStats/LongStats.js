@@ -24,10 +24,7 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  console.log(content);
   let stats = content.optional.optional.wordStat;
-
-  console.log(stats);
   return stats;
 };
 
@@ -42,7 +39,7 @@ export default class LongStats extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -86,10 +83,10 @@ export default class LongStats extends React.Component {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
         })
-        console.log(resultWords)
         this.state.datasets[0].data = this.getSum(resultWords);
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
+        this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
         this._asyncRequest = null;
         this.setState({result});
       }
@@ -105,10 +102,9 @@ export default class LongStats extends React.Component {
   render() {      
     return ( 
       <React.Fragment>
-      <div className="graph longStatsElem pt-5">
+      <div className="graph longStatsElem col-md-9">
           <Line
             data={this.state}
-            // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
             options={{
               title: {
                 display: true,
@@ -127,7 +123,7 @@ export default class LongStats extends React.Component {
           />
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
-          <div className="col-md-8 ">
+          <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
           </div>
