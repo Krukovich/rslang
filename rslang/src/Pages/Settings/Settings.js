@@ -64,12 +64,9 @@ const mapActionsToProps ={
 }
 
 class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   toggle = (key) =>{
-    if(key == 'setSitingLevel' || key == 'setNewWordsCount'){
+    if(key === 'setSitingLevel' || key === 'setNewWordsCount'){
       return (e) =>{
         this.props[key](e.target.value)
 
