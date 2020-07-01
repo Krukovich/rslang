@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
+<<<<<<< HEAD
 import BtnsBar from './BtnsBar/BtnsBar';
+=======
+>>>>>>> fix: data from server
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
@@ -34,7 +37,14 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
+<<<<<<< HEAD
   let stats = content.optional.optional;
+=======
+  console.log(content);
+  let stats = content.optional.optional.wordStat;
+
+  console.log(stats);
+>>>>>>> fix: data from server
   return stats;
 };
 
@@ -49,7 +59,15 @@ class LongStats extends React.Component {
     super(props);
     this.state = {
       clicked: false,
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+<<<<<<< HEAD
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix: data from server
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -120,6 +138,7 @@ class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
+<<<<<<< HEAD
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
@@ -132,6 +151,20 @@ class LongStats extends React.Component {
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
+=======
+        const resultWords = result.map((item) => {
+          const elem = item.newWords;
+          return elem;
+        }); 
+        const resultDate = result.map((item) => {
+          const date = new Date(item.timestamp).toString().slice(4, 15);
+          return date;
+        })
+        console.log(resultWords)
+        this.state.datasets[0].data = this.getSum(resultWords);
+        this.state.datasets[1].data = resultWords;
+        this.state.labels = resultDate;
+>>>>>>> fix: data from server
         this._asyncRequest = null;
         this.setState({result});
       }
