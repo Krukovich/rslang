@@ -33,8 +33,30 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+>>>>>>> 17a3375... fix, refactor
   let stats = content.optional.optional;
   console.log(content);
+<<<<<<< HEAD
+=======
+  let stats = content.optional.optional.wordStat;
+
+  console.log(stats);
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
+=======
+=======
+  let stats = content.optional.optional;
+>>>>>>> mini games BTNs
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
+=======
+  let stats = content.optional.optional;
+>>>>>>> fix, refactor
+>>>>>>> 17a3375... fix, refactor
   return stats;
 };
 
@@ -48,7 +70,20 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+      clicked: false,
+      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
+=======
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix, refactor
+>>>>>>> 17a3375... fix, refactor
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -135,6 +170,14 @@ class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+=======
+>>>>>>> fix, refactor
+>>>>>>> 17a3375... fix, refactor
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
@@ -147,6 +190,29 @@ class LongStats extends React.Component {
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        const resultWords = result.map((item) => {
+=======
+        const resultWords = result.wordStat.map((item) => {
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
+          const elem = item.newWords;
+          return elem;
+        }); 
+        const resultDate = result.wordStat.map((item) => {
+          const date = new Date(item.timestamp).toString().slice(4, 15);
+          return date;
+        })
+        console.log(resultWords)
+        this.state.datasets[0].data = this.getSum(resultWords);
+        this.state.datasets[1].data = resultWords;
+        this.state.labels = resultDate;
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
+=======
+>>>>>>> fix, refactor
+>>>>>>> 17a3375... fix, refactor
         this._asyncRequest = null;
         this.setState({result});
       }
@@ -181,6 +247,7 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
+<<<<<<< HEAD
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
@@ -190,6 +257,26 @@ class LongStats extends React.Component {
             </div>     
             </div>             
           </div>
+=======
+           </div> 
+            <div className="longStatsElem">
+<<<<<<< HEAD
+            <BtnsBar items={items} showStats={this.showStats} />
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+            <div className="longStatsElem-field"></div>
+            </div>         
+=======
+            </div>
+            
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
+          </div>
+=======
+              <BtnsBar items={items} showStats={this.showStats} />
+              <div className="longStatsElem-field"></div>
+            </div>         
+>>>>>>> fix, refactor
+        </div>
+>>>>>>> 17a3375... fix, refactor
       </React.Fragment>
     );
   }       
