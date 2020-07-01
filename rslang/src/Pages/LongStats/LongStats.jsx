@@ -101,8 +101,8 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 2 :
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
-          state.count = this.props.counter;
+          console.log(`Clicked ${id} ${items[id-1].label}`);
+          state.count = this.state.count;
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -181,7 +181,8 @@ class LongStats extends React.Component {
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
-            <ProgressLabel />           
+            <ProgressLabel />
+           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
@@ -196,4 +197,3 @@ class LongStats extends React.Component {
 }
 
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-
