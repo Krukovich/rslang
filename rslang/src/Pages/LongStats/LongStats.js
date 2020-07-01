@@ -30,10 +30,7 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  console.log(content);
   let stats = content.optional.optional.wordStat;
-
-  console.log(stats);
   return stats;
 };
 >>>>>>> feat: stats from server BETA
@@ -49,6 +46,7 @@ export default class LongStats extends React.Component {
     super(props);
 <<<<<<< HEAD
     this.state = {
+<<<<<<< HEAD
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
 <<<<<<< HEAD
       labels: props.dataLabels,
@@ -59,6 +57,10 @@ export default class LongStats extends React.Component {
       labels: [...props.dataLabels],
 >>>>>>> feat: stats from server BETA
 =======
+=======
+      clicked: false,
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix, refactor
       labels: [], // props.dataLabels,
 >>>>>>> fix: data from server
       datasets: [
@@ -121,10 +123,10 @@ export default class LongStats extends React.Component {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
         })
-        console.log(resultWords)
         this.state.datasets[0].data = this.getSum(resultWords);
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
+        this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
         this._asyncRequest = null;
         this.setState({result});
       }
@@ -139,9 +141,14 @@ export default class LongStats extends React.Component {
   
   render() {      
     return ( 
+<<<<<<< HEAD
       <div>
         <div className="graph longStatsElem">
 >>>>>>> feat: stats from server BETA
+=======
+      <React.Fragment>
+      <div className="graph longStatsElem col-md-9">
+>>>>>>> fix, refactor
           <Line
             data={this.state}
             options={{
@@ -162,8 +169,13 @@ export default class LongStats extends React.Component {
           />
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
+<<<<<<< HEAD
           <div className="col-md-8 ">
             <ProgressBar variant="success" animated min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+=======
+          <div className="col-md-8">
+            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+>>>>>>> fix, refactor
             <ProgressLabel />
           </div>
         </div>
