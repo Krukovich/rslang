@@ -3,31 +3,7 @@ import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import './longStats.scss';
-<<<<<<< HEAD
-=======
-=======
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjExOTlhYWEyNDVlMDAxN2E1NzhmMCIsImlhdCI6MTU5MzAwNDY3NiwiZXhwIjoxNTkzMDE5MDc2fQ.4bChZYLqFi411oUYRTQqyMEfBfb3g962YysjdPqSfkc";
-const userId = "5ef1199aaa245e0017a578f0";
 
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  console.log(content);
-  let stats = content.optional.optional.wordStat;
-
-  console.log(stats);
-  return stats;
-};
->>>>>>> feat: stats from server BETA
->>>>>>> 34efb24... fix: data from server
 
 const ProgressLabel = () => {
   return (
@@ -43,20 +19,11 @@ export default class LongStats extends React.Component {
     super(props);
     this.state = {
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-<<<<<<< HEAD
+
       labels: props.dataLabels,
-<<<<<<< HEAD
-=======
-=======
-    this.wordsNow = Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords);
-    this.dataLabels = props.dataLabels;
-    this.state = {
-      labels: [...props.dataLabels],
->>>>>>> feat: stats from server BETA
-=======
+
       labels: [], // props.dataLabels,
->>>>>>> fix: data from server
->>>>>>> 34efb24... fix: data from server
+
       datasets: [
         {
           label: 'Прогресс',
@@ -75,33 +42,6 @@ export default class LongStats extends React.Component {
       ]
     }
   }
-
-  render() {
-    return (
-      <React.Fragment>
-        <div className="graph longStatsElem pt-5">
-<<<<<<< HEAD
-=======
-=======
-          data: [], //...props.dailyNew
-          fill: false,
-        }
-      ]
-    };
-=======
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
->>>>>>> feat: stats from server BETA
-  }
-
-  getSum(arr) {
-    let prev = 0;
-    return arr.map((elem) => {
-      prev += elem;
-      return prev;
-    })
-  }
-
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
@@ -122,19 +62,13 @@ export default class LongStats extends React.Component {
       }
     );
   }
-
-  componentWillUnmount() {
-    if(this._asyncRequest) {
-      this._asyncRequest.cancel();
-    }
-  }
   
   render() {      
     return ( 
-      <div>
+      <React.Fragment>
+      
         <div className="graph longStatsElem">
->>>>>>> feat: stats from server BETA
->>>>>>> 34efb24... fix: data from server
+ 
           <Line
             data={this.state}
             // getElementAtEvent={dataset => console.log(dataset, dataset[0]._index)} // shows the dataset elements
