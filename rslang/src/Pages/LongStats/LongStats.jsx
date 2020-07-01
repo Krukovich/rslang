@@ -15,7 +15,11 @@ const miniGameStats = (store) => {
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
+<<<<<<< HEAD
     difficulty: difficulty,
+=======
+    counter: counter,
+>>>>>>> c09090e... fix: data from server
 }}
 
 const changeMiniStats = {
@@ -74,6 +78,7 @@ class LongStats extends React.Component {
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
         { 'id': 2, label: 'Спринт', 'visible': false },
+<<<<<<< HEAD
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
@@ -85,6 +90,10 @@ class LongStats extends React.Component {
         {newWords: 4, timestamp: 1593375922795},
       ],
       
+=======
+        { 'id': 3, label: 'Саванна', 'visible': false }
+      ]
+>>>>>>> c09090e... fix: data from server
     }
     // this.count = 0;
   }
