@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { playZonePageReducer } from './PlayZonePage/reducers';
+import { sprintGameReducer } from './SprintGame/Reducers'
 import * as Actions from './Actions';
 
 const initialState = {
@@ -37,9 +38,9 @@ export const appSettingsReducer = (state = initialState, action) => {
         showExampleString: action.payload,
       }
     case Actions.CHANGE_SHOW_EXPLANATION_STRING:
-        return {
-          ...state,
-          showExplanationString: action.payload,
+      return {
+        ...state,
+        showExplanationString: action.payload,
       }
     case Actions.CHANGE_SHOW_WORD_TRANSLATE:
       return {
@@ -52,14 +53,14 @@ export const appSettingsReducer = (state = initialState, action) => {
         showWordImage: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER:
-        return {
-          ...state,
-          showBtnShowAgreeAnswer: action.payload,
+      return {
+        ...state,
+        showBtnShowAgreeAnswer: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_DELETE_WORD:
-        return {
-          ...state,
-          showBtnDeleteWord: action.payload,
+      return {
+        ...state,
+        showBtnDeleteWord: action.payload,
       }
     case Actions.CHANGE_SHOW_BTN_DIFICULT_WORDS:
       return {
@@ -85,7 +86,7 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteWords: [...state.deleteWords, action.payload]
-      }            
+      }
   }
   return state;
 }
@@ -93,4 +94,5 @@ export const appSettingsReducer = (state = initialState, action) => {
 export default combineReducers({
   playZone: playZonePageReducer,
   appSettings: appSettingsReducer,
+  sprintGame: sprintGameReducer,
 });

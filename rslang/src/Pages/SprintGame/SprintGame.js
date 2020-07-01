@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import SprintCard from '../../Components/SprintCard/SprintCard';
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
+
+import { wordCards } from '../../constant';
+
 import './SprintGame.scss';
 
 class SprintGame extends Component {
@@ -17,36 +22,7 @@ class SprintGame extends Component {
             mixedArr: 0,
             activeQuestion: 0,
             mistakeCount: 0,
-            words: [
-                {
-                    eng: 'Whisper',
-                    rus: 'Говорить шёпотом'
-                },
-                {
-                    eng: 'Scream',
-                    rus: 'Кричать'
-                },
-                {
-                    eng: 'Sing',
-                    rus: 'Петь'
-                },
-                {
-                    eng: 'Flex',
-                    rus: 'Отдыхать от души'
-                },
-                {
-                    eng: 'Dance',
-                    rus: 'Танцевать'
-                },
-                {
-                    eng: 'Read',
-                    rus: 'Петь'
-                },
-                {
-                    eng: 'Train',
-                    rus: 'Тренироваться'
-                },
-            ],
+            words: wordCards[1],
         }
         this.rightBtnRef = React.createRef();
         this.wrongBtnRef = React.createRef();
@@ -56,11 +32,10 @@ class SprintGame extends Component {
         const defaultArr = this.state.words.slice(0);
         let mixedArr = [];
         defaultArr.map((a, i) => {
-            if (Math.random() > 0.5) {
+            if (Math.random() > 0.3) {
                 let firstPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
                 let secondPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
                 let isTrue = true;
-
                 if (firstPart === secondPart) {
                     isTrue = true;
                 } else {
@@ -68,14 +43,14 @@ class SprintGame extends Component {
                 }
 
                 mixedArr.push({
-                    firstPartEng: defaultArr[firstPart].eng,
-                    secondPartRus: defaultArr[secondPart].rus,
+                    firstPartEng: defaultArr[firstPart].word,
+                    secondPartRus: defaultArr[secondPart].wordTranslate,
                     isTrue: isTrue
                 });
             } else {
                 mixedArr.push({
-                    firstPartEng: defaultArr[i].eng,
-                    secondPartRus: defaultArr[i].rus,
+                    firstPartEng: defaultArr[i].word,
+                    secondPartRus: defaultArr[i].wordTranslate,
                     isTrue: true
                 });
             }
@@ -95,7 +70,10 @@ class SprintGame extends Component {
             });
 
             if (!this.state.counter) {
-                clearInterval(timer);
+                // clearInterval(timer);
+                this.setState({
+                    gameEnded: true
+                })
             }
         }, 1000);
     }
@@ -111,9 +89,9 @@ class SprintGame extends Component {
     }
 
     rightAnswerHandler = () => {
+        this.nextCard();
         this.setState((prevState) => {
             return {
-                activeQuestion: prevState.activeQuestion + 1,
                 maxStreak: prevState.maxStreak + 1,
                 score: prevState.score + 10 * prevState.modifier,
             }
@@ -131,27 +109,32 @@ class SprintGame extends Component {
     }
 
     wrongAnswerHandler = () => {
+        this.nextCard();
         this.setState((prevState) => {
             return {
-                activeQuestion: prevState.activeQuestion + 1,
                 mistakeCount: prevState.mistakeCount + 1,
                 modifier: 1,
                 maxStreak: 0,
             }
         });
-
-        if (this.state.mistakeCount === 2) {
+        if (this.state.mistakeCount >= 2) {
             this.setState({
                 gameEnded: true,
             })
         }
     }
 
-    gameEndHandler = () => {
-        if (this.state.activeQuestion === this.state.mixedArr.length) {
+    nextCard = () => {
+        if (this.state.activeQuestion + 1 >= this.state.mixedArr.length) {
             this.setState({
-                gameEnded: true,
+                gameEnded: true
             })
+        } else {
+            this.setState((prevState) => {
+                return {
+                    activeQuestion: prevState.activeQuestion + 1,
+                }
+            });
         }
     }
 
@@ -164,7 +147,8 @@ class SprintGame extends Component {
                 } else {
                     this.wrongAnswerHandler();
                 }
-            } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
+            }
+            if (event.code === 'KeyD' || event.code === 'ArrowRight') {
                 this.wrongBtnRef.current.focus();
                 if (!this.state.mixedArr[this.state.activeQuestion].isTrue) {
                     this.rightAnswerHandler();
@@ -178,16 +162,24 @@ class SprintGame extends Component {
     gameStart = props => {
         this.timer();
         this.keyPushHandler();
+        this.setState({
+            gameStarted: true,
+            gameEnded: false,
+        })
+    }
+
+    gameRestart = props => {
+        this.mixWords();
         this.setState(
             {
                 gameStarted: true,
                 gameEnded: false,
-                // counter: 60,
-                // score: 0,
-                // maxStreak: 0,
-                // modifier: 1,
-                // activeQuestion: 0,
-                // mistakeCount: 0,
+                counter: 60,
+                score: 0,
+                maxStreak: 0,
+                modifier: 1,
+                activeQuestion: 0,
+                mistakeCount: 0,
             }
         )
     }
@@ -202,7 +194,7 @@ class SprintGame extends Component {
         } else if (this.state.gameEnded) {
             return <EndScreen
                 score={this.state.score}
-                restart={this.gameStart}
+                restart={this.gameRestart}
             />
         } else {
             return (
@@ -240,4 +232,11 @@ class SprintGame extends Component {
     }
 }
 
-export default SprintGame
+function mapStateToProps(state) {
+    console.log('state', state)
+    return {
+        counter: state.sprintGame.counter
+    }
+}
+
+export default connect(mapStateToProps)(SprintGame);

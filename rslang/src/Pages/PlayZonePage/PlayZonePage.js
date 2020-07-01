@@ -91,7 +91,7 @@ class PlayZonePage extends React.Component {
     const card = cards.splice(playStep, 1);
     this.setState({
       cards: cards,
-      agreeWord: cards[playStep].word, 
+      agreeWord: cards[playStep].word,
     });
     this.props.setDeleteWords(card);
   }
@@ -108,7 +108,7 @@ class PlayZonePage extends React.Component {
 
   handlerSubmit = (event) => {
     event.preventDefault();
-    const input = event.target[0]; 
+    const input = event.target[0];
     const char = event.target[0].value;
     const { agreeWord, cards, playStep } = this.state;
 
@@ -192,42 +192,42 @@ class PlayZonePage extends React.Component {
   render() {
     const { cards, playStep, isNotAgree } = this.state;
 
-    return(
+    return (
       <>
         <div className="container">
           <div className="row mt-5">
             <div className="col-12 d-flex justify-content-center mt-5">
               <Card
-                input={ this.input }
-                isNotAgree={ isNotAgree }
-                cards={ cards }
-                playStep={ playStep }
-                showTranslateWord={ this.props.showTranslateWord }
-                showExplanationString={ this.props.showExplanationString }
-                handlerChange={ this.handlerInputChange }
-                handlerSubmit={ this.handlerSubmit }
+                input={this.input}
+                isNotAgree={isNotAgree}
+                cards={cards}
+                playStep={playStep}
+                showTranslateWord={this.props.showTranslateWord}
+                showExplanationString={this.props.showExplanationString}
+                handlerChange={this.handlerInputChange}
+                handlerSubmit={this.handlerSubmit}
               />
               <VerticalMenu
-                showAnswer={ this.showAnswer }
-                insertCardToDifficult={ this.insertCardToDifficult }
-                deleteCard={ this.deleteCard }
-                showBtnDeleteWord = { this.props.showBtnDeleteWord }
-                showBtnDifficultWord = { this.props.showBtnDifficultWord }
-                showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
+                showAnswer={this.showAnswer}
+                insertCardToDifficult={this.insertCardToDifficult}
+                deleteCard={this.deleteCard}
+                showBtnDeleteWord={this.props.showBtnDeleteWord}
+                showBtnDifficultWord={this.props.showBtnDifficultWord}
+                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-12 d-flex justify-content-center mt-5">
               <div className="btn-group" role="group" aria-label="Basic example">
-                <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } isNotAgree={ !playStep ? true : false }/>
+                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
                 <button
                   className="btn btn-primary"
-                  onClick={ this.changeAnswer }
+                  onClick={this.changeAnswer}
                 >
                   Проверить
                 </button>
-                <Button incrementPlayStep={ this.incrementPlayStep } label={ BTN_LABEL.NEXT } isNotAgree={ isNotAgree } />
+                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
               </div>
             </div>
           </div>
@@ -235,13 +235,13 @@ class PlayZonePage extends React.Component {
             <div className="col-12 col-md-6">
               <div className="row">
                 <div className="col-2 text-center">
-                  <Badge playStep={ playStep } />
+                  <Badge playStep={playStep} />
                 </div>
                 <div className="col-8">
-                  <ProgressBar playStep={ playStep } cards={ cards } />
+                  <ProgressBar playStep={playStep} cards={cards} />
                 </div>
                 <div className="col-2 text-center">
-                  <Badge cards={ cards } />
+                  <Badge cards={cards} />
                 </div>
               </div>
             </div>
