@@ -23,6 +23,9 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
+const token = getCookie("token");
+const userId = getCookie("userId");
+
 const getStats = async () => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
     method: 'GET',
