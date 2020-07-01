@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
+<<<<<<< HEAD
+=======
+import { setSavannaStats } from '../../Store/Savanna/actions';
+import { getCookie } from '../../Components/Tools/GetCoocke';
+
+>>>>>>> fix: data from server
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
+<<<<<<< HEAD
 import { setSavannaStats } from '../../Store/Savanna/actions';
+=======
+>>>>>>> fix: data from server
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -18,6 +27,7 @@ const miniGameStats = (store) => {
 
 const changeMiniStats = {
   setSavannaStats,
+<<<<<<< HEAD
 }
 
 function getCookie(name) {
@@ -25,6 +35,8 @@ function getCookie(name) {
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
+=======
+>>>>>>> fix: data from server
 }
 
 const token = getCookie("token");
@@ -86,6 +98,10 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
+<<<<<<< HEAD
+=======
+      
+>>>>>>> fix: data from server
     }
     // this.count = 0;
   }
@@ -110,9 +126,12 @@ class LongStats extends React.Component {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.state.count;
+<<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 
+=======
+>>>>>>> fix: data from server
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
