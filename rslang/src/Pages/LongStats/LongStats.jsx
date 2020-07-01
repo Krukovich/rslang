@@ -33,7 +33,14 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
   let stats = content.optional.optional;
+=======
+  console.log(content);
+  let stats = content.optional.optional.wordStat;
+
+  console.log(stats);
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
   return stats;
 };
 
@@ -47,7 +54,16 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+      clicked: false,
+      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
+>>>>>>> cf7691f... fix: data from server
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -134,6 +150,7 @@ class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
@@ -146,6 +163,20 @@ class LongStats extends React.Component {
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
+=======
+        const resultWords = result.map((item) => {
+          const elem = item.newWords;
+          return elem;
+        }); 
+        const resultDate = result.map((item) => {
+          const date = new Date(item.timestamp).toString().slice(4, 15);
+          return date;
+        })
+        console.log(resultWords)
+        this.state.datasets[0].data = this.getSum(resultWords);
+        this.state.datasets[1].data = resultWords;
+        this.state.labels = resultDate;
+>>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
         this._asyncRequest = null;
         this.setState({result});
       }
