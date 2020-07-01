@@ -96,6 +96,7 @@ const sourceCloseRoutes = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
 =======
 =======
@@ -112,6 +113,9 @@ const sourceCloseRoutes = [
     totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80} 
     dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
 >>>>>>> feat: stats from server BETA
+=======
+    component: () => <LongStats totalWords={80} />,
+>>>>>>> fix, refactor
     exact: true,
   },
   {
