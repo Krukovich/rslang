@@ -8,7 +8,8 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
-import Vocabulary  from '../../Pages/Vocabulary/vocabulary';
+import SprintGame from '../../Pages/SprintGame/SprintGame';
+import Vocabulary from '../../Pages/Vocabulary/vocabulary';
 
 
 const sourceRoutes = [
@@ -44,7 +45,7 @@ const sourceRoutes = [
   },
   {
     path: '/audiocall',
-    component: () => <AudioCall token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI3MDhjOThmZmJmMDAxNzQ1ODExNiIsImlhdCI6MTU5MjY3NDA0NywiZXhwIjoxNTkyNjg4NDQ3fQ.PwtU073aA-BfxwDgT5E5grLqtVtFTMED9ZMYrUaR3wU'} userId={'5eeb708c98ffbf0017458116'}/>,
+    component: () => <AudioCall token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI3MDhjOThmZmJmMDAxNzQ1ODExNiIsImlhdCI6MTU5MjY3NDA0NywiZXhwIjoxNTkyNjg4NDQ3fQ.PwtU073aA-BfxwDgT5E5grLqtVtFTMED9ZMYrUaR3wU'} userId={'5eeb708c98ffbf0017458116'} />,
     exact: true,
   },
   {
@@ -61,9 +62,9 @@ const sourceRoutes = [
   {
     path: '/long-stats',
     component: () => <LongStats dataLabels={['день 1', 'день 2', 'день 3',
-    'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']} 
-    totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80} 
-    dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
+      'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']}
+      totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80}
+      dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
     exact: true,
   },
   {
@@ -74,6 +75,11 @@ const sourceRoutes = [
   {
     path: '/playzone',
     component: PlayZonePage,
+    exact: true,
+  },
+  {
+    path: '/SprintGame',
+    component: SprintGame,
     exact: true,
   },
   {

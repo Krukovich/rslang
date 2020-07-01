@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { playZonePageReducer } from './PlayZonePage/reducers';
+import { sprintGameReducer } from './SprintGame/Reducers'
 import * as Actions from './Actions';
 
 const initialState = {
@@ -99,4 +100,5 @@ export const appSettingsReducer = (state = initialState, action) => {
 export default combineReducers({
   playZone: playZonePageReducer,
   appSettings: appSettingsReducer,
+  sprintGame: sprintGameReducer,
 });

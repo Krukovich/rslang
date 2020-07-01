@@ -5,7 +5,7 @@ import {
   imageRender,
   playExampleSound,
   renderPlayString,
- } from '../../../service'; 
+} from '../../../service';
 
 const Card = (props) => {
   const {
@@ -19,21 +19,21 @@ const Card = (props) => {
     showWordTranscription,
   } = props;
 
-  return(
+  return (
     <div className="card PlayCard">
       <img
         className="card-img-top"
-        src={ imageRender(cards[playStep].image) }
+        src={imageRender(cards[playStep].image)}
         alt="image"
       />
       <div className="card-body">
         <form
-          onSubmit={ handlerSubmit }
+          onSubmit={handlerSubmit}
         >
           <div className="form-row">
             <div className="col-12 mt-3">
               <div className="row PlayString">
-                { renderPlayString(cards[playStep], handlerChange) }
+                {renderPlayString(cards[playStep], handlerChange)}
               </div>
             </div>
             <div className="col-12">
@@ -51,7 +51,7 @@ const Card = (props) => {
             <div className="col-12">
               <hr />
               <span>
-                { showExplanationString && !isNotAgree ? cards[playStep].textExampleTranslate : '' }
+                {showExplanationString && !isNotAgree ? cards[playStep].textExampleTranslate : ''}
               </span>
             </div>
           </div>
@@ -62,9 +62,9 @@ const Card = (props) => {
               data-toggle="tooltip"
               data-placement="bottom"
               title="Play example sound"
-              onClick={ () => playExampleSound(cards[playStep].audio) } 
+              onClick={() => playExampleSound(cards[playStep].audio)}
             >
-              <FontAwesomeIcon icon={ faVolumeUp } />
+              <FontAwesomeIcon icon={faVolumeUp} />
             </button>
           </div>
         </form>
