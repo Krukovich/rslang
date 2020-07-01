@@ -4,6 +4,7 @@ import { Sidebar } from '../../Components/Sidebar/Sidebar';
 import Header from '../Header/Header';
 
 export class AppWrapper extends Component {
+<<<<<<< HEAD
     constructor(props) {
         super(props);
         this.state = {
@@ -11,11 +12,26 @@ export class AppWrapper extends Component {
         }
         this.asideToggle = this.asideToggle.bind(this);
         console.log(props.children);
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+>>>>>>> feat: add fetch data and code refactor
     }
+    this.asideToggle = this.asideToggle.bind(this);
+    console.log(props.children)
+  }
 
+<<<<<<< HEAD
     asideToggle() {
         this.setState({ clicked: !this.state.clicked });
     }
+=======
+  asideToggle() {
+    this.setState({ clicked: !this.state.clicked });
+  }
+>>>>>>> feat: add fetch data and code refactor
 
     asideCloser = (event) => {
         // alert(event.target.className)
@@ -34,6 +50,7 @@ export class AppWrapper extends Component {
     }
 
 
+<<<<<<< HEAD
     render() {
         return (
             <div onClick={this.asideCloser} className="container-fluid">
@@ -48,7 +65,23 @@ export class AppWrapper extends Component {
                         </div>
                     </div>
                 </div>
+=======
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="row no-gutters">
+          <Sidebar clicked={this.state.clicked} />
+          <div className="col-md-12">
+            <div className="row no-gutters">
+              <Header asideToggler={this.asideToggle} clicked={this.state.clicked} />
+>>>>>>> feat: add fetch data and code refactor
             </div>
-        )
-    }
+            <div id="content">
+              {this.props.children}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
