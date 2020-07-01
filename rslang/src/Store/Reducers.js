@@ -8,7 +8,7 @@ const initialState = {
   showTranslateWord: true, // show translate word
   showExampleString: true, // show example string
   showExplanationString: true, // show explanation string
-  showWordsTrascription: true, // show word transcription
+  showWordTranscription: true, // show word transcription
   showWordImage: true, // show words image example
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
@@ -47,10 +47,10 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         showExplanationString: action.payload,
       }
-    case Actions.CHANGE_SHOW_WORD_TRANSCRIPRION:
+    case Actions.CHANGE_SHOW_WORD_TRANSCRIPTION:
       return {
         ...state,
-        showWordsTrascription: action.payload,
+        showWordTranscription: action.payload,
       }
     case Actions.CHANGE_SHOW_WORD_IMAGE:
       return {
@@ -67,7 +67,7 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         showBtnDeleteWord: action.payload,
       }
-    case Actions.CHANGE_SHOW_BTN_DIFICULT_WORDS:
+    case Actions.CHANGE_SHOW_BTN_DIFFICULT_WORDS:
       return {
         ...state,
         showBtnDifficultWord: action.payload
