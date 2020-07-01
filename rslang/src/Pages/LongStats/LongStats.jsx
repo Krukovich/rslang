@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-// import showStats from '../../Store/Longs/actions';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 import { setSavannaStats } from '../../Store/Savanna/actions';
 import MiniStats from './MiniStats/MiniStats';
 
@@ -21,14 +19,6 @@ const miniGameStats = (store) => {
 const changeMiniStats = {
   setSavannaStats,
 }
-=======
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-
-const miniGameStats = (store) => {
-  const { newWordsCount } = store.appSettings;
-  return {
-    newWordsCount: newWordsCount,
-}}
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -65,12 +55,7 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-      clicked: false,
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -90,7 +75,6 @@ class LongStats extends React.Component {
       ],
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
@@ -102,11 +86,6 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-=======
-        { 'id': 2, label: 'Паззлы', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false }
-      ]
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
     }
     // this.count = 0;
   }
@@ -127,7 +106,6 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
@@ -150,10 +128,6 @@ class LongStats extends React.Component {
           break;  
       }   
       return { items };  
-=======
-      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
-      return { items };
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
     })
   }
 
@@ -229,8 +203,4 @@ class LongStats extends React.Component {
   }
 }
 
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats)(LongStats);
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
