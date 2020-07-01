@@ -1,5 +1,25 @@
 import React from 'react';
 
+export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
+
+export const getData = async (group, page) => {
+  const prepareList = [];
+  const maxLength = 10;
+  const maxPage = 20;
+
+  const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ page }`;
+  const res = await fetch(url);
+  const words = await res.json();
+
+  if (words.length < maxLength) {
+    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ getRandomPage(maxPage) }`;
+    const res = await fetch(url);
+    const words = await res.json();
+    return words;
+  }
+  return words; 
+}
+
 export const imageRender = (src) => {
   return `https://raw.githubusercontent.com/krukovich/rslang-data/master/${ src }`; 
 }
