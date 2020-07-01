@@ -51,12 +51,6 @@ const ProgressLabel = () => {
   )
 }
 
-// const ShowTest = ({ count }) => {
-//   return(
-//     <p>{count}</p>
-//   )
-// }
-
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
@@ -87,7 +81,6 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ],
-
       count: [
         {"timestamp":1593114322795,"newWords":7},
         {"timestamp":1593224622795,"newWords":2},
@@ -116,7 +109,7 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.counter;
+          state.count = this.state.count;
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -124,6 +117,7 @@ class LongStats extends React.Component {
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
+          console.log(`${this.props.minigameSavannaStats}`);
           break;  
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
@@ -194,7 +188,8 @@ class LongStats extends React.Component {
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
-            <ProgressLabel />           
+            <ProgressLabel />
+           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
