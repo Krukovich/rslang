@@ -23,13 +23,24 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> mini games BTNs
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
 <<<<<<< HEAD
 }
  
 =======
   }
+<<<<<<< HEAD
+=======
+=======
+  return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
+}
+
+>>>>>>> mini games BTNs
 >>>>>>> mini games BTNs
 export default BtnsBar;
 
