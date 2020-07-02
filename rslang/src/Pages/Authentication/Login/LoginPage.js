@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
-import { getData, getRandomPage } from '../../../service';
+import { getWords, saveWordsInLocalStorage } from '../../../service';
 import { setDayLearningWords } from '../../../Store/Actions';
 
 import "./Login.scss";
@@ -40,7 +40,6 @@ class Login extends React.Component {
 
   loginUser = async (event) => {
     event.preventDefault();
-    console.log(event);
     const rawResponse = await fetch(Const.API_LINK + "signin", {
       method: "POST",
       headers: {
@@ -51,17 +50,17 @@ class Login extends React.Component {
     });
     const content = await rawResponse.json();
     if (content.message === Const.LOGIN.ON) {
-      const data = await getData(this.props.level, getRandomPage(Const.MAX_PAGE), this.props.newWordsCount);
-      if (data.length !== 0) {
-        this.props.setDayLearningWords(data);
+      const data = await getWords(this.props.level, this.props.newWordsCount);
+      if (data[0].value.length !== 0) {
+        this.props.setDayLearningWords(data[0].value);
+        saveWordsInLocalStorage(data[0].value);
       }
     }
     this.loginResult(content);
-    console.log(content);
   };
 
   loginResult = (answer) => {
-    if (answer.message === "Authenticated") {
+    if (answer.message === Const.LOGIN.ON) {
       this.setState({ loginStatus: "correct", alertMessage: "Hellow User" });
       this.setLoginCookie(answer.userId, answer.token);
     }

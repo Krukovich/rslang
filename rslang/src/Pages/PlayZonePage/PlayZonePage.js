@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
@@ -40,7 +39,7 @@ const mapStateToProps = (store) => {
     showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
     showBtnDeleteWord: showBtnDeleteWord,
     difficultWords: difficultWords,
-    dayLearningWords: dayLearningWords,
+    dayLearningWords: dayLearningWords ? dayLearningWords : JSON.parse(localStorage.startWords),
     cards: store.playZone.cards,
   }
 }
@@ -190,96 +189,43 @@ class PlayZonePage extends React.Component {
   render() {
     const { cards, playStep, isNotAgree } = this.state;
 
-<<<<<<< HEAD
     return (
-      <>
-        <div className="container">
-          <div className="row mt-5">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <Card
-                input={ this.input }
-                isNotAgree={ isNotAgree }
-                cards={ cards }
-                playStep={ playStep }
-                showWordImage={ this.props.showWordImage }
-                showTranslateWord={ this.props.showTranslateWord }
-                showExplanationString={ this.props.showExplanationString }
-                showWordTranscription={ this.props.showWordTranscription }
-                handlerChange={ this.handlerInputChange }
-                handlerSubmit={ this.handlerSubmit }
-              />
-              <VerticalMenu
-                showAnswer={this.showAnswer}
-                insertCardToDifficult={this.insertCardToDifficult}
-                deleteCard={this.deleteCard}
-                showBtnDeleteWord={this.props.showBtnDeleteWord}
-                showBtnDifficultWord={this.props.showBtnDifficultWord}
-                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <div className="btn-group" role="group" aria-label="Basic example">
-                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
-                <button
-                  className="btn btn-primary"
-                  onClick={this.changeAnswer}
-                >
-                  Проверить
-                </button>
-                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
-              </div>
-            </div>
-          </div>
-          <div className="row justify-content-center mt-5">
-            <div className="col-12 col-md-6">
-              <div className="row">
-                <div className="col-2 text-center">
-                  <Badge playStep={playStep} />
-                </div>
-                <div className="col-8">
-                  <ProgressBar playStep={playStep} cards={cards} />
-                </div>
-                <div className="col-2 text-center">
-                  <Badge cards={cards} />
-                </div>
-=======
-    return(
       <div className="container">
         <div className="row mt-5">
           <div className="col-12 d-flex justify-content-center mt-5">
             <Card
-              input={ this.input }
-              isNotAgree={ isNotAgree }
-              cards={ cards }
-              playStep={ playStep }
-              showTranslateWord={ this.props.showTranslateWord }
-              showExplanationString={ this.props.showExplanationString }
-              handlerChange={ this.handlerInputChange }
-              handlerSubmit={ this.handlerSubmit }
+              input={this.input}
+              isNotAgree={isNotAgree}
+              cards={cards}
+              playStep={playStep}
+              showWordImage={this.props.showWordImage}
+              showTranslateWord={this.props.showTranslateWord}
+              showExplanationString={this.props.showExplanationString}
+              showWordTranscription={this.props.showWordTranscription}
+              handlerChange={this.handlerInputChange}
+              handlerSubmit={this.handlerSubmit}
             />
             <VerticalMenu
-              showAnswer={ this.showAnswer }
-              insertCardToDifficult={ this.insertCardToDifficult }
-              deleteCard={ this.deleteCard }
-              showBtnDeleteWord = { this.props.showBtnDeleteWord }
-              showBtnDifficultWord = { this.props.showBtnDifficultWord }
-              showBtnShowAgreeAnswer = { this.props.showBtnShowAgreeAnswer }
+              showAnswer={this.showAnswer}
+              insertCardToDifficult={this.insertCardToDifficult}
+              deleteCard={this.deleteCard}
+              showBtnDeleteWord={this.props.showBtnDeleteWord}
+              showBtnDifficultWord={this.props.showBtnDifficultWord}
+              showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-12 d-flex justify-content-center mt-5">
             <div className="btn-group" role="group" aria-label="Basic example">
-              <Button decrementPlayStep={ this.decrementPlayStep } label={ BTN_LABEL.PREV } isNotAgree={ !playStep ? true : false }/>
+              <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
               <button
                 className="btn btn-primary"
-                onClick={ this.changeAnswer }
+                onClick={this.changeAnswer}
               >
                 Проверить
-              </button>
-              <Button incrementPlayStep={ this.incrementPlayStep } label={ BTN_LABEL.NEXT } isNotAgree={ isNotAgree } />
+                </button>
+              <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
             </div>
           </div>
         </div>
@@ -287,14 +233,13 @@ class PlayZonePage extends React.Component {
           <div className="col-12 col-md-6">
             <div className="row">
               <div className="col-2 text-center">
-                <Badge playStep={ playStep } />
+                <Badge playStep={playStep} />
               </div>
               <div className="col-8">
-                <ProgressBar playStep={ playStep } cards={ cards } />
+                <ProgressBar playStep={playStep} cards={cards} />
               </div>
               <div className="col-2 text-center">
-                <Badge cards={ cards } />
->>>>>>> feat: add fetch data and code refactor
+                <Badge cards={cards} />
               </div>
             </div>
           </div>

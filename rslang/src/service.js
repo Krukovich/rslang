@@ -42,3 +42,7 @@ export const renderPlayString = (data, handlerChange) => {
   parts.splice(1, 1, input);
   return parts;
 }
+
+export const saveWordsInLocalStorage = (startWords) => {
+  localStorage.setItem('startWords', JSON.stringify(startWords));
+}
