@@ -9,6 +9,7 @@ import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 import { getRandomPage } from '../../../service';
+import { getWords, saveWordsInLocalStorage } from '../../../service';
 import { setDayLearningWords } from '../../../Store/Actions';
 
 import "./Login.scss";
@@ -23,7 +24,6 @@ const mapStateToProps = (store) => {
 const mapActionToProps = {
   setDayLearningWords,
 }
-
 
 class Login extends React.Component {
   constructor(props) {
@@ -42,41 +42,29 @@ class Login extends React.Component {
     this.passwordInputHandler = this.passwordInputHandler.bind(this);
   }
 
-  requestSignin = async (e) => {
-    e.preventDefault();
-    const content = await fetchAPI("signin", {
-      email: this.state.inputEmail,
-      password: this.state.inputPassword,
+  loginUser = async (event) => {
+    event.preventDefault();
+    const rawResponse = await fetch(Const.API_LINK + "signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({"email": this.state.inputEmail, "password": this.state.inputPassword}),
     });
-    this.loginResult(content);
+    const content = await rawResponse.json();
     if (content.message === Const.LOGIN.ON) {
-    this.requestDayLearningWords()
+      const data = await getWords(this.props.level, this.props.newWordsCount);
+      if (data[0].value.length !== 0) {
+        this.props.setDayLearningWords(data[0].value);
+        saveWordsInLocalStorage(data[0].value);
+      }
     }
-  };
-
-  
-  requestDayLearningWords = async () => {
-    const prepareList = [];
-
-    let words = await fetchAPI("words", {
-      page: getRandomPage(Const.MAX_PAGE),
-      group: this.props.level,
-    });
-    if (words.length <  this.props.newWordsCount) {
-      prepareList.push(...words);
-      let words = await fetchAPI("words", {
-        page: getRandomPage(Const.MAX_PAGE),
-        group: this.props.level,
-      });
-      prepareList.push(...words);
-      this.props.setDayLearningWords(prepareList.slice(0, this.props.newWordsCount))
-    } else if (words.length !== 0) {
-      this.props.setDayLearningWords(words.slice(0, this.props.newWordsCount));
-    }
+    this.loginResult(content);
   };
 
   loginResult = (answer) => {
-    if (answer.message === "Authenticated") {
+    if (answer.message === Const.LOGIN.ON) {
       this.setState({ loginStatus: "correct", alertMessage: "Hellow User" });
       this.setLoginCookie(answer.userId, answer.token);
     }

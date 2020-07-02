@@ -2,23 +2,16 @@ import React from 'react';
 
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
 
-export const getData = async (group, page, maxLength) => {
-  const prepareList = [];
-  const maxPage = 20;
+export const getWords = (group, numberOfWords) => {
+  const wordsToGet = Math.min(numberOfWords, 600);
+  const count = Math.ceil(wordsToGet / 20);
+  const proms = [];
+  
 
-  const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ page }`;
-  const res = await fetch(url);
-  const words = await res.json();
-
-  if (words.length < maxLength) {
-    prepareList.push(...words);
-    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ getRandomPage(maxPage) }`;
-    const res = await fetch(url);
-    const words = await res.json();
-    prepareList.push(...words);
-    return prepareList.slice(0, maxLength);
+  for (let i = 0; i < count; i += 1) {
+    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ i }`).then((res) => res.json()));
   }
-  return words.slice(0, maxLength); 
+  return Promise.allSettled(proms).then((wordLists) => wordLists.flat());
 }
 
 export const imageRender = (src) => {
@@ -49,4 +42,7 @@ export const renderPlayString = (data, handlerChange) => {
   const parts = data.textExample.split(regexp).map((part) => <span className="pl-1">{ part }</span>)
   parts.splice(1, 1, input);
   return parts;
+
+export const saveWordsInLocalStorage = (startWords) => {
+  localStorage.setItem('startWords', JSON.stringify(startWords));
 }
