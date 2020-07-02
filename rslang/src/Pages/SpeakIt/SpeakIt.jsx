@@ -3,15 +3,10 @@ import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
- 
 import { imageRender, playAudio, getWords } from '../../service';
 import { SOUND, POINT, MAX_WORDS_LENGTH, SPEAK_LANGUAGE } from '../../constant';
 import Score from './Components/Score/Score.jsx';
 import Button from './Components/Buttons/Button.jsx';
-import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
-import RestartButton from './Components/Buttons/RestartButton.jsx';
-import PlayGame from './Components/Buttons/PlayGame.jsx';
-import Input from './Components/Input/Input.jsx';
 import SpeakItEnd from './SpeakItEnd.jsx';
 import Stats from './Components/Stats/Stats.jsx';
 
