@@ -4,6 +4,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 <<<<<<< HEAD
 =======
 import './longStats.scss';
+import BtnsBar from './BtnsBar/BtnsBar';
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -30,7 +31,7 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  let stats = content.optional.optional.wordStat;
+  let stats = content.optional.optional;
   return stats;
 };
 >>>>>>> feat: stats from server BETA
@@ -83,10 +84,16 @@ export default class LongStats extends React.Component {
           data: props.dailyNew,
           fill: false,
         }
+      ],
+      items: [
+        { 'id': 1, label: 'Audio Call', 'visible': false },
+        { 'id': 2, label: 'Game Puzzle', 'visible': false },
+        { 'id': 3, label: 'Savanna', 'visible': false }
       ]
     }
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   render() {
     return (
@@ -99,6 +106,29 @@ export default class LongStats extends React.Component {
       ]
     };
 =======
+=======
+  toggleProp = (arr, id, propName) => {
+    const idx = arr.findIndex((item) => item.id === id);
+    const oldItem = arr[idx];
+    const value = !oldItem[propName];
+
+    const item = { ...arr[idx], [propName]: value };
+    return [
+      ...arr.slice(0, idx),
+      item,
+      ...arr.slice(idx + 1)
+    ]
+  };
+
+  showStats = (id) => {
+    this.setState((state) => {
+      const items = this.toggleProp(state.items, id, 'visible');
+      console.log(`Clicked ${id} ${items[id-1].label}`);
+      return { items };
+    })
+  }
+
+>>>>>>> mini games BTNs
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
 >>>>>>> feat: stats from server BETA
@@ -115,11 +145,11 @@ export default class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
-        const resultWords = result.map((item) => {
+        const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
         }); 
-        const resultDate = result.map((item) => {
+        const resultDate = result.wordStat.map((item) => {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
         })
@@ -139,7 +169,8 @@ export default class LongStats extends React.Component {
     }
   }
   
-  render() {      
+  render() {    
+    const { items } = this.state;  
     return ( 
 <<<<<<< HEAD
       <div>
@@ -177,6 +208,10 @@ export default class LongStats extends React.Component {
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
 >>>>>>> fix, refactor
             <ProgressLabel />
+            <div className="longStatsElem">
+            <BtnsBar items={items} showStats={this.showStats} />
+            </div>
+            
           </div>
         </div>
 <<<<<<< HEAD
