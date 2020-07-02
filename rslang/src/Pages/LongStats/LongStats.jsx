@@ -35,13 +35,23 @@ const getStats = async () => {
   });
   const content = await rawResponse.json();
 <<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
   let stats = content.optional.optional;
 =======
+=======
+<<<<<<< HEAD
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
   console.log(content);
   let stats = content.optional.optional.wordStat;
 
   console.log(stats);
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 >>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
+=======
+=======
+  let stats = content.optional.optional;
+>>>>>>> mini games BTNs
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
   return stats;
 };
 
@@ -79,13 +89,36 @@ class LongStats extends React.Component {
         }
       ],
       items: [
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
         { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false }
+=======
+        { 'id': 1, label: 'Audio Call', 'visible': false },
+        { 'id': 2, label: 'Game Puzzle', 'visible': false },
+        { 'id': 3, label: 'Savanna', 'visible': false }
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
       ]
     }
   }
 
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  render() {
+    return (
+      <React.Fragment>
+        <div className="graph longStatsElem pt-5">
+=======
+          data: [], //...props.dailyNew
+          fill: false,
+        }
+      ]
+    };
+=======
+=======
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
   toggleProp = (arr, id, propName) => {
     const idx = arr.findIndex((item) => item.id === id);
     const oldItem = arr[idx];
@@ -102,6 +135,7 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
@@ -116,6 +150,14 @@ class LongStats extends React.Component {
     })
   }
 
+=======
+      console.log(`Clicked ${id} ${items[id-1].label}`);
+      return { items };
+    })
+  }
+
+>>>>>>> mini games BTNs
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
   }
@@ -132,6 +174,7 @@ class LongStats extends React.Component {
     this._asyncRequest = getStats().then(
       result => {
 <<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
@@ -146,10 +189,13 @@ class LongStats extends React.Component {
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
 =======
         const resultWords = result.map((item) => {
+=======
+        const resultWords = result.wordStat.map((item) => {
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
           const elem = item.newWords;
           return elem;
         }); 
-        const resultDate = result.map((item) => {
+        const resultDate = result.wordStat.map((item) => {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
         })
@@ -200,8 +246,13 @@ class LongStats extends React.Component {
             <ProgressLabel />
             <div className="longStatsElem">
             <BtnsBar items={items} showStats={this.showStats} />
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
             <div className="longStatsElem-field"></div>
             </div>         
+=======
+            </div>
+            
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
           </div>
         </div>
       </React.Fragment>
