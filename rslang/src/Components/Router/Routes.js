@@ -33,7 +33,7 @@ const mapActionToProps = {
   setDayLearningWords,
 }
 
-const sourceOpenRoutes = [
+const sourceRoutes = [
   {
     path: '/logout',
     component: LogOut,
