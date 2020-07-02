@@ -158,6 +158,7 @@ class LongStats extends React.Component {
     })
   }
 
+<<<<<<< HEAD
 =======
       console.log(`Clicked ${id} ${items[id-1].label}`);
       return { items };
@@ -169,6 +170,11 @@ class LongStats extends React.Component {
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
   }
+=======
+  // asideToggle = () => {
+  //   this.setState({ clicked: !this.state.clicked });
+  // }
+>>>>>>> mini games BTNs
 
   getSum(arr) {
     let prev = 0;
