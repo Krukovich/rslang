@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { imageRender } from '../../service';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
@@ -18,8 +19,18 @@ class SpeakIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      imageSrc: 'images/enjoy_small.png',
+      translate: 'Перевод',
       words: JSON.parse(localStorage.startWords).slice(0, 12),
     }
+  }
+
+  setImageSrc = (src) => {
+    this.setState({ imageSrc: imageRender(src) });
+  }
+  
+  setTranslateWord = (word) => {
+    this.setState({ translate: word });
   }
 
   renderWordButton = () => {
@@ -27,7 +38,11 @@ class SpeakIt extends React.Component {
     return words.map((item) => {
       return (
         <div class="col-6 col-sm-6 col-md-3 mt-2">
-          <Button word={ item } />
+          <Button
+            word={ item }
+            insertWordImageSrc={ this.setImageSrc }
+            setTranslateWord={ this.setTranslateWord }
+          />
         </div>
       );
     });
@@ -45,12 +60,15 @@ class SpeakIt extends React.Component {
             </div>
             <div className="row">
               <div className="col-12 d-flex justify-content-center mt-2">
-                <img className="img-fluid" src="images/enjoy_small.png" id="game-image" />
+                <img
+                  className="img-fluid"
+                  src={ this.state.imageSrc }
+                />
               </div>
               <div className="col-12">
                 <div className="alert alert-info mt-2 text-center" role="alert">
                   <span id="translate">
-                    Перевод
+                    { this.state.translate }
                   </span>
                 </div>
               </div>
