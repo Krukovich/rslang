@@ -10,7 +10,7 @@ export function LogOutBtn() {
     return (
         <Link to="/login">
         <button type="button" className="btn btn_logout btn-primary" onClick={() => logOut()}>
-            Logout
+            Выход
         </button>
         </Link>
     );

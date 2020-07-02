@@ -10,6 +10,7 @@ import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 import { getRandomPage } from '../../../service';
 import { setDayLearningWords } from '../../../Store/Actions';
+import { getWords, saveWordsInLocalStorage } from '../../../service';
 
 import "./Login.scss";
 
@@ -17,6 +18,7 @@ const mapStateToProps = (store) => {
   return {
     level: store.appSettings.level,
     newWordsCount: store.appSettings.newWordsCount,
+    dayLearningWords: store.appSettings.dayLearningWords,
   }
 }
 
@@ -56,23 +58,12 @@ class Login extends React.Component {
 
   
   requestDayLearningWords = async () => {
-    const prepareList = [];
-
-    let words = await fetchAPI("words", {
-      page: getRandomPage(Const.MAX_PAGE),
-      group: this.props.level,
-    });
-    if (words.length <  this.props.newWordsCount) {
-      prepareList.push(...words);
-      let words = await fetchAPI("words", {
-        page: getRandomPage(Const.MAX_PAGE),
-        group: this.props.level,
-      });
-      prepareList.push(...words);
-      this.props.setDayLearningWords(prepareList.slice(0, this.props.newWordsCount))
-    } else if (words.length !== 0) {
-      this.props.setDayLearningWords(words.slice(0, this.props.newWordsCount));
-    }
+    const data = await getWords(this.props.level, this.props.newWordsCount);
+      if (data[0].value.length !== 0) {
+        this.props.setDayLearningWords(data[0].value);
+        saveWordsInLocalStorage(data[0].value);
+      }
+      console.log(this.props.dayLearningWords)
   };
 
   loginResult = (answer) => {
@@ -136,18 +127,18 @@ class Login extends React.Component {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-block">
-                  Log in
+                  Войти
                 </button>
               </div>
               <div className="clearfix">
                 <label className="pull-left checkbox-inline"></label>
                 <NavLink to="#ForgotPassword" className="pull-right">
-                  Forgot Password?
+                  Забыли пароль?
                 </NavLink>
               </div>
             </form>
             <p className="text-center">
-              <NavLink to="/createanaccount">Create an Account</NavLink>
+              <NavLink to="/createanaccount">Создать аккаунт</NavLink>
             </p>
           </LoginLayout>
         </AlertRed>

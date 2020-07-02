@@ -5,7 +5,6 @@ import "./Header.scss";
 import { LogOutBtn } from "../../Components/Buttons/LogOut";
 
 const Header = (props) => {
-
   const buttonClass = ["btn", "btn_aside", "btn-primary"];
   if (props.clicked) {
     buttonClass.push("btn_aside_active");
@@ -30,4 +29,3 @@ const Header = (props) => {
 };
 
 export default Header;
-

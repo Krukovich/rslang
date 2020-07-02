@@ -119,18 +119,18 @@ export class CreateAccount extends React.Component {
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary btn-block">
-                Registrater
+                Регистрация
               </button>
             </div>
             <div className="clearfix">
               <label className="pull-left checkbox-inline"></label>
               <NavLink to="#ForgotPassword" className="pull-right">
-                Forgot Password?
+                Забыли пароль?
               </NavLink>
             </div>
           </form>
           <p className="text-center">
-            <NavLink to="/">Log in</NavLink>
+            <NavLink to="/">Зарегистрироваться</NavLink>
           </p>
         </CreateAccountLayout>
       </AlertRed>
