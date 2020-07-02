@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link
+} from 'react-router-dom';
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
@@ -8,17 +12,20 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    <nav className="nav justify-content-center mb-4">
+    <Router>
+      <nav className="nav justify-content-center mb-4">
       <ul className="pagination">
         {pageNumbers.map(number => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} href="!#" className="page-link">
+            <Link to="!#" onClick={() => paginate(number)} className="page-link">
               {number}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
     </nav>
+    </Router>
+    
     )
 }
 
