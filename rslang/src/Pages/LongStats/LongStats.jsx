@@ -8,7 +8,11 @@ import { getCookie } from '../../Components/Tools/GetCoocke';
 
 >>>>>>> fix: data from server
 import ProgressBar from 'react-bootstrap/ProgressBar';
+<<<<<<< HEAD
 import './longStats.scss';
+=======
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+>>>>>>> mini games BTNs
 import BtnsBar from './BtnsBar/BtnsBar';
 <<<<<<< HEAD
 import { setSavannaStats } from '../../Store/Savanna/actions';
@@ -24,6 +28,10 @@ const miniGameStats = (store) => {
     minigameSavannaStats: minigameSavannaStats,
     difficulty: difficulty,
 }}
+=======
+import './longStats.scss';
+import BtnsBar from './BtnsBar/BtnsBar';
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
 
 const changeMiniStats = {
   setSavannaStats,
@@ -67,7 +75,12 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      clicked: false,
+      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
       labels: [], // props.dataLabels,
       datasets: [
         {
