@@ -6,6 +6,7 @@ const BtnsBar = ({ items, showStats }) => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> fix
   const elements = items.map((item) => {
@@ -22,6 +23,8 @@ const BtnsBar = ({ items, showStats }) => {
 <<<<<<< HEAD
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
 =======
+=======
+>>>>>>> mini games BTNs
     const elements = items.map((item) => {
         const { id, label } = item;
         return (
@@ -33,10 +36,13 @@ const BtnsBar = ({ items, showStats }) => {
         )
     });
     return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
+<<<<<<< HEAD
 >>>>>>> mini games BTNs
 =======
   return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
 >>>>>>> fix
+=======
+>>>>>>> mini games BTNs
 }
 
 export default BtnsBar;
