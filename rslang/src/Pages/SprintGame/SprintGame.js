@@ -5,8 +5,6 @@ import SprintCard from '../../Components/SprintCard/SprintCard';
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
 
-import { wordCards } from '../../constant';
-
 import './SprintGame.scss';
 
 class SprintGame extends Component {
@@ -22,14 +20,26 @@ class SprintGame extends Component {
             mixedArr: 0,
             activeQuestion: 0,
             mistakeCount: 0,
-            words: wordCards[1],
+            words: 0,
         }
         this.rightBtnRef = React.createRef();
         this.wrongBtnRef = React.createRef();
+        this.selectRef = React.createRef();
+    }
+
+    async getWords(difficulty = this.props.difficulty) {
+        const responce = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}`);
+        const json = await responce.json();
+        this.setState({
+            words: json,
+        })
+        console.log('local state', this.state)
+        return json;
     }
 
     mixWords = () => {
         const defaultArr = this.state.words.slice(0);
+        // alert(defaultArr[0].word)
         let mixedArr = [];
         defaultArr.map((a, i) => {
             if (Math.random() > 0.3) {
@@ -159,7 +169,10 @@ class SprintGame extends Component {
         });
     }
 
+
+
     gameStart = props => {
+        this.mixWords();
         this.timer();
         this.keyPushHandler();
         this.setState({
@@ -184,13 +197,38 @@ class SprintGame extends Component {
         )
     }
 
+    difficultyHandler = event => {
+        const number = event.target.value;
+        this.props.onChangeDiff(number)
+        this.getWords(number);
+    }
+
     componentDidMount() {
-        this.mixWords();
+        this.getWords();
     }
 
     render() {
         if (!this.state.gameStarted) {
-            return <StartScreen gameStart={this.gameStart} />
+            return (
+                <div className="Sprint container mt-5">
+                    <div className="row">
+                        <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
+                            <div className="d-flex align-items-center">
+                                <span className="mr-2">Сложность:</span>
+                                <select ref={this.selectRef} onClick={this.difficultyHandler} className="d-inline-block">
+                                    <option value="0">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                    <option value="4">5</option>
+                                    <option value="5">6</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <StartScreen gameStart={this.gameStart} />
+                </div>
+            )
         } else if (this.state.gameEnded) {
             return <EndScreen
                 score={this.state.score}
@@ -205,7 +243,8 @@ class SprintGame extends Component {
                         </div>
                     </div>
                     <div className="Sprint-Playboard row h-75">
-                        <div className="col-md-4"></div>
+                        <div className="col-md-4">
+                        </div>
                         <div className="col-md-4 d-flex justify-content-center">
                             <SprintCard
                                 rightBtnRef={this.rightBtnRef}
@@ -228,15 +267,20 @@ class SprintGame extends Component {
                 </div >
             )
         }
-
     }
 }
 
 function mapStateToProps(state) {
-    console.log('state', state)
+    console.log('redux state', state)
     return {
-        counter: state.sprintGame.counter
+        difficulty: state.sprintGame.difficulty
     }
 }
 
-export default connect(mapStateToProps)(SprintGame);
+function mapDispatchToProps(dispatch) {
+    return {
+        onChangeDiff: number => dispatch({ type: 'CHANGE_DIFF', payload: number })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SprintGame);
