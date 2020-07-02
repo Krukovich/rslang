@@ -15,6 +15,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
+<<<<<<< HEAD
 
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
 <<<<<<< HEAD
@@ -27,6 +28,9 @@ const BtnsBar = ({ items, showStats }) => {
 <<<<<<< HEAD
   }
 =======
+=======
+  return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
+>>>>>>> mini games BTNs
 }
 
 >>>>>>> feat: long stats from redux
