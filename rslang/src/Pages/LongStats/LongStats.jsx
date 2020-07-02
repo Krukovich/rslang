@@ -1,13 +1,12 @@
 import React from 'react';
+import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
-import { setSavannaStats } from '../../Store/Savanna/actions';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -23,46 +22,18 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-const token = getCookie("token");
-const userId = getCookie("userId");
-
 const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
     method: 'GET',
     withCredentials: true,
     headers: {
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${getCookie("token")}`,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
   });
   const content = await rawResponse.json();
-<<<<<<< HEAD
   let stats = content.optional.optional;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-  let stats = content.optional.optional;
-=======
-=======
-<<<<<<< HEAD
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-  console.log(content);
-  let stats = content.optional.optional.wordStat;
-
-  console.log(stats);
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
->>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
-=======
-=======
-  let stats = content.optional.optional;
->>>>>>> mini games BTNs
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-=======
-  let stats = content.optional.optional;
->>>>>>> fix, refactor
->>>>>>> fix, refactor
   return stats;
 };
 
@@ -76,20 +47,7 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-      clicked: false,
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-      wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
-=======
-      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> fix, refactor
->>>>>>> fix, refactor
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -120,6 +78,7 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
+      
     }
     // this.count = 0;
   }
@@ -142,7 +101,7 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 2 :
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
+          console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.state.count;
           break;
         case 3: 
@@ -176,14 +135,6 @@ class LongStats extends React.Component {
   componentDidMount() {   
     this._asyncRequest = getStats().then(
       result => {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-=======
->>>>>>> fix, refactor
->>>>>>> fix, refactor
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
@@ -196,35 +147,13 @@ class LongStats extends React.Component {
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-        const resultWords = result.map((item) => {
-=======
-        const resultWords = result.wordStat.map((item) => {
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-          const elem = item.newWords;
-          return elem;
-        }); 
-        const resultDate = result.wordStat.map((item) => {
-          const date = new Date(item.timestamp).toString().slice(4, 15);
-          return date;
-        })
-        console.log(resultWords)
-        this.state.datasets[0].data = this.getSum(resultWords);
-        this.state.datasets[1].data = resultWords;
-        this.state.labels = resultDate;
->>>>>>> fix: data from server:rslang/src/Pages/LongStats/LongStats.js
-=======
->>>>>>> fix, refactor
->>>>>>> fix, refactor
         this._asyncRequest = null;
         this.setState({result});
       }
     );
   }
 
+  
   render() {    
     const { items } = this.state;  
     return ( 
@@ -252,8 +181,8 @@ class LongStats extends React.Component {
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
-<<<<<<< HEAD
-            <ProgressLabel />           
+            <ProgressLabel />
+           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
@@ -261,26 +190,6 @@ class LongStats extends React.Component {
               </div>
             </div>     
             </div>     
-=======
-            <ProgressLabel />
-           </div> 
-            <div className="longStatsElem">
-<<<<<<< HEAD
-            <BtnsBar items={items} showStats={this.showStats} />
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-            <div className="longStatsElem-field"></div>
-            </div>         
-=======
-            </div>
-            
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-          </div>
-=======
-              <BtnsBar items={items} showStats={this.showStats} />
-              <div className="longStatsElem-field"></div>
-            </div>         
->>>>>>> fix, refactor
->>>>>>> fix, refactor
         </div>
       </React.Fragment>
     );
