@@ -34,6 +34,7 @@ const getStats = async () => {
   });
   const content = await rawResponse.json();
   let stats = content.optional.optional;
+  console.log(content);
   return stats;
 };
 
@@ -47,7 +48,6 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
       datasets: [
@@ -152,7 +152,6 @@ class LongStats extends React.Component {
       }
     );
   }
-
   
   render() {    
     const { items } = this.state;  
@@ -189,11 +188,11 @@ class LongStats extends React.Component {
               <MiniStats count={this.state.count} />
               </div>
             </div>     
-            </div>     
-        </div>
+            </div>             
+          </div>
       </React.Fragment>
     );
-  }
+  }       
 }
 
 export default connect(miniGameStats, changeMiniStats)(LongStats);
