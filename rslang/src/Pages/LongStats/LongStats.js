@@ -14,7 +14,6 @@ export default class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
       wordsNow: Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: props.dataLabels,
       datasets: [
@@ -34,10 +33,6 @@ export default class LongStats extends React.Component {
         }
       ]
     }
-  }
-
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
   }
 
   render() {

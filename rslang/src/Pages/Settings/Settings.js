@@ -13,7 +13,9 @@ import {
   setShowBtnDeleteWord,
   setNewWordsCount,
   setDayLearningWords,
-  setShowBtnDifficultWord
+  setShowBtnDifficultWord,
+  setShowWordTranscription,
+  setPlayExampleSound,
 } from '../../Store/Actions';
 
 const mapStateToProps = (store) =>{
@@ -23,7 +25,7 @@ const mapStateToProps = (store) =>{
     showTranslateWord,
     showExampleString,
     showExplanationString,
-    showWordsTranslate,
+    showWordTranscription,
     showWordImage,
     showBtnShowAgreeAnswer,
     showBtnDeleteWord,
@@ -37,12 +39,12 @@ const mapStateToProps = (store) =>{
     showTranslateWord,
     showExampleString,
     showExplanationString,
-    showWordsTranslate,
     showWordImage,
     showBtnShowAgreeAnswer,
     showBtnDeleteWord,
     showBtnDifficultWord,
     newWordsCount,
+    showWordTranscription,
   }
 }
 
@@ -57,18 +59,14 @@ const mapActionsToProps ={
   setNewWordsCount,
   setDayLearningWords,
   setShowBtnDifficultWord,
+  setShowWordTranscription,
+  setPlayExampleSound,
 }
 
 class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: false,
-    }
-  }
 
   toggle = (key) =>{
-    if(key == 'setSitingLevel' || key == 'setNewWordsCount'){
+    if(key === 'setSitingLevel' || key === 'setNewWordsCount'){
       return (e) =>{
         this.props[key](e.target.value)
 
@@ -77,10 +75,6 @@ class Settings extends React.Component {
     return (e) =>{
       this.props[key](e.target.checked)
     }
-  }
-
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
   }
 
   render() {
@@ -101,6 +95,10 @@ class Settings extends React.Component {
                   onChange={this.toggle('setShowTranslateWord')}
                 />
                 <CheckBox
+                 text='Проигрывать слово автоматически'
+                 isChecked={this.props.playExampleSound}
+                 onChange={this.toggle('setPlayExampleSound')}/>
+                <CheckBox
                   text='Пердложения с объяснением значения слова'
                   isChecked={this.props.showExplanationString}
                   onChange={this.toggle('setShowExplanationString')}
@@ -110,7 +108,10 @@ class Settings extends React.Component {
                   isChecked={this.props.showExampleString}
                   onChange={this.toggle('setShowExampleString')}
                 />
-                {/* <CheckBox text='Показать транскрипцию слова' isChecked={false} onChange={this.togle('SHOW_WORD_TRANSCRIPTION')} /> */}
+                <CheckBox
+                 text='Показать транскрипцию слова' 
+                 isChecked={this.props.showWordTranscription} 
+                 onChange={this.toggle('setShowWordTranscription')} />
                 <CheckBox
                   text='Показывать изображение на карточке'
                   isChecked={this.props.showWordImage}
@@ -132,7 +133,7 @@ class Settings extends React.Component {
                   onChange={this.toggle('setShowBtnDifficultWord')}
                 />
                 <TextInput
-                  text='Количество слов, котрое хотите выучить'
+                  text='Количество слов, которое хотите выучить'
                   defValue={this.props.newWordsCount}
                   onChange={this.toggle('setNewWordsCount')}
                 />

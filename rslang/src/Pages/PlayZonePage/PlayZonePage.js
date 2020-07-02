@@ -24,13 +24,13 @@ const mapStateToProps = (store) => {
     showTranslateWord,
     showExplanationString,
     playExampleSound,
+    showWordTranscription,
     showWordImage,
-    showWordsTranscription,
   } = store.appSettings;
 
   return {
-    showWordsTranscription: showWordsTranscription,
     showWordImage: showWordImage,
+    showWordTranscription: showWordTranscription,
     playExampleSound: playExampleSound,
     showExplanationString: showExplanationString,
     showTranslateWord: showTranslateWord,
@@ -58,8 +58,7 @@ class PlayZonePage extends React.Component {
       agreeWord: props.dayLearningWords[0].word,
       isNotAgree: true,
       inputValue: '',
-      isFinish: false,
-    }
+}
     this.difficultWordId = '';
     this.agreeCountAnswer = 0;
   }
@@ -97,7 +96,7 @@ class PlayZonePage extends React.Component {
     const card = cards.splice(playStep, 1);
     this.setState({
       cards: cards,
-      agreeWord: cards[playStep].word, 
+      agreeWord: cards[playStep].word,
     });
     this.props.setDeleteWords(card);
   }
@@ -114,7 +113,7 @@ class PlayZonePage extends React.Component {
 
   handlerSubmit = (event) => {
     event.preventDefault();
-    const input = event.target[0]; 
+    const input = event.target[0];
     const char = event.target[0].value;
     const { agreeWord, cards, playStep } = this.state;
 
@@ -200,6 +199,7 @@ class PlayZonePage extends React.Component {
       isFinish
     } = this.state;
 
+<<<<<<< HEAD
     return(
       <div className="container">
         <div className="row mt-5">
@@ -233,9 +233,36 @@ class PlayZonePage extends React.Component {
                 right={ (this.agreeCountAnswer / cards.length) * 100 }
                 newWords={ 5 }
                 rightInARow={ 17 }
+=======
+    return (
+      <>
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <Card
+                input={ this.input }
+                isNotAgree={ isNotAgree }
+                cards={ cards }
+                playStep={ playStep }
+                showWordImage={ this.props.showWordImage }
+                showTranslateWord={ this.props.showTranslateWord }
+                showExplanationString={ this.props.showExplanationString }
+                showWordTranscription={ this.props.showWordTranscription }
+                handlerChange={ this.handlerInputChange }
+                handlerSubmit={ this.handlerSubmit }
+              />
+              <VerticalMenu
+                showAnswer={this.showAnswer}
+                insertCardToDifficult={this.insertCardToDifficult}
+                deleteCard={this.deleteCard}
+                showBtnDeleteWord={this.props.showBtnDeleteWord}
+                showBtnDifficultWord={this.props.showBtnDifficultWord}
+                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
+>>>>>>> develop
               />
             } 
           </div>
+<<<<<<< HEAD
         </div>
         <div className="row">
           <div className="col-12 d-flex justify-content-center mt-5">
@@ -262,6 +289,34 @@ class PlayZonePage extends React.Component {
               </div>
               <div className="col-2 text-center">
                 <Badge cards={ cards } />
+=======
+          <div className="row">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <div className="btn-group" role="group" aria-label="Basic example">
+                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
+                <button
+                  className="btn btn-primary"
+                  onClick={this.changeAnswer}
+                >
+                  Проверить
+                </button>
+                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center mt-5">
+            <div className="col-12 col-md-6">
+              <div className="row">
+                <div className="col-2 text-center">
+                  <Badge playStep={playStep} />
+                </div>
+                <div className="col-8">
+                  <ProgressBar playStep={playStep} cards={cards} />
+                </div>
+                <div className="col-2 text-center">
+                  <Badge cards={cards} />
+                </div>
+>>>>>>> develop
               </div>
             </div>
           </div>

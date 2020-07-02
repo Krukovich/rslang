@@ -15,6 +15,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin'
 import App from '../../Pages/MiniGames/Savanna/App';
 import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage'
 
+
 const sourceOpenRoutes = [
   {
     path: '/start',
@@ -105,6 +106,11 @@ const sourceCloseRoutes = [
   {
     path: '/playzone',
     component: PlayZonePage,
+    exact: true,
+  },
+  {
+    path: '/SprintGame',
+    component: SprintGame,
     exact: true,
   },
   {

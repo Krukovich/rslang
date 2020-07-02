@@ -10,7 +10,6 @@ const Vocabulary = () => {
   const [currentLanguageLevel] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(30);
-  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const getPosts = () => {
@@ -28,10 +27,6 @@ const Vocabulary = () => {
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
-
-  const asideToggle = () => {
-    setIsClicked(!isClicked);
-  }
   
   return (
     <React.Fragment>
