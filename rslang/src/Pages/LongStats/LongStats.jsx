@@ -22,6 +22,9 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
+// const token = getCookie("token");
+// const userId = getCookie("userId");
+
 const getStats = async () => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
     method: 'GET',
@@ -47,7 +50,7 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -152,6 +155,7 @@ class LongStats extends React.Component {
     );
   }
 
+  
   render() {    
     const { items } = this.state;  
     return ( 
