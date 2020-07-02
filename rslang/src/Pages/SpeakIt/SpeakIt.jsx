@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { imageRender } from '../../service';
+import { LANGUAGE } from '../../constant';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
+import Input from './Components/Input/Input.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,10 +21,16 @@ class SpeakIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentWord: '',
+      inputValue: '',
       imageSrc: 'images/enjoy_small.png',
       translate: 'Перевод',
       words: JSON.parse(localStorage.startWords).slice(0, 12),
     }
+  }
+
+  setCurrentWord = (word) => {
+    this.setState({ currentWord: word });
   }
 
   setImageSrc = (src) => {
@@ -37,15 +45,39 @@ class SpeakIt extends React.Component {
     const { words } = this.state; 
     return words.map((item) => {
       return (
-        <div class="col-6 col-sm-6 col-md-3 mt-2">
+        <div className="col-6 col-sm-6 col-md-3 mt-2">
           <Button
             word={ item }
             insertWordImageSrc={ this.setImageSrc }
             setTranslateWord={ this.setTranslateWord }
+            setCurrentWord={ this.setCurrentWord }
           />
         </div>
       );
     });
+  }
+
+  recordSound = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = LANGUAGE.ENGLISH;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.addEventListener('result', (event) => {
+      this.userWord = Array.from(event.results).map((res) => res[0]).map((res) => res.transcript).join('');
+      this.setState({ inputValue: this.userWord });
+      if (this.word === this.userWord) {
+        // this.disabledBtn();
+        // this.insertStar();
+        // this.state[this.word].guessed += 1;
+        // this.saveState();
+      } else {
+        // this.state[this.word].missed += 1;
+        // this.saveState();
+      }
+      // this.insertStateInModal();
+    });
+    recognition.start();
   }
 
   render() {
@@ -82,7 +114,7 @@ class SpeakIt extends React.Component {
                         <FontAwesomeIcon icon={ faMicrophoneAlt } />
                       </div>
                       <div className="col-10">
-                        <input type="text" className="form-control" id="form-control" />
+                        <Input value={ this.state.inputValue } />
                       </div>
                     </div>
                   </form>
@@ -97,7 +129,7 @@ class SpeakIt extends React.Component {
                 <RestartButton />
               </div>
               <div className="col-12 col-md-6 mt-2 mb-5">
-                <PlayGame />
+                <PlayGame recordSound={ this.recordSound } />
               </div>
               <div className="col-12 col-md-3 mt-2 mb-5">
                 <button type="button" className="btn btn-info w-100" data-toggle="modal" data-target="#result">
