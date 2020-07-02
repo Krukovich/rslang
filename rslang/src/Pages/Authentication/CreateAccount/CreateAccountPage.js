@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { CreateAccountLayout } from "./CreateAccountLayout";
 import * as Const from "../../../constant";
+import { fetchAPI } from "../../../Components/Tools/fetchAPI"
+import { getCookie } from '../../../Components/Tools/GetCoocke'
+import { Redirect } from "react-router-dom";
 
 export class CreateAccount extends React.Component {
 
@@ -23,23 +26,11 @@ export class CreateAccount extends React.Component {
     this.passwordInputHandler = this.passwordInputHandler.bind(this);
   }
 
-  createUser = async (event) => {
-    event.preventDefault();
-    const rawResponse = await fetch(Const.API_LINK + 'users',
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({"email": this.state.inputEmail, "password": this.state.inputPassword}),
-      }
-    );
-    console.log(this.state.inputEmail, this.state.inputPassword)
-    const content = await rawResponse.json();
+  request = async (e) => {
+    e.preventDefault();
+    const content = await fetchAPI("users", {email: this.state.inputEmail, password: this.state.inputPassword});
     this.registrationResult(content);
-    console.log(content);
-  };
+  }
 
   registrationResult = (answer) => {
     if (answer.email) {
@@ -48,8 +39,30 @@ export class CreateAccount extends React.Component {
         alertMessage: "Hellow User",
       });
     }
-    this.setState({ showAlert: true });
+    console.log('создан акк')
+    this.requestl();
+
+    
   }
+/*Login*/
+  requestl = async () => {
+    const content = await fetchAPI("signin", {email: this.state.inputEmail, password: this.state.inputPassword});
+    this.loginResult(content);
+    this.setState({ showAlert: true });
+    console.log('логин')
+  }
+
+  loginResult = (answer) => {
+    if (answer.message === "Authenticated") {
+      this.setLoginCookie(answer.userId, answer.token);
+    }
+  }
+
+  setLoginCookie = (userId, token) => {
+    document.cookie = `userId=${userId}; Path=/; max-age=14400`;
+    document.cookie = `token=${token}; Path=/; max-age=14400`;
+  }
+/****/
 
   closeAlert = () => {
     this.props.history.push({
@@ -65,7 +78,15 @@ export class CreateAccount extends React.Component {
     this.setState({inputPassword: event.target.value});
   }
 
+  checkCookie = () => {
+    if (getCookie("userId") !== undefined) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
+    if (!this.checkCookie()) {
     return (
       <AlertRed
         showAlert={this.state.showAlert}
@@ -74,7 +95,7 @@ export class CreateAccount extends React.Component {
         MainText={this.state.alertMessage}
       >
         <CreateAccountLayout>
-          <form onSubmit={(e) => this.createUser(e)}>
+          <form onSubmit={(e) => this.request(e)}>
             <h2 className="text-center">Create an Account</h2>
             <div className="form-group">
               <input
@@ -98,21 +119,30 @@ export class CreateAccount extends React.Component {
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary btn-block">
-                Registrater
+                Регистрация
               </button>
             </div>
             <div className="clearfix">
               <label className="pull-left checkbox-inline"></label>
               <NavLink to="#ForgotPassword" className="pull-right">
-                Forgot Password?
+                Забыли пароль?
               </NavLink>
             </div>
           </form>
           <p className="text-center">
-            <NavLink to="/">Log in</NavLink>
+            <NavLink to="/">Зарегистрироваться</NavLink>
           </p>
         </CreateAccountLayout>
       </AlertRed>
     );
+  } else { 
+    return <GoToMain/>;
+  }
+  }
+}
+
+class GoToMain extends React.Component {
+  render () {
+    return <Redirect to="/main"/>;
   }
 }

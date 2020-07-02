@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { Login } from '../../Pages/Authentication/Login/LoginPage';
+import { Switch, Route, Redirect } from "react-router-dom";
+import Login from '../../Pages/Authentication/Login/LoginPage';
+import { LogOut } from '../../Pages/Authentication/Login/LogOut';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
@@ -8,14 +9,23 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
-import SprintGame from '../../Pages/SprintGame/SprintGame';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
+import { Start } from '../../Pages/Start/Start';
+import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
+import App from '../../Pages/MiniGames/Savanna/App';
+import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
+import SprintGame from '../../Pages/SprintGame/SprintGame';
 
 
-const sourceRoutes = [
+const sourceOpenRoutes = [
   {
-    path: '/main',
-    component: MainPage,
+    path: '/start',
+    component: Start,
+    exact: true,
+  },
+  {
+    path: '/logout',
+    component: LogOut,
     exact: true,
   },
   {
@@ -24,8 +34,41 @@ const sourceRoutes = [
     exact: true,
   },
   {
+    path: '/savanna',
+    component: SavannaStartPage,
+    exact: true,
+  },
+  {
     path: '/about',
     component: () => <h1>about</h1>,
+    exact: true,
+  },
+  {
+    path: '/login',
+    component: Login,
+    exact: true,
+  },
+  {
+    path: '/',
+    component: Start,
+    exact: true,
+  },
+  {
+    path: '/createanaccount',
+    component: CreateAccount,
+    exact: true,
+  },
+];
+
+const sourceCloseRoutes = [
+  {
+    path: '/main',
+    component: MainPage,
+    exact: true,
+  },
+  {
+    path: '/mainpage',
+    component: MainPage,
     exact: true,
   },
   {
@@ -49,15 +92,9 @@ const sourceRoutes = [
     exact: true,
   },
   {
-    path: '/',
-    component: Login,
-    exact: true,
-  },
-  {
     path: '/settings',
     component: Settings,
     exact: true,
-
   },
   {
     path: '/long-stats',
@@ -65,11 +102,6 @@ const sourceRoutes = [
       'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']}
       totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80}
       dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
-    exact: true,
-  },
-  {
-    path: '/createanaccount',
-    component: CreateAccount,
     exact: true,
   },
   {
@@ -92,8 +124,31 @@ const sourceRoutes = [
   },
 ];
 
-const RouteMap = sourceRoutes.map(({ path, component }, key) => (
-  <Route exact path={path} component={component} key={key} />
-));
+export function RouteMap() {
+  return (
+    <div className="router">
 
-export { RouteMap }
+      <Switch>
+        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a'+key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b'+key} />)}
+      </Switch>
+    </div>
+
+  );
+}
+
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        CheckLogin() ? (
+          <Component {...props} />
+        ) : <Redirect
+            to="/login"
+          />
+      }
+    />
+  );
+}
+
