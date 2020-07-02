@@ -6,6 +6,7 @@ const MiniBtn = ({ label, showStats }) => {
     className='btn btn-outline-success'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     onClick={showStats}>{label}
 =======
     onClick={showStats}>Button {label}
@@ -13,6 +14,9 @@ const MiniBtn = ({ label, showStats }) => {
 =======
     onClick={showStats}>{label}
 >>>>>>> fix
+=======
+    onClick={showStats}>Button {label}
+>>>>>>> mini games BTNs
     </button>
   )
 }
