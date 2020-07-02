@@ -1,6 +1,6 @@
 import React, { Component, Children } from "react";
 import { Sidebar } from "../../Components/Sidebar/Sidebar";
-import { Header } from "../../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 import { getCookie } from "../../Components/Tools/GetCoocke";
 
 export class AppWrapper extends Component {

@@ -5,7 +5,7 @@ import SprintCard from '../../Components/SprintCard/SprintCard';
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
 
-import { wordCards } from '../../constant';
+//import { wordCards } from '../../constant';
 
 import './SprintGame.scss';
 
@@ -22,7 +22,7 @@ class SprintGame extends Component {
             mixedArr: 0,
             activeQuestion: 0,
             mistakeCount: 0,
-            words: wordCards[1],
+            //words: wordCards[1],
         }
         this.rightBtnRef = React.createRef();
         this.wrongBtnRef = React.createRef();

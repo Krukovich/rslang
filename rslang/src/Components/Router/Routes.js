@@ -10,10 +10,11 @@ import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
-import { Start } from '../../Pages/Start/Start'
-import { CheckLogin } from '../../Pages/Authentication/CheckLogin'
+import { Start } from '../../Pages/Start/Start';
+import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import App from '../../Pages/MiniGames/Savanna/App';
-import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage'
+import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
+import SprintGame from '../../Pages/SprintGame/SprintGame';
 
 
 const sourceOpenRoutes = [
