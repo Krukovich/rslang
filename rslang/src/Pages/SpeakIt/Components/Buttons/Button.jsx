@@ -4,25 +4,26 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { playExampleSound } from '../../../../service';
 
-const Button = ({ word, insertWordImageSrc, setTranslateWord }) => {
+const Button = ({ word, insertWordImageSrc, setTranslateWord, setCurrentWord }) => {
   const playSound = () => {
     playExampleSound(word.audio);
     insertWordImageSrc(word.image);
     setTranslateWord(word.wordTranslate);
+    setCurrentWord(word.word);
   }
 
   return (
     <button
       type="button"
-      class="btn btn-outline-info w-100"
+      className="btn btn-outline-info w-100"
       onClick={ () => playSound() }
     >
-      <FontAwesomeIcon icon={faVolumeUp} />
-      <span class="word_label">
-        { word.transcription }
-      </span><br />
-      <span class="transcription_label">
+      <FontAwesomeIcon icon={ faVolumeUp } />
+      <span className="word_label">
         { word.word }
+      </span><br />
+      <span className="transcription_label">
+        { word.transcription }
       </span>
     </button>
   );
