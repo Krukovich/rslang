@@ -14,8 +14,8 @@ const mapStateToProps = (store) => {
 
 
 const Vocabulary = (props) => {
-  const [posts, setPosts] = useState([]);
   const [currentLanguageLevel] = useState(props.languageLevel);
+  const [posts, setPosts] = useState(wordCards[currentLanguageLevel]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(30);
 
@@ -31,8 +31,8 @@ const Vocabulary = (props) => {
   // remove words for learn into deleted words
   const remove = (index) => {
     const newArr = [
-      ...wordCards[currentLanguageLevel].slice(0, index),
-      ...wordCards[currentLanguageLevel].slice(index + 1)
+      ...posts.slice(0, index),
+      ...posts.slice(index + 1)
     ];
     
     setPosts(newArr);
