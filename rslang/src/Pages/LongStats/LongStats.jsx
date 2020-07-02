@@ -6,6 +6,7 @@ import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
@@ -17,6 +18,10 @@ const miniGameStats = (store) => {
     minigameSavannaStats: minigameSavannaStats,
     difficulty: difficulty,
 }}
+=======
+import './longStats.scss';
+import BtnsBar from './BtnsBar/BtnsBar';
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
 
 const changeMiniStats = {
   setSavannaStats,
@@ -56,7 +61,12 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      clicked: false,
+      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
       labels: [], // props.dataLabels,
       datasets: [
         {
