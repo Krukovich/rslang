@@ -34,7 +34,6 @@ const getStats = async () => {
   });
   const content = await rawResponse.json();
   let stats = content.optional.optional;
-  console.log(content);
   return stats;
 };
 
@@ -44,17 +43,11 @@ const ProgressLabel = () => {
   )
 }
 
-// const ShowTest = ({ count }) => {
-//   return(
-//     <p>{count}</p>
-//   )
-// }
-
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -80,19 +73,12 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ],
-<<<<<<< HEAD
-=======
-
->>>>>>> mini stats test
       count: [
         {"timestamp":1593114322795,"newWords":7},
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-<<<<<<< HEAD
       
-=======
->>>>>>> mini stats test
     }
     // this.count = 0;
   }
@@ -116,11 +102,7 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-<<<<<<< HEAD
           state.count = this.state.count;
-=======
-          state.count = this.props.counter;
->>>>>>> mini stats test
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -140,10 +122,6 @@ class LongStats extends React.Component {
       }   
       return { items };  
     })
-  }
-
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
   }
 
   getSum(arr) {
@@ -174,6 +152,7 @@ class LongStats extends React.Component {
       }
     );
   }
+
   
   render() {    
     const { items } = this.state;  
@@ -203,22 +182,18 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
+           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
               <MiniStats count={this.state.count} />
               </div>
             </div>     
-            </div>             
-          </div>
-
+            </div>     
+        </div>
       </React.Fragment>
     );
-  }       
+  }
 }
 
-<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats, changeMiniStats)(LongStats);
->>>>>>> mini stats test
