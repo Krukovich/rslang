@@ -4,12 +4,18 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 import { playExampleSound } from '../../../../service';
 
-const Button = ({ word }) => {
+const Button = ({ word, insertWordImageSrc, setTranslateWord }) => {
+  const playSound = () => {
+    playExampleSound(word.audio);
+    insertWordImageSrc(word.image);
+    setTranslateWord(word.wordTranslate);
+  }
+
   return (
     <button
       type="button"
       class="btn btn-outline-info w-100"
-      onClick={ () => playExampleSound(word.audio) }
+      onClick={ () => playSound() }
     >
       <FontAwesomeIcon icon={faVolumeUp} />
       <span class="word_label">
