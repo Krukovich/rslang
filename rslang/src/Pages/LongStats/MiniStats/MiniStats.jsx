@@ -6,18 +6,7 @@ const MiniStats = ({ count }) => {
 		const { timestamp, newWords } = item;
 		return (
 			<MiniStatsItem
-<<<<<<< HEAD
 			key={timestamp}
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-			key={timestamp}
-=======
->>>>>>> mini stats test
-=======
-			key={timestamp}
->>>>>>> fix: key
->>>>>>> fix: key
 				timestamp={timestamp}
 				newWords={newWords} />
 		)

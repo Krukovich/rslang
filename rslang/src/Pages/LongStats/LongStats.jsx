@@ -7,10 +7,7 @@ import { getCookie } from '../../Components/Tools/GetCoocke';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
-<<<<<<< HEAD
-=======
 import { setSavannaStats } from '../../Store/Savanna/actions';
->>>>>>> fix
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -24,16 +21,6 @@ const miniGameStats = (store) => {
 
 const changeMiniStats = {
   setSavannaStats,
-<<<<<<< HEAD
-=======
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
->>>>>>> fix
 }
 
 const getStats = async () => {
@@ -56,12 +43,6 @@ const ProgressLabel = () => {
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
   )
 }
-
-// const ShowTest = ({ count }) => {
-//   return(
-//     <p>{count}</p>
-//   )
-// }
 
 class LongStats extends React.Component {
   constructor(props) {
@@ -98,10 +79,6 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-<<<<<<< HEAD
-      
-=======
->>>>>>> fix
     }
     // this.count = 0;
   }
@@ -219,8 +196,4 @@ class LongStats extends React.Component {
   }
 }
 
-<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats, changeMiniStats)(LongStats);
->>>>>>> fix
