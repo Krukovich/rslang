@@ -11,3 +11,21 @@
     display: flex;
     justify-content: space-between;
 }
+
+.questionanimated {
+    position: fixed;
+    color: white;
+    top: 12%;
+    left: 50%;
+    font-size: 3em;
+    transition: all 3s;
+
+}
+
+.muve {
+    transform: translateY(+900%);    
+}
+
+.hiden {
+    display: none;
+}

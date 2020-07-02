@@ -23,13 +23,20 @@ export class SavannaStartPage extends Component {
   render() {
       if (this.state.gameStart) {
           return (
-            <App quiz={this.state.quiz}/>
+            <App quiz={this.state.quizQ}/>
           )
       }
     return (
-      <div className='container'>
-        <Button variant="primary" onClick={() => this.startHandler()}>Start Game</Button>
-      </div>
+        <section className="jumbotron text-center">
+        <div className="container">
+          <h1 className="jumbotron-heading">САВАННА</h1>
+          <p className="lead text-muted">Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь.</p>
+          <p>
+          <Button variant="btn btn-primary my-2" onClick={() => this.startHandler()}>Начать игру</Button>
+          </p>
+        </div>
+      </section>
+
     )
   }
 }

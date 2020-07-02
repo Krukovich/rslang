@@ -51,7 +51,6 @@ class Quiz extends Component {
   }
 }
 
-
   onAnswerClickHandler = answerId => {
     if (this.state.answerState) {
       const key = Object.keys(this.state.answerState)[0]
@@ -113,7 +112,6 @@ class Quiz extends Component {
       <div className='Quiz'>
         <div className='QuizWrapper'>
           <h1>Ответьте на все вопросы</h1>
-
           {
             this.state.isFinished
              ? <FinishedQuiz
@@ -127,7 +125,7 @@ class Quiz extends Component {
                 onAnswerClick={this.onAnswerClickHandler}
                 quizLength={this.state.quiz.length}
                 answerNumber={this.state.activeQuestion + 1}
-                state={this.state.answerState}
+                state={this.state.answerState}              
               />
           }
         </div>

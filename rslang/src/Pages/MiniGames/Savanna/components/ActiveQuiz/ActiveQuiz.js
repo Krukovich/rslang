@@ -1,10 +1,13 @@
 import React from 'react'
 import './ActiveQuiz.css'
 import AnswersList from './AnswersList/AnswersList'
+import Time from './Time/Time'
 
 const ActiveQuiz = props => {
   return (
     <div className='ActiveQuiz'>
+      <Time/>
+      <div  id="question" className={`questionanimated`}>{props.question}</div>
       <p className='Question'>
       <span>
         <strong>{props.answerNumber}.</strong>&nbsp;
@@ -22,5 +25,7 @@ const ActiveQuiz = props => {
     </div>
   )
 }
+
+
 
 export default ActiveQuiz

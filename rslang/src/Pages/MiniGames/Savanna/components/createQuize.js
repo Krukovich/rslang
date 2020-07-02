@@ -21,8 +21,7 @@ export const createQuize = async (level)  => {
     let levelArray = [];
     let tempArray = [];
     let answerId = 3;
-    for (let i = 0; i < 3; i++) {
-        
+    for (let i = 0; i < 3; i++) {        
         tempArray = wordsArray.slice(i*5, (i*5)+5);
         answerId = randomInteger(0, 4);
         levelArray.push(
@@ -30,11 +29,11 @@ export const createQuize = async (level)  => {
                 question: tempArray[answerId].word,
                 rightAnswerId: answerId,
                 answers: [
-                    {text: tempArray[0].word, id: 0},
-                    {text: tempArray[1].word, id: 1},
-                    {text: tempArray[2].word, id: 2},
-                    {text: tempArray[3].word, id: 3},
-                    {text: tempArray[4].word, id: 4}
+                    {text: tempArray[0].wordTranslate, id: 0},
+                    {text: tempArray[1].wordTranslate, id: 1},
+                    {text: tempArray[2].wordTranslate, id: 2},
+                    {text: tempArray[3].wordTranslate, id: 3},
+                    {text: tempArray[4].wordTranslate, id: 4}
                   ]
             }
         )
