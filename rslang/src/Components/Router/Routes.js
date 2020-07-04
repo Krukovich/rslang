@@ -10,7 +10,7 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import Settings from '../../Pages/Settings/Settings';
-import SpeakIt from '../../Pages/SpeakIt/SpeakIt.jsx';
+import SpeakItStart from '../../Pages/SpeakIt/SpeakItStart.jsx';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
@@ -123,8 +123,8 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/SpeakIt',
-    component: SpeakIt,
+    path: '/SpeakItStart',
+    component: SpeakItStart,
     exact: true,
   },
   {
