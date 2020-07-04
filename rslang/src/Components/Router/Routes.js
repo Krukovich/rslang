@@ -15,6 +15,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import App from '../../Pages/MiniGames/Savanna/App';
 import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
+import TestApi from '../../Pages/TestApi/TestApi';
 
 
 const sourceOpenRoutes = [
@@ -26,6 +27,11 @@ const sourceOpenRoutes = [
   {
     path: '/logout',
     component: LogOut,
+    exact: true,
+  },
+  {
+    path: '/testapi',
+    component: TestApi,
     exact: true,
   },
   {

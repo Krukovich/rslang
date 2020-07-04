@@ -9,7 +9,7 @@ import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 import { getRandomPage } from '../../../service';
-import { setDayLearningWords } from '../../../Store/Actions';
+import { setDayLearningWords, setAllUserWords } from '../../../Store/Actions';
 import { getWords, saveWordsInLocalStorage } from '../../../service';
 
 import "./Login.scss";
@@ -24,6 +24,8 @@ const mapStateToProps = (store) => {
 
 const mapActionToProps = {
   setDayLearningWords,
+  setAllUserWords,
+  
 }
 
 
@@ -52,13 +54,24 @@ class Login extends React.Component {
     });
     this.loginResult(content);
     if (content.message === Const.LOGIN.ON) {
-    this.requestDayLearningWords()
+    this.requestDayLearningWords();
+    //started wrds from server
+    let fdata = await fetchAPI("getAllUserWords");
+    fdata = fdata.map((element) => element.value)
+    if (fdata !== 0) {
+      this.props.setAllUserWords(fdata);
+    }
+    console.log('fdata', fdata)
+    
     }
   };
+
+
 
   
   requestDayLearningWords = async () => {
     const data = await getWords(this.props.level, this.props.newWordsCount);
+    
       if (data[0].value.length !== 0) {
         this.props.setDayLearningWords(data[0].value);
         saveWordsInLocalStorage(data[0].value);

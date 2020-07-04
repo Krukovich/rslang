@@ -11,7 +11,10 @@ export const CHANGE_NEW_WORDS_COUNT = 'CHANGE_NEW_WORDS_COUNT';
 export const CHANGE_DIFFICULT_WORDS = 'CHANGE_DIFFICULT_WORDS';
 export const CHANGE_DAY_LEARNING_WORDS = 'CHANGE_DAY_LEARNING_WORDS';
 export const CHANGE_DELETE_WORDS = 'CHANGE_DELETE_WORDS';
-export const CHANGE_SHOW_BTN_DIFFICULT_WORDS = 'CHANGE_SHOW_BTN_DIFFICULT_WORDS'
+export const CHANGE_SHOW_BTN_DIFFICULT_WORDS = 'CHANGE_SHOW_BTN_DIFFICULT_WORDS';
+export const ADDNEW_NEW_USER_WORD_BY_WORD_ID = 'ADDNEW_NEW_USER_WORD_BY_WORD_ID';
+export const UPDATE_USER_WORD_BY_WORD_ID = 'UPDATE_USER_WORD_BY_WORD_ID';
+export const ADD_ALL_USER_WORDS_FROM_SERVER = 'ADD_ALL_USER_WORDS_FROM_SERVER';
 
 export const setSitingLevel = (level) => ({
   type: CHANGE_DIFFICULT_LEVEL,
@@ -81,5 +84,20 @@ export const setDayLearningWords = (array) => ({
 
 export const setDeleteWords = (array) => ({
   type: CHANGE_DELETE_WORDS,
+  payload: array,
+});
+
+export const setNewUserWordsByWordId = (obj) => ({
+  type: ADDNEW_NEW_USER_WORD_BY_WORD_ID,
+  payload: obj,
+});
+
+export const updateUserWordsByWordId = (obj) => ({
+  type: UPDATE_USER_WORD_BY_WORD_ID,
+  payload: obj,
+});
+
+export const setAllUserWords = (array) => ({
+  type: ADD_ALL_USER_WORDS_FROM_SERVER,
   payload: array,
 });

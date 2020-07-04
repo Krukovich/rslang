@@ -21,6 +21,7 @@ export const Sidebar = (props) => {
                 <NavItem href='/promo' title='Промо' />
                 <NavItem href='/about' title='Команда' />
                 <NavItem href='/settings' title='Настройки' />
+                <NavItem href='/testapi' title='TestApi' />
             </ul>
         </aside>
     )
