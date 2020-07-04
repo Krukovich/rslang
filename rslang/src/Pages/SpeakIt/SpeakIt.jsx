@@ -23,6 +23,7 @@ class SpeakIt extends React.Component {
     this.state = {
       score: 0,
       currentIndex: '',
+      isDisable: false,
       currentWord: '',
       inputValue: '',
       imageSrc: 'images/enjoy_small.png',
@@ -64,6 +65,10 @@ class SpeakIt extends React.Component {
     this.setState({ currentIndex: index })
   }
 
+  setIsDisable = () => {
+    this.setState({ isDisable: !this.state.isDisable });
+  }
+
   setCurrentWord = (word) => {
     this.setState({ currentWord: word });
   }
@@ -96,21 +101,23 @@ class SpeakIt extends React.Component {
   }
 
   renderWordButton = () => {
-    const { words } = this.state;
+    const { words, isDisable } = this.state;
 
     return words.map((item, index) => {
       return (
         <div className="col-6 col-sm-6 col-md-3 mt-2" key={ index }>
           <Button
+            isDisable={ isDisable }
             index={ index }
             word={ item }
             insertWordImageSrc={ this.setImageSrc }
             setTranslateWord={ this.setTranslateWord }
             setCurrentWord={ this.setCurrentWord }
             setCurrentIndex={ this.setCurrentIndex }
+            setIsDisable={ this.setIsDisable }
           />
         </div>
-      ); 
+      );
     });
   }
 
@@ -134,6 +141,7 @@ class SpeakIt extends React.Component {
         playAudio(SOUND.ERROR);
         this.decrementScore();
       }
+      // this.insertStateInModal();
     });
     recognition.start();
   }
