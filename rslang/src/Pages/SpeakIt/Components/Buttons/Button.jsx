@@ -11,7 +11,10 @@ const Button = (props) => {
     setTranslateWord,
     setCurrentWord,
     index,
+    currentIndex,
+    isDisable,
     setCurrentIndex,
+    setIsDisable,
   } = props;
 
   const playSound = () => {
@@ -22,13 +25,21 @@ const Button = (props) => {
     setCurrentIndex(index);
   }
 
+  const setDisabled = () => {
+    setIsDisable();
+    if (currentIndex === index) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <button
       id={ index }
+      disabled={ isDisable ? setDisabled() : '' }
       type="button"
       className="btn btn-outline-info w-100"
-      disabled={ word.done ? word.done : '' }
       onClick={ () => playSound() }
     >
       <FontAwesomeIcon icon={ faVolumeUp } />
