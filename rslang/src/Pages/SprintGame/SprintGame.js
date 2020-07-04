@@ -212,7 +212,7 @@ class SprintGame extends Component {
             return (
                 <div className="Sprint container mt-5">
                     <div className="row">
-                        <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
+                        <div className="col-md-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
                             <div className="d-flex align-items-center">
                                 <span className="mr-2">Сложность:</span>
                                 <select ref={this.selectRef} onClick={this.difficultyHandler} className="d-inline-block">

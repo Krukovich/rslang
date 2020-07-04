@@ -10,6 +10,7 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
+import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
 
 
 const sourceRoutes = [
@@ -80,6 +81,11 @@ const sourceRoutes = [
   {
     path: '/SprintGame',
     component: SprintGame,
+    exact: true,
+  },
+  {
+    path: '/FortuneGame',
+    component: FortuneGame,
     exact: true,
   },
   {
