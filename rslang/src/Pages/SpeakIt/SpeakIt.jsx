@@ -21,12 +21,22 @@ class SpeakIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentIndex: '',
+      isDisable: false,
       currentWord: '',
       inputValue: '',
       imageSrc: 'images/enjoy_small.png',
       translate: 'Перевод',
       words: JSON.parse(localStorage.startWords).slice(0, 12),
     }
+  }
+
+  setCurrentIndex = (index) => {
+    this.setState({ currentIndex: index })
+  }
+
+  setIsDisable = () => {
+    this.setState({ isDisable: !this.state.isDisable });
   }
 
   setCurrentWord = (word) => {
@@ -42,15 +52,20 @@ class SpeakIt extends React.Component {
   }
 
   renderWordButton = () => {
-    const { words } = this.state; 
-    return words.map((item) => {
+    const { words, isDisable } = this.state;
+
+    return words.map((item, index) => {
       return (
-        <div className="col-6 col-sm-6 col-md-3 mt-2">
+        <div className="col-6 col-sm-6 col-md-3 mt-2" key={ index }>
           <Button
+            isDisable={ isDisable }
+            index={ index }
             word={ item }
             insertWordImageSrc={ this.setImageSrc }
             setTranslateWord={ this.setTranslateWord }
             setCurrentWord={ this.setCurrentWord }
+            setCurrentIndex={ this.setCurrentIndex }
+            setIsDisable={ this.setIsDisable }
           />
         </div>
       );
@@ -58,6 +73,7 @@ class SpeakIt extends React.Component {
   }
 
   recordSound = () => {
+    const { currentWord } = this.state;  
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.lang = LANGUAGE.ENGLISH;
@@ -66,7 +82,8 @@ class SpeakIt extends React.Component {
     recognition.addEventListener('result', (event) => {
       this.userWord = Array.from(event.results).map((res) => res[0]).map((res) => res.transcript).join('');
       this.setState({ inputValue: this.userWord });
-      if (this.word === this.userWord) {
+      if (currentWord === this.userWord) {
+        this.setIsDisable();
         // this.disabledBtn();
         // this.insertStar();
         // this.state[this.word].guessed += 1;
