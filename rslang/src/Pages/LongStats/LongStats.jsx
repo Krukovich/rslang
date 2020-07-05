@@ -181,8 +181,7 @@ class LongStats extends React.Component {
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
-            <ProgressLabel />
-           
+            <ProgressLabel />           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">

@@ -15,10 +15,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
-
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
-
-}
- 
+  }
 export default BtnsBar;
 
