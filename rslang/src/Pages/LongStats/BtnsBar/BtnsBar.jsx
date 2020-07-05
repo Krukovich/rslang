@@ -5,6 +5,9 @@ import MiniBtn from '../MiniBtn/MiniBtn';
 const BtnsBar = ({ items, showStats }) => {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fix
   const elements = items.map((item) => {
     const { id, label } = item;
     return (
@@ -16,6 +19,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -33,6 +37,8 @@ const BtnsBar = ({ items, showStats }) => {
 =======
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
 =======
+=======
+>>>>>>> fix
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
 =======
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
@@ -50,7 +56,13 @@ const BtnsBar = ({ items, showStats }) => {
     return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
 >>>>>>> mini games BTNs
 >>>>>>> mini games BTNs
+<<<<<<< HEAD
 >>>>>>> mini games BTNs
+=======
+=======
+  return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
+>>>>>>> fix
+>>>>>>> fix
 }
 
 >>>>>>> feat: long stats from redux

@@ -1,4 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+import './longStats.scss';
+>>>>>>> fix
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 <<<<<<< HEAD
@@ -6,7 +11,15 @@ import { Line } from 'react-chartjs-2';
 import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
+<<<<<<< HEAD
 >>>>>>> fix: data from server
+=======
+=======
+import { connect } from 'react-redux';
+import { Line } from 'react-chartjs-2';
+// import showStats from '../../Store/Longs/actions';
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
+>>>>>>> fix
 import ProgressBar from 'react-bootstrap/ProgressBar';
 <<<<<<< HEAD
 import './longStats.scss';
@@ -33,9 +46,26 @@ import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
 >>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
 
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 const changeMiniStats = {
   setSavannaStats,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+const miniGameStats = (store) => {
+  const { newWordsCount } = store.appSettings;
+  return {
+    newWordsCount: newWordsCount,
+}}
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
+>>>>>>> fix
 }
 
 function getCookie(name) {
@@ -71,6 +101,18 @@ const ProgressLabel = () => {
   )
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+// const ShowTest = ({ count }) => {
+//   return(
+//     <p>{count}</p>
+//   )
+// }
+
+=======
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
+>>>>>>> fix
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
@@ -100,6 +142,7 @@ class LongStats extends React.Component {
       ],
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
@@ -124,7 +167,15 @@ class LongStats extends React.Component {
       
 =======
 >>>>>>> mini stats test
+<<<<<<< HEAD
 >>>>>>> mini stats test
+=======
+=======
+        { 'id': 2, label: 'Паззлы', 'visible': false },
+        { 'id': 3, label: 'Саванна', 'visible': false }
+      ]
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
+>>>>>>> fix
     }
     // this.count = 0;
   }
@@ -145,6 +196,7 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
@@ -180,6 +232,10 @@ class LongStats extends React.Component {
           break;  
       }   
       return { items };  
+=======
+      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
+      return { items };
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
     })
   }
 
@@ -254,6 +310,7 @@ class LongStats extends React.Component {
   }
 }
 
+<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 <<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
 =======
@@ -263,3 +320,6 @@ export default connect(miniGameStats, changeMiniStats)(LongStats);
 export default connect(miniGameStats, changeMiniStats)(LongStats);
 >>>>>>> mini stats test
 >>>>>>> mini stats test
+=======
+export default connect(miniGameStats)(LongStats);
+>>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
