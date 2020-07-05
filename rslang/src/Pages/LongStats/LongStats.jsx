@@ -1,8 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
+// import showStats from '../../Store/Longs/actions';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
+
+const miniGameStats = (store) => {
+  const { newWordsCount } = store.appSettings;
+  return {
+    newWordsCount: newWordsCount,
+}}
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -35,7 +43,7 @@ const ProgressLabel = () => {
   )
 }
 
-export default class LongStats extends React.Component {
+class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,9 +67,9 @@ export default class LongStats extends React.Component {
         }
       ],
       items: [
-        { 'id': 1, label: 'Audio Call', 'visible': false },
-        { 'id': 2, label: 'Game Puzzle', 'visible': false },
-        { 'id': 3, label: 'Savanna', 'visible': false }
+        { 'id': 1, label: 'Аудио Вызов', 'visible': false },
+        { 'id': 2, label: 'Паззлы', 'visible': false },
+        { 'id': 3, label: 'Саванна', 'visible': false }
       ]
     }
   }
@@ -82,7 +90,7 @@ export default class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-      console.log(`Clicked ${id} ${items[id-1].label}`);
+      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
       return { items };
     })
   }
@@ -164,3 +172,5 @@ export default class LongStats extends React.Component {
     );
   }
 }
+
+export default connect(miniGameStats)(LongStats);
