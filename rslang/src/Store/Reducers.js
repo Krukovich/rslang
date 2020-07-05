@@ -4,7 +4,7 @@ import { sprintGameReducer } from "./SprintGame/Reducers";
 import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
-import { fetchAPI } from '../Components/Tools/fetchAPI'
+import { fetchAPI } from '../Components/Tools/fetchAPI';
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -137,4 +137,6 @@ export default combineReducers({
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
   fortuneGame: fortuneGameReducer,
+  miniGamesStats: statsReducer,
+
 });
