@@ -16,6 +16,20 @@ export const fetchAPI = async (query, obj) => {
     const content = await rawResponse.json();
     return content;
   }
+
+  if (query === "users") {
+    const rawResponse = await fetch(Const.API_LINK + query, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    const content = await rawResponse.json();
+    return content;
+  }
+
   if (query === "words") {
     const rawResponse = await fetch(
       Const.API_LINK + query + "?page=" + obj.page + "&group=" + obj.group 
