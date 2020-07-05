@@ -8,6 +8,7 @@ const MiniBtn = ({ label, showStats }) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     onClick={showStats}>{label}
 =======
     onClick={showStats}>Button {label}
@@ -21,6 +22,9 @@ const MiniBtn = ({ label, showStats }) => {
 =======
     onClick={showStats}>Button {label}
 >>>>>>> mini games BTNs
+=======
+    onClick={showStats}>{label}
+>>>>>>> fix
     </button>
   )
 }
