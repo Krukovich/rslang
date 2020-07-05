@@ -124,10 +124,6 @@ class LongStats extends React.Component {
     })
   }
 
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
-  }
-
   getSum(arr) {
     let prev = 0;
     return arr.map((elem) => {

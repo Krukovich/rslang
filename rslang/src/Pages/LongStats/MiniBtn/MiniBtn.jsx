@@ -5,6 +5,7 @@ const MiniBtn = ({ label, showStats }) => {
     <button type='button'
     className='btn btn-outline-success'
     onClick={showStats}>{label}
+
     </button>
   )
 }
