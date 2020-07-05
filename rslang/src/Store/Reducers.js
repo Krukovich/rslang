@@ -5,6 +5,7 @@ import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 import { fetchAPI } from '../Components/Tools/fetchAPI';
@@ -20,6 +21,9 @@ import * as Actions from './Actions';
 =======
 >>>>>>> fix after testAPI
 import { fetchAPI } from '../Components/Tools/fetchAPI'
+>>>>>>> fix
+=======
+import { fetchAPI } from '../Components/Tools/fetchAPI';
 >>>>>>> fix
 
 const initialState = {
@@ -153,4 +157,6 @@ export default combineReducers({
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
   fortuneGame: fortuneGameReducer,
+  miniGamesStats: statsReducer,
+
 });

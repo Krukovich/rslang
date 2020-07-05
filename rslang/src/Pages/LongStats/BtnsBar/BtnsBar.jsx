@@ -4,7 +4,6 @@ import MiniBtn from '../MiniBtn/MiniBtn';
 
 const BtnsBar = ({ items, showStats }) => {
 
-
   const elements = items.map((item) => {
     const { id, label } = item;
     return (
@@ -18,6 +17,7 @@ const BtnsBar = ({ items, showStats }) => {
   });
 
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -36,6 +36,8 @@ const BtnsBar = ({ items, showStats }) => {
 >>>>>>> fix after update
 =======
   
+=======
+>>>>>>> fix
 }
 
 >>>>>>> mini games BTNs
