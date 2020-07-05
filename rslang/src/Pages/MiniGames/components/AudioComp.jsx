@@ -3,8 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 export const AudioComp = (props) => {
+  let autoPlay = true;
   const { gameFindWord, gameStart } = props;
-  console.log(props);
+   if (gameFindWord.audio !== undefined && autoPlay === true) {
+     setInterval(audioPlay(gameFindWord.audio), 1000);
+     autoPlay = false; 
+   } 
+  console.log('audio play');
   //console.log( wordsArray, gameStart )
   if (gameStart) {
     return (

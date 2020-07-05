@@ -5,7 +5,7 @@ import {
   imageRender,
   playExampleSound,
   renderPlayString,
- } from '../../../service'; 
+} from '../../../service';
 
 const Card = (props) => {
   const {
@@ -16,18 +16,20 @@ const Card = (props) => {
     isNotAgree,
     showTranslateWord,
     showExplanationString,
+    showWordTranscription,
+    showWordImage,
   } = props;
 
-  return(
+  return (
     <div className="card PlayCard">
       <img
         className="card-img-top"
-        src={ imageRender(cards[playStep].image) }
+        src={ showWordImage ? imageRender(cards[playStep].image) : 'images/enjoy.png' }
         alt="image"
       />
       <div className="card-body">
         <form
-          onSubmit={ handlerSubmit }
+          onSubmit={handlerSubmit}
         >
           <div className="form-row">
             <div className="col-12 mt-3">
@@ -37,14 +39,20 @@ const Card = (props) => {
             </div>
             <div className="col-12">
               <hr />
+              { showWordTranscription && !isNotAgree ?
+                cards[playStep].transcription : '' 
+              }
+            </div>
+            <div className="col-12">
+              <hr />
               { showTranslateWord && !isNotAgree ?
                 cards[playStep].wordTranslate : '' 
-              } 
+              }
             </div>
             <div className="col-12">
               <hr />
               <span>
-                { showExplanationString && !isNotAgree ? cards[playStep].textExampleTranslate : '' }
+                {showExplanationString && !isNotAgree ? cards[playStep].textExampleTranslate : ''}
               </span>
             </div>
           </div>
@@ -55,9 +63,9 @@ const Card = (props) => {
               data-toggle="tooltip"
               data-placement="bottom"
               title="Play example sound"
-              onClick={ () => playExampleSound(cards[playStep].audio) } 
+              onClick={() => playExampleSound(cards[playStep].audio)}
             >
-              <FontAwesomeIcon icon={ faVolumeUp } />
+              <FontAwesomeIcon icon={faVolumeUp} />
             </button>
           </div>
         </form>

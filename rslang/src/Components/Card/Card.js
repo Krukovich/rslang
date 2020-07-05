@@ -3,10 +3,10 @@ import './Card.scss';
 
 const Card = (props) => {
     return (
-        <a href={props.href} className="Card border-primary rounded mt-2">
+        <a href={props.href} className="Card border-primary rounded">
             <div className="row no-gutters">
                 <div className="col-md-4 d-flex justify-content-center align-items-center bg-primary">
-                    <div className={"Card-Image h-75 w-75 " + props.class} style={{ backgroundColor: 'white' }}>
+                    <div className={"Card-Image " + props.class} style={{ backgroundColor: 'white' }}>
                         <img src={props.pic} className="card-img" ></img>
                     </div>
                 </div>
