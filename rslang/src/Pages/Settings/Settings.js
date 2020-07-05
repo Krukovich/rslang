@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CheckBox from '../../Components/CheckBox/CheckBox';
 import TextInput from '../../Components/TextInput/TextInput';
+import { fetchAPI } from '../../Components/Tools/fetchAPI'
 import {
   setSitingLevel,
   setShowTranslateWord,
@@ -64,6 +65,9 @@ const mapActionsToProps ={
 }
 
 class Settings extends React.Component {
+  settings = {
+    'fdfd': '123',
+  }
 
   toggle = (key) =>{
     if(key === 'setSitingLevel' || key === 'setNewWordsCount'){
@@ -77,7 +81,23 @@ class Settings extends React.Component {
     }
   }
 
+  changesSettings = (key) =>{
+    if(key === 'level' || key === 'newWordsCount'){
+      return (e) =>{
+        this.settings[key] = e.target.value
+        console.log(this.settings)
+      }
+    }
+    return (e)=>{
+
+      this.settings[key] = e.target.checked
+      console.log(this.settings)
+    }
+  }
+
   render() {
+    // fetchAPI('setSettings', this.settings)
+    fetchAPI('getSettings')
     return (
       <React.Fragment>
         <div className="container">
@@ -87,57 +107,58 @@ class Settings extends React.Component {
                 <TextInput
                   text='Уровень'
                   defValue={this.props.level}
-                  onChange={this.toggle('setSitingLevel')}
+                  onChange={this.changesSettings('level')}
                 />
                 <CheckBox
                   text='Показывать перевод слов'
                   isChecked={this.props.showTranslateWord}
-                  onChange={this.toggle('setShowTranslateWord')}
+                  onChange={this.changesSettings('ShowTranslateWord')}
                 />
                 <CheckBox
                  text='Проигрывать слово автоматически'
                  isChecked={this.props.playExampleSound}
-                 onChange={this.toggle('setPlayExampleSound')}/>
+                 onChange={this.changesSettings('playExampleSound')}/>
                 <CheckBox
                   text='Пердложения с объяснением значения слова'
                   isChecked={this.props.showExplanationString}
-                  onChange={this.toggle('setShowExplanationString')}
+                  onChange={this.changesSettings('ShowExplanationString')}
                 />
                 <CheckBox
                   text='Предложение с примером использования слова'
                   isChecked={this.props.showExampleString}
-                  onChange={this.toggle('setShowExampleString')}
+                  onChange={this.changesSettings('ShowExampleString')}
                 />
                 <CheckBox
                  text='Показать транскрипцию слова' 
                  isChecked={this.props.showWordTranscription} 
-                 onChange={this.toggle('setShowWordTranscription')} />
+                 onChange={this.changesSettings('ShowWordTranscription')} />
                 <CheckBox
                   text='Показывать изображение на карточке'
                   isChecked={this.props.showWordImage}
-                  onChange={this.toggle('setWordImage')}
+                  onChange={this.changesSettings('showWordImage')}
                 />
                 <CheckBox
                   text='Кнопка "Показать ответ"'
                   isChecked={this.props.showBtnShowAgreeAnswer}
-                  onChange={this.toggle('setShowBtnAgreeAnswer')}
+                  onChange={this.changesSettings('ShowBtnAgreeAnswer')}
                 />
                 <CheckBox
                   text='Кнопка "Удалить"'
                   isChecked={this.props.showBtnDeleteWord}
-                  onChange={this.toggle('setShowBtnDeleteWord')}
+                  onChange={this.changesSettings('ShowBtnDeleteWord')}
                 />
                 <CheckBox
                   text='Добавить кнопку "Поместить в сложное"'
                   isChecked={this.props.showBtnDifficultWord}
-                  onChange={this.toggle('setShowBtnDifficultWord')}
+                  onChange={this.changesSettings('ShowBtnDifficultWord')}
                 />
                 <TextInput
                   text='Количество слов, которое хотите выучить'
                   defValue={this.props.newWordsCount}
-                  onChange={this.toggle('setNewWordsCount')}
+                  onChange={this.changesSettings('newWordsCount')}
                 />
               </div>
+              <button>Сохранить</button>
             </div>
           </div>
         </div>
