@@ -1,19 +1,10 @@
-<<<<<<< HEAD
+
 import { combineReducers } from "redux";
 import { playZonePageReducer } from "./PlayZonePage/reducers";
 import { sprintGameReducer } from "./SprintGame/Reducers";
 import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
-=======
-
-import { combineReducers } from 'redux';
-import { playZonePageReducer } from './PlayZonePage/reducers';
-import { sprintGameReducer } from './SprintGame/Reducers'
-import { fortuneGameReducer } from './FortuneGame/Reducers'
-import { savannaReducer } from "./Savanna/reducers";
-import * as Actions from './Actions';
->>>>>>> fix
 
 import { fetchAPI } from '../Components/Tools/fetchAPI';
 
@@ -147,17 +138,7 @@ export default combineReducers({
   savanna: savannaReducer,
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
-<<<<<<< HEAD
   fortuneGame: fortuneGameReducer,
   miniGamesStats: statsReducer,
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
-=======
-  // miniGamesStats: statsReducer,
-  fortuneGame: fortuneGameReducer,
->>>>>>> fix
->>>>>>> fix
 });
