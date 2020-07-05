@@ -139,5 +139,8 @@ export default combineReducers({
   sprintGame: sprintGameReducer,
   fortuneGame: fortuneGameReducer,
   miniGamesStats: statsReducer,
+<<<<<<< HEAD
 
+=======
+>>>>>>> fix
 });
