@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-// import showStats from '../../Store/Longs/actions';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
 
 const miniGameStats = (store) => {
-  const { newWordsCount } = store.appSettings;
+  const { minigameSavannaStats } = store.savanna;
+  const { counter } = store.sprintGame;
   return {
-    newWordsCount: newWordsCount,
+    minigameSavannaStats: minigameSavannaStats,
+    counter: counter,
 }}
 
 function getCookie(name) {
@@ -72,7 +73,7 @@ class LongStats extends React.Component {
       ],
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-        { 'id': 2, label: 'Паззлы', 'visible': false },
+        { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false }
       ]
     }
@@ -94,8 +95,17 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
-      return { items };
+      switch (id) {
+        case 2 :
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
+          break;
+        case 3: 
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
+          break; 
+        default: 
+          break; 
+      }   
+      return { items };  
     })
   }
 
@@ -168,8 +178,8 @@ class LongStats extends React.Component {
             <ProgressLabel />
             <div className="longStatsElem">
             <BtnsBar items={items} showStats={this.showStats} />
-            </div>
-            
+            <div className="longStatsElem-field"></div>
+            </div>         
           </div>
         </div>
       </React.Fragment>

@@ -9,7 +9,11 @@ import * as Actions from './actions';
 
 
 const initialState = {
+<<<<<<< HEAD
   minigameSavannaStats: [1,2,3,4,5], //an array of minigame Savanna stats
+=======
+  minigameSavannaStats: [1, 2, 3], //an array of minigame Savanna stats
+>>>>>>> feat: long stats from redux
 }
 >>>>>>> mini stats from redux
 

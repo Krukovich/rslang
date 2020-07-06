@@ -28,10 +28,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+<<<<<<< HEAD
 const mapActionToProps = {
   setDayLearningWords,
 }
 
+=======
+>>>>>>> feat: long stats from redux
 const sourceOpenRoutes = [
   {
     path: '/logout',

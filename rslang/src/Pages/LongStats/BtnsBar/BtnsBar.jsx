@@ -27,6 +27,7 @@ const BtnsBar = ({ items, showStats }) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
 =======
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
@@ -62,6 +63,9 @@ export default BtnsBar;
 =======
   return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
 >>>>>>> fix
+=======
+  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
+>>>>>>> feat: long stats from redux
 }
 
 export default BtnsBar;
