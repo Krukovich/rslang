@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
  
 import { imageRender, playAudio } from '../../service';
-import { LANGUAGE, SOUND } from '../../constant';
+import { SOUND } from '../../constant';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
@@ -81,7 +81,7 @@ class SpeakIt extends React.Component {
     const { currentWord } = this.state;  
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = LANGUAGE.ENGLISH;
+    recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.addEventListener('result', (event) => {
@@ -90,9 +90,9 @@ class SpeakIt extends React.Component {
       if (currentWord === this.userWord) {
         const index = this.state.words.findIndex((word) => word.word === currentWord );
         this.setWordDone(index);
-        playAudio(SOUND.CORRECT);
+        // playAudio(SOUND.CORRECT);
       } else {
-        playAudio(SOUND.ERROR);
+        // playAudio(SOUND.ERROR);
       }
     });
     recognition.start();
