@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
  
 import { imageRender, playAudio } from '../../service';
-import { SOUND } from '../../constant';
+import { SOUND, POINT } from '../../constant';
+import Score from './Components/Score/Score.jsx';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
@@ -21,7 +22,7 @@ class SpeakIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
+      score: 0,
       currentIndex: '',
       currentWord: '',
       inputValue: '',
@@ -47,15 +48,19 @@ class SpeakIt extends React.Component {
     this.setState({ translate: word });
   }
 
-  handleShow = () => {
-    this.setState({ show: !this.state.show });
-  }
-
   setWordDone = (index) => {
     const words = [...this.state.words];
     const word = { ...words[index], done: true };
     words[index] = word;
     this.setState({ words });
+  }
+
+  incrementScore = () => {
+    this.setState({ score: this.state.score += POINT });
+  }
+
+  decrementScore = () => {
+    this.setState({ score: this.state.score <= POINT ? 0 : this.state.score -= POINT });
   }
 
   renderWordButton = () => {
@@ -90,9 +95,11 @@ class SpeakIt extends React.Component {
       if (currentWord === this.userWord) {
         const index = this.state.words.findIndex((word) => word.word === currentWord );
         this.setWordDone(index);
-        // playAudio(SOUND.CORRECT);
+        playAudio(SOUND.CORRECT);
+        this.incrementScore();
       } else {
-        // playAudio(SOUND.ERROR);
+        playAudio(SOUND.ERROR);
+        this.decrementScore();
       }
     });
     recognition.start();
@@ -104,8 +111,11 @@ class SpeakIt extends React.Component {
         <section className="main mt-5" id="main">
           <div className="container">
             <div className="row">
-              <div className="col-4 mt-5">
+              <div className="col-12 col-lg-4 mt-5">
                 <GroupButtons />
+              </div>
+              <div className="col-12 col-lg-8 mt-5">
+                <Score score={ this.state.score } />
               </div>
             </div>
             <div className="row">
@@ -152,7 +162,6 @@ class SpeakIt extends React.Component {
               <div className="col-12 col-md-3 mt-2 mb-5">
               <button
                 className="btn btn-info w-100"
-                onClick={ this.handleShow }
               >
                 Статистика
               </button>
