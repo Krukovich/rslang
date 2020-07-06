@@ -10,26 +10,22 @@ import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
-import { Start } from '../../Pages/Start/Start';
+import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
+import MinigamesPage from '../../Pages/MinigamesPage/MinigamesPage'
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import App from '../../Pages/MiniGames/Savanna/App';
-import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
+import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 
 
 const sourceOpenRoutes = [
-  {
-    path: '/start',
-    component: Start,
-    exact: true,
-  },
   {
     path: '/logout',
     component: LogOut,
     exact: true,
   },
   {
-    path: '/mainpage',
+    path: '/',
     component: MainPage,
     exact: true,
   },
@@ -49,11 +45,6 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
-    path: '/',
-    component: Start,
-    exact: true,
-  },
-  {
     path: '/createanaccount',
     component: CreateAccount,
     exact: true,
@@ -61,11 +52,6 @@ const sourceOpenRoutes = [
 ];
 
 const sourceCloseRoutes = [
-  {
-    path: '/main',
-    component: MainPage,
-    exact: true,
-  },
   {
     path: '/mainpage',
     component: MainPage,
@@ -78,7 +64,7 @@ const sourceCloseRoutes = [
   },
   {
     path: '/minigames',
-    component: () => <h1>Mini games</h1>,
+    component: MinigamesPage,
     exact: true,
   },
   {
@@ -115,6 +101,11 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+    path: '/FortuneGame',
+    component: FortuneGame,
+    exact: true,
+  },
+  {
     // always last, 404 page
     path: null,
     component: () => (
@@ -129,8 +120,8 @@ export function RouteMap() {
     <div className="router">
 
       <Switch>
-        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a'+key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b'+key} />)}
+        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a' + key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b' + key} />)}
       </Switch>
     </div>
 
