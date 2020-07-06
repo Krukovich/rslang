@@ -9,10 +9,13 @@ const BtnsBar = ({ items, showStats }) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> fix
 =======
 >>>>>>> fix
+=======
+>>>>>>> fix after update
   const elements = items.map((item) => {
     const { id, label } = item;
     return (
@@ -24,6 +27,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -66,6 +70,9 @@ export default BtnsBar;
 =======
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
 >>>>>>> feat: long stats from redux
+=======
+  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
+>>>>>>> fix after update
 }
 
 export default BtnsBar;

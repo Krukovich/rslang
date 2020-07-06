@@ -101,6 +101,7 @@ const sourceCloseRoutes = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
 =======
 =======
@@ -133,6 +134,9 @@ const sourceCloseRoutes = [
   {
     path: '/play-zone',
     component: PlayZonePage,
+=======
+    component: () => <LongStats totalWords={80} />,
+>>>>>>> fix after update
     exact: true,
   },
   {

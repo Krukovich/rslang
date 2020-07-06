@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fix after testAPI
@@ -22,6 +23,15 @@ import * as Actions from './Actions';
 >>>>>>> fix
 =======
 >>>>>>> fix after testAPI
+=======
+import { combineReducers } from 'redux';
+import { playZonePageReducer } from './PlayZonePage/reducers';
+import { sprintGameReducer } from './SprintGame/Reducers'
+import { fortuneGameReducer } from './FortuneGame/Reducers'
+import { savannaReducer } from "./Savanna/reducers";
+import * as Actions from './Actions';
+
+>>>>>>> fix after update
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -155,6 +165,7 @@ export default combineReducers({
   sprintGame: sprintGameReducer,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   fortuneGame: fortuneGameReducer,
 
 =======
@@ -164,3 +175,8 @@ export default combineReducers({
   // miniGamesStats: statsReducer,
 >>>>>>> fix after testAPI
 });
+=======
+  // miniGamesStats: statsReducer,
+  fortuneGame: fortuneGameReducer,
+});
+>>>>>>> fix after update
