@@ -120,6 +120,9 @@ export default combineReducers({
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b2e2a4223537f3d2ba5e5e982403634d3331e1f
   // miniGamesStats: statsReducer,
   fortuneGame: fortuneGameReducer,
 =======

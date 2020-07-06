@@ -41,6 +41,7 @@ export default class ShortStats extends React.Component {
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 <<<<<<< HEAD
 =======
@@ -66,6 +67,8 @@ export default class ShortStats extends React.Component {
 =======
 =======
 >>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+=======
+>>>>>>> 0b2e2a4223537f3d2ba5e5e982403634d3331e1f:rslang/src/Components/ShortStats/ShortStats.js
     render() {
         return (
             <div className="container shortStats">
@@ -76,6 +79,7 @@ export default class ShortStats extends React.Component {
     }
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 <<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
+<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 =======
 >>>>>>> feat: stats from server BETA
 >>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
@@ -86,4 +90,6 @@ export default class ShortStats extends React.Component {
 =======
 >>>>>>> feat: stats from server BETA
 >>>>>>> feat: stats from server BETA:rslang/src/Components/ShortStats/ShortStats.js
+=======
+>>>>>>> 0b2e2a4223537f3d2ba5e5e982403634d3331e1f:rslang/src/Components/ShortStats/ShortStats.js
 };
