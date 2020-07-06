@@ -16,7 +16,6 @@ import App from '../../Pages/MiniGames/Savanna/App';
 import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 
-
 const sourceOpenRoutes = [
   {
     path: '/start',
