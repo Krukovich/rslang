@@ -46,6 +46,7 @@ const ShortStatsInfo = (props) => {
 
 export default class ShortStats extends React.Component {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   render() {
     return (
@@ -58,6 +59,8 @@ export default class ShortStats extends React.Component {
 
 =======
 >>>>>>> fix
+=======
+>>>>>>> fix after update
     render() {
         return (
             <div className="container shortStats">
@@ -66,4 +69,15 @@ export default class ShortStats extends React.Component {
             </div>
         )
     }
+=======
+
+  render() {
+    return (
+      <div className="container shortStats">
+        <ShortStatsHeader />
+        <ShortStatsInfo {...this.props} />
+      </div>
+    )
+  }
+>>>>>>> fix after update
 };
