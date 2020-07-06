@@ -92,6 +92,7 @@ const sourceCloseRoutes = [
   {
     path: '/long-stats',
     component: () => <LongStats totalWords={80} />,
+<<<<<<< HEAD
     exact: true,
   },
   {
@@ -102,6 +103,13 @@ const sourceCloseRoutes = [
   {
     path: '/play-zone',
     component: PlayZonePage,
+=======
+    exact: true,
+  },
+  {
+    path: '/createanaccount',
+    component: CreateAccount,
+>>>>>>> fix after update
     exact: true,
   },
   {
