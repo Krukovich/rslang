@@ -1,11 +1,33 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Login.scss";
+import { connect } from 'react-redux';
+
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
+import { getCookie } from "../../../Components/Tools/GetCoocke";
+import { Redirect } from "react-router-dom";
+import { fetchAPI } from "../../../Components/Tools/fetchAPI";
+import { getRandomPage } from '../../../service';
+import { setDayLearningWords } from '../../../Store/Actions';
+import { getWords, saveWordsInLocalStorage } from '../../../service';
 
-export class Login extends React.Component {
+import "./Login.scss";
+
+const mapStateToProps = (store) => {
+  return {
+    level: store.appSettings.level,
+    newWordsCount: store.appSettings.newWordsCount,
+    dayLearningWords: store.appSettings.dayLearningWords,
+  }
+}
+
+const mapActionToProps = {
+  setDayLearningWords,
+}
+
+
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,21 +44,26 @@ export class Login extends React.Component {
     this.passwordInputHandler = this.passwordInputHandler.bind(this);
   }
 
-  loginUser = async (event) => {
-    event.preventDefault();
-    console.log(event);
-    const rawResponse = await fetch(Const.API_LINK + "signin", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({"email": this.state.inputEmail, "password": this.state.inputPassword}),
+  requestSignin = async (e) => {
+    e.preventDefault();
+    const content = await fetchAPI("signin", {
+      email: this.state.inputEmail,
+      password: this.state.inputPassword,
     });
-    const content = await rawResponse.json();
-
     this.loginResult(content);
-    console.log(content);
+    if (content.message === Const.LOGIN.ON) {
+    this.requestDayLearningWords()
+    }
+  };
+
+  
+  requestDayLearningWords = async () => {
+    const data = await getWords(this.props.level, this.props.newWordsCount);
+      if (data[0].value.length !== 0) {
+        this.props.setDayLearningWords(data[0].value);
+        saveWordsInLocalStorage(data[0].value);
+      }
+      console.log(this.props.dayLearningWords)
   };
 
   loginResult = (answer) => {
@@ -45,56 +72,39 @@ export class Login extends React.Component {
       this.setLoginCookie(answer.userId, answer.token);
     }
     this.setState({ showAlert: true });
-  }
+  };
 
   setLoginCookie = (userId, token) => {
-    document.cookie = `userId=${userId}; max-age=14400`;
-    document.cookie = `token=${token}; max-age=14400`;
-  }
-
-  getCookie = (name) => {
-    let matches = document.cookie.match(
-      new RegExp(
-        "(?:^|; )" +
-          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-          "=([^;]*)"
-      )
-    );
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-  }
+    document.cookie = `userId=${userId}; Path=/; max-age=14400`;
+    document.cookie = `token=${token}; Path=/; max-age=14400`;
+  };
 
   checkCookie = () => {
-    if (this.getCookie("userId") !== undefined) {
+    if (getCookie("userId") !== undefined) {
       return true;
     }
     return false;
-  }
-
-  goToMain = () => {
-    this.props.history.push({
-      pathname: "/main",
-    });
   };
 
   emailInputHandler = (event) => {
-    this.setState({inputEmail: event.target.value});
-  }
+    this.setState({ inputEmail: event.target.value });
+  };
 
   passwordInputHandler = (event) => {
-    this.setState({inputPassword: event.target.value});
-  }
+    this.setState({ inputPassword: event.target.value });
+  };
 
   render() {
     if (!this.checkCookie()) {
       return (
         <AlertRed
           showAlert={this.state.showAlert}
-          onSubmit={this.goToMain}
+          onSubmit={GoToMain}
           HeadText={"Login " + this.state.loginStatus}
           MainText={this.state.alertMessage}
         >
           <LoginLayout>
-            <form onSubmit={(event) => this.loginUser(event)}>
+            <form onSubmit={(e) => this.requestSignin(e)}>
               <h2 className="text-center">Log in</h2>
               <div className="form-group">
                 <input
@@ -117,25 +127,32 @@ export class Login extends React.Component {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-block">
-                  Log in
+                  Войти
                 </button>
               </div>
               <div className="clearfix">
                 <label className="pull-left checkbox-inline"></label>
                 <NavLink to="#ForgotPassword" className="pull-right">
-                  Forgot Password?
+                  Забыли пароль?
                 </NavLink>
               </div>
             </form>
             <p className="text-center">
-              <NavLink to="/createanaccount">Create an Account</NavLink>
+              <NavLink to="/createanaccount">Создать аккаунт</NavLink>
             </p>
           </LoginLayout>
         </AlertRed>
       );
     } else {
-      this.goToMain();
-      return null;
+      return <GoToMain />;
     }
   }
 }
+
+class GoToMain extends React.Component {
+  render() {
+    return <Redirect to="/main" />;
+  }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Login);

@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { wordCards } from '../../constant';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
 import { setDifficultWords, setDeleteWords } from '../../Store/Actions';
-
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
+import ShortStats from '../../Components/ShortStats/ShortStats';
 
 import './playZonePage.scss';
-
 
 const mapStateToProps = (store) => {
   const {
@@ -40,7 +38,7 @@ const mapStateToProps = (store) => {
     showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
     showBtnDeleteWord: showBtnDeleteWord,
     difficultWords: difficultWords,
-    dayLearningWords: dayLearningWords,
+    dayLearningWords: dayLearningWords ? dayLearningWords : JSON.parse(localStorage.startWords),
     cards: store.playZone.cards,
   }
 }
@@ -55,26 +53,30 @@ class PlayZonePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: wordCards[1],
+      cards: props.dayLearningWords,
       playStep: 0,
-      agreeWord: wordCards[1][0].word,
+      agreeWord: props.dayLearningWords[0].word,
       isNotAgree: true,
       inputValue: '',
-    }
+}
     this.difficultWordId = '';
+    this.agreeCountAnswer = 0;
   }
 
   incrementPlayStep = () => {
     const { playStep, cards } = this.state;
     if (playStep + 1 === cards.length) {
+      this.setState({ isFinish: true });
       return;
+    } else {
+      this.setState({
+        playStep: playStep + 1,
+        agreeWord: cards[playStep + 1].word,
+        isNotAgree: true,
+        inputValue: '',
+      });
+      this.input.value = '';
     }
-    this.setState({
-      playStep: playStep + 1,
-      agreeWord: cards[playStep + 1].word,
-      isNotAgree: true,
-      inputValue: '',
-    });
   }
 
   decrementPlayStep = () => {
@@ -125,6 +127,7 @@ class PlayZonePage extends React.Component {
         input.classList.remove('PlayCard_Mistake');
         input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
+        this.agreeCountAnswer += 1;
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -143,8 +146,8 @@ class PlayZonePage extends React.Component {
 
   showAnswer = () => {
     const { cards, playStep } = this.state;
-    const input = document.querySelector('.WordInput');
-    input.value = cards[playStep].word;
+    this.input = document.querySelector('.WordInput');
+    this.input.value = cards[playStep].word;
     this.setState({ isNotAgree: false });
   }
 
@@ -171,6 +174,7 @@ class PlayZonePage extends React.Component {
         this.input.classList.remove('PlayCard_Mistake');
         this.input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
+        this.agreeCountAnswer += 1;
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -188,69 +192,71 @@ class PlayZonePage extends React.Component {
   }
 
   render() {
-    const { cards, playStep, isNotAgree } = this.state;
+    const {
+      cards,
+      playStep,
+      isNotAgree,
+      isFinish
+    } = this.state;
 
     return (
-      <>
-        <div className="container">
-          <div className="row mt-5">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <Card
-                input={ this.input }
-                isNotAgree={ isNotAgree }
-                cards={ cards }
-                playStep={ playStep }
-                showWordImage={ this.props.showWordImage }
-                showTranslateWord={ this.props.showTranslateWord }
-                showExplanationString={ this.props.showExplanationString }
-                showWordTranscription={ this.props.showWordTranscription }
-                handlerChange={ this.handlerInputChange }
-                handlerSubmit={ this.handlerSubmit }
-              />
-              <VerticalMenu
-                showAnswer={this.showAnswer}
-                insertCardToDifficult={this.insertCardToDifficult}
-                deleteCard={this.deleteCard}
-                showBtnDeleteWord={this.props.showBtnDeleteWord}
-                showBtnDifficultWord={this.props.showBtnDifficultWord}
-                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
-              />
-            </div>
+      <div className="container">
+        <div className="row mt-5">
+          <div className="col-12 d-flex justify-content-center mt-5">
+            <Card
+              input={this.input}
+              isNotAgree={isNotAgree}
+              cards={cards}
+              playStep={playStep}
+              showWordImage={this.props.showWordImage}
+              showTranslateWord={this.props.showTranslateWord}
+              showExplanationString={this.props.showExplanationString}
+              showWordTranscription={this.props.showWordTranscription}
+              handlerChange={this.handlerInputChange}
+              handlerSubmit={this.handlerSubmit}
+            />
+            <VerticalMenu
+              showAnswer={this.showAnswer}
+              insertCardToDifficult={this.insertCardToDifficult}
+              deleteCard={this.deleteCard}
+              showBtnDeleteWord={this.props.showBtnDeleteWord}
+              showBtnDifficultWord={this.props.showBtnDifficultWord}
+              showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
+            />
           </div>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <div className="btn-group" role="group" aria-label="Basic example">
-                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
-                <button
-                  className="btn btn-primary"
-                  onClick={this.changeAnswer}
-                >
-                  Проверить
+        </div>
+        <div className="row">
+          <div className="col-12 d-flex justify-content-center mt-5">
+            <div className="btn-group" role="group" aria-label="Basic example">
+              <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
+              <button
+                className="btn btn-primary"
+                onClick={this.changeAnswer}
+              >
+                Проверить
                 </button>
-                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
-              </div>
+              <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
             </div>
           </div>
-          <div className="row justify-content-center mt-5">
-            <div className="col-12 col-md-6">
-              <div className="row">
-                <div className="col-2 text-center">
-                  <Badge playStep={playStep} />
-                </div>
-                <div className="col-8">
-                  <ProgressBar playStep={playStep} cards={cards} />
-                </div>
-                <div className="col-2 text-center">
-                  <Badge cards={cards} />
-                </div>
+        </div>
+        <div className="row justify-content-center mt-5">
+          <div className="col-12 col-md-6">
+            <div className="row">
+              <div className="col-2 text-center">
+                <Badge playStep={playStep} />
+              </div>
+              <div className="col-8">
+                <ProgressBar playStep={playStep} cards={cards} />
+              </div>
+              <div className="col-2 text-center">
+                <Badge cards={cards} />
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
 
 export default connect(mapStateToProps, mapActionToProps)(PlayZonePage);
-
