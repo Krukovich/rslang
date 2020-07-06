@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { playZonePageReducer } from './PlayZonePage/reducers';
 import { sprintGameReducer } from './SprintGame/Reducers'
+import { fortuneGameReducer } from './FortuneGame/Reducers'
 import * as Actions from './Actions';
 
 const initialState = {
@@ -28,7 +29,7 @@ export const appSettingsReducer = (state = initialState, action) => {
         level: action.payload,
       }
     case Actions.CHANGE_PLAY_EXAMPLE_SOUND:
-      return{
+      return {
         ...state,
         playExampleSound: action.payload,
 
@@ -101,4 +102,5 @@ export default combineReducers({
   playZone: playZonePageReducer,
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
+  fortuneGame: fortuneGameReducer,
 });

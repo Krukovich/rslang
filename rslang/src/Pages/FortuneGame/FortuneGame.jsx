@@ -38,11 +38,13 @@ class FortuneGame extends Component {
             dialogue: 'Угадывайте!',
             continue: false,
             audio: 0,
+            currentRound: 0,
         }
         this.engWordRef = React.createRef();
+        this.selectRef = React.createRef();
     }
 
-    async getWords(difficulty = 0) {
+    async getWords(difficulty = this.props.difficulty) {
         const responce = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}`);
         const json = await responce.json();
         this.setState({
@@ -97,8 +99,6 @@ class FortuneGame extends Component {
         if (event.target.className.includes('Fortune-Letter_inactive')) return
 
         this.alphabetCheckHandler(event);
-
-        // event.target.classList.add('Fortune-Letter_inactive');
 
         if (this.state.engWordArr.includes(event.target.textContent)) {
             this.rightAnswerHandler(event);
@@ -218,14 +218,23 @@ class FortuneGame extends Component {
         try {
             this.loadWord();
 
-            this.setState({
-                gameStarted: true,
-                dialogue: 'Угадывайте!',
-                alphabetCheck: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                continue: false,
-                mistakeCount: 0,
-                gameEnded: false,
+            this.setState((prevState) => {
+                return {
+                    gameStarted: true,
+                    dialogue: 'Угадывайте!',
+                    alphabetCheck: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                    continue: false,
+                    mistakeCount: 0,
+                    gameEnded: false,
+                    currentRound: prevState.currentRound + 1,
+                }
             })
+
+            if (this.state.currentRound === this.state.words.length) {
+                this.setState({
+                    gameEnded: true,
+                })
+            }
         } catch {
             alert('Please wait for the words to load')
         }
@@ -241,11 +250,14 @@ class FortuneGame extends Component {
             mistakeCount: 0,
             gameEnded: false,
             score: 0,
+            currentRound: 1,
         })
     }
 
     componentDidMount() {
         this.getWords();
+
+        this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
     }
 
     addYakubClass() {
@@ -254,6 +266,13 @@ class FortuneGame extends Component {
             buttonClass.push('Fortune-Yakub_speak');
         }
         return buttonClass.join(' ')
+    }
+
+    difficultyHandler = event => {
+        const number = event.target.value;
+        this.props.onChangeDiff(number);
+        this.getWords(number);
+        localStorage.setItem('fortuneDifficulty', number);
     }
 
     render() {
@@ -344,9 +363,9 @@ class FortuneGame extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('redux state', state)
+    console.log(state)
     return {
-        difficulty: state.sprintGame.difficulty
+        difficulty: state.fortuneGame.difficulty
     }
 }
 
@@ -356,5 +375,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(FortuneGame);
-export default FortuneGame
+export default connect(mapStateToProps, mapDispatchToProps)(FortuneGame);

@@ -11,6 +11,7 @@ import MainPage from '../../Pages/MainPage/MainPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
+import MinigamesPage from '../../Pages/MinigamesPage/MinigamesPage'
 
 
 const sourceRoutes = [
@@ -36,7 +37,7 @@ const sourceRoutes = [
   },
   {
     path: '/minigames',
-    component: () => <h1>Mini games</h1>,
+    component: MinigamesPage,
     exact: true,
   },
   {

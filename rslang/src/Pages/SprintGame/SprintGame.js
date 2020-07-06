@@ -199,12 +199,15 @@ class SprintGame extends Component {
 
     difficultyHandler = event => {
         const number = event.target.value;
-        this.props.onChangeDiff(number)
+        this.props.onChangeDiff(number);
         this.getWords(number);
+        localStorage.setItem('sprintDifficulty', number)
     }
 
     componentDidMount() {
         this.getWords();
+
+        this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
     }
 
     render() {
