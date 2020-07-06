@@ -153,6 +153,9 @@ class SpeakIt extends React.Component {
               <div className="col-12 col-lg-8 mt-5">
                 <Score score={ this.state.score } />
               </div>
+              <div className="col-12 col-lg-8 mt-5">
+                <Score score={ this.state.score } />
+              </div>
             </div>
             <div className="row">
               <div className="col-12 d-flex justify-content-center mt-2">
