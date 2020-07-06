@@ -6,7 +6,6 @@ import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 
-
 import { fetchAPI } from '../Components/Tools/fetchAPI';
 
 const initialState = {
