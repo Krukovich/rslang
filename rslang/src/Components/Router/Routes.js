@@ -20,6 +20,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 
+<<<<<<< HEAD
 const mapStateToProps = (state) => {
   return {
     level: state.appSettings.level,
@@ -31,6 +32,8 @@ const mapActionToProps = {
   setDayLearningWords,
 }
 
+=======
+>>>>>>> feat: long stats from redux
 const sourceOpenRoutes = [
   {
     path: '/logout',
