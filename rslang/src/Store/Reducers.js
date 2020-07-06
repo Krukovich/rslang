@@ -103,5 +103,6 @@ export default combineReducers({
   savanna: savannaReducer,
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
+  // miniGamesStats: statsReducer,
   fortuneGame: fortuneGameReducer,
 });
