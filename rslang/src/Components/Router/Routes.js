@@ -97,6 +97,7 @@ const sourceCloseRoutes = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
 =======
 =======
@@ -116,6 +117,9 @@ const sourceCloseRoutes = [
 =======
     component: () => <LongStats totalWords={80} />,
 >>>>>>> fix, refactor
+=======
+    component: () => <LongStats totalWords={80} />,
+>>>>>>> fix after testAPI
     exact: true,
   },
   {
