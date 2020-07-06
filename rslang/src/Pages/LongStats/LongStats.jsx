@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-<<<<<<< HEAD
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
@@ -21,19 +20,6 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-=======
-// import showStats from '../../Store/Longs/actions';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import './longStats.scss';
-import BtnsBar from './BtnsBar/BtnsBar';
-
-const miniGameStats = (store) => {
-  const { newWordsCount } = store.appSettings;
-  return {
-    newWordsCount: newWordsCount,
-}}
-
->>>>>>> fix
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -65,23 +51,16 @@ const ProgressLabel = () => {
   )
 }
 
-<<<<<<< HEAD
 // const ShowTest = ({ count }) => {
 //   return(
 //     <p>{count}</p>
 //   )
 // }
 
-=======
->>>>>>> fix
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-=======
-      clicked: false,
->>>>>>> fix
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
       datasets: [
@@ -102,7 +81,6 @@ class LongStats extends React.Component {
       ],
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-<<<<<<< HEAD
         { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
@@ -116,12 +94,6 @@ class LongStats extends React.Component {
       ],
     }
     // this.count = 0;
-=======
-        { 'id': 2, label: 'Паззлы', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false }
-      ]
-    }
->>>>>>> fix
   }
 
   toggleProp = (arr, id, propName) => {
@@ -140,7 +112,6 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-<<<<<<< HEAD
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
@@ -165,17 +136,6 @@ class LongStats extends React.Component {
     })
   }
 
-=======
-      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
-      return { items };
-    })
-  }
-
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
-  }
-
->>>>>>> fix
   getSum(arr) {
     let prev = 0;
     return arr.map((elem) => {
@@ -239,7 +199,6 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
-<<<<<<< HEAD
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
@@ -248,21 +207,10 @@ class LongStats extends React.Component {
               </div>
             </div>     
             </div>     
-=======
-            <div className="longStatsElem">
-            <BtnsBar items={items} showStats={this.showStats} />
-            </div>
-            
-          </div>
->>>>>>> fix
         </div>
       </React.Fragment>
     );
   }
 }
 
-<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats)(LongStats);
->>>>>>> fix

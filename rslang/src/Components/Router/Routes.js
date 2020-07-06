@@ -91,8 +91,13 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+<<<<<<< HEAD
     path: '/play-zone',
     component: PlayZonePage,
+=======
+    path: '/createanaccount',
+    component: CreateAccount,
+>>>>>>> fix after testAPI
     exact: true,
   },
   {
