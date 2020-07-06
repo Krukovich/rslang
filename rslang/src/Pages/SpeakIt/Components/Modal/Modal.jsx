@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { useState }  from 'react';
+import { Button } from 'react-bootstrap';
 
 const Modal = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div className="modal fade" id="result" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div className="modal-dialog modal-lg" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">Statistics</h5>
-            <span className="ml-5" id="modalLevel"></span>
-            <span className="ml-5" id="modalDate"></span>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body" id="modal">
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Button variant="primary" onClick={ handleShow }>
+        Launch demo modal
+      </Button>
+
+      <Modal show={ show } onHide={ handleClose }>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={ handleClose }>
+            Close
+          </Button>
+          <Button variant="primary" onClick={ handleClose }>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 
