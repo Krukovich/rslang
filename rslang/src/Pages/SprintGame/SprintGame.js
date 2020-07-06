@@ -5,90 +5,6 @@ import SprintCard from "../../Components/SprintCard/SprintCard";
 import StartScreen from "./StartScreen/StartScreen";
 import EndScreen from "./EndScreen/EndScreen";
 
-<<<<<<< HEAD
-import './SprintGame.scss';
-
-class SprintGame extends Component {
-  constructor() {
-    super();
-    this.state = {
-      gameStarted: false,
-      gameEnded: false,
-      counter: 60,
-      score: 0,
-      maxStreak: 0,
-      modifier: 1,
-      mixedArr: 0,
-      activeQuestion: 0,
-      mistakeCount: 0,
-      words: 0,
-    }
-    this.rightBtnRef = React.createRef();
-    this.wrongBtnRef = React.createRef();
-    this.selectRef = React.createRef();
-  }
-
-  async getWords(difficulty = this.props.difficulty) {
-    const responce = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}`);
-    const json = await responce.json();
-    this.setState({
-      words: json,
-    })
-    console.log('local state', this.state)
-    return json;
-  }
-
-  mixWords = () => {
-    const defaultArr = this.state.words.slice(0);
-    // alert(defaultArr[0].word)
-    let mixedArr = [];
-    defaultArr.map((a, i) => {
-      if (Math.random() > 0.3) {
-        let firstPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
-        let secondPart = Math.floor(Math.random() * Math.floor(defaultArr.length));
-        let isTrue = true;
-        if (firstPart === secondPart) {
-          isTrue = true;
-        } else {
-          isTrue = false;
-        }
-
-        mixedArr.push({
-          firstPartEng: defaultArr[firstPart].word,
-          secondPartRus: defaultArr[secondPart].wordTranslate,
-          isTrue: isTrue
-        });
-      } else {
-        mixedArr.push({
-          firstPartEng: defaultArr[i].word,
-          secondPartRus: defaultArr[i].wordTranslate,
-          isTrue: true
-        });
-      }
-
-    })
-    this.setState({
-      mixedArr: mixedArr
-    });
-  }
-
-  timer = () => {
-    const timer = setInterval(() => {
-      this.setState((prevState) => {
-        return {
-          counter: prevState.counter - 1,
-        }
-      });
-
-      if (!this.state.counter) {
-        // clearInterval(timer);
-        this.setState({
-          gameEnded: true
-        })
-      }
-    }, 1000);
-  }
-=======
 import "./SprintGame.scss";
 
 class SprintGame extends Component {
@@ -122,7 +38,6 @@ class SprintGame extends Component {
     console.log("local state", this.state);
     return json;
   }
->>>>>>> 02b62a2c25289d96ba5819538d9f40e2a929a097
 
   mixWords = () => {
     const defaultArr = this.state.words.slice(0);
@@ -202,55 +117,43 @@ class SprintGame extends Component {
       gameStarted: true,
       gameEnded: false,
     })
+  }
 
-    rightAnswerHandler = () => {
-      this.nextCard();
+  rightAnswerHandler = () => {
+    this.nextCard();
+    this.setState((prevState) => {
+      return {
+        maxStreak: prevState.maxStreak + 1,
+        score: prevState.score + 10 * prevState.modifier,
+      };
+    });
+
+    if (this.state.maxStreak === 3) {
       this.setState((prevState) => {
         return {
-          maxStreak: prevState.maxStreak + 1,
-          score: prevState.score + 10 * prevState.modifier,
-        };
-      });
-
-      if (this.state.maxStreak === 3) {
-        this.setState((prevState) => {
-          return {
-            modifier: prevState.modifier * 2,
-            maxStreak: 0,
-          };
-        });
-      }
-    };
-
-    wrongAnswerHandler = () => {
-      this.nextCard();
-      this.setState((prevState) => {
-        return {
-          mistakeCount: prevState.mistakeCount + 1,
-          modifier: 1,
+          modifier: prevState.modifier * 2,
           maxStreak: 0,
         };
       });
-      if (this.state.mistakeCount >= 2) {
-        this.setState({
-          gameEnded: true,
-        });
-      }
-    };
-
-<<<<<<< HEAD
-    difficultyHandler = event => {
-      const number = event.target.value;
-      this.props.onChangeDiff(number);
-      this.getWords(number);
-      localStorage.setItem('sprintDifficulty', number)
     }
+  };
 
-    componentDidMount() {
-      this.getWords();
+  wrongAnswerHandler = () => {
+    this.nextCard();
+    this.setState((prevState) => {
+      return {
+        mistakeCount: prevState.mistakeCount + 1,
+        modifier: 1,
+        maxStreak: 0,
+      };
+    });
+    if (this.state.mistakeCount >= 2) {
+      this.setState({
+        gameEnded: true,
+      });
+    }
+  };
 
-      this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
-=======
   nextCard = () => {
     if (this.state.activeQuestion + 1 >= this.state.mixedArr.length) {
       this.setState({
@@ -262,72 +165,9 @@ class SprintGame extends Component {
           activeQuestion: prevState.activeQuestion + 1,
         };
       });
->>>>>>> 02b62a2c25289d96ba5819538d9f40e2a929a097
     }
   };
 
-<<<<<<< HEAD
-  render() {
-    if (!this.state.gameStarted) {
-      return (
-        <div className="Sprint container mt-5">
-          <div className="row">
-            <div className="col-md-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
-              <div className="d-flex align-items-center">
-                <span className="mr-2">Сложность:</span>
-                <select ref={this.selectRef} onClick={this.difficultyHandler} className="d-inline-block">
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                  <option value="2">3</option>
-                  <option value="3">4</option>
-                  <option value="4">5</option>
-                  <option value="5">6</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <StartScreen gameStart={this.gameStart} />
-        </div>
-      )
-    } else if (this.state.gameEnded) {
-      return <EndScreen
-        score={this.state.score}
-        restart={this.gameRestart}
-      />
-    } else {
-      return (
-        <div className="Sprint container mt-5">
-          <div className="Sprint-Scoreboard row p-2">
-            <div className="col-md-12 d-flex justify-content-center">
-              <h3 className="Sprint-Score text-success">{this.state.score}</h3>
-            </div>
-          </div>
-          <div className="Sprint-Playboard row h-75">
-            <div className="col-md-4">
-            </div>
-            <div className="col-md-4 d-flex justify-content-center">
-              <SprintCard
-                rightBtnRef={this.rightBtnRef}
-                wrongBtnRef={this.wrongBtnRef}
-                mistakeCount={this.state.mistakeCount}
-                eng={this.state.mixedArr[this.state.activeQuestion].firstPartEng}
-                rus={this.state.mixedArr[this.state.activeQuestion].secondPartRus}
-                onclick={this.buttonClickHandler}
-              />
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <div className="Sprint-Tools row p-2 mt-1">
-            <div className="col-md-4"></div>
-            <div className="col-md-4 d-flex justify-content-center">
-              <h3 className="Sprint-Timer text-success">{this.state.counter}</h3>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-        </div >
-      )
-    }
-=======
   keyPushHandler = (props) => {
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyA" || event.code === "ArrowLeft") {
@@ -381,7 +221,7 @@ class SprintGame extends Component {
 
   componentDidMount() {
     this.getWords();
-  }
+  };
 
   render() {
     if (!this.state.gameStarted) {
@@ -448,24 +288,11 @@ class SprintGame extends Component {
           </div>
         </div>
       );
->>>>>>> 02b62a2c25289d96ba5819538d9f40e2a929a097
+    }
   }
-}
 }
 
 function mapStateToProps(state) {
-<<<<<<< HEAD
-  console.log('redux state', state)
-  return {
-    difficulty: state.sprintGame.difficulty
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onChangeDiff: number => dispatch({ type: 'CHANGE_DIFF', payload: number })
-  }
-=======
   console.log("redux state", state);
   return {
     difficulty: state.sprintGame.difficulty,
@@ -477,7 +304,6 @@ function mapDispatchToProps(dispatch) {
     onChangeDiff: (number) =>
       dispatch({ type: "CHANGE_DIFF", payload: number }),
   };
->>>>>>> 02b62a2c25289d96ba5819538d9f40e2a929a097
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SprintGame);
