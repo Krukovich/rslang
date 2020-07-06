@@ -100,7 +100,10 @@ const sourceCloseRoutes = [
 =======
     path: '/createanaccount',
     component: CreateAccount,
+<<<<<<< HEAD
 >>>>>>> fix after testAPI
+=======
+>>>>>>> fix after update
     exact: true,
   },
   {
