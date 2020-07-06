@@ -171,11 +171,12 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
-           </div> 
+           
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field"></div>
-            </div>         
+            </div>     
+            </div>     
         </div>
       </React.Fragment>
     );
