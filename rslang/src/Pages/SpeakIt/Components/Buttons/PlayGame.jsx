@@ -5,7 +5,7 @@ const PlayGame = ({ recordSound }) => {
     <button
       className="btn btn-info w-100"
       type="button"
-      onClick={ () => recordSound() }
+      onClick={ recordSound }
     >
       Запись слова
     </button>

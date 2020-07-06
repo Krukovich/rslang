@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { imageRender } from '../../service';
-import { LANGUAGE } from '../../constant';
+ 
+import { imageRender, playAudio } from '../../service';
+import { LANGUAGE, SOUND } from '../../constant';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
@@ -21,8 +21,8 @@ class SpeakIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      show: false,
       currentIndex: '',
-      isDisable: false,
       currentWord: '',
       inputValue: '',
       imageSrc: 'images/enjoy_small.png',
@@ -33,10 +33,6 @@ class SpeakIt extends React.Component {
 
   setCurrentIndex = (index) => {
     this.setState({ currentIndex: index })
-  }
-
-  setIsDisable = () => {
-    this.setState({ isDisable: !this.state.isDisable });
   }
 
   setCurrentWord = (word) => {
@@ -51,24 +47,33 @@ class SpeakIt extends React.Component {
     this.setState({ translate: word });
   }
 
+  handleShow = () => {
+    this.setState({ show: !this.state.show });
+  }
+
+  setWordDone = (index) => {
+    const words = [...this.state.words];
+    const word = { ...words[index], done: true };
+    words[index] = word;
+    this.setState({ words });
+  }
+
   renderWordButton = () => {
-    const { words, isDisable } = this.state;
+    const { words } = this.state;
 
     return words.map((item, index) => {
       return (
         <div className="col-6 col-sm-6 col-md-3 mt-2" key={ index }>
           <Button
-            isDisable={ isDisable }
             index={ index }
             word={ item }
             insertWordImageSrc={ this.setImageSrc }
             setTranslateWord={ this.setTranslateWord }
             setCurrentWord={ this.setCurrentWord }
             setCurrentIndex={ this.setCurrentIndex }
-            setIsDisable={ this.setIsDisable }
           />
         </div>
-      );
+      ); 
     });
   }
 
@@ -83,16 +88,12 @@ class SpeakIt extends React.Component {
       this.userWord = Array.from(event.results).map((res) => res[0]).map((res) => res.transcript).join('');
       this.setState({ inputValue: this.userWord });
       if (currentWord === this.userWord) {
-        this.setIsDisable();
-        // this.disabledBtn();
-        // this.insertStar();
-        // this.state[this.word].guessed += 1;
-        // this.saveState();
+        const index = this.state.words.findIndex((word) => word.word === currentWord );
+        this.setWordDone(index);
+        playAudio(SOUND.CORRECT);
       } else {
-        // this.state[this.word].missed += 1;
-        // this.saveState();
+        playAudio(SOUND.ERROR);
       }
-      // this.insertStateInModal();
     });
     recognition.start();
   }
@@ -149,9 +150,12 @@ class SpeakIt extends React.Component {
                 <PlayGame recordSound={ this.recordSound } />
               </div>
               <div className="col-12 col-md-3 mt-2 mb-5">
-                <button type="button" className="btn btn-info w-100" data-toggle="modal" data-target="#result">
-                  Results
-                </button>
+              <button
+                className="btn btn-info w-100"
+                onClick={ this.handleShow }
+              >
+                Статистика
+              </button>
               </div>
             </div>
           </div>

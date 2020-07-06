@@ -23,6 +23,12 @@ export const playExampleSound = (src) => {
   myAudio.play();
 }
 
+export const playAudio = (src) => {
+  const myAudio = new Audio();
+  myAudio.src = `../${src}`;
+  myAudio.play();
+}
+
 export const renderPlayString = (data, handlerChange) => {
   const regexp = /<b>([^<]+)<\/b>/;
   const word = data.textExample.match(regexp)[1];
