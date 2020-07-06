@@ -10,26 +10,21 @@ import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import Vocabulary from '../../Pages/Vocabulary/vocabulary';
-import { Start } from '../../Pages/Start/Start';
+import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
+import MinigamesPage from '../../Pages/MinigamesPage/MinigamesPage'
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import App from '../../Pages/MiniGames/Savanna/App';
-import {SavannaStartPage} from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
+import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 
-
 const sourceOpenRoutes = [
-  {
-    path: '/start',
-    component: Start,
-    exact: true,
-  },
   {
     path: '/logout',
     component: LogOut,
     exact: true,
   },
   {
-    path: '/mainpage',
+    path: '/',
     component: MainPage,
     exact: true,
   },
@@ -49,11 +44,6 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
-    path: '/',
-    component: Start,
-    exact: true,
-  },
-  {
     path: '/createanaccount',
     component: CreateAccount,
     exact: true,
@@ -61,11 +51,6 @@ const sourceOpenRoutes = [
 ];
 
 const sourceCloseRoutes = [
-  {
-    path: '/main',
-    component: MainPage,
-    exact: true,
-  },
   {
     path: '/mainpage',
     component: MainPage,
@@ -78,7 +63,7 @@ const sourceCloseRoutes = [
   },
   {
     path: '/minigames',
-    component: () => <h1>Mini games</h1>,
+    component: MinigamesPage,
     exact: true,
   },
   {
@@ -98,10 +83,12 @@ const sourceCloseRoutes = [
   },
   {
     path: '/long-stats',
-    component: () => <LongStats dataLabels={['день 1', 'день 2', 'день 3',
-      'день 4', 'день 5', 'день 6', 'день 7', 'день 8', 'день 9', 'день 10']}
-      totalNewWords={[3, 5, 7, 9, 10, 16, 17, 20, 22, 28]} totalWords={80}
-      dailyNew={[4, 2, 7, 5, 5, 2, 6, 5, 4, 5]} />,
+    component: () => <LongStats totalWords={80} />,
+    exact: true,
+  },
+  {
+    path: '/createanaccount',
+    component: CreateAccount,
     exact: true,
   },
   {
@@ -112,6 +99,11 @@ const sourceCloseRoutes = [
   {
     path: '/SprintGame',
     component: SprintGame,
+    exact: true,
+  },
+  {
+    path: '/FortuneGame',
+    component: FortuneGame,
     exact: true,
   },
   {
@@ -129,8 +121,8 @@ export function RouteMap() {
     <div className="router">
 
       <Switch>
-        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a'+key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b'+key} />)}
+        {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a' + key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b' + key} />)}
       </Switch>
     </div>
 

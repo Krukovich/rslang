@@ -1,5 +1,5 @@
 const initialState = {
-    difficulty: 0,
+    difficulty: localStorage.getItem('sprintDifficulty') === null ? 0 : localStorage.getItem('sprintDifficulty'),
 }
 
 export function sprintGameReducer(state = initialState, action) {
