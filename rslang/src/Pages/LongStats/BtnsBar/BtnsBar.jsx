@@ -18,6 +18,7 @@ const BtnsBar = ({ items, showStats }) => {
 
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
     
 =======
@@ -28,5 +29,8 @@ const BtnsBar = ({ items, showStats }) => {
 
 >>>>>>> feat: long stats from redux
 >>>>>>> feat: long stats from redux
+=======
+  }
+>>>>>>> fix after update
 export default BtnsBar;
 

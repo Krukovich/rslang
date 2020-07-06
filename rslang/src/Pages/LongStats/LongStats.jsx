@@ -9,18 +9,11 @@ import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
-<<<<<<< HEAD
   
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
     difficulty: difficulty,
-=======
-  const { counter } = store.sprintGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-    counter: counter,
->>>>>>> feat: long stats from redux
 }}
 
 const changeMiniStats = {
@@ -62,12 +55,7 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-      clicked: false,
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> fix after testAPI
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -88,7 +76,6 @@ class LongStats extends React.Component {
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
         { 'id': 2, label: 'Спринт', 'visible': false },
-<<<<<<< HEAD
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
@@ -99,10 +86,6 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-=======
-        { 'id': 3, label: 'Саванна', 'visible': false }
-      ]
->>>>>>> feat: long stats from redux
     }
     // this.count = 0;
   }
@@ -125,10 +108,10 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 2 :
-<<<<<<< HEAD
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.state.count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 
@@ -137,11 +120,12 @@ class LongStats extends React.Component {
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 >>>>>>> feat: long stats from redux
 >>>>>>> feat: long stats from redux
+=======
+>>>>>>> fix after update
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
-<<<<<<< HEAD
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
@@ -154,10 +138,6 @@ class LongStats extends React.Component {
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
           break;  
-=======
-        default: 
-          break; 
->>>>>>> feat: long stats from redux
       }   
       return { items };  
     })
@@ -222,19 +202,12 @@ class LongStats extends React.Component {
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />           
             <div className="longStatsElem">
-<<<<<<< HEAD
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
               <MiniStats count={this.state.count} />
               </div>
             </div>     
             </div>     
-=======
-            <BtnsBar items={items} showStats={this.showStats} />
-            <div className="longStatsElem-field"></div>
-            </div>         
-          </div>
->>>>>>> feat: long stats from redux
         </div>
       </React.Fragment>
     );
