@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Card from '../../Components/Card/Card';
 import './MainPage.scss'
 
-import pic1 from './pic1.jpg';
+import pic1 from './assets/pic1.jpg';
 
 class MainPage extends Component {
   constructor() {

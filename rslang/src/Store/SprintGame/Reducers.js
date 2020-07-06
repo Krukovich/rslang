@@ -1,7 +1,15 @@
 const initialState = {
-    counter: 10,
+    difficulty: localStorage.getItem('sprintDifficulty') === null ? 0 : localStorage.getItem('sprintDifficulty'),
 }
 
 export function sprintGameReducer(state = initialState, action) {
-    return state;
+
+    switch (action.type) {
+        case 'CHANGE_DIFF':
+            return {
+                difficulty: action.payload
+            }
+        default:
+            return state
+    }
 }
