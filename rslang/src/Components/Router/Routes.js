@@ -99,14 +99,11 @@ const sourceCloseRoutes = [
   {
     path: '/long-stats',
     component: () => <LongStats totalWords={80} />,
-<<<<<<< HEAD
-=======
     exact: true,
   },
   {
     path: '/createanaccount',
     component: CreateAccount,
->>>>>>> b951d1bdcf7341b957fe1c67b1a6939a3d4486ed
     exact: true,
   },
   {

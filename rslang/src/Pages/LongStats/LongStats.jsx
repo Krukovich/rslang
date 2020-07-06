@@ -48,11 +48,7 @@ class LongStats extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-<<<<<<< HEAD
       wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-      wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> b951d1bdcf7341b957fe1c67b1a6939a3d4486ed
       labels: [], // props.dataLabels,
       datasets: [
         {
