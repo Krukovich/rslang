@@ -1,8 +1,9 @@
-import { combineReducers } from "redux";
-import { playZonePageReducer } from "./PlayZonePage/reducers";
+import { combineReducers } from 'redux';
+import { playZonePageReducer } from './PlayZonePage/reducers';
+import { sprintGameReducer } from './SprintGame/Reducers'
+import { fortuneGameReducer } from './FortuneGame/Reducers'
 import { savannaReducer } from "./Savanna/reducers";
-import { sprintGameReducer } from "./SprintGame/Reducers";
-import * as Actions from "./Actions";
+import * as Actions from './Actions';
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -103,4 +104,5 @@ export default combineReducers({
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
   // miniGamesStats: statsReducer,
+  fortuneGame: fortuneGameReducer,
 });

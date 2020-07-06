@@ -107,6 +107,18 @@ class SprintGame extends Component {
     }
   };
 
+
+
+  gameStart = props => {
+    this.mixWords();
+    this.timer();
+    this.keyPushHandler();
+    this.setState({
+      gameStarted: true,
+      gameEnded: false,
+    })
+  }
+
   rightAnswerHandler = () => {
     this.nextCard();
     this.setState((prevState) => {
@@ -209,7 +221,7 @@ class SprintGame extends Component {
 
   componentDidMount() {
     this.getWords();
-  }
+  };
 
   render() {
     if (!this.state.gameStarted) {
