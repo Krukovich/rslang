@@ -55,7 +55,12 @@ class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+=======
+      clicked: false,
+      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
+>>>>>>> fix after testAPI
       labels: [], // props.dataLabels,
       datasets: [
         {
