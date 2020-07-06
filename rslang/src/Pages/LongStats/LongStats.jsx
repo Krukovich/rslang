@@ -185,9 +185,13 @@ class LongStats extends React.Component {
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
+<<<<<<< HEAD
               <div className="longStatsElem-field">
               <MiniStats count={this.state.count} />
               </div>
+=======
+              <div className="longStatsElem-field"></div>
+>>>>>>> 98637c0... fix after update
             </div>     
             </div>     
         </div>
