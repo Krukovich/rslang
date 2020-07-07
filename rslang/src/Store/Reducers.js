@@ -94,6 +94,11 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         deleteWords: [...state.deleteWords, action.payload],
       };
+    case Actions.CHANGE_ALL_SETTINGS:
+      return {
+        ...state,
+        ...action.payload,
+      };
   }
   return state;
 };

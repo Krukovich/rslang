@@ -17,6 +17,7 @@ import {
   setShowBtnDifficultWord,
   setShowWordTranscription,
   setPlayExampleSound,
+  setAllSettings,
 } from "../../Store/Actions";
 
 const mapStateToProps = (store) => {
@@ -62,11 +63,22 @@ const mapActionsToProps = {
   setShowBtnDifficultWord,
   setShowWordTranscription,
   setPlayExampleSound,
+  setAllSettings,
 };
 
 class Settings extends React.Component {
   settings = {
-    fdfd: "123",
+    level: this.props.level,
+    playExampleSound: this.props.playExampleSound,
+    showTranslateWord: this.props.showTranslateWord,
+    showExampleString: this.props.showExampleString,
+    showExplanationString: this.props.showExplanationString,
+    showWordTranscription: this.props.showWordTranscription,
+    showWordImage: this.props.showWordImage,
+    showBtnShowAgreeAnswer: this.props.showBtnShowAgreeAnswer,
+    showBtnDeleteWord: this.props.showBtnDeleteWord,
+    showBtnDifficultWord: this.props.showBtnDifficultWord,
+    newWordsCount: this.props.newWordsCount,
   };
 
   toggle = (key) => {
@@ -84,18 +96,25 @@ class Settings extends React.Component {
     if (key === "level" || key === "newWordsCount") {
       return (e) => {
         this.settings[key] = e.target.value;
-        console.log(this.settings);
       };
     }
     return (e) => {
       this.settings[key] = e.target.checked;
-      console.log(this.settings);
     };
   };
 
+  sendSettings = () => {
+    fetchAPI("setSettings", this.settings).then((res) => {
+      if (res.status === 200) {
+        res.json().then((data) => {
+          setAllSettings(data.optional);
+          console.log(data.optional);
+        });
+      }
+    });
+  };
+
   render() {
-    // fetchAPI('setSettings', this.settings)
-    fetchAPI("getSettings");
     return (
       <React.Fragment>
         <div className="container">
@@ -110,7 +129,7 @@ class Settings extends React.Component {
                 <CheckBox
                   text="Показывать перевод слов"
                   isChecked={this.props.showTranslateWord}
-                  onChange={this.changesSettings("ShowTranslateWord")}
+                  onChange={this.changesSettings("showTranslateWord")}
                 />
                 <CheckBox
                   text="Проигрывать слово автоматически"
@@ -120,17 +139,17 @@ class Settings extends React.Component {
                 <CheckBox
                   text="Пердложения с объяснением значения слова"
                   isChecked={this.props.showExplanationString}
-                  onChange={this.changesSettings("ShowExplanationString")}
+                  onChange={this.changesSettings("showExplanationString")}
                 />
                 <CheckBox
                   text="Предложение с примером использования слова"
                   isChecked={this.props.showExampleString}
-                  onChange={this.changesSettings("ShowExampleString")}
+                  onChange={this.changesSettings("showExampleString")}
                 />
                 <CheckBox
                   text="Показать транскрипцию слова"
                   isChecked={this.props.showWordTranscription}
-                  onChange={this.changesSettings("ShowWordTranscription")}
+                  onChange={this.changesSettings("showWordTranscription")}
                 />
                 <CheckBox
                   text="Показывать изображение на карточке"
@@ -140,17 +159,17 @@ class Settings extends React.Component {
                 <CheckBox
                   text='Кнопка "Показать ответ"'
                   isChecked={this.props.showBtnShowAgreeAnswer}
-                  onChange={this.changesSettings("ShowBtnAgreeAnswer")}
+                  onChange={this.changesSettings("showBtnShowAgreeAnswer")}
                 />
                 <CheckBox
                   text='Кнопка "Удалить"'
                   isChecked={this.props.showBtnDeleteWord}
-                  onChange={this.changesSettings("ShowBtnDeleteWord")}
+                  onChange={this.changesSettings("showBtnDeleteWord")}
                 />
                 <CheckBox
                   text='Добавить кнопку "Поместить в сложное"'
                   isChecked={this.props.showBtnDifficultWord}
-                  onChange={this.changesSettings("ShowBtnDifficultWord")}
+                  onChange={this.changesSettings("showBtnDifficultWord")}
                 />
                 <TextInput
                   text="Количество слов, которое хотите выучить"
@@ -158,7 +177,7 @@ class Settings extends React.Component {
                   onChange={this.changesSettings("newWordsCount")}
                 />
               </div>
-              <button>Сохранить</button>
+              <button onClick={this.sendSettings}>Сохранить</button>
             </div>
           </div>
         </div>

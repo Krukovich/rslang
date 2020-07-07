@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
@@ -8,8 +8,9 @@ import * as Const from "../../../constant";
 import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
-import { setDayLearningWords } from '../../../Store/Actions';
-import { getWords, saveWordsInLocalStorage } from '../../../service';
+import { getRandomPage } from "../../../service";
+import { setDayLearningWords, setAllSettings } from "../../../Store/Actions";
+import { getWords, saveWordsInLocalStorage } from "../../../service";
 
 import "./Login.scss";
 
@@ -18,13 +19,13 @@ const mapStateToProps = (store) => {
     level: store.appSettings.level,
     newWordsCount: store.appSettings.newWordsCount,
     dayLearningWords: store.appSettings.dayLearningWords,
-  }
-}
+  };
+};
 
 const mapActionToProps = {
   setDayLearningWords,
-}
-
+  setAllSettings,
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -51,18 +52,26 @@ class Login extends React.Component {
     });
     this.loginResult(content);
     if (content.message === Const.LOGIN.ON) {
-      this.requestDayLearningWords()
+      this.requestDayLearningWords();
+      this.requestSettings();
     }
   };
 
-  
+  requestSettings = async () => {
+    const results = await fetchAPI("getSettings").then((data) => {
+      console.log("vtyz");
+      console.log(data);
+      this.props.setAllSettings(data);
+    });
+  };
+
   requestDayLearningWords = async () => {
     const words = await getWords(this.props.level, this.props.newWordsCount);
-      if (words.length !== 0) {
-        this.props.setDayLearningWords(words);
-        saveWordsInLocalStorage(words);
-      }
-      console.log(this.props.dayLearningWords)
+    if (words.length !== 0) {
+      this.props.setDayLearningWords(words);
+      saveWordsInLocalStorage(words);
+    }
+    console.log(this.props.dayLearningWords);
   };
 
   loginResult = (answer) => {

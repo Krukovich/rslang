@@ -14,6 +14,7 @@ export const CHANGE_DAY_LEARNING_WORDS = "CHANGE_DAY_LEARNING_WORDS";
 export const CHANGE_DELETE_WORDS = "CHANGE_DELETE_WORDS";
 export const CHANGE_SHOW_BTN_DIFFICULT_WORDS =
   "CHANGE_SHOW_BTN_DIFFICULT_WORDS";
+export const CHANGE_ALL_SETTINGS = "CHANGE_ALL_SETTINGS";
 
 export const setSitingLevel = (level) => ({
   type: CHANGE_DIFFICULT_LEVEL,
@@ -83,4 +84,9 @@ export const setDayLearningWords = (array) => ({
 export const setDeleteWords = (array) => ({
   type: CHANGE_DELETE_WORDS,
   payload: array,
+});
+
+export const setAllSettings = (object) => ({
+  type: CHANGE_ALL_SETTINGS,
+  payload: object,
 });
