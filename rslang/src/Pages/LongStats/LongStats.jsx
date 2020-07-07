@@ -93,15 +93,25 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ],
+<<<<<<< HEAD
+=======
+
+>>>>>>> mini stats test
       count: [
         {"timestamp":1593114322795,"newWords":7},
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       
 >>>>>>> fix: data from server
+=======
+      
+=======
+>>>>>>> mini stats test
+>>>>>>> mini stats test
     }
     // this.count = 0;
   }
@@ -125,13 +135,20 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
+<<<<<<< HEAD
           state.count = this.state.count;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
 
 =======
 >>>>>>> fix: data from server
+=======
+=======
+          state.count = this.props.counter;
+>>>>>>> mini stats test
+>>>>>>> mini stats test
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -224,4 +241,12 @@ class LongStats extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
+=======
+<<<<<<< HEAD
+export default connect(miniGameStats, changeMiniStats)(LongStats);
+=======
+export default connect(miniGameStats, changeMiniStats)(LongStats);
+>>>>>>> mini stats test
+>>>>>>> mini stats test
