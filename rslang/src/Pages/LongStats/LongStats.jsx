@@ -114,8 +114,10 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 2 :
+
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.state.count;
+
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
@@ -123,7 +125,9 @@ class LongStats extends React.Component {
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
+
           console.log(`${this.props.minigameSavannaStats}`);
+
           break;  
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
