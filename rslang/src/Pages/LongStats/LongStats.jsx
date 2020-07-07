@@ -4,16 +4,21 @@ import { Line } from 'react-chartjs-2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import './longStats.scss';
 import BtnsBar from './BtnsBar/BtnsBar';
+import { setSavannaStats } from '../../Store/Savanna/actions';
+import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
-  const { counter } = store.sprintGame;
+  
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
-    counter: counter,
     difficulty: difficulty,
 }}
+
+const changeMiniStats = {
+  setSavannaStats,
+}
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -45,6 +50,12 @@ const ProgressLabel = () => {
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
   )
 }
+
+// const ShowTest = ({ count }) => {
+//   return(
+//     <p>{count}</p>
+//   )
+// }
 
 class LongStats extends React.Component {
   constructor(props) {
@@ -80,8 +91,10 @@ class LongStats extends React.Component {
         { 'id': 4, label: 'Паззл', 'visible': false },
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
-      ]
+      ],
+      count: [1,2,3],
     }
+    // this.count = 0;
   }
 
   toggleProp = (arr, id, propName) => {
@@ -103,21 +116,34 @@ class LongStats extends React.Component {
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
+          state.count = this.props.counter;
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
+        case 4 :
+          console.log(`Clicked ${id} ${items[id-1].label}`);
+          this.props.setSavannaStats([10,20,30]);
+          console.log(`${this.props.minigameSavannaStats}`);
+          break;  
+        case 5 :
+          state.count = (state.count).map(elem => elem+2);
+          break;
         case 6 : 
-        console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`)  
+          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
+          break;  
       }   
       return { items };  
     })
   }
 
+<<<<<<< HEAD
   asideToggle = () => {
     this.setState({ clicked: !this.state.clicked });
   }
 
+=======
+>>>>>>> mini stats from redux
   getSum(arr) {
     let prev = 0;
     return arr.map((elem) => {
@@ -191,7 +217,9 @@ class LongStats extends React.Component {
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
-              <div className="longStatsElem-field"></div>
+              <div className="longStatsElem-field">
+              <MiniStats count={this.state.count} />
+              </div>
             </div>     
             </div>     
 >>>>>>> fix after update
@@ -201,4 +229,4 @@ class LongStats extends React.Component {
   }
 }
 
-export default connect(miniGameStats)(LongStats);
+export default connect(miniGameStats, changeMiniStats)(LongStats);
