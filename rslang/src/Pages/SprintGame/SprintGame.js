@@ -217,6 +217,7 @@ class SprintGame extends Component {
     const number = event.target.value;
     this.props.onChangeDiff(number);
     this.getWords(number);
+    localStorage.setItem('sprintDifficulty', number);
   };
 
   componentDidMount() {
