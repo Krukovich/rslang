@@ -28,13 +28,18 @@ import './longStats.scss';
 >>>>>>> mini games BTNs
 import BtnsBar from './BtnsBar/BtnsBar';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { setSavannaStats } from '../../Store/Savanna/actions';
 =======
 >>>>>>> fix: data from server
+=======
+import { setSavannaStats } from '../../Store/Savanna/actions';
+>>>>>>> mini stats from redux
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
+<<<<<<< HEAD
 <<<<<<< HEAD
   
   const { difficulty } = store.fortuneGame;
@@ -60,13 +65,19 @@ const miniGameStats = (store) => {
     newWordsCount: newWordsCount,
 =======
   const { counter } = store.sprintGame;
+=======
+  
+>>>>>>> mini stats from redux
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
-    counter: counter,
     difficulty: difficulty,
 >>>>>>> add: buttons
 }}
+
+const changeMiniStats = {
+  setSavannaStats,
+}
 
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -111,17 +122,23 @@ const ProgressLabel = () => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
+=======
+>>>>>>> mini stats from redux
 // const ShowTest = ({ count }) => {
 //   return(
 //     <p>{count}</p>
 //   )
 // }
 
+<<<<<<< HEAD
 =======
 >>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
 >>>>>>> fix
+=======
+>>>>>>> mini stats from redux
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
@@ -158,6 +175,7 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
 <<<<<<< HEAD
+<<<<<<< HEAD
       ],
 <<<<<<< HEAD
 =======
@@ -188,6 +206,10 @@ class LongStats extends React.Component {
       ]
 >>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
 >>>>>>> fix
+=======
+      ],
+      count: [1,2,3],
+>>>>>>> mini stats from redux
     }
     // this.count = 0;
   }
@@ -218,6 +240,7 @@ class LongStats extends React.Component {
 <<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
+<<<<<<< HEAD
 
 =======
 >>>>>>> fix: data from server
@@ -226,17 +249,24 @@ class LongStats extends React.Component {
           state.count = this.props.counter;
 >>>>>>> mini stats test
 >>>>>>> mini stats test
+=======
+          state.count = this.props.counter;
+>>>>>>> mini stats from redux
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> mini stats from redux
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
           console.log(`${this.props.minigameSavannaStats}`);
           break;  
         case 5 :
+<<<<<<< HEAD
           state.count = (state.count).map(elem => elem.newWords + 2);
           break;
         case 6 : 
@@ -247,6 +277,13 @@ class LongStats extends React.Component {
         case 6 : 
         console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`)  
 >>>>>>> add: buttons
+=======
+          state.count = (state.count).map(elem => elem+2);
+          break;
+        case 6 : 
+          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
+          break;  
+>>>>>>> mini stats from redux
       }   
       return { items };  
 =======
@@ -256,6 +293,16 @@ class LongStats extends React.Component {
     })
   }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  asideToggle = () => {
+    this.setState({ clicked: !this.state.clicked });
+  }
+
+=======
+>>>>>>> mini stats from redux
+>>>>>>> mini stats from redux
   getSum(arr) {
     let prev = 0;
     return arr.map((elem) => {
@@ -327,6 +374,7 @@ class LongStats extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
 <<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
@@ -340,3 +388,6 @@ export default connect(miniGameStats, changeMiniStats)(LongStats);
 =======
 export default connect(miniGameStats)(LongStats);
 >>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
+=======
+export default connect(miniGameStats, changeMiniStats)(LongStats);
+>>>>>>> mini stats from redux

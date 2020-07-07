@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import MiniStatsItem from '../MiniStatsItem/MiniStatsItem';
 
 const MiniStats = ({ count }) => {
@@ -16,5 +17,13 @@ const MiniStats = ({ count }) => {
 	});
 	return (<ul>{elems}</ul>)
 }
+=======
+
+const MiniStats = ({ count }) => {
+    return(
+      <p>{count}</p>
+    )
+  }
+>>>>>>> mini stats from redux
 
 export default MiniStats;  
