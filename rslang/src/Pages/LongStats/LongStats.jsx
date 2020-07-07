@@ -8,9 +8,11 @@ import BtnsBar from './BtnsBar/BtnsBar';
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
   const { counter } = store.sprintGame;
+  const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
     counter: counter,
+    difficulty: difficulty,
 }}
 
 function getCookie(name) {
@@ -74,7 +76,10 @@ class LongStats extends React.Component {
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
         { 'id': 2, label: 'Спринт', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false }
+        { 'id': 3, label: 'Саванна', 'visible': false },
+        { 'id': 4, label: 'Паззл', 'visible': false },
+        { 'id': 5, label: 'Скажи Слово', 'visible': false },
+        { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ]
     }
   }
@@ -102,8 +107,8 @@ class LongStats extends React.Component {
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
-        default: 
-          break; 
+        case 6 : 
+        console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`)  
       }   
       return { items };  
     })
