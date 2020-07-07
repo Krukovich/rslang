@@ -62,6 +62,8 @@ class PlayZonePage extends React.Component {
 }
     this.difficultWordId = '';
     this.agreeCountAnswer = 0;
+    this.agreeRow = 0;
+    this.agreeStep = 0;
   }
 
   incrementPlayStep = () => {
@@ -129,10 +131,13 @@ class PlayZonePage extends React.Component {
         input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
         this.agreeCountAnswer += 1;
+        this.agreeStep += 1;
+        this.incrementAgreeRow();
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
         }
+        this.agreeStep = 0;
         input.value = agreeWord;
         input.classList.remove('PlayCard_Agree');
         input.classList.add('PlayCard_Mistake');
@@ -157,6 +162,12 @@ class PlayZonePage extends React.Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  incrementAgreeRow = () => {
+    if (this.agreeStep > this.agreeRow) {
+      this.agreeRow += 1;
+    }
+  }
+
   changeAnswer = () => {
     const {
       agreeWord,
@@ -176,10 +187,13 @@ class PlayZonePage extends React.Component {
         this.input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
         this.agreeCountAnswer += 1;
+        this.agreeStep += 1;
+        this.incrementAgreeRow();
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
         }
+        this.agreeStep = 0;
         this.input.value = agreeWord;
         this.input.classList.remove('PlayCard_Agree');
         this.input.classList.add('PlayCard_Mistake');
@@ -264,6 +278,7 @@ class PlayZonePage extends React.Component {
             total={ this.state.cards.length }
             right={ (this.agreeCountAnswer / this.state.cards.length) * 100 }
             newWords={ this.state.cards.length }
+            rightInArrow={ this.agreeRow }
           />
         </div>
         }
