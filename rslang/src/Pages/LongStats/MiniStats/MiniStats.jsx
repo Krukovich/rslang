@@ -1,9 +1,16 @@
 import React from 'react';
+import MiniStatsItem from '../MiniStatsItem/MiniStatsItem';
 
 const MiniStats = ({ count }) => {
-    return(
-      <p>{count}</p>
-    )
-  }
+	const elems = count.map((item) => {
+		const { timestamp, newWords } = item;
+		return (
+			<MiniStatsItem
+				timestamp={timestamp}
+				newWords={newWords} />
+		)
+	});
+	return (<ul>{elems}</ul>)
+}
 
 export default MiniStats;  
