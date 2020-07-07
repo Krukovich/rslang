@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import { setDayLearningWords } from '../../Store/Actions';
-import { getWords } from '../../service';
+import { getWords, saveWordsInLocalStorage } from '../../service';
 import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
@@ -144,7 +144,10 @@ function PrivateRoute({ component: Component, ...rest }) {
       {...rest}
       render={(props) => {
         if (CheckLogin()) {
-          getWords(rest.level, rest.newWordsCount).then((words) => rest.setDayLearningWords(words));
+          getWords(rest.level, rest.newWordsCount).then((words) => {
+            rest.setDayLearningWords(words);
+            saveWordsInLocalStorage(words);
+          });
           return <Component {...props} />
         } else {
           return <Redirect to="/" />

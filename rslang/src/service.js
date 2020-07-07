@@ -26,7 +26,7 @@ export const playExampleSound = (src) => {
 export const renderPlayString = (data, handlerChange) => {
   const regexp = /<b>([^<]+)<\/b>/;
   const word = data.textExample.match(regexp)[1];
-  const inputStyle = { width: `${ word.length }5px` };
+  const inputStyle = { width: `${ word.length }9px` };
   const input =
     <span className="pl-1">
       <input
