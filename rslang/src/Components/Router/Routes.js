@@ -69,6 +69,7 @@ const sourceCloseRoutes = [
   {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     path: '/vocabulary',
 =======
     path: '/vocabularyrouter',
@@ -76,6 +77,9 @@ const sourceCloseRoutes = [
 =======
     path: '/изучаемые',
 >>>>>>> fix: routing in VocabularyRouter & add blank line at the end of the files
+=======
+    path: '/learning-words',
+>>>>>>> refactor: translate link path in vocabulary routing to english
     component: VocabularyRouter,
     exact: true,
   },
