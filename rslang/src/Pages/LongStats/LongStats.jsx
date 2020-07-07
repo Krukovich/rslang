@@ -87,7 +87,6 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ],
-
       count: [
         {"timestamp":1593114322795,"newWords":7},
         {"timestamp":1593224622795,"newWords":2},

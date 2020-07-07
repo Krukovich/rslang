@@ -5,6 +5,7 @@ import { fortuneGameReducer } from './FortuneGame/Reducers'
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from './Actions';
 
+
 const initialState = {
   level: 1, // number indicating difficult level
   playExampleSound: true, // play example words after selected agree word
