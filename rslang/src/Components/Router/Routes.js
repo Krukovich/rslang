@@ -68,10 +68,14 @@ const sourceCloseRoutes = [
   },
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
     path: '/vocabulary',
 =======
     path: '/vocabularyrouter',
 >>>>>>> refactor: remove unnecessary function playExampleSound
+=======
+    path: '/изучаемые',
+>>>>>>> fix: routing in VocabularyRouter & add blank line at the end of the files
     component: VocabularyRouter,
     exact: true,
   },
