@@ -1,9 +1,11 @@
-import React, { Component, Children } from "react";
+import React, { Component } from "react";
+import {withRouter} from "react-router-dom";
+
 import { Sidebar } from "../../Components/Sidebar/Sidebar";
 import Header from "../../Components/Header/Header";
 import { getCookie } from "../../Components/Tools/GetCoocke";
 
-export class AppWrapper extends Component {
+export class AppWrapperCmp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,10 +14,8 @@ export class AppWrapper extends Component {
     this.asideToggle = this.asideToggle.bind(this);
     this.arrayOfException = [
       "/",
-      "/login",
       "/createanaccount",
       "/logout",
-      "/start",
     ];
   }
 
@@ -59,3 +59,5 @@ export class AppWrapper extends Component {
       : this.HarSbarLayout();
   }
 }
+
+export const AppWrapper = withRouter(AppWrapperCmp);

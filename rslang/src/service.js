@@ -10,7 +10,7 @@ export const getWords = (group, numberOfWords) => {
   for (let i = 0; i < count; i += 1) {
     proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ i }`).then((res) => res.json()));
   }
-  return Promise.allSettled(proms).then((wordLists) => wordLists.flat());
+  return Promise.allSettled(proms).then((wordLists) => wordLists.flatMap((wordList) => wordList.value).slice(0, numberOfWords));
 }
 
 export const imageRender = (src) => {

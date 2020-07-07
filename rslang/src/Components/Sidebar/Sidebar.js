@@ -14,10 +14,10 @@ export const Sidebar = (props) => {
         <aside className={asideClass.class}>
             <ul className="nav nav-pills flex-column align-items-center">
                 <NavItem href='/' title='Главная' />
-                <NavItem href='/playzone' title='Изучение слов' />
+                <NavItem href='/play-zone' title='Изучение слов' />
                 <NavItem href='/long-stats' title='Статистика' />
                 <NavItem href='/vocabulary' title='Словарь' />
-                <NavItem href='/minigames' title='Мини игры' />
+                <NavItem href='/mini-games' title='Мини игры' />
                 <NavItem href='/promo' title='Промо' />
                 <NavItem href='/about' title='Команда' />
                 <NavItem href='/settings' title='Настройки' />
