@@ -1,12 +1,16 @@
 canvas {
-  background-color: lemonchiffon;
+    background-color: lemonchiffon;
 }
 
 .longStatsElem {
-  margin-top: 3rem;
-
-  &-label {
-    margin-top: 1.5rem;
-    font-family: cursive;
-  }
+    margin: 3rem auto;
+    &-label {
+        margin-top: 1.5rem;
+        font-family: cursive;
+    }
+    &-field {
+        height: 5rem;
+        width: 20rem;
+        background-color: lavender;
+    }
 }
