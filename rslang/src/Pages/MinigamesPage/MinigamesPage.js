@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import Card from '../../Components/Card/Card';
-import './MiniGamesPage.scss'
+import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
-import FortuneLogo from './assets/logo-turbo.jpg'
+import FortuneLogo from './assets/logo-turbo.jpg';
 
 class MiniGamesPage extends Component {
     constructor() {
