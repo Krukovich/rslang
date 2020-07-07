@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 import wordCards from './vocabulary-data';
-import Posts from './Posts/Posts';
+import WordsToLearn from './WordsToLearn/WordsToLearn';
 import Pagination from './Pagination/Pagination';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (store) => {
+  return {
+    difficultWords: store.appSettings.difficultWords,
+    languageLevel: store.appSettings.level,
+  }
+}
 
 
-const Vocabulary = () => {
+const Vocabulary = (props) => {
   const [posts, setPosts] = useState([]);
-  const [currentLanguageLevel] = useState(1);
+  const [currentLanguageLevel] = useState(props.languageLevel);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(30);
 
@@ -20,6 +28,17 @@ const Vocabulary = () => {
   }, []);
 
 
+  // remove words for learn into deleted words
+  const remove = (index) => {
+    const newArr = [
+      ...wordCards[currentLanguageLevel].slice(0, index),
+      ...wordCards[currentLanguageLevel].slice(index + 1)
+    ];
+
+    setPosts(newArr);
+  }
+
+
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -27,21 +46,13 @@ const Vocabulary = () => {
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  
+
   return (
-    <React.Fragment>
-      <div className='container pt-5'>
-        <div className="row pt-5">
-          <div className="col-12">
-            <Posts posts={currentPost} />
-          </div>
-          <div className="col-12">
-            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+    <div className='container mt-5'>
+      <WordsToLearn posts={currentPost} remove={remove} />
+      <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+    </div>
   );
 }
 
-export default Vocabulary;
+export default connect(mapStateToProps)(Vocabulary);
