@@ -3,7 +3,6 @@ import RouteMap from "./Components/Router/Routes";
 import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
 
 
-
 const App = () => {
   return (
     <AppWrapper>
