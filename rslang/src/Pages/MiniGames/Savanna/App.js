@@ -5,7 +5,7 @@ import Quiz from './containers/Quiz/Quiz'
 class App extends Component {
   
   render() {
-console.log(this.props)
+console.log('app', this.props)
     return (
       <Layout>
         
