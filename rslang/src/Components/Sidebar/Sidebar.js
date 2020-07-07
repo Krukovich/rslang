@@ -10,6 +10,7 @@ export const Sidebar = (props) => {
     asideClass.class = 'aside flex-shrink-1 vh-100 p-5 bg-secondary position-fixed';
   }
 
+<<<<<<< HEAD
   return (
     <aside className={asideClass.class}>
       <ul className="nav nav-pills flex-column align-items-center">
@@ -24,4 +25,20 @@ export const Sidebar = (props) => {
       </ul>
     </aside>
   )
+=======
+    return (
+        <aside className={asideClass.class}>
+            <ul className="nav nav-pills flex-column align-items-center">
+                <NavItem href='/' title='Главная' />
+                <NavItem href='/playzone' title='Изучение слов' />
+                <NavItem href='/long-stats' title='Статистика' />
+                <NavItem href='/vocabularyrouter' title='Словарь' />
+                <NavItem href='/minigames' title='Мини игры' />
+                <NavItem href='/promo' title='Промо' />
+                <NavItem href='/about' title='Команда' />
+                <NavItem href='/settings' title='Настройки' />
+            </ul>
+        </aside>
+    )
+>>>>>>> refactor: remove unnecessary function playExampleSound
 }

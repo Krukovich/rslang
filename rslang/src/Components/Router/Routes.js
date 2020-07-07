@@ -67,7 +67,11 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+<<<<<<< HEAD
     path: '/vocabulary',
+=======
+    path: '/vocabularyrouter',
+>>>>>>> refactor: remove unnecessary function playExampleSound
     component: VocabularyRouter,
     exact: true,
   },
