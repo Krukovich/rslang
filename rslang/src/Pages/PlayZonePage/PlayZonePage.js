@@ -38,7 +38,7 @@ const mapStateToProps = (store) => {
     showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
     showBtnDeleteWord: showBtnDeleteWord,
     difficultWords: difficultWords,
-    dayLearningWords: dayLearningWords ? dayLearningWords : JSON.parse(localStorage.startWords),
+    dayLearningWords: dayLearningWords.length ? dayLearningWords : JSON.parse(localStorage.startWords),
     cards: store.playZone.cards,
   }
 }
