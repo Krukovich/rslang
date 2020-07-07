@@ -14,32 +14,32 @@ const VocabularyRouter = () => {
   return (
     <Router>
 
-      <nav className="nav justify-content-center mb-4 mt-3">
-        <Link to="/">
-          <button type="button" className="btn btn-primary mr-2">
+      <nav className="nav justify-content-center mb-4 mt-5">
+        <Link to="/vocabulary">
+          <button type="button" className="btn btn-primary mr-2 mt-5">
             <span>Изучаемые слова</span>
           </button>
         </Link>
-        <Link to="/сложные">
-          <button type="button" className="btn btn-light mr-2">
+        <Link to="/difficult-words">
+          <button type="button" className="btn btn-light mr-2 mt-5">
             <span>Сложные слова</span>
           </button>
         </Link>
-        <Link to="/удаленные">
-          <button type="button" className="btn btn-light mr-2">
+        <Link to="/delete-words">
+          <button type="button" className="btn btn-light mr-2 mt-5">
             <span>Удаленные слова</span>
           </button>
         </Link>
       </nav>
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/vocabulary">
           <Vocabulary />
         </Route>
-        <Route exact path="/сложные">
+        <Route exact path="/difficult-words">
           <DifficultWords />
         </Route>
-        <Route exact path="/удаленные">
+        <Route exact path="/delete-words">
           <DeletedWords />
         </Route>
       </Switch>
