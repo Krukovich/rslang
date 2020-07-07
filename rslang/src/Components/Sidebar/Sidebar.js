@@ -32,7 +32,7 @@ export const Sidebar = (props) => {
                 <NavItem href='/' title='Главная' />
                 <NavItem href='/playzone' title='Изучение слов' />
                 <NavItem href='/long-stats' title='Статистика' />
-                <NavItem href='/изучаемые' title='Словарь' />
+                <NavItem href='/learning-words' title='Словарь' />
                 <NavItem href='/minigames' title='Мини игры' />
                 <NavItem href='/promo' title='Промо' />
                 <NavItem href='/about' title='Команда' />
