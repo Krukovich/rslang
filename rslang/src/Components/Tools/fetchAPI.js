@@ -68,9 +68,8 @@ export const fetchAPI = async (query, obj) => {
         }),
       }
     );
-    const content = await rawResponse.json();
-    console.log(content);
-    return content;
+
+    return rawResponse;
   }
   if (query === "getSettings") {
     try {
@@ -90,6 +89,19 @@ export const fetchAPI = async (query, obj) => {
       return content.optional;
     } catch (err) {
       console.log("Первый раз)");
+      return {
+        level: 1,
+        playExampleSound: true,
+        showTranslateWord: true,
+        showExampleString: true,
+        showExplanationString: true,
+        showWordTranscription: true,
+        showWordImage: false,
+        showBtnShowAgreeAnswer: true,
+        showBtnDeleteWord: true,
+        showBtnDifficultWord: true,
+        newWordsCount: 10,
+      };
     }
   }
   // ADDYOUR
