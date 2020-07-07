@@ -21,3 +21,15 @@
         100%{transform:scale(1)}
     }
 }
+
+.Sprint-TimerBar {
+    position: relative;
+}
+
+.Sprint-Volume {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 15px;
+    width: 20px !important;
+}

@@ -13,7 +13,6 @@ const EndScreen = (props) => {
                         <Button onClick={props.restart} className="mr-2">Заново</Button>
                         <Button href='MainPage'>Главное меню</Button>
                     </div>
-
                 </div>
             </div>
         </div>
