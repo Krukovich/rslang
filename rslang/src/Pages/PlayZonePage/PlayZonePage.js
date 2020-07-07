@@ -58,6 +58,7 @@ class PlayZonePage extends React.Component {
       agreeWord: props.dayLearningWords[0].word,
       isNotAgree: true,
       inputValue: '',
+      isFinish: false,
 }
     this.difficultWordId = '';
     this.agreeCountAnswer = 0;
@@ -200,61 +201,73 @@ class PlayZonePage extends React.Component {
     } = this.state;
 
     return (
-      <div className="container">
-        <div className="row mt-5">
-          <div className="col-12 d-flex justify-content-center mt-5">
-            <Card
-              input={this.input}
-              isNotAgree={isNotAgree}
-              cards={cards}
-              playStep={playStep}
-              showWordImage={this.props.showWordImage}
-              showTranslateWord={this.props.showTranslateWord}
-              showExplanationString={this.props.showExplanationString}
-              showWordTranscription={this.props.showWordTranscription}
-              handlerChange={this.handlerInputChange}
-              handlerSubmit={this.handlerSubmit}
-            />
-            <VerticalMenu
-              showAnswer={this.showAnswer}
-              insertCardToDifficult={this.insertCardToDifficult}
-              deleteCard={this.deleteCard}
-              showBtnDeleteWord={this.props.showBtnDeleteWord}
-              showBtnDifficultWord={this.props.showBtnDifficultWord}
-              showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
-            />
+      <React.Fragment>
+        { (!isFinish) ?
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <Card
+                input={this.input}
+                isNotAgree={isNotAgree}
+                cards={cards}
+                playStep={playStep}
+                showWordImage={this.props.showWordImage}
+                showTranslateWord={this.props.showTranslateWord}
+                showExplanationString={this.props.showExplanationString}
+                showWordTranscription={this.props.showWordTranscription}
+                handlerChange={this.handlerInputChange}
+                handlerSubmit={this.handlerSubmit}
+              />
+              <VerticalMenu
+                showAnswer={this.showAnswer}
+                insertCardToDifficult={this.insertCardToDifficult}
+                deleteCard={this.deleteCard}
+                showBtnDeleteWord={this.props.showBtnDeleteWord}
+                showBtnDifficultWord={this.props.showBtnDifficultWord}
+                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 d-flex justify-content-center mt-5">
+              <div className="btn-group" role="group" aria-label="Basic example">
+                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
+                <button
+                  className="btn btn-primary"
+                  onClick={this.changeAnswer}
+                >
+                  Проверить
+                  </button>
+                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center mt-5">
+            <div className="col-12 col-md-6">
+              <div className="row">
+                <div className="col-2 text-center">
+                  <Badge playStep={playStep} />
+                </div>
+                <div className="col-8">
+                  <ProgressBar playStep={playStep} cards={cards} />
+                </div>
+                <div className="col-2 text-center">
+                  <Badge cards={cards} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        : 
         <div className="row">
-          <div className="col-12 d-flex justify-content-center mt-5">
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
-              <button
-                className="btn btn-primary"
-                onClick={this.changeAnswer}
-              >
-                Проверить
-                </button>
-              <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
-            </div>
-          </div>
+          <ShortStats
+            total={ this.state.cards.length }
+            right={ (this.agreeCountAnswer / this.state.cards.length) * 100 }
+            newWords={ this.state.cards.length }
+          />
         </div>
-        <div className="row justify-content-center mt-5">
-          <div className="col-12 col-md-6">
-            <div className="row">
-              <div className="col-2 text-center">
-                <Badge playStep={playStep} />
-              </div>
-              <div className="col-8">
-                <ProgressBar playStep={playStep} cards={cards} />
-              </div>
-              <div className="col-2 text-center">
-                <Badge cards={cards} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        }
+      </React.Fragment>
     );
   }
 }
