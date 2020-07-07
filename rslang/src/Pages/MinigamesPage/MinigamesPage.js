@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 import Card from '../../Components/Card/Card';
-import './MinigamesPage.scss'
+import './MiniGamesPage.scss'
 
 import pic1 from './assets/pic1.jpg';
 import FortuneLogo from './assets/logo-turbo.jpg'
 
-class MinigamesPage extends Component {
+class MiniGamesPage extends Component {
     constructor() {
         super();
         this.state = {
@@ -138,4 +138,4 @@ class MinigamesPage extends Component {
     }
 }
 
-export default MinigamesPage
+export default MiniGamesPage

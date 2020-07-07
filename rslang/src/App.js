@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteMap } from "./Components/Router/Routes";
+import RouteMap from "./Components/Router/Routes";
 import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
 
 const App = () => {
