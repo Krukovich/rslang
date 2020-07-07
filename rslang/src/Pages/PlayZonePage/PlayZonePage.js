@@ -273,7 +273,7 @@ class PlayZonePage extends React.Component {
           </div>
         </div>
         : 
-        <div className="row">
+        <div className="row mt-5">
           <ShortStats
             total={ this.state.cards.length }
             right={ (this.agreeCountAnswer / this.state.cards.length) * 100 }
