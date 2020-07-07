@@ -1,100 +1,26 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-import './longStats.scss';
->>>>>>> fix
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-<<<<<<< HEAD
-=======
 import { setSavannaStats } from '../../Store/Savanna/actions';
 import { getCookie } from '../../Components/Tools/GetCoocke';
 
-<<<<<<< HEAD
->>>>>>> fix: data from server
-=======
-=======
-import { connect } from 'react-redux';
-import { Line } from 'react-chartjs-2';
-// import showStats from '../../Store/Longs/actions';
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
->>>>>>> fix
 import ProgressBar from 'react-bootstrap/ProgressBar';
-<<<<<<< HEAD
 import './longStats.scss';
-=======
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
->>>>>>> mini games BTNs
 import BtnsBar from './BtnsBar/BtnsBar';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { setSavannaStats } from '../../Store/Savanna/actions';
-=======
->>>>>>> fix: data from server
-=======
-import { setSavannaStats } from '../../Store/Savanna/actions';
->>>>>>> mini stats from redux
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
-<<<<<<< HEAD
-<<<<<<< HEAD
   
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
     difficulty: difficulty,
 }}
-=======
-import './longStats.scss';
-import BtnsBar from './BtnsBar/BtnsBar';
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
-
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-const changeMiniStats = {
-  setSavannaStats,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-const miniGameStats = (store) => {
-  const { newWordsCount } = store.appSettings;
-  return {
-    newWordsCount: newWordsCount,
-=======
-  const { counter } = store.sprintGame;
-=======
-  
->>>>>>> mini stats from redux
-  const { difficulty } = store.fortuneGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-    difficulty: difficulty,
->>>>>>> add: buttons
-}}
 
 const changeMiniStats = {
   setSavannaStats,
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
->>>>>>> fix
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-=======
->>>>>>> fix: data from server
 }
 
 const token = getCookie("token");
@@ -121,34 +47,11 @@ const ProgressLabel = () => {
   )
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-=======
->>>>>>> mini stats from redux
-// const ShowTest = ({ count }) => {
-//   return(
-//     <p>{count}</p>
-//   )
-// }
-
-<<<<<<< HEAD
-=======
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
->>>>>>> fix
-=======
->>>>>>> mini stats from redux
 class LongStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
-=======
-      clicked: false,
-      wordsNow: 0, // Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
->>>>>>> mini games BTNs:rslang/src/Pages/LongStats/LongStats.js
       labels: [], // props.dataLabels,
       datasets: [
         {
@@ -168,48 +71,17 @@ class LongStats extends React.Component {
       ],
       items: [
         { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
         { 'id': 2, label: 'Спринт', 'visible': false },
         { 'id': 3, label: 'Саванна', 'visible': false },
         { 'id': 4, label: 'Паззл', 'visible': false },
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
-<<<<<<< HEAD
-<<<<<<< HEAD
       ],
-<<<<<<< HEAD
-=======
-
->>>>>>> mini stats test
       count: [
         {"timestamp":1593114322795,"newWords":7},
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      
->>>>>>> fix: data from server
-=======
-      
-=======
->>>>>>> mini stats test
-<<<<<<< HEAD
->>>>>>> mini stats test
-=======
-=======
-        { 'id': 2, label: 'Паззлы', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false }
-=======
->>>>>>> add: buttons
-      ]
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
->>>>>>> fix
-=======
-      ],
-      count: [1,2,3],
->>>>>>> mini stats from redux
     }
     // this.count = 0;
   }
@@ -230,79 +102,34 @@ class LongStats extends React.Component {
   showStats = (id) => {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
       switch (id) {
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-<<<<<<< HEAD
           state.count = this.state.count;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.counter}`);
-<<<<<<< HEAD
 
-=======
->>>>>>> fix: data from server
-=======
-=======
-          state.count = this.props.counter;
->>>>>>> mini stats test
->>>>>>> mini stats test
-=======
-          state.count = this.props.counter;
->>>>>>> mini stats from redux
           break;
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> mini stats from redux
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
           console.log(`${this.props.minigameSavannaStats}`);
           break;  
         case 5 :
-<<<<<<< HEAD
           state.count = (state.count).map(elem => elem.newWords + 2);
           break;
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
           break;  
-=======
-        case 6 : 
-        console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`)  
->>>>>>> add: buttons
-=======
-          state.count = (state.count).map(elem => elem+2);
-          break;
-        case 6 : 
-          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          break;  
->>>>>>> mini stats from redux
       }   
       return { items };  
-=======
-      console.log(`Clicked ${id} ${items[id-1].label} ${this.props.newWordsCount}`);
-      return { items };
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
     })
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  asideToggle = () => {
-    this.setState({ clicked: !this.state.clicked });
-  }
-
-=======
->>>>>>> mini stats from redux
->>>>>>> mini stats from redux
   getSum(arr) {
     let prev = 0;
     return arr.map((elem) => {
@@ -374,20 +201,4 @@ class LongStats extends React.Component {
   }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD:rslang/src/Pages/LongStats/LongStats.jsx
-<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-<<<<<<< HEAD
-export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats, changeMiniStats)(LongStats);
->>>>>>> mini stats test
->>>>>>> mini stats test
-=======
-export default connect(miniGameStats)(LongStats);
->>>>>>> fix:rslang/src/Pages/LongStats/LongStats.js
-=======
-export default connect(miniGameStats, changeMiniStats)(LongStats);
->>>>>>> mini stats from redux
