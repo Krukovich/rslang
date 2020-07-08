@@ -15,7 +15,7 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
-import MiniGamesPage from '../../Pages/MinigamesPage/MiniGamesPage';
+import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
