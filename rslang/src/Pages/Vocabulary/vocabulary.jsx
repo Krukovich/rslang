@@ -6,7 +6,6 @@ import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (store) => {
-  console.log(store.appSettings.deleteWords)
   return { 
     difficultWords: store.appSettings.difficultWords,
     languageLevel: store.appSettings.level,
