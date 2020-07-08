@@ -15,7 +15,7 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
-import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
+import MiniGamesPage from '../../Pages/MinigamesPage/MiniGamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
@@ -131,7 +131,7 @@ const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
     <div className="router">
       <Switch>
         {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a' + key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute setDayLearningWords={ setDayLearningWords } level={ level } newWordsCount={ newWordsCount }  exact component={component} path={path} key={'b' + key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute setDayLearningWords={setDayLearningWords} level={level} newWordsCount={newWordsCount} exact component={component} path={path} key={'b' + key} />)}
       </Switch>
     </div>
   );

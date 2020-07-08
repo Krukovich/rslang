@@ -174,14 +174,22 @@ class SprintGame extends Component {
   };
 
   keyPushHandler = (event) => {
-    document.addEventListener("keypress", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "KeyA" || event.code === "ArrowLeft") {
-        this.rightBtnRef.current.focus();
-        this.rightBtnRef.current.click();
+        try {
+          this.rightBtnRef.current.focus();
+          this.rightBtnRef.current.click();
+        } catch {
+          return
+        }
       }
       if (event.code === "KeyD" || event.code === "ArrowRight") {
-        this.wrongBtnRef.current.focus();
-        this.wrongBtnRef.current.click();
+        try {
+          this.wrongBtnRef.current.focus();
+          this.wrongBtnRef.current.click();
+        } catch {
+          return
+        }
       }
     });
   };
