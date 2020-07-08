@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import SprintCard from "../../Components/SprintCard/SprintCard";
 import StartScreen from "./StartScreen/StartScreen";
 import EndScreen from "./EndScreen/EndScreen";
+import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 import "./SprintGame.scss";
 
@@ -93,9 +94,7 @@ class SprintGame extends Component {
 
       if (!this.state.counter) {
         // clearInterval(timer);
-        this.setState({
-          gameEnded: true,
-        });
+        this.gameEnd();
       }
     }, 1000);
   };
@@ -147,9 +146,7 @@ class SprintGame extends Component {
       };
     });
     if (this.state.mistakeCount >= 2) {
-      this.setState({
-        gameEnded: true,
-      });
+      this.gameEnd();
     }
 
 
@@ -161,9 +158,7 @@ class SprintGame extends Component {
 
   nextCard = () => {
     if (this.state.activeQuestion + 1 >= this.state.mixedArr.length) {
-      this.setState({
-        gameEnded: true,
-      });
+      this.gameEnd();
     } else {
       this.setState((prevState) => {
         return {
@@ -207,6 +202,27 @@ class SprintGame extends Component {
       alert('Подожди, пока слова не загрузятся!')
     }
   };
+
+  writeStats = async (statsObj) => {
+    const content = await fetchAPI("users-set-statistics", statsObj);
+    // const arrayOfWords = this.levelGenerator(content);
+
+    // this.setState({ wordsArray: arrayOfWords });
+    console.log("stats write");
+    return content;
+  };
+
+  gameEnd = () => {
+    this.setState({
+      gameEnded: true,
+    })
+
+    const score = this.state.score;
+    const time = Date.now();
+    const statsObj = { score, time }
+
+    this.writeStats(statsObj)
+  }
 
   gameRestart = (props) => {
     this.mixWords();
