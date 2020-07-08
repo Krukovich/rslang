@@ -16,6 +16,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import App from '../../Pages/MiniGames/Savanna/App';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
+import AboutPage from '../../Pages/AboutPage/AboutPage'
 
 const sourceOpenRoutes = [
   {
@@ -35,7 +36,7 @@ const sourceOpenRoutes = [
   },
   {
     path: '/about',
-    component: () => <h1>about</h1>,
+    component: AboutPage,
     exact: true,
   },
   {

@@ -114,18 +114,7 @@ class SprintGame extends Component {
     }
   };
 
-  gameStart = props => {
-    this.mixWords();
-    this.timer();
-    this.keyPushHandler();
-    this.setState({
-      gameStarted: true,
-      gameEnded: false,
-    })
-  }
-
   rightAnswerHandler = () => {
-    alert(this.state.maxStreak)
     this.nextCard();
     this.setState((prevState) => {
       return {
@@ -133,7 +122,6 @@ class SprintGame extends Component {
         score: prevState.score + 10 * prevState.modifier,
       };
     });
-
     if (this.state.maxStreak === 3) {
       this.setState((prevState) => {
         return {
@@ -147,8 +135,6 @@ class SprintGame extends Component {
       const audio = new Audio(pew);
       audio.play();
     }
-
-    alert(this.state.maxStreak)
   };
 
   wrongAnswerHandler = () => {
@@ -187,23 +173,15 @@ class SprintGame extends Component {
     }
   };
 
-  keyPushHandler = (props) => {
-    document.addEventListener("keydown", (event) => {
+  keyPushHandler = (event) => {
+    document.addEventListener("keypress", (event) => {
       if (event.code === "KeyA" || event.code === "ArrowLeft") {
         this.rightBtnRef.current.focus();
-        if (this.state.mixedArr[this.state.activeQuestion].isTrue) {
-          this.rightAnswerHandler();
-        } else {
-          this.wrongAnswerHandler();
-        }
+        this.rightBtnRef.current.click();
       }
       if (event.code === "KeyD" || event.code === "ArrowRight") {
         this.wrongBtnRef.current.focus();
-        if (!this.state.mixedArr[this.state.activeQuestion].isTrue) {
-          this.rightAnswerHandler();
-        } else {
-          this.wrongAnswerHandler();
-        }
+        this.wrongBtnRef.current.click();
       }
     });
   };
@@ -253,7 +231,6 @@ class SprintGame extends Component {
 
   componentDidMount() {
     this.getWords();
-
     this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
   };
 
@@ -309,6 +286,7 @@ class SprintGame extends Component {
                 maxStreak={this.state.maxStreak}
                 modifier={this.state.modifier}
                 onclick={this.buttonClickHandler}
+                onkey={this.keyPushHandler}
               />
             </div>
             <div className="col-md-4"></div>

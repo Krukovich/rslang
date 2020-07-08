@@ -52,13 +52,7 @@ class MinigamesPage extends Component {
                 class: 'Card-Image_learning',
                 pic: pic1
             },
-            clicked: false,
         }
-        this.asideToggle = this.asideToggle.bind(this);
-    }
-
-    asideToggle() {
-        this.setState({ clicked: !this.state.clicked });
     }
 
     render() {
