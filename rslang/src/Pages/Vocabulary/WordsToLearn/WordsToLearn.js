@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayBtn from '../vocabularyBtn/PlayBtn';
-import RemoveBtn from '../vocabularyBtn/RemoveBtn';
+import PlayBtn from '../VocabularyBtn/PlayBtn';
+import RemoveBtn from '../VocabularyBtn/RemoveBtn';
 
 
 const WordsToLearn = ({ posts, remove }) => {

@@ -107,7 +107,7 @@ class Settings extends React.Component {
     fetchAPI("setSettings", this.settings).then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
-          setAllSettings(data.optional);
+          this.props.setAllSettings(data.optional);
           console.log(data.optional);
         });
       }
@@ -177,7 +177,12 @@ class Settings extends React.Component {
                   onChange={this.changesSettings("newWordsCount")}
                 />
               </div>
-              <button onClick={this.sendSettings}>Сохранить</button>
+              <button
+                className="btn btn-primary"
+                onClick={this.sendSettings}
+              >
+                Сохранить
+              </button>
             </div>
           </div>
         </div>
