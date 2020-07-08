@@ -13,7 +13,7 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
-import Vocabulary from '../../Pages/Vocabulary/vocabulary';
+import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
 import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
@@ -62,7 +62,7 @@ const sourceCloseRoutes = [
   },
   {
     path: '/vocabulary',
-    component: Vocabulary,
+    component: VocabularyRouter,
     exact: true,
   },
   {
