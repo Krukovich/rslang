@@ -5,6 +5,7 @@ import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
 import FortuneLogo from './assets/logo-turbo.jpg';
+import SpeakItLogo from './assets/enjoy_small.png';
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -48,9 +49,9 @@ class MiniGamesPage extends Component {
       speakItCard: {
         title: 'Speak It',
         description: '',
-        href: 'speakit',
+        href: 'speakIt-start',
         class: 'Card-Image_learning',
-        pic: pic1
+        pic: SpeakItLogo,
       },
       clicked: false,
     }
