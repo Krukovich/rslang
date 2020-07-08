@@ -106,6 +106,11 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+    path: '/fortune-game',
+    component: FortuneGame,
+    exact: true,
+  },
+  {
     path: '/SprintGame',
     component: SprintGame,
     exact: true,

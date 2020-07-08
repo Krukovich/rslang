@@ -253,7 +253,6 @@ class SprintGame extends Component {
 
   componentDidMount() {
     this.getWords();
-
     this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
   };
 
