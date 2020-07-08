@@ -5,7 +5,7 @@ import { AlertRed } from "../../../Components/Alert/Alert";
 import { CreateAccountLayout } from "./CreateAccountLayout";
 import * as Const from "../../../constant";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI"
-import { getCookie } from '../../../Components/Tools/GetCoocke'
+import { getCookie } from '../../../Components/Tools/getCookie'
 import { Redirect } from "react-router-dom";
 
 export class CreateAccount extends React.Component {

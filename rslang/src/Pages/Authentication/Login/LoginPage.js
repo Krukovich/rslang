@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
 import * as Const from "../../../constant";
-import { getCookie } from "../../../Components/Tools/GetCoocke";
+import { getCookie } from "../../../Components/Tools/getCookie";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 import { getRandomPage } from "../../../service";

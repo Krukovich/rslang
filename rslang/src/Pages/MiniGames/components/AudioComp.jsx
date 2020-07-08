@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 export const AudioComp = (props) => {
-  let autoPlay = true;
   const { gameFindWord } = props;
-  //  if (gameFindWord.audio !== undefined && autoPlay === true) {
-  //    setInterval(audioPlay(gameFindWord.audio), 1000);
-  //    autoPlay = false; 
-  //  } 
     return (
       <div className="text-center">
         <label>{gameFindWord.wordTranslate}</label>

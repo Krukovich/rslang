@@ -3,8 +3,6 @@ import './Quiz.css'
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz.jsx'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
-import { fetchAPI } from "../../../../../Components/Tools/fetchAPI";
-import { createQuize } from '../../components/createQuize'
 import { setSavannaStats } from '../../../../../Store/Savanna/actions';
 
 const mapStateToProps = (store) => {
@@ -54,7 +52,6 @@ class Quiz extends Component {
 }
 
 finishQuestionWithError = () => {
-  const question = this.state.quiz[this.state.activeQuestion]
   const results = this.state.results
       results[this.state.activeQuestion] = 'error'
       this.setState({

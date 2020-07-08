@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { Sidebar } from "../../Components/Sidebar/Sidebar";
 import Header from "../../Components/Header/Header";
-import { getCookie } from "../../Components/Tools/GetCoocke";
+import { getCookie } from "../../Components/Tools/getCookie";
 
 export class AppWrapperCmp extends Component {
   constructor(props) {
