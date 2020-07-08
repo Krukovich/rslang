@@ -7,6 +7,13 @@ import EndScreen from "./EndScreen/EndScreen";
 
 import "./SprintGame.scss";
 
+import pew from './assets/pew.mp3'
+import wrongPew from './assets/wrongPew.mp3'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeOff } from '@fortawesome/free-solid-svg-icons';
+
 class SprintGame extends Component {
   constructor() {
     super();
@@ -21,6 +28,7 @@ class SprintGame extends Component {
       activeQuestion: 0,
       mistakeCount: 0,
       words: 0,
+      isSoundOn: true,
     };
     this.rightBtnRef = React.createRef();
     this.wrongBtnRef = React.createRef();
@@ -41,7 +49,6 @@ class SprintGame extends Component {
 
   mixWords = () => {
     const defaultArr = this.state.words.slice(0);
-    // alert(defaultArr[0].word)
     let mixedArr = [];
     defaultArr.map((a, i) => {
       if (Math.random() > 0.3) {
@@ -107,8 +114,6 @@ class SprintGame extends Component {
     }
   };
 
-
-
   gameStart = props => {
     this.mixWords();
     this.timer();
@@ -120,6 +125,7 @@ class SprintGame extends Component {
   }
 
   rightAnswerHandler = () => {
+    alert(this.state.maxStreak)
     this.nextCard();
     this.setState((prevState) => {
       return {
@@ -136,6 +142,13 @@ class SprintGame extends Component {
         };
       });
     }
+
+    if (this.state.isSoundOn) {
+      const audio = new Audio(pew);
+      audio.play();
+    }
+
+    alert(this.state.maxStreak)
   };
 
   wrongAnswerHandler = () => {
@@ -151,6 +164,12 @@ class SprintGame extends Component {
       this.setState({
         gameEnded: true,
       });
+    }
+
+
+    if (this.state.isSoundOn) {
+      const audio = new Audio(wrongPew);
+      audio.play();
     }
   };
 
@@ -190,13 +209,17 @@ class SprintGame extends Component {
   };
 
   gameStart = (props) => {
-    this.mixWords();
-    this.timer();
-    this.keyPushHandler();
-    this.setState({
-      gameStarted: true,
-      gameEnded: false,
-    });
+    try {
+      this.mixWords();
+      this.timer();
+      this.keyPushHandler();
+      this.setState({
+        gameStarted: true,
+        gameEnded: false,
+      });
+    } catch {
+      alert('Подожди, пока слова не загрузятся!')
+    }
   };
 
   gameRestart = (props) => {
@@ -217,10 +240,21 @@ class SprintGame extends Component {
     const number = event.target.value;
     this.props.onChangeDiff(number);
     this.getWords(number);
+    localStorage.setItem('sprintDifficulty', number);
   };
+
+  volumeHandler = () => {
+    this.setState(prevState => {
+      return {
+        isSoundOn: !prevState.isSoundOn,
+      }
+    })
+  }
 
   componentDidMount() {
     this.getWords();
+
+    this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
   };
 
   render() {
@@ -272,6 +306,8 @@ class SprintGame extends Component {
                 rus={
                   this.state.mixedArr[this.state.activeQuestion].secondPartRus
                 }
+                maxStreak={this.state.maxStreak}
+                modifier={this.state.modifier}
                 onclick={this.buttonClickHandler}
               />
             </div>
@@ -279,10 +315,13 @@ class SprintGame extends Component {
           </div>
           <div className="Sprint-Tools row p-2 mt-1">
             <div className="col-md-4"></div>
-            <div className="col-md-4 d-flex justify-content-center">
+            <div className="Sprint-TimerBar col-md-4 d-flex justify-content-center">
               <h3 className="Sprint-Timer text-success">
                 {this.state.counter}
               </h3>
+              <div className='Sprint-Volume' onClick={this.volumeHandler}>
+                {this.state.isSoundOn ? <FontAwesomeIcon icon={faVolumeUp} /> : <FontAwesomeIcon icon={faVolumeOff} />}
+              </div>
             </div>
             <div className="col-md-4"></div>
           </div>

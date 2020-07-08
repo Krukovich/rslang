@@ -37,11 +37,11 @@ class FortuneGame extends Component {
             rusWordArr: [],
             dialogue: 'Угадывайте!',
             continue: false,
-            audio: 0,
             currentRound: 0,
         }
         this.engWordRef = React.createRef();
         this.selectRef = React.createRef();
+        this.audio = 0;
     }
 
     async getWords(difficulty = this.props.difficulty) {
@@ -53,18 +53,25 @@ class FortuneGame extends Component {
         return json;
     }
 
+    generateRandomNum = (cursed, defaultArr) => {
+        let randomNum = Math.floor(Math.random() * Math.floor(defaultArr.length));
+        if (cursed.includes(randomNum)) {
+            return this.generateRandomNum(cursed, defaultArr);
+        } else {
+            return randomNum
+        }
+    }
+
     loadWord = props => {
         const defaultArr = this.state.words.slice(0);
         const cursed = this.state.cursed.slice(0);
 
-        const randomNum = Math.floor(Math.random() * Math.floor(defaultArr.length));
-
-        cursed.push(randomNum);
-
+        const randomNum = this.generateRandomNum(this.state.cursed, this.state.words);
+        cursed.push(randomNum)
         this.setState({
             cursed: cursed,
         })
-
+        // alert(this.state.cursed)
         const wordObj = this.state.words[randomNum]
 
         this.setState({
@@ -91,7 +98,7 @@ class FortuneGame extends Component {
         }
 
         this.setState({
-            continue: true
+            continue: true,
         })
     }
 
@@ -145,13 +152,13 @@ class FortuneGame extends Component {
     }
 
     cellClassHandler = (filler = [], cellClass, checkArray) => {
-        let content = [<td></td>];
+        let content = [<td key={'wordRow0'}></td>];
         for (let i = 1; i < 15; i += 1) {
 
             if (typeof filler[i - 1] === 'string') {
-                content.push(<td className={checkArray[i - 1] === 0 ? null : cellClass}>{filler[i - 1]}</td>)
+                content.push(<td key={'wordRow' + i} className={checkArray[i - 1] === 0 ? null : cellClass}>{filler[i - 1]}</td>)
             } else {
-                content.push(<td>{filler[i - 1]}</td>)
+                content.push(<td key={'wordRow' + i}>{filler[i - 1]}</td>)
             }
         }
         return content
@@ -173,6 +180,7 @@ class FortuneGame extends Component {
         if (this.state.mistakeCount === 2) {
             this.setState({
                 gameEnded: true,
+                cursed: [],
             })
         }
 
@@ -186,16 +194,24 @@ class FortuneGame extends Component {
         }, 900)
     }
 
-    drawCells = (filler = [], cellClass) => {
-        let content = [<td></td>];
+    drawTranslation = (filler = []) => {
+        let content = [<td key={'translationRow0'}></td>];
         for (let i = 1; i < 15; i += 1) {
 
             if (typeof filler[i - 1] === 'string') {
-                content.push(<td className={cellClass}>{filler[i - 1]}</td>)
+                content.push(<td key={'translationRow' + i}>{filler[i - 1]}</td>)
             } else {
-                content.push(<td>{filler[i - 1]}</td>)
+                content.push(<td key={'translationRow' + i}>{filler[i - 1]}</td>)
             }
 
+        }
+        return content
+    }
+
+    drawCells = (cellKey) => {
+        let content = [];
+        for (let i = 0; i < 15; i += 1) {
+            content.push(<td key={cellKey + i}></td>)
         }
         return content
     }
@@ -205,11 +221,11 @@ class FortuneGame extends Component {
         const alphabet = this.state.alphabet.split('');
         const alphCheck = checkArr.split('');
         alphabet.map((a, i) => {
-            content.push(<td
+            content.push(<div
                 onClick={this.letterClickHandler}
                 className={alphabet[i] !== alphCheck[i] ? "Fortune-Letter Fortune-Letter_inactive" : "Fortune-Letter"}
                 key={'letter' + i}
-            >{alphabet[i]}</td>)
+            >{alphabet[i]}</div>)
         })
         return content
     }
@@ -230,13 +246,14 @@ class FortuneGame extends Component {
                 }
             })
 
-            if (this.state.currentRound === this.state.words.length) {
+            if (this.state.currentRound === this.state.words.length - 1) {
                 this.setState({
                     gameEnded: true,
+                    cursed: [],
                 })
             }
         } catch {
-            alert('Please wait for the words to load')
+            alert('Подожди, пока слова не загрузятся')
         }
     }
 
@@ -314,7 +331,7 @@ class FortuneGame extends Component {
                                 <div className="DialogueBar-Triangle"></div>
                             </div>
                             <div className={this.addYakubClass()}></div>
-                            <Button onClick={() => { this.setState({ gameEnded: true }) }} className="Fortune-Btn_exit p-0 mb-1">В музей поля чудес (закончить)</Button>
+                            <Button onClick={() => { this.setState({ gameEnded: true, cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1">В музей поля чудес (закончить)</Button>
                             <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 Fortune-Btn_next_active" : "Fortune-Btn_next p-1"}>Следующее слово</Button>
                         </div>
                         <div className="col-md-8">
@@ -322,22 +339,22 @@ class FortuneGame extends Component {
                                 <table className="Fortune-Table">
                                     <tbody>
                                         <tr>
-                                            {this.drawCells()}
+                                            {this.drawCells('1row')}
                                         </tr>
                                         <tr ref={this.engWordRef} className="Fortune-PlayRow">
                                             {this.cellClassHandler(this.state.engWordArr, 'Fortune-Cell_closed', this.state.engWordArrCheck)}
                                         </tr>
                                         <tr>
-                                            {this.drawCells()}
+                                            {this.drawCells('3row')}
                                         </tr>
                                         <tr>
-                                            {this.drawCells()}
+                                            {this.drawCells('4row')}
                                         </tr>
                                         <tr className="Fortune-PlayRowTranslate">
-                                            {this.drawCells(this.state.rusWordArr)}
+                                            {this.drawTranslation(this.state.rusWordArr)}
                                         </tr>
                                         <tr>
-                                            {this.drawCells()}
+                                            {this.drawCells('6row')}
                                         </tr>
                                     </tbody>
                                 </table>
