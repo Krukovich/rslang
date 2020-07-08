@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
@@ -179,9 +180,11 @@ class FortuneGame extends Component {
 
         if (this.state.mistakeCount === 2) {
             this.setState({
-                gameEnded: true,
+                // gameEnded: true,
                 cursed: [],
             })
+
+            this.gameEnd();
         }
 
         const audio = new Audio(audioVariants[Math.floor(Math.random() * Math.floor(audioVariants.length))]);
@@ -248,9 +251,11 @@ class FortuneGame extends Component {
 
             if (this.state.currentRound === this.state.words.length - 1) {
                 this.setState({
-                    gameEnded: true,
+                    // gameEnded: true,
                     cursed: [],
                 })
+
+                this.gameEnd();
             }
         } catch {
             alert('Подожди, пока слова не загрузятся')
@@ -292,6 +297,27 @@ class FortuneGame extends Component {
         localStorage.setItem('fortuneDifficulty', number);
     }
 
+    writeStats = async (statsObj) => {
+        const content = await fetchAPI("users-set-statistics", statsObj);
+        // const arrayOfWords = this.levelGenerator(content);
+
+        // this.setState({ wordsArray: arrayOfWords });
+        console.log("stats write");
+        return content;
+    };
+
+    gameEnd = () => {
+        this.setState({
+            gameEnded: true,
+        })
+
+        const score = this.state.score;
+        const time = Date.now();
+        const statsObj = { score, time }
+
+        this.writeStats(statsObj)
+    }
+
     render() {
         if (!this.state.gameStarted) {
             return (
@@ -331,7 +357,7 @@ class FortuneGame extends Component {
                                 <div className="DialogueBar-Triangle"></div>
                             </div>
                             <div className={this.addYakubClass()}></div>
-                            <Button onClick={() => { this.setState({ gameEnded: true, cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1">В музей поля чудес (закончить)</Button>
+                            <Button onClick={() => { this.gameEnd(); this.setState({ cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1">В музей поля чудес (закончить)</Button>
                             <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 Fortune-Btn_next_active" : "Fortune-Btn_next p-1"}>Следующее слово</Button>
                         </div>
                         <div className="col-md-8">

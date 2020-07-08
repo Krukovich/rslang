@@ -19,7 +19,7 @@ class MainPage extends Component {
       learningCard: {
         title: 'Learning',
         description: 'Learn English',
-        href: 'PlayZonePage',
+        href: 'play-zone',
         class: 'Card-Image_learning',
         pic: pic1
       },
