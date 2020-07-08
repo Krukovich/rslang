@@ -59,8 +59,6 @@ class Login extends React.Component {
 
   requestSettings = async () => {
     const results = await fetchAPI("getSettings").then((data) => {
-      console.log("vtyz");
-      console.log(data);
       this.props.setAllSettings(data);
     });
   };
@@ -71,7 +69,6 @@ class Login extends React.Component {
       this.props.setDayLearningWords(words);
       saveWordsInLocalStorage(words);
     }
-    console.log(this.props.dayLearningWords);
   };
 
   loginResult = (answer) => {
@@ -113,7 +110,7 @@ class Login extends React.Component {
         >
           <LoginLayout>
             <form onSubmit={(e) => this.requestSignin(e)}>
-              <h2 className="text-center">Log in</h2>
+              <h2 className="text-center">Войти</h2>
               <div className="form-group">
                 <input
                   type="email"

@@ -43,6 +43,11 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
+    path: '/savanna',
+    component: SavannaStartPage,
+    exact: true,
+  },
+  {
     path: '/about',
     component: () => <h1>about</h1>,
     exact: true,
