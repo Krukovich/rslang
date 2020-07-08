@@ -17,7 +17,7 @@ const ShortStatsHeader = () => {
 }
 
 const ShortStatsInfo = (props) => {
-  const { total, right, newWords, rightInARow } = props;
+  const { total, right, newWords, rightInArrow } = props;
   return (
     <ul className="row align-items-center flex-column shortStatsInfo">
       <li className="shortStatsInfo-item d-flex">
@@ -30,19 +30,19 @@ const ShortStatsInfo = (props) => {
         <span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span><span>{newWords}</span>
       </li>
       <li className="shortStatsInfo-item d-flex">
-        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInARow}</span>
+        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInArrow}</span>
       </li>
     </ul>
   )
 }
 
 export default class ShortStats extends React.Component {
-    render() {
-        return (
-            <div className="container shortStats">
-                <ShortStatsHeader />
-                <ShortStatsInfo {...this.props}  />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="container shortStats">
+        <ShortStatsHeader />
+        <ShortStatsInfo {...this.props} />
+      </div>
+    )
+  }
 };

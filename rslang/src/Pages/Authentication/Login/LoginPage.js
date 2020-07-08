@@ -66,10 +66,10 @@ class Login extends React.Component {
   };
 
   requestDayLearningWords = async () => {
-    const data = await getWords(this.props.level, this.props.newWordsCount);
-    if (data[0].value.length !== 0) {
-      this.props.setDayLearningWords(data[0].value);
-      saveWordsInLocalStorage(data[0].value);
+    const words = await getWords(this.props.level, this.props.newWordsCount);
+    if (words.length !== 0) {
+      this.props.setDayLearningWords(words);
+      saveWordsInLocalStorage(words);
     }
     console.log(this.props.dayLearningWords);
   };
@@ -159,7 +159,7 @@ class Login extends React.Component {
 
 class GoToMain extends React.Component {
   render() {
-    return <Redirect to="/main" />;
+    return <Redirect to="/main-page" />;
   }
 }
 

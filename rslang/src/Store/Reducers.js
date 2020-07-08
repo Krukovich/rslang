@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import { playZonePageReducer } from "./PlayZonePage/reducers";
-import { savannaReducer } from "./Savanna/reducers";
 import { sprintGameReducer } from "./SprintGame/Reducers";
+import { fortuneGameReducer } from "./FortuneGame/Reducers";
+import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
   showBtnShowAgreeAnswer: true, // show btn next step
   showBtnDeleteWord: true, // show btn remove a word from learning
   showBtnDifficultWord: true, // show btn add words to a difficult group
-  newWordsCount: 5, // number for learning new words
+  newWordsCount: 20, // number for learning new words
   deleteWords: [], // an array with delete words
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn
