@@ -1,5 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+
+import { setDayLearningWords } from '../../Store/Actions';
+import { getWords, saveWordsInLocalStorage } from '../../service';
 import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';
 import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
@@ -9,14 +13,24 @@ import Settings from '../../Pages/Settings/Settings';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
-import Vocabulary from '../../Pages/Vocabulary/vocabulary';
+import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
-import MinigamesPage from '../../Pages/MinigamesPage/MinigamesPage'
+import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
-import App from '../../Pages/MiniGames/Savanna/App';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
+
+const mapStateToProps = (state) => {
+  return {
+    level: state.appSettings.level,
+    newWordsCount: state.appSettings.newWordsCount,
+  }
+}
+
+const mapActionToProps = {
+  setDayLearningWords,
+}
 
 const sourceOpenRoutes = [
   {
@@ -26,22 +40,12 @@ const sourceOpenRoutes = [
   },
   {
     path: '/',
-    component: MainPage,
-    exact: true,
-  },
-  {
-    path: '/savanna',
-    component: SavannaStartPage,
+    component: Login,
     exact: true,
   },
   {
     path: '/about',
     component: AboutPage,
-    exact: true,
-  },
-  {
-    path: '/login',
-    component: Login,
     exact: true,
   },
   {
@@ -53,18 +57,18 @@ const sourceOpenRoutes = [
 
 const sourceCloseRoutes = [
   {
-    path: '/mainpage',
+    path: '/main-page',
     component: MainPage,
     exact: true,
   },
   {
     path: '/vocabulary',
-    component: Vocabulary,
+    component: VocabularyRouter,
     exact: true,
   },
   {
-    path: '/minigames',
-    component: MinigamesPage,
+    path: '/mini-games',
+    component: MiniGamesPage,
     exact: true,
   },
   {
@@ -93,18 +97,23 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/playzone',
+    path: '/play-zone',
     component: PlayZonePage,
+    exact: true,
+  },
+  {
+    path: '/savanna',
+    component: SavannaStartPage,
+    exact: true,
+  },
+  {
+    path: '/fortune-game',
+    component: FortuneGame,
     exact: true,
   },
   {
     path: '/SprintGame',
     component: SprintGame,
-    exact: true,
-  },
-  {
-    path: '/FortuneGame',
-    component: FortuneGame,
     exact: true,
   },
   {
@@ -117,31 +126,34 @@ const sourceCloseRoutes = [
   },
 ];
 
-export function RouteMap() {
+const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
   return (
     <div className="router">
-
       <Switch>
         {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a' + key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute exact component={component} path={path} key={'b' + key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute setDayLearningWords={ setDayLearningWords } level={ level } newWordsCount={ newWordsCount }  exact component={component} path={path} key={'b' + key} />)}
       </Switch>
     </div>
-
   );
 }
+
+export default connect(mapStateToProps, mapActionToProps)(RouteMap);
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        CheckLogin() ? (
-          <Component {...props} />
-        ) : <Redirect
-            to="/login"
-          />
-      }
+      render={(props) => {
+        if (CheckLogin()) {
+          getWords(rest.level, rest.newWordsCount).then((words) => {
+            rest.setDayLearningWords(words);
+            saveWordsInLocalStorage(words);
+          });
+          return <Component {...props} />
+        } else {
+          return <Redirect to="/" />
+        }
+      }}
     />
   );
 }
-
