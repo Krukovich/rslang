@@ -9,9 +9,13 @@ const MiniStats = ({ count }) => {
 		return (
 			<MiniStatsItem
 <<<<<<< HEAD
+<<<<<<< HEAD
 			key={timestamp}
 =======
 >>>>>>> mini stats test
+=======
+			key={timestamp}
+>>>>>>> fix: key
 				timestamp={timestamp}
 				newWords={newWords} />
 		)
