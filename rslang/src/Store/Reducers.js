@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { playZonePageReducer } from './PlayZonePage/reducers';
-import { sprintGameReducer } from './SprintGame/Reducers'
-import { fortuneGameReducer } from './FortuneGame/Reducers'
+import { combineReducers } from "redux";
+import { playZonePageReducer } from "./PlayZonePage/reducers";
+import { sprintGameReducer } from "./SprintGame/Reducers";
+import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
-import * as Actions from './Actions';
+import * as Actions from "./Actions";
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -94,6 +94,11 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         deleteWords: [...state.deleteWords, action.payload],
       };
+    case Actions.CHANGE_ALL_SETTINGS:
+      return {
+        ...state,
+        ...action.payload,
+      };
   }
   return state;
 };
@@ -103,6 +108,4 @@ export default combineReducers({
   savanna: savannaReducer,
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
-  // miniGamesStats: statsReducer,
-  fortuneGame: fortuneGameReducer,
 });

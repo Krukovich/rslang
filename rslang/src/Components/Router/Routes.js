@@ -111,11 +111,6 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/FortuneGame',
-    component: FortuneGame,
-    exact: true,
-  },
-  {
     // always last, 404 page
     path: null,
     component: () => (
