@@ -4,7 +4,7 @@ import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz.jsx'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
 import { fetchAPI } from "../../../../../Components/Tools/fetchAPI";
-import {createQuize } from '../../components/createQuize'
+import { createQuize } from '../../components/createQuize'
 import { setSavannaStats } from '../../../../../Store/Savanna/actions';
 
 const mapStateToProps = (store) => {
@@ -40,7 +40,6 @@ const mapActionToProps = {
 
 class Quiz extends Component {
   constructor(props) {
-    console.log('constr', props)
     super(props);
   this.state = {
     gameStart: false,
@@ -49,41 +48,24 @@ class Quiz extends Component {
     activeQuestion: 0,
     answerState: null, // { [id]: 'success' 'error' }
     quiz: props.quiz,
-    timeLeft: 5,
+
   }
   
 }
 
-startTimer = () => {
-  let interval = setInterval(this.tick.bind(this), 1000);
-  this.setState({ interval });
-};
-
-componentDidMount() {
-  this.startTimer()  
-}
-
-tick = () => {
-  setInterval(this.setState(
-    (prevState) => {
-      return {
-        timeLeft: prevState.timeLeft - 1,
-      };
-    }
-  ),)
+finishQuestionWithError = () => {
   const question = this.state.quiz[this.state.activeQuestion]
   const results = this.state.results
-  if (this.state.timeLeft = 0) {
       results[this.state.activeQuestion] = 'error'
       this.setState({
         answerState: {'timeLeft': 'error'},
         results
       })  
     this.finishQuestion();
-  }
 }
 
 onAnswerClickHandler = (answerId) => {
+  
   // if (this.state.answerState) {
   //   const key = Object.keys(this.state.answerState)[0]
   //   if (this.state.answerState[key] === 'success') {
@@ -91,7 +73,6 @@ onAnswerClickHandler = (answerId) => {
   //   }
   // } 
   //если дожидаться пока пользователь правильно не ответит
-console.log('state.in click', )
   const question = this.state.quiz[this.state.activeQuestion]
   const results = this.state.results
 
@@ -146,13 +127,11 @@ finishQuestion() {
   }
 
   render() {
-    
-    console.log('state', this.state)
+
     return (
       <div className='Quiz'>
         <div className='QuizWrapper'>
           <h1>Ответьте на все вопросы</h1>
-          <h2>Осталось {this.state.timeLeft} секунд</h2>
           {
             this.state.isFinished
              ? <FinishedQuiz
@@ -161,7 +140,7 @@ finishQuestion() {
                   onRetry={this.retryHandler}
                 />
              : <ActiveQuiz
-                timeLeft={this.state.timeLeft}
+                finishQuestionError={this.finishQuestionWithError}
                 answers={this.state.quiz[this.state.activeQuestion].answers}
                 question={this.state.quiz[this.state.activeQuestion].question}
                 onAnswerClick={this.onAnswerClickHandler}

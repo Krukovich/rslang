@@ -1,34 +1,67 @@
 import React from "react";
 import "./ActiveQuiz.css";
 import AnswersList from "./AnswersList/AnswersList";
-import Time from "./Time/Time";
 
-const ActiveQuiz = (props) => {
-  return (
-    <div className="ActiveQuiz">
-      <h2>{props.timeLeft}</h2>
-      <Time />
-      <div id="question" className={`questionanimated`}>
-        {props.question}
+class ActiveQuiz extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timeLeft: 7,
+    };
+  }
+  
+  setTime() {
+    this.setState({
+      timeLeft: 7,
+    });
+  }
+
+  startTimer() {
+      setInterval(() => {
+        if (this.state.timeLeft === 0) {
+          this.setTime();
+          this.props.finishQuestionError();
+        } else {
+          this.setState({
+            timeLeft: this.state.timeLeft - 1,
+          })
+        }
+      }, 1000);
+  }
+
+  componentDidMount() {
+    this.startTimer();
+  }
+
+  render() {
+    
+    return (
+      <div className="ActiveQuiz">
+        <h2>{this.state.timeLeft}</h2>
+        <div id="question" className={`questionanimated`}>
+          {this.props.question}
+        </div>
+        <p className="Question">
+          <span>
+            <strong>{this.props.answerNumber}.</strong>&nbsp;
+            {this.props.question}
+          </span>
+
+          <small>
+            {this.props.answerNumber} из {this.props.quizLength}
+          </small>
+        </p>
+
+        <AnswersList
+          state={this.props.state}
+          answers={this.props.answers}
+          onAnswerClick={this.props.onAnswerClick}
+          setTime={() => this.setTime()}
+          
+        />
       </div>
-      <p className="Question">
-        <span>
-          <strong>{props.answerNumber}.</strong>&nbsp;
-          {props.question}
-        </span>
-
-        <small>
-          {props.answerNumber} из {props.quizLength}
-        </small>
-      </p>
-
-      <AnswersList
-        state={props.state}
-        answers={props.answers}
-        onAnswerClick={props.onAnswerClick}
-      />
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default ActiveQuiz;
