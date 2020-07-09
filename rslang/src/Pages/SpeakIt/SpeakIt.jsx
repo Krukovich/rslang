@@ -9,6 +9,10 @@ import Score from './Components/Score/Score.jsx';
 import Button from './Components/Buttons/Button.jsx';
 import SpeakItEnd from './SpeakItEnd.jsx';
 import Stats from './Components/Stats/Stats.jsx';
+import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
+import Input from './Components/Input/Input.jsx';
+import RestartButton from './Components/Buttons/RestartButton.jsx';
+import PlayGame from './Components/Buttons/PlayGame.jsx';
 
 const mapStateToProps = (state) => {
   return {
