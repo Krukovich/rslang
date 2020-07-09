@@ -6,7 +6,7 @@ import { createStore } from "redux";
 import rootReducer from "./Store/Reducers";
 import App from "./App";
 import { fetchAPI } from "./Components/Tools/fetchAPI";
-import { getCookie } from "./Components/Tools/GetCoocke";
+import { getCookie } from "./Components/Tools/getCookie";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Style/main.scss";

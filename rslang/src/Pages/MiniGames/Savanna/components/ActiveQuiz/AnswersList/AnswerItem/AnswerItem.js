@@ -11,7 +11,10 @@ const AnswerItem = props => {
   return (
     <li
       className={cls}
-      onClick={() => props.onAnswerClick(props.answer.id)}
+      onClick={() => {
+        props.onAnswerClick(props.answer.id)
+        props.setTime();
+      }}
     >
       { props.answer.text }
     </li>

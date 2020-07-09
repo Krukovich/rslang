@@ -5,6 +5,8 @@ import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 
+import { fetchAPI } from '../Components/Tools/fetchAPI'
+
 const initialState = {
   level: 1, // number indicating difficult level
   playExampleSound: true, // play example words after selected agree word
@@ -17,6 +19,15 @@ const initialState = {
   showBtnDeleteWord: true, // show btn remove a word from learning
   showBtnDifficultWord: true, // show btn add words to a difficult group
   newWordsCount: 20, // number for learning new words
+  deleteWords: [], // an array with delete words
+  difficultWords: [], // an array with the words in which errors were made
+  dayLearningWords: [], //an array of words to learn
+  lastAddWord: {}, // последнее добавленное слово. обект типа {
+  //   userId: "5ef6297ef3e215001785c442",
+  //   wordId: "5e9f5ee35eb9e72bc21af716",
+  //   word: { "difficulty": "weak", "optional": {testFieldString: 'test', testFieldBoolean: true} }
+  // }
+  allUserWords: [], //слова пользователя, их брать в задание для игр
 };
 
 export const appSettingsReducer = (state = initialState, action) => {
@@ -76,10 +87,46 @@ export const appSettingsReducer = (state = initialState, action) => {
         ...state,
         newWordsCount: action.payload,
       };
+    case Actions.CHANGE_DIFFICULT_WORDS:
+      return {
+        ...state,
+        difficultWords: [...state.difficultWords, action.payload],
+      };
+    case Actions.CHANGE_DAY_LEARNING_WORDS:
+      return {
+        ...state,
+        dayLearningWords: action.payload,
+      };
+    case Actions.CHANGE_DELETE_WORDS:
+      return {
+        ...state,
+        deleteWords: [...state.deleteWords, action.payload],
+      };
+
     case Actions.CHANGE_ALL_SETTINGS:
       return {
         ...state,
         ...action.payload,
+      };
+    case Actions.ADDNEW_NEW_USER_WORD_BY_WORD_ID:
+      fetchAPI('setNewUserWordById', action.payload);
+      return {
+        ...state,
+        lastAddWord: action.payload,
+        allUserWords: [...state.allUserWords, action.payload]
+      };
+    case Actions.UPDATE_USER_WORD_BY_WORD_ID:
+      fetchAPI('supdateNewUserWordById', action.payload);
+      return {
+        ...state,
+        lastAddWord: action.payload,
+        allUserWords: [...state.allUserWords, action.payload]
+      };
+    case Actions.ADD_ALL_USER_WORDS_FROM_SERVER:
+      console.log('ADD_ALL_USER_WORDS_FROM_SERVER ', action.payloads)
+      return {
+        ...state,
+        allUserWords: [...action.payload]
       };
   }
   return state;

@@ -9,6 +9,7 @@ import { Redirect} from "react-router-dom"
 export class AudioCall extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       gameStart: false,
       gameProgress: 0,
@@ -21,9 +22,10 @@ export class AudioCall extends React.Component {
       gameStage: 1,
       gameFindWord: null,
       showAlert: false,
-      gameSuccessAnswer: 0,
       fail: false,
     };
+
+    this.gameSuccessAnswer = 0;
   }
 
   wordsArraySwitch = (id, key) => {
@@ -31,12 +33,11 @@ export class AudioCall extends React.Component {
     if (id === this.state.gameFindWord.id) {
       temp[key] = "green";
       if (!this.state.fail) {
-        const gameSuccessAnswerTemp = this.state.gameSuccessAnswer + 1;
-        this.setState({ gameSuccessAnswer: gameSuccessAnswerTemp });
+        this.gameSuccessAnswer = this.gameSuccessAnswer++;
       }
       this.nextStage();
     } else {
-      this.setState({ fail: true });
+      //this.setState({ fail: true });
       temp[key] = "red";
     }
     this.setState({ wordsArray: temp });
@@ -60,7 +61,7 @@ export class AudioCall extends React.Component {
   randomWords = async (page, group) => {
     const content = await fetchAPI("words", { page: page, group: group });
     const arrayOfWords = this.levelGenerator(content);
-    this.setState({ wordsArray: arrayOfWords });
+    //this.setState({ wordsArray: arrayOfWords });
     console.log("redy to game");
     return content;
   };
@@ -73,10 +74,10 @@ export class AudioCall extends React.Component {
     if (this.state.gameStage > 5) {
       this.endGame();
     }
-    this.setState({ fail: false });
+   // this.setState({ fail: false });
     const stageNow = this.state.gameStage;
     const stageNext = stageNow + 1;
-    this.setState({ gameStage: stageNext });
+    //this.setState({ gameStage: stageNext });
     this.randomWords(Math.floor(Math.random() * 6), this.state.gameStage);
     console.log("stage", this.state.gameStage);
   };
@@ -86,14 +87,14 @@ export class AudioCall extends React.Component {
     const stats = this.state.gameSuccessAnswer;
     const obj = {time, stats};
     this.writeStats(obj);
-    this.setState({ showAlert: true });
+    //this.setState({ showAlert: true });
   }
 
   writeStats = async (statsObj) => {
     const content = await fetchAPI("users-set-statistics", statsObj);
     const arrayOfWords = this.levelGenerator(content);
 
-    this.setState({ wordsArray: arrayOfWords });
+    //this.setState({ wordsArray: arrayOfWords });
     console.log("stats write");
     return content;
   };
@@ -125,19 +126,21 @@ export class AudioCall extends React.Component {
           </div>
           {this.state.gameStart?
             <AudioComp
-            gameStart={this.state.gameStart}
             gameFindWord={this.state.gameFindWord}
             gameStage={this.state.gameStage}
           /> : null
           }
-          <Words
+          {this.state.gameStart?
+            <Words
             wordsArray={this.state.wordsArray}
             gameStart={this.state.gameStart}
             wordsDisplayCount={this.state.wordsDisplayCount}
             gameFindWord={this.state.gameFindWord}
             styleFunction={(id, key) => this.wordsArraySwitch(id, key)}
             gameStage={this.state.gameStage}
-          />
+          /> : <div>слова не загружены</div>
+          }
+          
           <div className="text-center">
             <ButtonNextStage
               className="align-center"
