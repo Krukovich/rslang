@@ -1,4 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux';
+
+const mapStateToProps = (store) => {
+  return { 
+    difficultWords: store.appSettings.difficultWords,
+  }
+}
 
 const DifficultWords = () => {
   return(
@@ -6,4 +13,4 @@ const DifficultWords = () => {
   )
 }
 
-export default DifficultWords
+export default connect(mapStateToProps)(DifficultWords);
