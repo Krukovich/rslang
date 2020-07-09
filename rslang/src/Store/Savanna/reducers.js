@@ -9,6 +9,7 @@ export const savannaReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.CHANGE_MINIGAMESAVANNA_STATS:
       return {
+        ...state,
         minigameSavannaStats: action.payload,
       }
   }

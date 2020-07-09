@@ -15,13 +15,6 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
-<<<<<<< HEAD
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
   }
-=======
-
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
-}
-
->>>>>>> 06f669102a93e110fb2b1764cbdc9f617968622f
 export default BtnsBar;

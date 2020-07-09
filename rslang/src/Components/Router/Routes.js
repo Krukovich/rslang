@@ -15,13 +15,12 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
-import MiniGamesPage from '../../Pages/MinigamesPage/MinigamesPage';
+import MiniGamesPage from '../../Pages/MiniGamesPage/MinigamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
 
-<<<<<<< HEAD
 const mapStateToProps = (state) => {
   return {
     level: state.appSettings.level,
@@ -33,8 +32,6 @@ const mapActionToProps = {
   setDayLearningWords,
 }
 
-=======
->>>>>>> feat: long stats from redux
 const sourceOpenRoutes = [
   {
     path: '/logout',
@@ -92,19 +89,11 @@ const sourceCloseRoutes = [
   {
     path: '/long-stats',
     component: () => <LongStats totalWords={80} />,
-<<<<<<< HEAD
     exact: true,
   },
   {
     path: '/play-zone',
     component: PlayZonePage,
-=======
-    exact: true,
-  },
-  {
-    path: '/createanaccount',
-    component: CreateAccount,
->>>>>>> fix after update
     exact: true,
   },
   {
