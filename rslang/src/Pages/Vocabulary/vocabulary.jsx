@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import WordsToLearn from './WordsToLearn/WordsToLearn';
 import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
-import {setDeleteWords} from '../../Store/Actions.js'
+import {setDeleteWords} from '../../Store/PlayZonePage/actions'
 
 const mapStateToProps = (store) => {
   return { 
-    learningWords: store.appSettings.dayLearningWords,
+    learningWords: store.playZone.dayLearningWords,
   }
 }
 
