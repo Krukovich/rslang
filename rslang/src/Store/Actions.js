@@ -9,9 +9,6 @@ export const CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER =
   "CHANGE_SHOW_BTN_SHOW_AGREE_ANSWER";
 export const CHANGE_SHOW_BTN_DELETE_WORD = "CHANGE_SHOW_BTN_DELETE_WORD";
 export const CHANGE_NEW_WORDS_COUNT = "CHANGE_NEW_WORDS_COUNT";
-export const CHANGE_DIFFICULT_WORDS = "CHANGE_DIFFICULT_WORDS";
-export const CHANGE_DAY_LEARNING_WORDS = "CHANGE_DAY_LEARNING_WORDS";
-export const CHANGE_DELETE_WORDS = "CHANGE_DELETE_WORDS";
 export const CHANGE_SHOW_BTN_DIFFICULT_WORDS =
   "CHANGE_SHOW_BTN_DIFFICULT_WORDS";
 export const CHANGE_ALL_SETTINGS = "CHANGE_ALL_SETTINGS";
@@ -69,21 +66,6 @@ export const setShowBtnDifficultWord = (flag) => ({
 export const setNewWordsCount = (number) => ({
   type: CHANGE_NEW_WORDS_COUNT,
   payload: number,
-});
-
-export const setDifficultWords = (array) => ({
-  type: CHANGE_DIFFICULT_WORDS,
-  payload: array,
-});
-
-export const setDayLearningWords = (array) => ({
-  type: CHANGE_DAY_LEARNING_WORDS,
-  payload: array,
-});
-
-export const setDeleteWords = (array) => ({
-  type: CHANGE_DELETE_WORDS,
-  payload: array,
 });
 
 export const setAllSettings = (object) => ({

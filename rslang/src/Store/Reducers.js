@@ -17,9 +17,6 @@ const initialState = {
   showBtnDeleteWord: true, // show btn remove a word from learning
   showBtnDifficultWord: true, // show btn add words to a difficult group
   newWordsCount: 20, // number for learning new words
-  deleteWords: [], // an array with delete words
-  difficultWords: [], // an array with the words in which errors were made
-  dayLearningWords: [], //an array of words to learn
 };
 
 export const appSettingsReducer = (state = initialState, action) => {
@@ -78,21 +75,6 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         newWordsCount: action.payload,
-      };
-    case Actions.CHANGE_DIFFICULT_WORDS:
-      return {
-        ...state,
-        difficultWords: [...state.difficultWords, action.payload],
-      };
-    case Actions.CHANGE_DAY_LEARNING_WORDS:
-      return {
-        ...state,
-        dayLearningWords: action.payload,
-      };
-    case Actions.CHANGE_DELETE_WORDS:
-      return {
-        ...state,
-        deleteWords: [...state.deleteWords, action.payload],
       };
     case Actions.CHANGE_ALL_SETTINGS:
       return {

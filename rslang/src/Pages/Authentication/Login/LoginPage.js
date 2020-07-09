@@ -8,8 +8,9 @@ import * as Const from "../../../constant";
 import { getCookie } from "../../../Components/Tools/GetCoocke";
 import { Redirect } from "react-router-dom";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
-import { getRandomPage } from "../../../service";
-import { setDayLearningWords, setAllSettings } from "../../../Store/Actions";
+
+import { setAllSettings } from "../../../Store/Actions";
+import { setDayLearningWords } from '../../../Store/PlayZonePage/actions';
 import { getWords, saveWordsInLocalStorage } from "../../../service";
 
 import "./Login.scss";

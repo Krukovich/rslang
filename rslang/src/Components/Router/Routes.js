@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { setDayLearningWords } from '../../Store/Actions';
+import { setDayLearningWords } from '../../Store/PlayZonePage/actions';
 import { getWords, saveWordsInLocalStorage } from '../../service';
 import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';

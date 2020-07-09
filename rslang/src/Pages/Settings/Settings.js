@@ -13,7 +13,6 @@ import {
   setShowBtnAgreeAnswer,
   setShowBtnDeleteWord,
   setNewWordsCount,
-  setDayLearningWords,
   setShowBtnDifficultWord,
   setShowWordTranscription,
   setPlayExampleSound,
@@ -59,7 +58,6 @@ const mapActionsToProps = {
   setShowBtnAgreeAnswer,
   setShowBtnDeleteWord,
   setNewWordsCount,
-  setDayLearningWords,
   setShowBtnDifficultWord,
   setShowWordTranscription,
   setPlayExampleSound,
@@ -108,7 +106,6 @@ class Settings extends React.Component {
       if (res.status === 200) {
         res.json().then((data) => {
           this.props.setAllSettings(data.optional);
-          console.log(data.optional);
         });
       }
     });
