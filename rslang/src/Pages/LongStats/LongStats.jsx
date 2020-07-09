@@ -11,18 +11,10 @@ import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
   const { minigameSavannaStats } = store.savanna;
-<<<<<<< HEAD
   
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
-=======
-  const { counter } = store.sprintGame;
-  const { difficulty } = store.fortuneGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-    counter: counter,
->>>>>>> 5721ab0... add: buttons
     difficulty: difficulty,
 }}
 
@@ -80,7 +72,6 @@ class LongStats extends React.Component {
         { 'id': 4, label: 'Паззл', 'visible': false },
         { 'id': 5, label: 'Скажи Слово', 'visible': false },
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
-<<<<<<< HEAD
       ],
       count: [
         {"timestamp":1593114322795,"newWords":7},
@@ -88,9 +79,6 @@ class LongStats extends React.Component {
         {newWords: 4, timestamp: 1593375922795},
       ],
       
-=======
-      ]
->>>>>>> 5721ab0... add: buttons
     }
     // this.count = 0;
   }
@@ -119,7 +107,6 @@ class LongStats extends React.Component {
         case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
           break; 
-<<<<<<< HEAD
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           this.props.setSavannaStats([10,20,30]);
@@ -132,10 +119,6 @@ class LongStats extends React.Component {
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
           break;  
-=======
-        case 6 : 
-        console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`)  
->>>>>>> 5721ab0... add: buttons
       }   
       return { items };  
     })
@@ -202,13 +185,9 @@ class LongStats extends React.Component {
            
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
-<<<<<<< HEAD
               <div className="longStatsElem-field">
               <MiniStats count={this.state.count} />
               </div>
-=======
-              <div className="longStatsElem-field"></div>
->>>>>>> 98637c0... fix after update
             </div>     
             </div>     
         </div>

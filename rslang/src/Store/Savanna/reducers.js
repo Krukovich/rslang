@@ -1,4 +1,8 @@
 import { CHANGE_MINIGAMESAVANNA_STATS } from "./actions";
+<<<<<<< HEAD
+=======
+
+>>>>>>> be080e4... fix
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 const initialState = {
