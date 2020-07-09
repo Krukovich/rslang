@@ -13,6 +13,7 @@ import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
 import Input from './Components/Input/Input.jsx';
 import SpeakItEnd from './SpeakItEnd.jsx';
+import Stats from './Components/Stats/Stats.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -203,11 +204,7 @@ class SpeakIt extends React.Component {
                 <PlayGame recordSound={ this.recordSound } />
               </div>
               <div className="col-12 col-md-3 mt-2 mb-5">
-              <button
-                className="btn btn-info w-100"
-              >
-                Статистика
-              </button>
+                <Stats />
               </div>
             </div>
           </div>
