@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 
-const Stats = ({ words }) => {
+import { fetchAPI } from '../../../../Components/Tools/fetchAPI';
+
+const Stats = ({ words, score }) => {
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const saveStats = () => {
+    const speakIt = {
+      speakIt: {
+        date: new Date().getMilliseconds(),
+        score: score,
+      }
+    }
+    fetchAPI("users-set-statistics", speakIt);
+    handleClose();
+  }
 
   const list = words.map((item) => {
     return(
@@ -38,7 +51,12 @@ const Stats = ({ words }) => {
 
       <Modal show={ show } onHide={ handleClose } scrollable="true">
         <Modal.Header closeButton>
-          <Modal.Title>Статистика</Modal.Title>
+          <Modal.Title>
+            Статистика
+            <span className="ml-3">
+              Ваш результат { score }
+            </span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ListGroup>
@@ -49,7 +67,7 @@ const Stats = ({ words }) => {
           <Button variant="secondary" onClick={ handleClose }>
             Close
           </Button>
-          <Button variant="primary" onClick={ handleClose }>
+          <Button variant="primary" onClick={ () => saveStats() }>
             Save Changes
           </Button>
         </Modal.Footer>
