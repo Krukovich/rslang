@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a75589ae47d03b4850a1bf439ce22a2a848526b7
 
 import { combineReducers } from "redux";
 import { playZonePageReducer } from "./PlayZonePage/reducers";
@@ -8,6 +11,7 @@ import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 
 import { fetchAPI } from '../Components/Tools/fetchAPI';
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 import { combineReducers } from 'redux';
@@ -32,6 +36,9 @@ import * as Actions from './Actions';
 >>>>>>> fix
 >>>>>>> fix
 >>>>>>> fix
+=======
+
+>>>>>>> a75589ae47d03b4850a1bf439ce22a2a848526b7
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -169,7 +176,11 @@ export default combineReducers({
   // miniGamesStats: statsReducer,
 >>>>>>> fix
   fortuneGame: fortuneGameReducer,
+<<<<<<< HEAD
 =======
   miniGamesStats: statsReducer,
 >>>>>>> fix
+=======
+
+>>>>>>> a75589ae47d03b4850a1bf439ce22a2a848526b7
 });
