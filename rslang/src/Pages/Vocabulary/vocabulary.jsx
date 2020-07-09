@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
-import wordCards from './vocabulary-data';
 import WordsToLearn from './WordsToLearn/WordsToLearn';
 import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (store) => {
   return { 
-    difficultWords: store.appSettings.difficultWords,
-    languageLevel: store.appSettings.level,
+    learningWords: store.appSettings.dayLearningWords,
   }
 }
 
 
 const Vocabulary = (props) => {
-  const [currentLanguageLevel] = useState(props.languageLevel);
-  const [posts, setPosts] = useState(wordCards[currentLanguageLevel]);
+  const [posts, setPosts] = useState(props.learningWords);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(30);
 
   useEffect(() => {
     const getPosts = () => {
-      setPosts(wordCards[currentLanguageLevel]);
+      setPosts(props.learningWords);
     }
 
     getPosts();
   }, []);
 
-  
+
   // remove words for learn into deleted words
   const remove = (index) => {
     const newArr = [
@@ -35,17 +32,6 @@ const Vocabulary = (props) => {
       ...posts.slice(index + 1)
     ];
     
-    setPosts(newArr);
-  }
-
-
-  // remove words for learn into deleted words
-  const remove = (index) => {
-    const newArr = [
-      ...wordCards[currentLanguageLevel].slice(0, index),
-      ...wordCards[currentLanguageLevel].slice(index + 1)
-    ];
-
     setPosts(newArr);
   }
 
