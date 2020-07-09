@@ -4,18 +4,6 @@ import MiniBtn from '../MiniBtn/MiniBtn';
 
 const BtnsBar = ({ items, showStats }) => {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> fix
-=======
->>>>>>> fix
-=======
->>>>>>> fix after update
   const elements = items.map((item) => {
     const { id, label } = item;
     return (
@@ -27,62 +15,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
-=======
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
-=======
-=======
->>>>>>> mini games BTNs
-=======
->>>>>>> mini games BTNs
-    const elements = items.map((item) => {
-        const { id, label } = item;
-        return (
-            <div key={id}>
-                <MiniBtn  {...label}
-                    showStats={() => showStats(id)} />
-                <span>{label}</span>
-            </div>
-        )
-    });
-    return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> mini games BTNs
->>>>>>> mini games BTNs
-=======
-  return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
->>>>>>> fix
 }
 
 export default BtnsBar;
-=======
-=======
->>>>>>> mini games BTNs
-=======
-  return (<ButtonGroup vertical size="lg">{elements}</ButtonGroup>)
->>>>>>> fix
-=======
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
->>>>>>> feat: long stats from redux
-=======
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
->>>>>>> fix after update
-}
-
-=======
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
-  }
->>>>>>> refactor
-export default BtnsBar;
-
-<<<<<<< HEAD
->>>>>>> mini games BTNs
-=======
->>>>>>> mini games BTNs

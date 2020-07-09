@@ -18,7 +18,7 @@ const ShortStatsHeader = () => {
 }
 
 const ShortStatsInfo = (props) => {
-  const { total, right, newWords, rightInArrow } = props;
+  const { total, right, newWords, rightInARow } = props;
   return (
     <ul className="row align-items-center flex-column shortStatsInfo">
       <li className="shortStatsInfo-item d-flex">
@@ -31,13 +31,14 @@ const ShortStatsInfo = (props) => {
         <span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span><span>{newWords}</span>
       </li>
       <li className="shortStatsInfo-item d-flex">
-        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInArrow}</span>
+        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInARow}</span>
       </li>
     </ul>
   )
 }
 
 export default class ShortStats extends React.Component {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -61,6 +62,16 @@ export default class ShortStats extends React.Component {
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 =======
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
+=======
+    render() {
+        return (
+            <div className="container shortStats">
+                <ShortStatsHeader />
+                <ShortStatsInfo {...this.props}  />
+            </div>
+        )
+    }
+>>>>>>> e26416ebb8c0cf7687f18b5bdf09344b0a5f22a7
 };
 >>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
 =======
