@@ -3,7 +3,11 @@ import './Quiz.css'
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz.jsx'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
-import { setSavannaStats } from '../../../../../Store/Savanna/actions';
+import { setSavannaStats, setSavannaLevel } from '../../../../../Store/Savanna/actions';
+
+import pew from '../../assets/good.mp3'
+import wrongPew from '../../assets/bad.mp3'
+import rez from '../../assets/rez.mp3'
 
 const mapStateToProps = (store) => {
   const {
@@ -34,6 +38,7 @@ const mapStateToProps = (store) => {
 
 const mapActionToProps = {
   setSavannaStats,
+  setSavannaLevel,
 }
 
 class Quiz extends Component {
@@ -46,14 +51,14 @@ class Quiz extends Component {
     activeQuestion: 0,
     answerState: null, // { [id]: 'success' 'error' }
     quiz: props.quiz,
-
   }
-  
 }
 
 finishQuestionWithError = () => {
   const results = this.state.results
       results[this.state.activeQuestion] = 'error'
+      const audio = new Audio(wrongPew);
+      audio.play();
       this.setState({
         answerState: {'timeLeft': 'error'},
         results
@@ -77,7 +82,8 @@ onAnswerClickHandler = (answerId) => {
     if (!results[this.state.activeQuestion]) {
       results[this.state.activeQuestion] = 'success'
     }
-
+    const audio = new Audio(pew);
+    audio.play();
     this.setState({
       answerState: {[answerId]: 'success'},
       results
@@ -85,6 +91,8 @@ onAnswerClickHandler = (answerId) => {
     
   } else {
     results[this.state.activeQuestion] = 'error'
+    const audio = new Audio(wrongPew);
+      audio.play();
     this.setState({
       answerState: {[answerId]: 'error'},
       results
@@ -97,6 +105,9 @@ onAnswerClickHandler = (answerId) => {
 finishQuestion() {
   const timeout = window.setTimeout(() => {
     if (this.isQuizFinished()) {
+      const audio = new Audio(rez);
+      audio.play();
+      
       this.setState({
         isFinished: true
       })
@@ -136,7 +147,6 @@ finishQuestion() {
   }
 
   render() {
-
     return (
       <div className='Quiz'>
         <div className='QuizWrapper'>

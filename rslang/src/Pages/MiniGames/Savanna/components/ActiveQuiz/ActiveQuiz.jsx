@@ -2,6 +2,8 @@ import React from "react";
 import "./ActiveQuiz.css";
 import AnswersList from "./AnswersList/AnswersList";
 
+import sec from "../../assets/sec.mp3"
+
 class ActiveQuiz extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,8 @@ class ActiveQuiz extends React.Component {
           this.setTime();
           this.props.finishQuestionError();
         } else {
+          const audio = new Audio(sec);
+          audio.play();
           this.setState({
             timeLeft: this.state.timeLeft - 1,
           })

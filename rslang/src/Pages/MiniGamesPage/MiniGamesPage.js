@@ -5,6 +5,8 @@ import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
 import FortuneLogo from './assets/logo-turbo.jpg';
+import savanna from './assets/savanna.jpg';
+import audiocall from './assets/audiocall.jpg';
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -21,8 +23,8 @@ class MiniGamesPage extends Component {
         title: 'Audiocall',
         description: '',
         href: 'audiocall',
-        class: 'Card-Image_learning',
-        pic: pic1
+        class: 'Card-Image_audiocall',
+        pic: audiocall
       },
       fortuneCard: {
         title: 'Turbo Wheel of Fortune',
@@ -35,8 +37,8 @@ class MiniGamesPage extends Component {
         title: 'Savanna',
         description: '',
         href: 'Savanna',
-        class: 'Card-Image_learning',
-        pic: pic1
+        class: 'Card-Image_savanna',
+        pic: savanna
       },
       englishPuzzleCard: {
         title: 'English Puzzle',
