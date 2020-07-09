@@ -168,6 +168,7 @@ class LongStats extends React.Component {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // componentWillUnmount() {
   //   if(this._asyncRequest) {
@@ -175,6 +176,8 @@ class LongStats extends React.Component {
   //   }
   // }
 >>>>>>> fix: key
+=======
+>>>>>>> fix: bug
   
   render() {    
     const { items } = this.state;  
