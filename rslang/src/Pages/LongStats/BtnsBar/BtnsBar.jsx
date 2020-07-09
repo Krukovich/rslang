@@ -32,6 +32,7 @@ const BtnsBar = ({ items, showStats }) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
 =======
   return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
@@ -75,6 +76,10 @@ export default BtnsBar;
 >>>>>>> fix after update
 }
 
+=======
+  return (<ButtonGroup size="lg">{elements}</ButtonGroup>)
+  }
+>>>>>>> refactor
 export default BtnsBar;
 
 <<<<<<< HEAD

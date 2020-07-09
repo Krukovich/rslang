@@ -15,7 +15,11 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
+<<<<<<< HEAD
 import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
+=======
+import MiniGamesPage from '../../Pages/MiniGamesPage/MinigamesPage';
+>>>>>>> refactor
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
@@ -33,8 +37,6 @@ const mapActionToProps = {
   setDayLearningWords,
 }
 
-=======
->>>>>>> feat: long stats from redux
 const sourceOpenRoutes = [
   {
     path: '/logout',
@@ -102,6 +104,7 @@ const sourceCloseRoutes = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: () => <LongStats totalWords={80} />,
 =======
 =======
@@ -129,11 +132,15 @@ const sourceCloseRoutes = [
   {
     path: '/createanaccount',
     component: CreateAccount,
+=======
+    component: () => <LongStats totalWords={80} />,
+>>>>>>> refactor
     exact: true,
   },
   {
     path: '/play-zone',
     component: PlayZonePage,
+<<<<<<< HEAD
 =======
     component: () => <LongStats totalWords={80} />,
 >>>>>>> fix after update
@@ -142,6 +149,8 @@ const sourceCloseRoutes = [
   {
     path: '/createanaccount',
     component: CreateAccount,
+=======
+>>>>>>> refactor
     exact: true,
   },
   {

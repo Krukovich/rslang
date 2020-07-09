@@ -1,9 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fix after testAPI
+=======
+>>>>>>> refactor
 import { combineReducers } from "redux";
 import { playZonePageReducer } from "./PlayZonePage/reducers";
 import { sprintGameReducer } from "./SprintGame/Reducers";
@@ -12,6 +15,7 @@ import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 import { fetchAPI } from '../Components/Tools/fetchAPI';
 
 =======
@@ -33,6 +37,8 @@ import * as Actions from './Actions';
 
 >>>>>>> fix after update
 
+=======
+>>>>>>> refactor
 const initialState = {
   level: 1, // number indicating difficult level
   playExampleSound: true, // play example words after selected agree word
@@ -166,6 +172,7 @@ export default combineReducers({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   fortuneGame: fortuneGameReducer,
 
 =======
@@ -180,3 +187,7 @@ export default combineReducers({
   fortuneGame: fortuneGameReducer,
 });
 >>>>>>> fix after update
+=======
+  fortuneGame: fortuneGameReducer,
+});
+>>>>>>> refactor

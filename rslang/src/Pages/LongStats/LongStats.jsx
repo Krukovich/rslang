@@ -1,10 +1,12 @@
 import React from 'react';
+import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import './longStats.scss';
-import BtnsBar from './BtnsBar/BtnsBar';
 import { setSavannaStats } from '../../Store/Savanna/actions';
+import { getCookie } from '../../Components/Tools/GetCoocke';
+
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
@@ -20,22 +22,15 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-const token = getCookie("token");
-const userId = getCookie("userId");
+// const token = getCookie("token");
+// const userId = getCookie("userId");
 
 const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/statistics`, {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
     method: 'GET',
     withCredentials: true,
     headers: {
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${getCookie("token")}`,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },

@@ -30,6 +30,7 @@ export const savannaReducer = (state = initialState, action) => {
       return {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         ...state,
         stats: action.payload,
       };
@@ -38,6 +39,9 @@ export const savannaReducer = (state = initialState, action) => {
 =======
 =======
 >>>>>>> mini stats from redux
+=======
+        ...state,
+>>>>>>> refactor
         minigameSavannaStats: action.payload,
       }
 >>>>>>> mini stats from redux
