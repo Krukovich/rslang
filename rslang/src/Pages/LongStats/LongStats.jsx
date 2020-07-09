@@ -109,8 +109,8 @@ class LongStats extends React.Component {
           break; 
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          this.props.setSavannaStats([10,20,30]);
-          console.log(`${this.props.minigameSavannaStats}`);
+          state.count = this.props.minigameSavannaStats;
+          
           break;  
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
