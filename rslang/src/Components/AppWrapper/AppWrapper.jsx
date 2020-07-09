@@ -23,6 +23,18 @@ export class AppWrapperCmp extends Component {
     this.setState({ clicked: !this.state.clicked });
   }
 
+  asideCloser = (event) => {
+    try {
+      if (!event.target.className.includes('aside')) {
+        this.setState({ clicked: false });
+      }
+    } catch {
+      if (this.state.clicked) {
+        this.setState({ clicked: false });
+      }
+    }
+  }
+
   clearLayout() {
     return (
       <div id="content">
@@ -34,7 +46,7 @@ export class AppWrapperCmp extends Component {
 
   HarSbarLayout() {
     return (
-      <div className="container-fluid">
+      <div onClick={this.asideCloser} className="container-fluid">
         <div className="row no-gutters">
           <Sidebar clicked={this.state.clicked} />
           <div className="col-md-12">

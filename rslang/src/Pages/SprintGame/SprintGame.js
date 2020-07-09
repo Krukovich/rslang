@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import SprintCard from "../../Components/SprintCard/SprintCard";
 import StartScreen from "./StartScreen/StartScreen";
 import EndScreen from "./EndScreen/EndScreen";
+import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 import "./SprintGame.scss";
 
@@ -93,9 +94,7 @@ class SprintGame extends Component {
 
       if (!this.state.counter) {
         // clearInterval(timer);
-        this.setState({
-          gameEnded: true,
-        });
+        this.gameEnd();
       }
     }, 1000);
   };
@@ -114,18 +113,7 @@ class SprintGame extends Component {
     }
   };
 
-  gameStart = props => {
-    this.mixWords();
-    this.timer();
-    this.keyPushHandler();
-    this.setState({
-      gameStarted: true,
-      gameEnded: false,
-    })
-  }
-
   rightAnswerHandler = () => {
-    alert(this.state.maxStreak)
     this.nextCard();
     this.setState((prevState) => {
       return {
@@ -133,7 +121,6 @@ class SprintGame extends Component {
         score: prevState.score + 10 * prevState.modifier,
       };
     });
-
     if (this.state.maxStreak === 3) {
       this.setState((prevState) => {
         return {
@@ -147,8 +134,6 @@ class SprintGame extends Component {
       const audio = new Audio(pew);
       audio.play();
     }
-
-    alert(this.state.maxStreak)
   };
 
   wrongAnswerHandler = () => {
@@ -161,9 +146,7 @@ class SprintGame extends Component {
       };
     });
     if (this.state.mistakeCount >= 2) {
-      this.setState({
-        gameEnded: true,
-      });
+      this.gameEnd();
     }
 
 
@@ -175,9 +158,7 @@ class SprintGame extends Component {
 
   nextCard = () => {
     if (this.state.activeQuestion + 1 >= this.state.mixedArr.length) {
-      this.setState({
-        gameEnded: true,
-      });
+      this.gameEnd();
     } else {
       this.setState((prevState) => {
         return {
@@ -187,22 +168,22 @@ class SprintGame extends Component {
     }
   };
 
-  keyPushHandler = (props) => {
+  keyPushHandler = (event) => {
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyA" || event.code === "ArrowLeft") {
-        this.rightBtnRef.current.focus();
-        if (this.state.mixedArr[this.state.activeQuestion].isTrue) {
-          this.rightAnswerHandler();
-        } else {
-          this.wrongAnswerHandler();
+        try {
+          this.rightBtnRef.current.focus();
+          this.rightBtnRef.current.click();
+        } catch {
+          return
         }
       }
       if (event.code === "KeyD" || event.code === "ArrowRight") {
-        this.wrongBtnRef.current.focus();
-        if (!this.state.mixedArr[this.state.activeQuestion].isTrue) {
-          this.rightAnswerHandler();
-        } else {
-          this.wrongAnswerHandler();
+        try {
+          this.wrongBtnRef.current.focus();
+          this.wrongBtnRef.current.click();
+        } catch {
+          return
         }
       }
     });
@@ -221,6 +202,27 @@ class SprintGame extends Component {
       alert('Подожди, пока слова не загрузятся!')
     }
   };
+
+  writeStats = async (statsObj) => {
+    const content = await fetchAPI("users-set-statistics", statsObj);
+    // const arrayOfWords = this.levelGenerator(content);
+
+    // this.setState({ wordsArray: arrayOfWords });
+    console.log("stats write");
+    return content;
+  };
+
+  gameEnd = () => {
+    this.setState({
+      gameEnded: true,
+    })
+
+    const score = this.state.score;
+    const time = Date.now();
+    const statsObj = { score, time }
+
+    this.writeStats(statsObj)
+  }
 
   gameRestart = (props) => {
     this.mixWords();
@@ -308,6 +310,7 @@ class SprintGame extends Component {
                 maxStreak={this.state.maxStreak}
                 modifier={this.state.modifier}
                 onclick={this.buttonClickHandler}
+                onkey={this.keyPushHandler}
               />
             </div>
             <div className="col-md-4"></div>

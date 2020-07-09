@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { setDayLearningWords } from '../../Store/Actions';
+import { setDayLearningWords } from '../../Store/PlayZonePage/actions';
 import { getWords, saveWordsInLocalStorage } from '../../service';
 import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';
@@ -19,6 +19,7 @@ import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
+import AboutPage from '../../Pages/AboutPage/AboutPage'
 
 const mapStateToProps = (state) => {
   return {
@@ -49,7 +50,7 @@ const sourceOpenRoutes = [
   },
   {
     path: '/about',
-    component: () => <h1>about</h1>,
+    component: AboutPage,
     exact: true,
   },
   {
@@ -135,7 +136,7 @@ const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
     <div className="router">
       <Switch>
         {sourceOpenRoutes.map(({ path, component }, key) => <Route exact path={path} component={component} key={'a' + key} />)}
-        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute setDayLearningWords={ setDayLearningWords } level={ level } newWordsCount={ newWordsCount }  exact component={component} path={path} key={'b' + key} />)}
+        {sourceCloseRoutes.map(({ path, component }, key) => <PrivateRoute setDayLearningWords={setDayLearningWords} level={level} newWordsCount={newWordsCount} exact component={component} path={path} key={'b' + key} />)}
       </Switch>
     </div>
   );
