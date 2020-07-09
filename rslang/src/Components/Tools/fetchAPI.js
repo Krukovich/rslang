@@ -95,6 +95,23 @@ export const fetchAPI = async (query, obj) => {
     return content; 
   }
 
+  if (query === "users-get-statistics") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/statistics`,
+      {
+        method: "GET",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
   if (query === "users-set-statistics") {
     const rawResponse = await fetch(
       Const.API_LINK + `users/${getCookie("userId")}/statistics`,
@@ -107,17 +124,9 @@ export const fetchAPI = async (query, obj) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          learnedWords: 999,
-          optional: {
-            minigames: [
-              {
-                gamename: "audiocall",
-                statistics: [obj],
-              },
-            ],
-          },
+          optional: obj,
         }),
-      }
+      },
     );
     const content = await rawResponse.json();
     return content;
@@ -175,5 +184,6 @@ export const fetchAPI = async (query, obj) => {
       };
     }
   }
+
   // ADDYOUR
 };

@@ -100,6 +100,18 @@ finishQuestion() {
       this.setState({
         isFinished: true
       })
+      const successCount = Object.keys(this.state.results).reduce((total, key) => {
+        if (this.state.results[key] === 'success') {
+          total++
+        }
+    
+        return total
+      }, 0)
+      const dateTime = Date.now();
+      console.log(successCount, dateTime)
+      this.props.setSavannaStats({
+        successCount, dateTime
+      })
     } else {
       this.setState({
         activeQuestion: this.state.activeQuestion + 1,
