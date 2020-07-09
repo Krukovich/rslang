@@ -166,14 +166,11 @@ class LongStats extends React.Component {
     );
   }
 
-<<<<<<< HEAD
-=======
   // componentWillUnmount() {
   //   if(this._asyncRequest) {
   //     this._asyncRequest.cancel();
   //   }
   // }
->>>>>>> fix: key
   
   render() {    
     const { items } = this.state;  
