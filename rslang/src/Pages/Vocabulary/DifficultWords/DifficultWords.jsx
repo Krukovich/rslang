@@ -7,9 +7,9 @@ const mapStateToProps = (store) => {
   }
 }
 
-const DifficultWords = () => {
+const DifficultWords = (props) => {
   return(
-    <span>Сложные слова</span>
+  <span> {props.difficultWords} </span>
   )
 }
 

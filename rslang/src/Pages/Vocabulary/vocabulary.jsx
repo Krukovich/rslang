@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import WordsToLearn from './WordsToLearn/WordsToLearn';
 import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
+import {setDeleteWords} from '../../Store/Actions.js'
 
 const mapStateToProps = (store) => {
   return { 
@@ -10,8 +11,13 @@ const mapStateToProps = (store) => {
   }
 }
 
+const mapActionToProps = {
+  setDeleteWords,
+}
+
 
 const Vocabulary = (props) => {
+  const _THIS = props;
   const [posts, setPosts] = useState(props.learningWords);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(30);
@@ -31,7 +37,7 @@ const Vocabulary = (props) => {
       ...posts.slice(0, index),
       ...posts.slice(index + 1)
     ];
-    
+    _THIS.setDeleteWords(posts[index])
     setPosts(newArr);
   }
 
@@ -54,4 +60,4 @@ const Vocabulary = (props) => {
   );
 }
 
-export default connect(mapStateToProps)(Vocabulary);
+export default connect(mapStateToProps, mapActionToProps)(Vocabulary);
