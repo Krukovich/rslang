@@ -1,12 +1,12 @@
 import React from 'react';
 
-const GroupButtons = () => {
+const GroupButtons = ({ loadNewWords }) => {
   const labelCount = [1, 2, 3, 4, 5, 6];
   
   const inputs = labelCount.map((item, index) => {
     return(
       <label className="btn btn-info" key={ index }>
-        <input type="radio" /> { item }
+        <input type="radio" onClick={ () => loadNewWords(index) }/> { item }
       </label>
     );
   });
