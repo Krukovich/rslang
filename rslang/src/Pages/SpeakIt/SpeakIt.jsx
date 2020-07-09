@@ -52,6 +52,11 @@ class SpeakIt extends React.Component {
     }
   }
 
+  loadNewWords = async (level) => {
+    const newWords = await getWords(level, MAX_WORDS_LENGTH);
+    this.setState({ words: newWords });
+  }
+
   incrementStep = () => {
     this.setState({ step: this.state.step += 1 });
     if (this.state.step === MAX_WORDS_LENGTH) {
@@ -147,7 +152,7 @@ class SpeakIt extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 mt-5">
-                <GroupButtons />
+                <GroupButtons loadNewWords={ this.loadNewWords }/>
               </div>
               <div className="col-12 col-lg-8 mt-5">
                 <Score score={ this.state.score } />
