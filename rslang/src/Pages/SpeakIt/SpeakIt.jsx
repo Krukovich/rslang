@@ -87,6 +87,14 @@ class SpeakIt extends React.Component {
     this.setState({ words });
   }
 
+  setWordMistake = (index) => {
+    debugger;
+    const words = [...this.state.words];
+    const word = {...words[index], mistake: true };
+    words[index] = word;
+    this.setState({ words });
+  }
+
   incrementScore = () => {
     this.setState({ score: this.state.score += POINT });
   }
@@ -130,12 +138,14 @@ class SpeakIt extends React.Component {
       this.setState({ inputValue: this.userWord });
       if (currentWord === this.userWord) {
         const index = this.state.words.findIndex((word) => word.word === currentWord );
-        this.setWordDone(index);
         playAudio(SOUND.CORRECT);
+        this.setWordDone(index);
         this.incrementScore();
         this.incrementStep();
       } else {
+        const index = this.state.words.findIndex((word) => word.word === currentWord );
         playAudio(SOUND.ERROR);
+        this.setWordMistake(index);
         this.decrementScore();
       }
     });
@@ -153,9 +163,6 @@ class SpeakIt extends React.Component {
             <div className="row">
               <div className="col-12 col-lg-4 mt-5">
                 <GroupButtons loadNewWords={ this.loadNewWords }/>
-              </div>
-              <div className="col-12 col-lg-8 mt-5">
-                <Score score={ this.state.score } />
               </div>
               <div className="col-12 col-lg-8 mt-5">
                 <Score score={ this.state.score } />
@@ -206,7 +213,7 @@ class SpeakIt extends React.Component {
                 <PlayGame recordSound={ this.recordSound } />
               </div>
               <div className="col-12 col-md-3 mt-2 mb-5">
-                <Stats />
+                <Stats words={ this.state.words } />
               </div>
             </div>
           </div>
