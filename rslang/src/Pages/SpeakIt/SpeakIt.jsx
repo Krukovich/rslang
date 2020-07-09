@@ -213,7 +213,10 @@ class SpeakIt extends React.Component {
                 <PlayGame recordSound={ this.recordSound } />
               </div>
               <div className="col-12 col-md-3 mt-2 mb-5">
-                <Stats words={ this.state.words } />
+                <Stats
+                  words={ this.state.words }
+                  score={ this.state.score }
+                />
               </div>
             </div>
           </div>
