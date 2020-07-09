@@ -17,7 +17,7 @@ class ActiveQuiz extends React.Component {
   }
 
   startTimer() {
-      setInterval(() => {
+    this.timer = setInterval(() => {
         if (this.state.timeLeft === 0) {
           this.setTime();
           this.props.finishQuestionError();
@@ -31,6 +31,10 @@ class ActiveQuiz extends React.Component {
 
   componentDidMount() {
     this.startTimer();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   render() {

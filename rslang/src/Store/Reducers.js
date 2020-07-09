@@ -5,7 +5,7 @@ import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import * as Actions from "./Actions";
 
-import { fetchAPI } from '../Components/Tools/fetchAPI'
+import { fetchAPI } from '../Components/Tools/fetchAPI';
 
 const initialState = {
   level: 1, // number indicating difficult level
@@ -88,6 +88,25 @@ export const appSettingsReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
+      };
+    case Actions.ADDNEW_NEW_USER_WORD_BY_WORD_ID:
+      fetchAPI('setNewUserWordById', action.payload);
+      return {
+        ...state,
+        lastAddWord: action.payload,
+        allUserWords: [...state.allUserWords, action.payload]
+      };
+    case Actions.UPDATE_USER_WORD_BY_WORD_ID:
+      fetchAPI('supdateNewUserWordById', action.payload);
+      return {
+        ...state,
+        lastAddWord: action.payload,
+        allUserWords: [...state.allUserWords, action.payload]
+      };
+    case Actions.CHANGE_ALL_SETTINGS:
+      return {
+        ...state,
+        allUserWords: [...action.payload]
       };
     case Actions.ADDNEW_NEW_USER_WORD_BY_WORD_ID:
       fetchAPI('setNewUserWordById', action.payload);
