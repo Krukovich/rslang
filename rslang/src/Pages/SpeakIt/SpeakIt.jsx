@@ -1,20 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
  
-import { imageRender, playAudio } from '../../service';
-import { SOUND, POINT } from '../../constant';
+import { imageRender, playAudio, getWords } from '../../service';
+import { SOUND, POINT, MAX_WORDS_LENGTH, SPEAK_LANGUAGE } from '../../constant';
 import Score from './Components/Score/Score.jsx';
 import Button from './Components/Buttons/Button.jsx';
 import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
 import Input from './Components/Input/Input.jsx';
+import SpeakItEnd from './SpeakItEnd.jsx';
 
 const mapStateToProps = (state) => {
   return {
-
+    level: state.appSettings.level,
+    words: state.appSettings.dayLearningWords,
   }
 }
 
@@ -28,7 +31,31 @@ class SpeakIt extends React.Component {
       inputValue: '',
       imageSrc: 'images/enjoy_small.png',
       translate: 'Перевод',
-      words: JSON.parse(localStorage.startWords).slice(0, 12),
+      words: [],
+      step: 11,
+      isFinish: false,
+    }
+  }
+
+  componentDidMount() {
+    this.setPlayWords();
+  }
+
+  setPlayWords = async () => {
+    const { level } = this.props;
+    const words = this.props.words || JSON.parse(localStorage.startWords);
+    if (words.length < MAX_WORDS_LENGTH || words === undefined) {
+      const newPlayWords = await getWords(level, MAX_WORDS_LENGTH);
+      this.setState({ words: newPlayWords });
+    } else {
+      this.setState({ words: words.splice(0, MAX_WORDS_LENGTH) });
+    }
+  }
+
+  incrementStep = () => {
+    this.setState({ step: this.state.step += 1 });
+    if (this.state.step === MAX_WORDS_LENGTH) {
+      this.setState({ isFinish: !this.state.isFinish });
     }
   }
 
@@ -86,7 +113,7 @@ class SpeakIt extends React.Component {
     const { currentWord } = this.state;  
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
+    recognition.lang = SPEAK_LANGUAGE;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.addEventListener('result', (event) => {
@@ -97,6 +124,7 @@ class SpeakIt extends React.Component {
         this.setWordDone(index);
         playAudio(SOUND.CORRECT);
         this.incrementScore();
+        this.incrementStep();
       } else {
         playAudio(SOUND.ERROR);
         this.decrementScore();
@@ -106,8 +134,11 @@ class SpeakIt extends React.Component {
   }
 
   render() {
+    const { isFinish } = this.state;
+    
     return (
       <React.Fragment>
+        { (!isFinish) ?
         <section className="main mt-5" id="main">
           <div className="container">
             <div className="row">
@@ -169,6 +200,7 @@ class SpeakIt extends React.Component {
             </div>
           </div>
         </section>
+        : <SpeakItEnd score={ this.state.score } /> }
       </React.Fragment>
     );
   }
