@@ -32,7 +32,7 @@ class SpeakIt extends React.Component {
       imageSrc: 'images/enjoy_small.png',
       translate: 'Перевод',
       words: [],
-      step: 11,
+      step: 0,
       isFinish: false,
     }
   }
@@ -88,6 +88,10 @@ class SpeakIt extends React.Component {
 
   decrementScore = () => {
     this.setState({ score: this.state.score <= POINT ? 0 : this.state.score -= POINT });
+  }
+
+  resetScore = () => {
+    this.setState({ score: 0 });
   }
 
   renderWordButton = () => {
@@ -185,7 +189,10 @@ class SpeakIt extends React.Component {
             </div>
             <div className="row">
               <div className="col-12 col-md-3 mt-2 mb-5">
-                <RestartButton />
+                <RestartButton
+                  setPlayWords={ this.setPlayWords }
+                  resetScore={ this.resetScore }
+                />
               </div>
               <div className="col-12 col-md-6 mt-2 mb-5">
                 <PlayGame recordSound={ this.recordSound } />
