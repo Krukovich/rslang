@@ -107,7 +107,7 @@ export const fetchAPI = async (query, obj) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          learnedWords: 999,
+          learnedWords: 0,
           optional: {
             minigames: [
               {

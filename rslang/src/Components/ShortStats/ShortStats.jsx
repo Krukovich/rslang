@@ -8,7 +8,6 @@ import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 import english from './english.gif';
 
 const ShortStatsHeader = () => {
-<<<<<<< HEAD
   return (
     <div className="row align-items-center flex-column shortStatsHeader">
       <img src={english} alt="stats pic" />
@@ -18,7 +17,7 @@ const ShortStatsHeader = () => {
 }
 
 const ShortStatsInfo = (props) => {
-  const { total, right, newWords, rightInARow } = props;
+  const { total, right, newWords, rightInArrow } = props;
   return (
     <ul className="row align-items-center flex-column shortStatsInfo">
       <li className="shortStatsInfo-item d-flex">
@@ -31,19 +30,13 @@ const ShortStatsInfo = (props) => {
         <span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span><span>{newWords}</span>
       </li>
       <li className="shortStatsInfo-item d-flex">
-        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInARow}</span>
+        <span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span><span>{rightInArrow}</span>
       </li>
     </ul>
   )
 }
 
 export default class ShortStats extends React.Component {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> fix after update
   render() {
     return (
       <div className="container shortStats">
@@ -52,64 +45,4 @@ export default class ShortStats extends React.Component {
       </div>
     )
   }
-<<<<<<< HEAD
-<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
-<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
-<<<<<<< HEAD:rslang/src/Components/ShortStats/ShortStats.jsx
 };
-=======
-=======
->>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
-=======
->>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
-=======
-    render() {
-        return (
-            <div className="container shortStats">
-                <ShortStatsHeader />
-                <ShortStatsInfo {...this.props}  />
-            </div>
-        )
-    }
->>>>>>> e26416ebb8c0cf7687f18b5bdf09344b0a5f22a7
-};
->>>>>>> fix: token & id:rslang/src/Components/ShortStats/ShortStats.js
-=======
-    return (
-        <div className="row align-items-center flex-column shortStatsHeader">
-            <img src={english} alt="stats pic" />
-            <h1>Серия завершена</h1>
-        </div>
-    )
-}
-
-const ShortStatsInfo = (props) => {
-    const { total, right, newWords, rightInARow } = props; 
-    return (
-        <ul className="row align-items-center flex-column shortStatsInfo">
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faDragon } /> Карточек завершено:  </span><span>{total}</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCrown } /> Правильные ответы: </span> <span>{right}%</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCartPlus } /> Новые слова: </span> <span>{newWords}</span> </li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faUserGraduate } /> Правильных ответов подряд: </span> <span>{rightInARow}</span> </li>
-        </ul>
-    )
-}
-export default class ShortStats extends React.Component {
-=======
->>>>>>> refactor
-    render() {
-        return (
-            <div className="container shortStats">
-                <ShortStatsHeader />
-                <ShortStatsInfo {...this.props}  />
-            </div>
-        )
-    }
-<<<<<<< HEAD
-=======
->>>>>>> fix after update
-=======
->>>>>>> refactor
-};
-
->>>>>>> fix
