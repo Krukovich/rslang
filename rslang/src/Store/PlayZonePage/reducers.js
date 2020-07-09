@@ -21,7 +21,7 @@ export const playZonePageReducer = (state = initialState, action) => {
     case CHANGE_DELETE_WORDS:
       return {
         ...state,
-        deleteWords: [...state.deleteWords, ...action.payload],
+        deleteWords: [...state.deleteWords, action.payload],
       };
     case CHANGE_DAY_LEARNING_WORDS:
       return {
