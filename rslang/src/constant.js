@@ -6,6 +6,10 @@ export const BTN_LABEL = {
 
 export const MAX_PAGE = 20;
 
+export const MAX_WORDS_LENGTH = 12;
+
+export const SPEAK_LANGUAGE = 'en-US';
+
 export const POINT = 10;
 
 export const LOGIN = {
