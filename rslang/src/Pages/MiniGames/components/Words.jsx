@@ -1,33 +1,51 @@
 import React from "react";
 import "./Style.scss";
 
-export const Words = (props) => {
-  const { wordsArray, gameStart, styleFunction } = props;
-  //он для меня он нужен console.log( wordsArray, gameStart ) slice(0, wordsDisplayCount)
+export class Words extends React.Component {
+  constructor(props) {
+    super(props);
 
-  console.log("render words");
-  if (gameStart) {
-    const wordRender = shuffle(wordsArray).map((word, key) => (
-      <div className="Word text-center" key={key}>
-        <button
-          className={wordStyle(word)}
-          type="submit"
-          id={word.id}
-          onClick={(event) => styleFunction(event.target.id, key)}
-        >
-          {word.word}
-        </button>
-      </div>
-    ));
-
-    return <div className="Words ">{wordRender}</div>;
+    this.wordsArray = this.props.wordsArray;
+    this.styleFunction = this.props.styleFunction;
+    this.gameFindWord = this.props.gameFindWord;
   }
-  return <div>слова не загружены</div>;
+
+  componentDidMount() {
+    console.log('component did mount ')
+    audioPlay(this.gameFindWord.audio);
+  }
+
+  render () {
+    return <div className="Words ">{wordRender(this.wordsArray, this.styleFunction)}</div>;
+  }
+}
+
+const audioPlay = (strLink) => {
+  const audioPlay = new Audio(
+    "https://raw.githubusercontent.com/Krukovich/rslang-data/master/" + strLink
+  );
+  audioPlay.play();
 };
 
+function wordRender(wordsArray, styleFunction) {
+  return shuffle(wordsArray).map((word, key) => (
+    <div className="Word text-center" key={key}>
+      <button
+        className={wordStyle(word)}
+        type="submit"
+        id={word.id}
+        onClick={(event) => styleFunction(event.target.id, key)}
+      >
+        {word.word}
+      </button>
+    </div>
+  ));
+}
+
+
 function shuffle(arr) {
-  var j, temp;
-  for (var i = arr.length - 1; i > 0; i--) {
+  let j, temp;
+  for (let i = arr.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1));
     temp = arr[j];
     arr[j] = arr[i];

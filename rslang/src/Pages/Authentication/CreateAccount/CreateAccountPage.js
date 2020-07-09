@@ -5,7 +5,7 @@ import { AlertRed } from "../../../Components/Alert/Alert";
 import { CreateAccountLayout } from "./CreateAccountLayout";
 import * as Const from "../../../constant";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI"
-import { getCookie } from '../../../Components/Tools/GetCoocke'
+import { getCookie } from '../../../Components/Tools/getCookie'
 import { Redirect } from "react-router-dom";
 
 export class CreateAccount extends React.Component {
@@ -96,7 +96,7 @@ export class CreateAccount extends React.Component {
       >
         <CreateAccountLayout>
           <form onSubmit={(e) => this.request(e)}>
-            <h2 className="text-center">Create an Account</h2>
+            <h2 className="text-center">Создать аккаунт</h2>
             <div className="form-group">
               <input
                 type="email"
@@ -130,7 +130,7 @@ export class CreateAccount extends React.Component {
             </div>
           </form>
           <p className="text-center">
-            <NavLink to="/">Зарегистрироваться</NavLink>
+            <NavLink to="/">Войти</NavLink>
           </p>
         </CreateAccountLayout>
       </AlertRed>
@@ -143,6 +143,6 @@ export class CreateAccount extends React.Component {
 
 class GoToMain extends React.Component {
   render () {
-    return <Redirect to="/main"/>;
+    return <Redirect to="/main-page"/>;
   }
 }
