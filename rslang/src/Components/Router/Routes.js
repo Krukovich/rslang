@@ -10,6 +10,7 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import Settings from '../../Pages/Settings/Settings';
+import SpeakItStart from '../../Pages/SpeakIt/SpeakItStart.jsx';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
@@ -82,6 +83,11 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+    path: '/',
+    component: Login,
+    exact: true,
+  },
+  {
     path: '/settings',
     component: Settings,
     exact: true,
@@ -114,6 +120,11 @@ const sourceCloseRoutes = [
   {
     path: '/SprintGame',
     component: SprintGame,
+    exact: true,
+  },
+  {
+    path: '/speakIt-start',
+    component: SpeakItStart,
     exact: true,
   },
   {
