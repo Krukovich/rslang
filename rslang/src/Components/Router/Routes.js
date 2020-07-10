@@ -21,6 +21,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
+import Training from '../../Pages/Training/Training.jsx'
 
 const mapStateToProps = (state) => {
   return {
@@ -83,11 +84,6 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/',
-    component: Login,
-    exact: true,
-  },
-  {
     path: '/settings',
     component: Settings,
     exact: true,
@@ -98,8 +94,8 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/createanaccount',
-    component: CreateAccount,
+    path: '/training',
+    component: Training,
     exact: true,
   },
   {
