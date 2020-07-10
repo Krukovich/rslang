@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
 import Card from '../../Components/Card/Card';
-<<<<<<< HEAD
 import './MinigamesPage.scss';
-=======
-import './MiniGamesPage.scss';
->>>>>>> a75589ae47d03b4850a1bf439ce22a2a848526b7
 
 import pic1 from './assets/pic1.jpg';
 import FortuneLogo from './assets/logo-turbo.jpg';
