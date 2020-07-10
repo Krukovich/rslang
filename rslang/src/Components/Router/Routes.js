@@ -16,7 +16,7 @@ import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
 import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
 import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
-import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
+import MiniGamesPage from '../../Pages/MiniGamesPage/MinigamesPage';
 import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
@@ -105,6 +105,11 @@ const sourceCloseRoutes = [
   {
     path: '/play-zone',
     component: PlayZonePage,
+    exact: true,
+  },
+  {
+    path: '/createanaccount',
+    component: CreateAccount,
     exact: true,
   },
   {

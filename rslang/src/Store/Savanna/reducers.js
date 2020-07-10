@@ -1,10 +1,10 @@
 import { CHANGE_MINIGAMESAVANNA_STATS } from "./actions";
-
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 const initialState = {
-  statsSavanna: {},
+  minigameSavannaStats: [1, 2, 3], //an array of minigame Savanna stats
 };
+
 
 export const savannaReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,5 +25,6 @@ export const savannaReducer = (state = initialState, action) => {
       };
     default:
       return state;
-  }
+    
+      }
 };

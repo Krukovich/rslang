@@ -124,7 +124,18 @@ export const fetchAPI = async (query, obj) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+
           optional: obj,
+          learnedWords: 0,
+          optional: {
+            minigames: [
+              {
+                gamename: "audiocall",
+                statistics: [obj],
+              },
+            ],
+          },
+
         }),
       },
     );
