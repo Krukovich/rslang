@@ -3,7 +3,16 @@ import { CHANGE_MINIGAMESAVANNA_STATS } from "./actions";
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 const initialState = {
-  statsSavanna: {},
+  statsSavanna: [
+    {"timestamp":1551114322795,"newWords":1},
+    {"timestamp":15051224622795,"newWords":2},
+    {newWords: 3, timestamp: 1592375922795},
+    {"timestamp":1557114322795,"newWords":4},
+    {"timestamp":1595122422795,"newWords":5},
+    {newWords: 6, timestamp: 1599375922795}
+  ]
+    
+  
 };
 
 export const savannaReducer = (state = initialState, action) => {

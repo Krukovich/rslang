@@ -10,11 +10,11 @@ import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
-  const { minigameSavannaStats } = store.savanna;
-  
+  const { statsSavanna } = store.savanna;
   const { difficulty } = store.fortuneGame;
+
   return {
-    minigameSavannaStats: minigameSavannaStats,
+    statsSavanna: statsSavanna,
     difficulty: difficulty,
 }}
 
@@ -100,24 +100,35 @@ class LongStats extends React.Component {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
+        case 1:
+          this.state.count =  [
+            {"timestamp":1591114322795,"newWords":17},
+            {"timestamp":1591224622795,"newWords":12},
+            {newWords: 14, timestamp: 1591375922795},
+          ];
+          break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.state.count;
+         
           break;
         case 3: 
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`); 
           break; 
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.minigameSavannaStats;
+          state.count = this.props.statsSavanna;
           
           break;  
         case 5 :
-          state.count = (state.count).map(elem => elem.newWords + 2);
+          state.count = (this.state.count).map(elem => {
+           
+            elem.newWords += 2;
+           return elem
+          });
           break;
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.minigameSavannaStats;
+          state.count = this.props.statsSavanna;
           break;  
       }   
       return { items };  
