@@ -1,6 +1,9 @@
 import { CHANGE_MINIGAMESAVANNA_STATS } from "./actions";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 743947491a5a5f15e34e9bde205c572b5b1d74db
 
 >>>>>>> be080e4... fix
 import { fetchAPI } from "../../Components/Tools/fetchAPI";

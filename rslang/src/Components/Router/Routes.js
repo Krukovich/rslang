@@ -107,6 +107,11 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
+    path: '/createanaccount',
+    component: CreateAccount,
+    exact: true,
+  },
+  {
     path: '/savanna',
     component: SavannaStartPage,
     exact: true,

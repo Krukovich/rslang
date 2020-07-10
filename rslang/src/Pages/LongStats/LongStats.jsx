@@ -3,7 +3,7 @@ import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import { setSavannaStats } from '../../Store/Savanna/actions';
-import { getCookie } from '../../Components/Tools/GetCoocke';
+import { getCookie } from '../../Components/Tools/getCookie';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
@@ -152,7 +152,6 @@ class LongStats extends React.Component {
       }
     );
   }
-
   
   render() {    
     const { items } = this.state;  

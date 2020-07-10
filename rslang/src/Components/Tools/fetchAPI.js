@@ -125,8 +125,11 @@ export const fetchAPI = async (query, obj) => {
         },
         body: JSON.stringify({
 <<<<<<< HEAD
+<<<<<<< HEAD
           optional: obj,
 =======
+=======
+>>>>>>> 743947491a5a5f15e34e9bde205c572b5b1d74db
           learnedWords: 0,
           optional: {
             minigames: [
@@ -136,7 +139,10 @@ export const fetchAPI = async (query, obj) => {
               },
             ],
           },
+<<<<<<< HEAD
 >>>>>>> be080e4... fix
+=======
+>>>>>>> 743947491a5a5f15e34e9bde205c572b5b1d74db
         }),
       },
     );
