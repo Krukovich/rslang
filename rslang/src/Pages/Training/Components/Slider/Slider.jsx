@@ -30,9 +30,9 @@ const Slider = ({ words }) => {
     <React.Fragment>
       <div className="row justify-content-center mt-5">
         <div className="col-12 col-lg-6 mt-5">
-          <Slider>
+          <Carousel>
             { slider }
-          </Slider>
+          </Carousel>
         </div>
       </div>
     </React.Fragment>
