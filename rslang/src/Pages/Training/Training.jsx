@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Carousel from './Components/Carousel/Carousel.jsx';
+import Slider from './Components/Slider/Slider.jsx';
 
 const mapStateToProps = (state) => {
   return {
-    dayLearningWords: state.playZone.dayLearningWords,
+    dayLearningWords: state.playZone.dayLearningWords || JSON.parse(localStorage.startWords),
   }
 }
 
 const Training = (props) => {
   const { dayLearningWords } = props; 
   return(
-    <Carousel words={ dayLearningWords } />
+    <Slider words={ dayLearningWords } />
   );
 }
 

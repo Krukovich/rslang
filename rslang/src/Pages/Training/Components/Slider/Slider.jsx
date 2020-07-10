@@ -3,10 +3,9 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { imageRender } from '../../../../service';
 
-import './Carousel.scss';
+import './Slider.scss';
 
-const Carousel = ({ words }) => {
-
+const Slider = ({ words }) => {
   const slider = words.map((word) => {
     return(
       <Carousel.Item key={ word.id }>
@@ -31,13 +30,13 @@ const Carousel = ({ words }) => {
     <React.Fragment>
       <div className="row justify-content-center mt-5">
         <div className="col-12 col-lg-6 mt-5">
-          <Carousel>
+          <Slider>
             { slider }
-          </Carousel>
+          </Slider>
         </div>
       </div>
     </React.Fragment>
   );
 }
 
-export default Carousel;
+export default Slider;
