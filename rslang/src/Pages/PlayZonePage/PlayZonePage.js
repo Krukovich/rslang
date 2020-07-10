@@ -104,7 +104,7 @@ class PlayZonePage extends React.Component {
       cards: cards,
       agreeWord: cards[playStep].word,
     });
-    this.props.setDeleteWords(card);
+    this.props.setDeleteWords(...card);
   }
 
   insertCardToDifficult = () => {

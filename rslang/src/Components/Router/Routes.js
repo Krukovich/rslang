@@ -44,11 +44,6 @@ const sourceOpenRoutes = [
     exact: true,
   },
   {
-    path: '/savanna',
-    component: SavannaStartPage,
-    exact: true,
-  },
-  {
     path: '/about',
     component: AboutPage,
     exact: true,
@@ -67,7 +62,7 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/vocabulary',
+    path: '/learning-words',
     component: VocabularyRouter,
     exact: true,
   },
