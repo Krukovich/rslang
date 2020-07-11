@@ -4,7 +4,7 @@ import Card from '../../Components/Card/Card';
 import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
-import sprint from './assets/sprint.png';
+import sprint from './assets/sprint.jpg';
 import FortuneLogo from './assets/logo-turbo.png';
 import SpeakItLogo from './assets/enjoy_small.png';
 
@@ -44,14 +44,14 @@ class MiniGamesPage extends Component {
         title: 'English Puzzle',
         description: '',
         href: 'englishpuzzle',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_englishpuzzle',
         pic: pic1
       },
       speakItCard: {
         title: 'Speak It',
         description: '',
         href: 'speakIt-start',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_speakit',
         pic: SpeakItLogo,
       },
       clicked: false,
