@@ -22,6 +22,7 @@ import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/Start
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
 import Training from '../../Pages/Training/Training.jsx'
+import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -111,6 +112,11 @@ const sourceCloseRoutes = [
   {
     path: '/fortune-game',
     component: FortuneGame,
+    exact: true,
+  },
+  {
+    path: '/english-puzzle',
+    component: PuzzleStart,
     exact: true,
   },
   {
