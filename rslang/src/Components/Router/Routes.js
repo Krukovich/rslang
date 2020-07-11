@@ -2,26 +2,27 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { setDayLearningWords } from "../../Store/PlayZonePage/actions";
-import { getWords, saveWordsInLocalStorage } from "../../service";
-import Login from "../../Pages/Authentication/Login/LoginPage";
-import { LogOut } from "../../Pages/Authentication/Login/LogOut";
-import { CreateAccount } from "../../Pages/Authentication/CreateAccount/CreateAccountPage";
-import PlayZonePage from "../../Pages/PlayZonePage/PlayZonePage";
-import ShortStats from "../ShortStats/ShortStats";
-import Settings from "../../Pages/Settings/Settings";
-import SpeakItStart from "../../Pages/SpeakIt/SpeakItStart.jsx";
-import LongStats from "../../Pages/LongStats/LongStats";
-import { AudioCall } from "../../Pages/MiniGames/AudioCall/AudioCall.jsx";
-import MainPage from "../../Pages/MainPage/MainPage";
-import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter";
-import FortuneGame from "../../Pages/FortuneGame/FortuneGame.jsx";
-import MiniGamesPage from "../../Pages/MiniGamesPage/MiniGamesPage";
-import { CheckLogin } from "../../Pages/Authentication/CheckLogin";
-import { SavannaStartPage } from "../../Pages/MiniGames/Savanna/components/StartPage/StartPage";
-import SprintGame from "../../Pages/SprintGame/SprintGame";
-import AboutPage from "../../Pages/AboutPage/AboutPage";
-import { fetchAPI } from "../Tools/fetchAPI";
+import { setDayLearningWords } from '../../Store/PlayZonePage/actions';
+import { getWords, saveWordsInLocalStorage } from '../../service';
+import Login from '../../Pages/Authentication/Login/LoginPage';
+import { LogOut } from '../../Pages/Authentication/Login/LogOut';
+import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAccountPage';
+import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
+import ShortStats from '../ShortStats/ShortStats';
+import Settings from '../../Pages/Settings/Settings';
+import SpeakItStart from '../../Pages/SpeakIt/SpeakItStart.jsx';
+import LongStats from '../../Pages/LongStats/LongStats';
+import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
+import MainPage from '../../Pages/MainPage/MainPage';
+import VocabularyRouter from '../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter';
+import FortuneGame from '../../Pages/FortuneGame/FortuneGame.jsx';
+import MiniGamesPage from '../../Pages/MiniGamesPage/MiniGamesPage';
+import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
+import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
+import SprintGame from '../../Pages/SprintGame/SprintGame';
+import AboutPage from '../../Pages/AboutPage/AboutPage';
+import Training from '../../Pages/Training/Training.jsx';
+import { fetchAPI } from '../Tools/fetchAPI';
 
 const mapStateToProps = (state) => {
   return {
@@ -99,12 +100,7 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: "/",
-    component: Login,
-    exact: true,
-  },
-  {
-    path: "/settings",
+    path: '/settings',
     component: Settings,
     exact: true,
   },
@@ -114,8 +110,8 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: "/createanaccount",
-    component: CreateAccount,
+    path: '/training',
+    component: Training,
     exact: true,
   },
   {
