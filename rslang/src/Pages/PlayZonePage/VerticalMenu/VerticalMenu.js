@@ -14,7 +14,7 @@ const VerticalMenu = (props) => {
   return (
     <div className="btn-group-vertical Vertical-Menu ml-3">
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 mb-1">
           { showBtnDeleteWord ?
             <button
               type="button"
@@ -28,7 +28,7 @@ const VerticalMenu = (props) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 mb-1">
           { showBtnDifficultWord ?
             <button
               type="button"
@@ -42,7 +42,7 @@ const VerticalMenu = (props) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 mb-1">
         { showBtnShowAgreeAnswer ? 
           <button
             type="button"

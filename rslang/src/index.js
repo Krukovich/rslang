@@ -6,7 +6,7 @@ import { createStore } from "redux";
 import rootReducer from "./Store/Reducers";
 import App from "./App";
 import { fetchAPI } from "./Components/Tools/fetchAPI";
-import { getCookie } from "./Components/Tools/GetCoocke";
+import { getCookie } from "./Components/Tools/getCookie";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Style/main.scss";
@@ -14,17 +14,17 @@ import "./Style/main.scss";
 function renderApplication(data = {}) {
   if (Object.keys(data).length === 0) {
     data = {
-      level: 1,
-      playExampleSound: true,
-      showTranslateWord: true,
-      showExampleString: true,
-      showExplanationString: true,
-      showWordTranscription: true,
-      showWordImage: false,
-      showBtnShowAgreeAnswer: true,
-      showBtnDeleteWord: true,
-      showBtnDifficultWord: true,
-      newWordsCount: 5,
+      level: 1, // number indicating difficult level
+      playExampleSound: true, // play example words after selected agree word
+      showTranslateWord: true, // show translate word
+      showExampleString: true, // show example string
+      showExplanationString: true, // show explanation string
+      showWordTranscription: true, // show word transcription
+      showWordImage: true, // show words image example
+      showBtnShowAgreeAnswer: true, // show btn next step
+      showBtnDeleteWord: true, // show btn remove a word from learning
+      showBtnDifficultWord: true, // show btn add words to a difficult group
+      newWordsCount: 20, // number for learning new words
     };
   }
   const settings = data;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { setDayLearningWords } from '../../Store/Actions';
+import { setDayLearningWords } from '../../Store/PlayZonePage/actions';
 import { getWords, saveWordsInLocalStorage } from '../../service';
 import Login from '../../Pages/Authentication/Login/LoginPage';
 import { LogOut } from '../../Pages/Authentication/Login/LogOut';
@@ -10,6 +10,7 @@ import { CreateAccount } from '../../Pages/Authentication/CreateAccount/CreateAc
 import PlayZonePage from '../../Pages/PlayZonePage/PlayZonePage';
 import ShortStats from '../ShortStats/ShortStats';
 import Settings from '../../Pages/Settings/Settings';
+import SpeakItStart from '../../Pages/SpeakIt/SpeakItStart.jsx';
 import LongStats from '../../Pages/LongStats/LongStats';
 import { AudioCall } from '../../Pages/MiniGames/AudioCall/AudioCall.jsx';
 import MainPage from '../../Pages/MainPage/MainPage';
@@ -20,6 +21,7 @@ import { CheckLogin } from '../../Pages/Authentication/CheckLogin';
 import { SavannaStartPage } from '../../Pages/MiniGames/Savanna/components/StartPage/StartPage';
 import SprintGame from '../../Pages/SprintGame/SprintGame';
 import AboutPage from '../../Pages/AboutPage/AboutPage'
+import Training from '../../Pages/Training/Training.jsx'
 
 const mapStateToProps = (state) => {
   return {
@@ -62,7 +64,7 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/vocabulary',
+    path: '/learning-words',
     component: VocabularyRouter,
     exact: true,
   },
@@ -92,8 +94,8 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/createanaccount',
-    component: CreateAccount,
+    path: '/training',
+    component: Training,
     exact: true,
   },
   {
@@ -114,6 +116,11 @@ const sourceCloseRoutes = [
   {
     path: '/SprintGame',
     component: SprintGame,
+    exact: true,
+  },
+  {
+    path: '/speakIt-start',
+    component: SpeakItStart,
     exact: true,
   },
   {

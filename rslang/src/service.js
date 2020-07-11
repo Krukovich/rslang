@@ -23,6 +23,12 @@ export const playExampleSound = (src) => {
   myAudio.play();
 }
 
+export const playAudio = (src) => {
+  const myAudio = new Audio();
+  myAudio.src = `../${src}`;
+  myAudio.play();
+}
+
 export const renderPlayString = (data, handlerChange) => {
   const regexp = /<b>([^<]+)<\/b>/;
   const word = data.textExample.match(regexp)[1];
@@ -42,7 +48,11 @@ export const renderPlayString = (data, handlerChange) => {
   parts.splice(1, 1, input);
   return parts;
 }
+
+export const checkDeleteWords = (array, id) => {
+  return array.filter((word) => word.id === id);
+}
+
 export const saveWordsInLocalStorage = (startWords) => {
   localStorage.setItem('startWords', JSON.stringify(startWords));
-
 }

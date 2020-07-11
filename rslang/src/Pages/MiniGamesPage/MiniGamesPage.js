@@ -6,6 +6,7 @@ import './MiniGamesPage.scss';
 import pic1 from './assets/pic1.jpg';
 import sprint from './assets/sprint.png';
 import FortuneLogo from './assets/logo-turbo.png';
+import SpeakItLogo from './assets/enjoy_small.png';
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -32,10 +33,10 @@ class MiniGamesPage extends Component {
         class: 'Card-Image_fortune',
         pic: FortuneLogo
       },
-      savannahCard: {
-        title: 'Savannah',
+      savannaCard: {
+        title: 'Savanna',
         description: '',
-        href: 'Savannah',
+        href: 'Savanna',
         class: 'Card-Image_learning',
         pic: pic1
       },
@@ -49,9 +50,9 @@ class MiniGamesPage extends Component {
       speakItCard: {
         title: 'Speak It',
         description: '',
-        href: 'speakit',
+        href: 'speakIt-start',
         class: 'Card-Image_learning',
-        pic: pic1
+        pic: SpeakItLogo,
       },
       clicked: false,
     }
@@ -65,7 +66,7 @@ class MiniGamesPage extends Component {
   render() {
     const sprintCard = this.state.sprintCard;
     const audioCallCard = this.state.audioCallCard;
-    const savannahCard = this.state.savannahCard;
+    const savannaCard = this.state.savannaCard;
     const fortuneCard = this.state.fortuneCard;
     const englishPuzzleCard = this.state.englishPuzzleCard;
     const speakItCard = this.state.speakItCard;
@@ -96,11 +97,11 @@ class MiniGamesPage extends Component {
           <div className="Cards row pt-2">
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={savannahCard.class}
-                pic={savannahCard.pic}
-                href={savannahCard.href}
-                title={savannahCard.title}
-                description={savannahCard.description}
+                class={savannaCard.class}
+                pic={savannaCard.pic}
+                href={savannaCard.href}
+                title={savannaCard.title}
+                description={savannaCard.description}
               />
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">

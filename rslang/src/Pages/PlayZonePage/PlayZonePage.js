@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setWordCards } from '../../Store/PlayZonePage/actions';
-import { setDifficultWords, setDeleteWords } from '../../Store/Actions';
+import { setDifficultWords, setDeleteWords } from '../../Store/PlayZonePage/actions';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
@@ -18,6 +18,9 @@ const mapStateToProps = (store) => {
   const {
     dayLearningWords,
     difficultWords,
+  } = store.playZone;
+  
+  const {
     showBtnDeleteWord,
     showBtnDifficultWord,
     showBtnShowAgreeAnswer,
@@ -101,7 +104,7 @@ class PlayZonePage extends React.Component {
       cards: cards,
       agreeWord: cards[playStep].word,
     });
-    this.props.setDeleteWords(card);
+    this.props.setDeleteWords(...card);
   }
 
   insertCardToDifficult = () => {
