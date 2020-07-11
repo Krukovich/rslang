@@ -26,22 +26,6 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  let stats = content.optional;
-  console.log(stats)
-  return stats;
-};
-
 const ProgressLabel = () => {
   return (
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
@@ -59,14 +43,14 @@ class LongStats extends React.Component {
         {
           label: 'Прогресс',
           borderColor: 'rgba(0,0,0,1)',
-          backgroundColor: 'darkcyan',
+          backgroundColor: 'orange',
           borderWidth: 2,
           data: [] //...props.totalNewWords
         },
         {
           label: 'Слов изучено в день',
-          borderColor: 'darkblue',
-          backgroundColor: 'darkblue',
+          borderColor: 'tomato',
+          backgroundColor: 'tomato',
           data: [], //...props.dailyNew,
           fill: false,
         }
@@ -109,7 +93,8 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 1:
-          state.count =  [{1591114322795: 17}];
+          
+
           break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
@@ -123,7 +108,7 @@ class LongStats extends React.Component {
           // state.count = this.props.statsSavanna;
           break;
         case 5 :
-          state.count = this.props.statsSavanna;
+          
           break;
         case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
@@ -142,26 +127,15 @@ class LongStats extends React.Component {
     })
   }
 
-  // async componentDidMount() {
-  // let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
-  //     this.setState({count: result.optional})
-  //     let appStats = result.optional.appStats;
-  //     delete appStats[0];
-  //     console.log("appSTats", appStats)
+  async componentDidMount() {
+  let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
+      this.setState({count: result.optional})
+      let appStats = result.optional.appStats;
+      delete appStats[0];
+      console.log("appSTats", appStats)
         
-  //       const resultWords = Object.values(appStats);
-  //       const resultDate = Object.keys(appStats).map((item) => {
-  componentDidMount() {
-    this._asyncRequest = fetchAPI('users-get-statistics').then(
-      result => {
-        console.log(result.appStats)
-<<<<<<< HEAD
-        delete appStats[0];
-=======
-        
->>>>>>> refactor
-        const resultWords = Object.values(result.appStats);
-        const resultDate = Object.keys(result.appStats).map((item) => {
+        const resultWords = Object.values(appStats);
+        const resultDate = Object.keys(appStats).map((item) => {
           const data = Number(item);
           const date = new Date(data).toString().slice(4, 15);
           console.log(date)
@@ -174,7 +148,7 @@ class LongStats extends React.Component {
         this._asyncRequest = null;
         this.setState({result});
       
-      })
+    
   }
 
   minigameSelect(selector) {
@@ -207,7 +181,7 @@ class LongStats extends React.Component {
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
-            <ProgressBar variant="info" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
 
             <div className="longStatsElem">
