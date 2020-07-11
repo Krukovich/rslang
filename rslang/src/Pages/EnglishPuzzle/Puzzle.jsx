@@ -34,10 +34,11 @@ const Puzzle = ({ level, page, words }) => {
   const [isPage, setIsPage] = useState('');
   const [isMistakeStrings, setIsMistakeStrings] = useState([]);
   const [isAgreeStrings, setIsAgreeStrings] = useState([]);
+  const [score, setScore] = useState(0);
 
   const startPlay = async () => {
     let data = '';
-    if (words.length > 10) {
+    if (words.length > POINT) {
       data = sortData(words);
     } else {
       data = await getData(level, page);
@@ -63,6 +64,7 @@ const Puzzle = ({ level, page, words }) => {
     if (checkString(isAgreeString)) {
       colorLevelPoint(isMovePoint, true);
       setIsTrue(true);
+      setScore(score + POINT);
       makeAgreeString();
     } else {
       colorLevelPoint(isMovePoint, false);
@@ -147,7 +149,7 @@ const Puzzle = ({ level, page, words }) => {
 
   return (
     <MDBContainer className="mt-4">
-      <GameLevel />
+      <GameLevel score={ score } />
       <MDBRow>
         <Control
           src={ getSrcForControl() }
