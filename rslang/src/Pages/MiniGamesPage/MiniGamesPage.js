@@ -43,8 +43,8 @@ class MiniGamesPage extends Component {
       englishPuzzleCard: {
         title: 'English Puzzle',
         description: '',
-        href: 'englishpuzzle',
-        class: 'Card-Image_englishpuzzle',
+        href: 'english-puzzle',
+        class: 'Card-Image_learning',
         pic: pic1
       },
       speakItCard: {
