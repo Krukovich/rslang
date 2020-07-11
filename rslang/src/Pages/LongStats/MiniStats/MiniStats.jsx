@@ -19,5 +19,18 @@ const MiniStats = ({ stats, miniGame }) => {
 
   return <ul>{elems}</ul>;
 };
+// const MiniStats = ({ count }) => {
+// 	const elems = count.map((item) => {
+// 		const timestamp = Object.keys(item)[0];
+// 		const newWords = item[timestamp];
+// 		return (
+// 			<MiniStatsItem
+// 			key={timestamp}
+// 				timestamp={timestamp}
+// 				newWords={newWords} />
+// 		)
+// 	});
+// 	return (<ul>{elems}</ul>)
+// }
 
 export default MiniStats;
