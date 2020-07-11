@@ -12,9 +12,12 @@ import MiniStats from './MiniStats/MiniStats';
 const miniGameStats = (store) => {
   const { statsSavanna } = store.savanna;
   const { difficulty } = store.fortuneGame;
+  const { level } = store.sprintGame;
+
   return {
     statsSavanna: statsSavanna,
     difficulty: difficulty,
+    level: level,
 }}
 
 const changeMiniStats = {
@@ -32,7 +35,8 @@ const getStats = async () => {
     },
   });
   const content = await rawResponse.json();
-  let stats = content.optional.optional;
+  let stats = content.optional;
+  console.log(stats)
   return stats;
 };
 
@@ -73,9 +77,9 @@ class LongStats extends React.Component {
         { 'id': 6, label: 'Поле Чудес', 'visible': false },
       ],
       count: [
-        {"timestamp":1593114322795,"newWords":7},
-        {"timestamp":1593224622795,"newWords":2},
-        {newWords: 4, timestamp: 1593375922795},
+        {1593114322795: 7},
+        {1593224622795: 2},
+        {1593375922795: 5},
       ],
 
     }
@@ -100,48 +104,25 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 1:
-          this.state.count =  [
-            {"timestamp":1591114322795,"newWords":17},
-            {"timestamp":1591224622795,"newWords":12},
-            {newWords: 14, timestamp: 1591375922795},
-          ];
+          state.count =  [{1591114322795: 17}];
           break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-
-          state.count = this.state.count;
+        
           break;
         case 3:
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`);
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.level}`);
           break;
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.minigameSavannaStats;
-
+          // state.count = this.props.statsSavanna;
           break;
         case 5 :
-          state.count = (state.count).map(elem => elem.newWords + 2);
+          state.count = this.props.statsSavanna;
           break;
         case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.minigameSavannaStats;
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`);
-          break;
-        case 4 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.statsSavanna;
-
-          break;
-        case 5 :
-          state.count = (this.state.count).map(elem => {
-
-            elem.newWords += 2;
-           return elem
-          });
-          break;
-        case 6 :
-          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.statsSavanna;
+          // state.count = this.props.difficulty;
           break;
       }
       return { items };
@@ -159,14 +140,15 @@ class LongStats extends React.Component {
   componentDidMount() {
     this._asyncRequest = getStats().then(
       result => {
-        const resultWords = result.wordStat.map((item) => {
-          const elem = item.newWords;
-          return elem;
-        });
-        const resultDate = result.wordStat.map((item) => {
-          const date = new Date(item.timestamp).toString().slice(4, 15);
+        console.log(result.appStats)
+        
+        const resultWords = Object.values(result.appStats);
+        const resultDate = Object.keys(result.appStats).map((item) => {
+          const data = Number(item);
+          const date = new Date(data).toString().slice(4, 15);
+          console.log(date)
           return date;
-        })
+        });
         this.state.datasets[0].data = this.getSum(resultWords);
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
