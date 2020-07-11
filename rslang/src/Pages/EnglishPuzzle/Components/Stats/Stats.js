@@ -45,7 +45,7 @@ class Stats extends Component {
         <MDBModal
           isOpen={ this.state.modal }
           toggle={ () => this.toggle() }
-          fullHeight position="top"
+          size="lg"
         >
           <MDBModalHeader
             toggle={ () => this.toggle() }
