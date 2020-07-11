@@ -10,7 +10,7 @@ import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
-  const { minigameSavannaStats } = store.savanna; 
+  const { statsSavanna } = store.savanna;
   const { difficulty } = store.fortuneGame;
   return {
     statsSavanna: statsSavanna,
@@ -77,7 +77,7 @@ class LongStats extends React.Component {
         {"timestamp":1593224622795,"newWords":2},
         {newWords: 4, timestamp: 1593375922795},
       ],
-      
+
     }
     // this.count = 0;
   }
@@ -111,40 +111,40 @@ class LongStats extends React.Component {
 
           state.count = this.state.count;
           break;
-        case 3: 
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`); 
-          break; 
+        case 3:
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`);
+          break;
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.props.minigameSavannaStats;
-          
-          break;  
+
+          break;
         case 5 :
           state.count = (state.count).map(elem => elem.newWords + 2);
           break;
-        case 6 : 
+        case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`); 
-          break; 
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`);
+          break;
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
           state.count = this.props.statsSavanna;
-          
-          break;  
+
+          break;
         case 5 :
           state.count = (this.state.count).map(elem => {
-           
+
             elem.newWords += 2;
            return elem
           });
           break;
-        case 6 : 
+        case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.statsSavanna;
-          break;  
-      }   
-      return { items };  
+          break;
+      }
+      return { items };
     })
   }
 
@@ -156,13 +156,13 @@ class LongStats extends React.Component {
     })
   }
 
-  componentDidMount() {   
+  componentDidMount() {
     this._asyncRequest = getStats().then(
       result => {
         const resultWords = result.wordStat.map((item) => {
           const elem = item.newWords;
           return elem;
-        }); 
+        });
         const resultDate = result.wordStat.map((item) => {
           const date = new Date(item.timestamp).toString().slice(4, 15);
           return date;
@@ -176,10 +176,10 @@ class LongStats extends React.Component {
       }
     );
   }
-  
-  render() {    
-    const { items } = this.state;  
-    return ( 
+
+  render() {
+    const { items } = this.state;
+    return (
       <React.Fragment>
       <div className="graph longStatsElem col-md-9">
           <Line
@@ -205,14 +205,14 @@ class LongStats extends React.Component {
           <div className="col-md-8">
             <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
-           
+
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
               <MiniStats count={this.state.count} />
               </div>
-            </div>     
-            </div>     
+            </div>
+            </div>
         </div>
       </React.Fragment>
     );
