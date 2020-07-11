@@ -40,7 +40,7 @@ class Stats extends Component {
           className="btn btn-outline-white btn-md"
           onClick={ () => this.toggle() }
         >
-          Result
+          Результат
         </MDBBtn>
         <MDBModal
           isOpen={ this.state.modal }
@@ -50,12 +50,12 @@ class Stats extends Component {
           <MDBModalHeader
             toggle={ () => this.toggle() }
           >
-            Game result
+            Результат игры
           </MDBModalHeader>
           <MDBRow>
             <MDBCol className="col-12 text-left">
               <strong>
-                I don`t know
+                Я не знаю
               </strong>
             </MDBCol>
           </MDBRow>
@@ -67,7 +67,7 @@ class Stats extends Component {
           <MDBRow>
             <MDBCol className="col-12 text-left">
               <strong>
-                I know
+                Я знаю
               </strong>
             </MDBCol>
           </MDBRow>
@@ -81,13 +81,13 @@ class Stats extends Component {
               color="secondary"
               onClick={ () => this.toggle() }
             >
-              Close
+              Закрыть
             </MDBBtn>
             <MDBBtn
               color="secondary"
               onClick={ this.playContinue }
             >
-              Continue
+              Продолжить
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>

@@ -13,10 +13,10 @@ const Translate = ({ stringTranslate }) => {
       >
         <img src="https://img.icons8.com/nolan/24/google-translate.png" alt="icon" />
       </MDBBtn>
-        <div>Translate play string</div>
+        <div>Перевод строки</div>
       </MDBTooltip>
-      <MDBModal isOpen={ isOpen } toggle={ () => setIsOpen(true) } side position="top-right">
-        <MDBModalHeader toggle={ () => setIsOpen(false) }>Translate</MDBModalHeader>
+      <MDBModal isOpen={ isOpen } toggle={ () => setIsOpen(true) } side position="bottom-right">
+        <MDBModalHeader toggle={ () => setIsOpen(false) }>Перевод</MDBModalHeader>
         <MDBModalBody>
           { stringTranslate }
         </MDBModalBody>

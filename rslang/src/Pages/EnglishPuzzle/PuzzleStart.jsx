@@ -10,19 +10,20 @@ import Puzzle from './Puzzle.jsx';
 const mapStateToProps = (state) => {
   return {
     level: state.appSettings.level,
+    words: state.playZone.dayLearningWords,
   }
 }
 
 const PuzzleStart = (props) => {
   const [isStart, setIsStart] = useState(false);
 
-  const { level } = props;
+  const { level, words } = props;
   const page = getRandomPage(MAX_PAGE);
 
   return(
     <React.Fragment>
       { !isStart ? <Content /> : '' }
-      { isStart ? <Puzzle level={ level } page={ page } /> : '' }
+      { isStart ? <Puzzle level={ level } page={ page } words={ words } /> : '' }
       <div className="col-12 text-center mt-5">
         { !isStart ?
           <button
