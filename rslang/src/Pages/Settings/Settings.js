@@ -174,10 +174,7 @@ class Settings extends React.Component {
                   onChange={this.changesSettings("newWordsCount")}
                 />
               </div>
-              <button
-                className="btn btn-primary"
-                onClick={this.sendSettings}
-              >
+              <button className="btn btn-primary" onClick={this.sendSettings}>
                 Сохранить
               </button>
             </div>
