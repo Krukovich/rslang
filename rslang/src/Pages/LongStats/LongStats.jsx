@@ -26,25 +26,6 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-<<<<<<< HEAD
-=======
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  let stats = content.optional;
-  console.log(stats)
-  return stats;
-};
-
->>>>>>> refactor
 const ProgressLabel = () => {
   return (
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
@@ -112,12 +93,8 @@ class LongStats extends React.Component {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 1:
-<<<<<<< HEAD
           
 
-=======
-          state.count =  [{1591114322795: 17}];
->>>>>>> refactor
           break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
@@ -131,11 +108,7 @@ class LongStats extends React.Component {
           // state.count = this.props.statsSavanna;
           break;
         case 5 :
-<<<<<<< HEAD
           
-=======
-          state.count = this.props.statsSavanna;
->>>>>>> refactor
           break;
         case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
@@ -154,7 +127,6 @@ class LongStats extends React.Component {
     })
   }
 
-<<<<<<< HEAD
   async componentDidMount() {
   let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
       this.setState({count: result.optional})
@@ -164,15 +136,6 @@ class LongStats extends React.Component {
         
         const resultWords = Object.values(appStats);
         const resultDate = Object.keys(appStats).map((item) => {
-=======
-  componentDidMount() {
-    this._asyncRequest = getStats().then(
-      result => {
-        console.log(result.appStats)
-        
-        const resultWords = Object.values(result.appStats);
-        const resultDate = Object.keys(result.appStats).map((item) => {
->>>>>>> refactor
           const data = Number(item);
           const date = new Date(data).toString().slice(4, 15);
           console.log(date)
