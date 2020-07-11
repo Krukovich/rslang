@@ -4,7 +4,7 @@ import Card from '../../Components/Card/Card';
 import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
-import sprint from './assets/sprint.png';
+import sprint from './assets/sprint.jpg';
 import FortuneLogo from './assets/logo-turbo.png';
 
 class MiniGamesPage extends Component {
@@ -43,15 +43,15 @@ class MiniGamesPage extends Component {
         title: 'English Puzzle',
         description: '',
         href: 'englishpuzzle',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_englishpuzzle',
         pic: pic1
       },
       speakItCard: {
         title: 'Speak It',
         description: '',
-        href: 'speakit',
-        class: 'Card-Image_learning',
-        pic: pic1
+        href: 'speakIt-start',
+        class: 'Card-Image_speakit',
+        pic: SpeakItLogo,
       },
       clicked: false,
     }
