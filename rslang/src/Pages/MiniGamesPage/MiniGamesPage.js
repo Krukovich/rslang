@@ -6,6 +6,7 @@ import './MiniGamesPage.scss';
 import pic1 from './assets/pic1.jpg';
 import sprint from './assets/sprint.jpg';
 import FortuneLogo from './assets/logo-turbo.png';
+import SpeakItLogo from './assets/enjoy_small.png';
 
 class MiniGamesPage extends Component {
   constructor() {
