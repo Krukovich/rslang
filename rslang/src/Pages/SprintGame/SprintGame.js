@@ -433,8 +433,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(SprintGame);
-<<<<<<< HEAD
 export default SprintGame
-=======
-export default SprintGame
->>>>>>> fix: massive bug fixes
