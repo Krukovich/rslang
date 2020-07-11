@@ -1,6 +1,9 @@
 .Sprint-Card {
     user-select: none;
     position: relative;
+    border-width: 5px !important;
+    border-color: rgba(0,0,0,0);
+    border-style: solid;
 }
 
 // .SprintCard-Design {
