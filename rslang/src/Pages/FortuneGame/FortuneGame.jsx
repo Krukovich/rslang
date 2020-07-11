@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
+import { setFortuneStats } from '../../Store/FortuneGame/Actions';
 
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
@@ -363,11 +364,12 @@ class FortuneGame extends Component {
             gameEnded: true,
         })
 
-        const score = this.state.score;
-        const time = Date.now();
-        const statsObj = { score, time }
-
-        this.writeStats(statsObj)
+        const dateTime = Date.now();
+        const successCount = this.state.score;
+        console.log(successCount, dateTime)
+        this.props.setFortuneStats({
+            successCount, dateTime
+        })
 
         setTimeout(() => {
             this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
@@ -478,18 +480,36 @@ class FortuneGame extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state)
+const mapStateToProps = (store) => {
+    const {
+        dayLearningWords,
+        difficultWords,
+        showBtnShowAgreeAnswer,
+        showTranslateWord,
+        showExplanationString,
+        playExampleSound,
+        showWordImage,
+        showWordsTranscription,
+        minigameFortuneStats,
+    } = store.appSettings;
+
     return {
-        difficulty: state.fortuneGame.difficulty
+        showWordsTranscription: showWordsTranscription,
+        showWordImage: showWordImage,
+        playExampleSound: playExampleSound,
+        showExplanationString: showExplanationString,
+        showTranslateWord: showTranslateWord,
+        showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+        difficultWords: difficultWords,
+        dayLearningWords: dayLearningWords,
+        cards: store.playZone.cards,
+        stats: minigameFortuneStats,
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        onChangeDiff: number => dispatch({ type: 'CHANGE_DIFF', payload: number })
-    }
+const mapActionToProps = {
+    setFortuneStats,
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(FortuneGame);
-export default FortuneGame
+export default connect(mapStateToProps, mapActionToProps)(FortuneGame);
+// export default FortuneGame

@@ -1,19 +1,28 @@
+import { CHANGE_MINIGAMESPRINT_STATS } from "./Actions";
+import { fetchAPI } from "../../Components/Tools/fetchAPI";
+
 const initialState = {
-  difficulty: localStorage.getItem('sprintDifficulty') === null ? 0 : localStorage.getItem('sprintDifficulty'),
-  level: localStorage.getItem('sprintLvl') === null ? 0 : localStorage.getItem('sprintLvl'),
+  sprintGame: [],
 }
 
-export function sprintGameReducer(state = initialState, action) {
+export const sprintGameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'CHANGE_DIFF':
+    case CHANGE_MINIGAMESPRINT_STATS:
+      fetchAPI("users-get-statistics").then((oldObj) => {
+        delete oldObj.id;
+        oldObj.optional.sprintGame[action.payload.dateTime] = action.payload.successCount;
+        let newObj = oldObj;
+        fetchAPI("users-set-statistics", newObj.optional);
+      });
+
+      console.log("reducer", action);
+      const sprintGame = state.sprintGame;
+      sprintGame[action.payload.dateTime] = action.payload.successCount
       return {
-        difficulty: action.payload
-      }
-    case 'CHANGE_LVL':
-      return {
-        level: action.payload
-      }
+        ...state,
+        sprintGame: sprintGame,
+      };
     default:
-      return state
+      return state;
   }
 }

@@ -7,7 +7,7 @@ import git from '../../Pages/AboutPage/assets/git.png';
 
 const AboutCard = (props) => {
     return (
-        <div className="card" style={{ width: '18rem' }}>
+        <div className="AboutCard card" style={{ width: '18rem' }}>
             <div className={"AboutCard-Image card-img-top " + props.pic} />
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
