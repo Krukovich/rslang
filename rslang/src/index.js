@@ -9,6 +9,8 @@ import { fetchAPI } from "./Components/Tools/fetchAPI";
 import { getCookie } from "./Components/Tools/getCookie";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import "./Style/main.scss";
 
 function renderApplication(data = {}) {

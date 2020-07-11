@@ -7,6 +7,7 @@ import pic1 from './assets/pic1.jpg';
 import sprint from './assets/sprint.jpg';
 import FortuneLogo from './assets/logo-turbo.png';
 import SpeakItLogo from './assets/enjoy_small.png';
+import EnglishPuzzle from './assets/english-language.jpg'
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -43,9 +44,9 @@ class MiniGamesPage extends Component {
       englishPuzzleCard: {
         title: 'English Puzzle',
         description: '',
-        href: 'englishpuzzle',
-        class: 'Card-Image_englishpuzzle',
-        pic: pic1
+        href: 'english-puzzle',
+        class: 'Card-Image_learning',
+        pic: EnglishPuzzle
       },
       speakItCard: {
         title: 'Speak It',
