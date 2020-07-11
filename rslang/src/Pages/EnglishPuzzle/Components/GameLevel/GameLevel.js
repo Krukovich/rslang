@@ -10,12 +10,14 @@ const GameLevel = () => {
     <MDBListGroup style={{ width: "5rem" }} className="game-level">
       { GAME_LEVEL.map((item, index) => {
         return (
-          <MDBListGroupItem className="d-flex justify-content-center">
+          <MDBListGroupItem
+            className="d-flex justify-content-center"
+            key={ index }
+          >
             <MDBBadge
               className="level-point"
               color="secondary"
-              pills
-              key={ index }
+              pills="true"
             >
               { item }
             </MDBBadge>
