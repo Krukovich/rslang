@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBView, MDBBtn } from "mdbreact";
+import { connect } from 'react-redux';
 
 import { gameData, MAX_PAGE, POINT } from '../../constant';
 import Stats from './Components/Stats/Stats';
@@ -18,10 +19,20 @@ import GameLevel from './Components/GameLevel/GameLevel';
 import Info from './Components/Info/Info';
 import Control from './Components/Control/Control';
 import Words from './Components/Words/Words';
+import { setEnglishPuzzleStats } from '../../Store/EnglishPuzzle/action';
 
 import './playZone.scss';
+
+const mapStateToProps = (store) => {
+  const { englishPuzzle } = store.appSettings;
+  return { stats: englishPuzzle }
+}
+
+const mapActionToProps = {
+  setEnglishPuzzleStats,
+}
  
-const Puzzle = ({ level, page, words }) => {
+const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
 
   const [isAgreeString, setIsAgreeString] = useState('');
   const [isPlayString, setIsPlayString] = useState('');
@@ -72,9 +83,16 @@ const Puzzle = ({ level, page, words }) => {
     }
   }
 
+  const saveStats = () => {
+    const dateTime = Date.now();
+    const successCount = score;
+    setEnglishPuzzleStats({ successCount, dateTime });
+  }
+
   const nextStep = () => {
     if (isMovePoint === 10) {
       setIsFinish(false);
+      saveStats();
       restartGame();
       return;
     }
@@ -225,4 +243,4 @@ const Puzzle = ({ level, page, words }) => {
   );
 }
 
-export default Puzzle;
+export default connect(mapStateToProps, mapActionToProps)(Puzzle);

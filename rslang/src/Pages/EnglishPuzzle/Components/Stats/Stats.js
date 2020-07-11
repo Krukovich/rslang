@@ -89,12 +89,6 @@ class Stats extends Component {
             >
               Продолжить
             </MDBBtn>
-            <MDBBtn
-              color="secondary"
-              onClick={ this.saveStats }
-            >
-              Сохранить
-            </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
       </React.Fragment>
