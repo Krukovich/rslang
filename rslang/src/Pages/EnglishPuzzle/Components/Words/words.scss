@@ -1,0 +1,22 @@
+.words-list {
+  display: flex;
+
+  & li {
+    list-style: none;
+    transform: translate(0,0);
+    border-top-width: 1px !important;
+    border-radius: 0.25rem;
+  }
+
+  & li:hover {
+    cursor: grab;
+  }
+
+  .word { 
+    padding: 0.5rem;
+  }
+}
+
+.move {
+  cursor: grabbing !important;
+}
