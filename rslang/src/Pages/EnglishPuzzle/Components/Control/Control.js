@@ -10,7 +10,7 @@ const Control = ({ src, stringTranslate }) => {
   
   return (
     <MDBRow className="control-panel">
-      <MDBCol cla xl="4" md="12">
+      <MDBCol xl="4" md="12">
         <div className="btn-toolbar mt-5" role="toolbar">
           <MDBBtnGroup className="mr-2">
             <MDBTooltip placement="bottom">
