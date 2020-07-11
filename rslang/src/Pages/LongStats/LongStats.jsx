@@ -155,7 +155,11 @@ class LongStats extends React.Component {
     this._asyncRequest = fetchAPI('users-get-statistics').then(
       result => {
         console.log(result.appStats)
+<<<<<<< HEAD
         delete appStats[0];
+=======
+        
+>>>>>>> refactor
         const resultWords = Object.values(result.appStats);
         const resultDate = Object.keys(result.appStats).map((item) => {
           const data = Number(item);
