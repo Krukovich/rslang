@@ -25,7 +25,7 @@ const WordsToLearn = ({ posts, remove }) => {
             </div>
 
             <div className="d-flex justify-content-end">
-              <img 
+              <img
                 src={`https://raw.githubusercontent.com/Nickolay-Dudaryk/rslang-data/master/${post.image}`}
                 className="rounded float-right"
                 width="100px"

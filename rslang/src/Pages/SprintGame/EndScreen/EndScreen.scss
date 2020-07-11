@@ -1,0 +1,51 @@
+.SprintStats {
+    min-width: 230px;
+    display: flex;
+    align-items: center;
+    overflow-y: scroll;
+    flex-direction: column;
+    height: 140px;
+}
+
+.SprintStats-Separator {
+    margin: 5px 0;
+    height: 2px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.SprintStats-Title {
+    display: flex;
+    align-items: center;
+
+    .SprintStats-Title_iknow,
+    .SprintStats-Title_idontknow {
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+
+    .SprintStats-Title_iknow {
+        background-color: rgb(102, 233, 102);
+    }
+
+    .SprintStats-Title_idontknow {
+        background-color: rgb(243, 102, 102);
+    }
+}
+
+.SprintEndscreen-Listen {
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(150, 150, 150);
+    }
+}
+
+.SprintBtn-Main {
+    color: #fff !important;
+}

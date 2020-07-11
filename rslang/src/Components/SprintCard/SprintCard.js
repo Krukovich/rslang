@@ -8,7 +8,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons';
 
 const SprintCard = (props) => {
   return (
-    <div className="Sprint-Card SprintCard card border-primary rounded mt-2 p-1 w-100">
+    <div className={"Sprint-Card SprintCard rounded mt-2 p-1 w-100 bg-light"} style={{ borderColor: props.borderColor }}>
       <div className="SprintCard-Body card-body">
         <div className="SprintCard-Design w-100"></div>
         <div className="SprintCard-Modifierbar w-100 d-flex justify-content-center align-items-center">
@@ -48,7 +48,7 @@ const SprintCard = (props) => {
           <FontAwesomeIcon icon={faSkull} />
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
