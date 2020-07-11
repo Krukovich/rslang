@@ -13,10 +13,10 @@ const AboutCard = (props) => {
                 <h5 className="card-title">{props.name}</h5>
                 <p className="card-text">{props.description}</p>
                 <div className="AboutCard-Footer card-footer mt-2">
-                    <a className="AboutCard-Git mr-2" href={props.href[0]}>
+                    <a className="AboutCard-Git mr-2" href={props.href[0]} target="_blank">
                         <img src={git} />
                     </a>
-                    <a className="AboutCard-Cv" href={props.href[1]}>
+                    <a className="AboutCard-Cv" href={props.href[1]} target="_blank">
                         <FontAwesomeIcon icon={faIdCard} />
                     </a>
                 </div>
