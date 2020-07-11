@@ -125,15 +125,6 @@ export const fetchAPI = async (query, obj) => {
 
           optional: obj,
           learnedWords: 0,
-          optional: {
-            minigames: [
-              {
-                gamename: "audiocall",
-                statistics: [obj],
-              },
-            ],
-          },
-
         }),
       }
     );
