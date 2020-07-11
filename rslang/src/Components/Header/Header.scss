@@ -4,14 +4,40 @@
   right: 0;
   width: 100%;
   z-index: 100;
+  max-height: 65px;
+  background-color: white;
+  // border-bottom: 3px solid black;
+  // #f3c90c
 }
 
 .btn_aside {
   position: relative;
   transition: 0.3s !important;
-  z-index: 90;
+  z-index: 900;
+  width: 45px;
+  height: 45px;
 }
 
 .btn_aside_active {
   transform: rotate(90deg);
+}
+
+.Header-Center {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  width: 100px;
+}
+
+.logo {
+position: absolute;
+top: 0;
+left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 999;
+
+  img {
+    width: 100%;
+  }
 }

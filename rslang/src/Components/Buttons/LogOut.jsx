@@ -11,8 +11,8 @@ export function LogOutBtn() {
     <Link to="/">
       <button
         type="button"
-        className="btn btn_logout btn-primary"
-        onClick={ () => logOut() }
+        className="btn btn_logout btn-rslang"
+        onClick={() => logOut()}
       >
         Выход
       </button>

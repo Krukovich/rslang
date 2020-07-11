@@ -5,9 +5,9 @@ import './Sidebar.scss';
 export const Sidebar = (props) => {
   let asideClass = {};
   if (props.clicked) {
-    asideClass.class = 'aside flex-shrink-1 vh-100 p-5 bg-secondary position-fixed aside_active';
+    asideClass.class = 'Sidebar aside flex-shrink-1 vh-100 p-5 position-fixed aside_active';
   } else {
-    asideClass.class = 'aside flex-shrink-1 vh-100 p-5 bg-secondary position-fixed';
+    asideClass.class = 'Sidebar aside flex-shrink-1 vh-100 p-5 position-fixed';
   }
 
   return (

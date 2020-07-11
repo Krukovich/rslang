@@ -8,3 +8,23 @@ html, body {
     min-height: 100vh;
 }
 
+.btn-rslang {
+  background-color: black;
+  color: white;
+  border-radius: 0;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.btn-rslang_alt {
+  background-color: #c3a000;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: black !important;
+  }
+}

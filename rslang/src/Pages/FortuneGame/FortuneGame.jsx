@@ -352,10 +352,17 @@ class FortuneGame extends Component {
     }
 
     writeStats = async (statsObj) => {
-        const content = await fetchAPI("users-set-statistics", statsObj);
-        console.log("stats write");
-        return content;
+        // fetchAPI("users-set-statistics").then((oldObj) => {
+        //     delete oldObj.id;
+        //     oldObj.optional.statsObj.[statsObj.date] = action.payload.successCount;
+        //     let newObj = oldObj;
+        //     fetchAPI("users-set-statistics", newObj.optional)
+        // });
+        // console.log("stats write");
+        // return content;
     };
+
+
 
     gameEnd = () => {
         const audioVariants = [win1, win2, win3, win4, win5];
@@ -364,8 +371,10 @@ class FortuneGame extends Component {
         })
 
         const score = this.state.score;
-        const time = Date.now();
-        const statsObj = { score, time }
+        const statsObj = {
+            date: Date.now(),
+            score: score
+        }
 
         this.writeStats(statsObj)
 

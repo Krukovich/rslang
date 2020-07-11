@@ -1,6 +1,14 @@
+.Sidebar {
+    background-color: white;
+    // background-color: black;
+    z-index: 90;
+    // border-right: 5px solid black;
+}
+
+// #c3a000
+
 .aside {
     width: 250px;
-    z-index: 50;
     left: -250px;
     transition: 0.3s;
 }
