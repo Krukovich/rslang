@@ -4,7 +4,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import rootReducer from "./Store/Reducers";
+
 import App from "./App";
+import Spinner from './Components/Spinner/Spinner';
 import { fetchAPI } from "./Components/Tools/fetchAPI";
 import { getCookie } from "./Components/Tools/getCookie";
 
@@ -50,8 +52,7 @@ function renderApplication(data = {}) {
 
 function main() {
   if (getCookie("userId")) {
-    ReactDOM.render(<div>Loading</div>, document.getElementById("root"));
-    console.log("work");
+    ReactDOM.render(<div><Spinner /></div>, document.getElementById("root"));
     fetchAPI("getSettings").then((data) => renderApplication(data));
   } else {
     renderApplication();
