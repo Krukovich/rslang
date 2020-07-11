@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setSprintStats } from '../../Store/SprintGame/Actions';
 
 import SprintCard from "../../Components/SprintCard/SprintCard";
 import StartScreen from "./StartScreen/StartScreen";
@@ -240,11 +241,12 @@ class SprintGame extends Component {
       gameEnded: true,
     })
 
-    const score = this.state.score;
-    const time = Date.now();
-    const statsObj = { score, time };
-
-    this.writeStats(statsObj);
+    const dateTime = Date.now();
+    const successCount = this.state.score;
+    console.log(successCount, dateTime)
+    this.props.setSprintStats({
+      successCount, dateTime
+    })
 
     setTimeout(() => {
       this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
@@ -415,22 +417,36 @@ class SprintGame extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log("redux state", state);
+const mapStateToProps = (store) => {
+  const {
+    dayLearningWords,
+    difficultWords,
+    showBtnShowAgreeAnswer,
+    showTranslateWord,
+    showExplanationString,
+    playExampleSound,
+    showWordImage,
+    showWordsTranscription,
+    minigameSprintStats,
+  } = store.appSettings;
+
   return {
-    difficulty: state.sprintGame.difficulty,
-    level: state.sprintGame.level
-  };
+    showWordsTranscription: showWordsTranscription,
+    showWordImage: showWordImage,
+    playExampleSound: playExampleSound,
+    showExplanationString: showExplanationString,
+    showTranslateWord: showTranslateWord,
+    showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+    difficultWords: difficultWords,
+    dayLearningWords: dayLearningWords,
+    cards: store.playZone.cards,
+    stats: minigameSprintStats,
+  }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onChangeDiff: (number) =>
-      dispatch({ type: "CHANGE_DIFF", payload: number }),
-    onChangeLvl: (number) =>
-      dispatch({ type: "CHANGE_LVL", payload: number }),
-  };
+const mapActionToProps = {
+  setSprintStats,
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(SprintGame);
-export default SprintGame
+export default connect(mapStateToProps, mapActionToProps)(SprintGame);
+// export default SprintGame
