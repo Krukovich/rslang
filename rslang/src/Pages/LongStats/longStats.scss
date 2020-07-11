@@ -3,7 +3,7 @@ canvas {
 }
 
 .longStatsElem {
-    margin: 3rem auto;
+    margin: 5rem auto;
     &-label {
         margin-top: 1.5rem;
         font-family: cursive;
@@ -12,5 +12,12 @@ canvas {
         height: 5rem;
         width: 100%;
         background-color: lavender;
+        overflow: auto;
     }
+}
+
+.miniStats-elem {
+    font-family: cursive;
+    line-height: 1.5rem;
+    color: brown;
 }

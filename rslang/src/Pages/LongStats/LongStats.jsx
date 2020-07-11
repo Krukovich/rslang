@@ -10,11 +10,19 @@ import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
+<<<<<<< HEAD
   const { minigameSavannaStats } = store.savanna;
   
   const { difficulty } = store.fortuneGame;
   return {
     minigameSavannaStats: minigameSavannaStats,
+=======
+  const { statsSavanna } = store.savanna;
+  const { difficulty } = store.fortuneGame;
+
+  return {
+    statsSavanna: statsSavanna,
+>>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
     difficulty: difficulty,
 }}
 
@@ -100,8 +108,16 @@ class LongStats extends React.Component {
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
+        case 1:
+          this.state.count =  [
+            {"timestamp":1591114322795,"newWords":17},
+            {"timestamp":1591224622795,"newWords":12},
+            {newWords: 14, timestamp: 1591375922795},
+          ];
+          break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
+<<<<<<< HEAD
           state.count = this.state.count;
           break;
         case 3: 
@@ -118,6 +134,28 @@ class LongStats extends React.Component {
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
+=======
+         
+          break;
+        case 3: 
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`); 
+          break; 
+        case 4 :
+          console.log(`Clicked ${id} ${items[id-1].label}`);
+          state.count = this.props.statsSavanna;
+          
+          break;  
+        case 5 :
+          state.count = (this.state.count).map(elem => {
+           
+            elem.newWords += 2;
+           return elem
+          });
+          break;
+        case 6 : 
+          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
+          state.count = this.props.statsSavanna;
+>>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
           break;  
       }   
       return { items };  
@@ -195,4 +233,8 @@ class LongStats extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
+=======
+export default connect(miniGameStats, changeMiniStats)(LongStats);
+>>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b

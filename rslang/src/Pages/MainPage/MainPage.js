@@ -12,7 +12,7 @@ class MainPage extends Component {
       trainingCard: {
         title: 'Training',
         description: 'Study English',
-        href: '#',
+        href: 'training',
         class: 'Card-Image_training',
         pic: pic1
       },

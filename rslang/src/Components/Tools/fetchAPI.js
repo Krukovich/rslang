@@ -36,12 +36,12 @@ export const fetchAPI = async (query, obj) => {
       Const.API_LINK + query + "?page=" + obj.page + "&group=" + obj.group
     );
     const content = await rawResponse.json();
-    return content; 
+    return content;
   }
 
   if (query === "getAllUserWords") {
     const rawResponse = await fetch(
-      Const.API_LINK +  `users/${getCookie("userId")}/words/`,
+      Const.API_LINK + `users/${getCookie("userId")}/words/`,
       {
         method: "GET",
         withCredentials: true,
@@ -49,16 +49,14 @@ export const fetchAPI = async (query, obj) => {
           Authorization: `Bearer ${getCookie("token")}`,
           Accept: "application/json",
           "Content-Type": "application/json",
-        }
-    }
+        },
+      }
     );
     const content = await rawResponse.json();
     return Promise.allSettled(content).then((wordLists) => wordLists.flat());
-    return content; 
-
+    return content;
   }
 
- 
   if (query === "setNewUserWordById") {
     const rawResponse = await fetch(
       Const.API_LINK + `users/${getCookie("userId")}/words/` + obj.wordId,
@@ -70,11 +68,11 @@ export const fetchAPI = async (query, obj) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(obj.word)
-    }
-      );
+        body: JSON.stringify(obj.word),
+      }
+    );
     const content = await rawResponse.json();
-    return content; 
+    return content;
   }
 
   if (query === "setUserWordById") {
@@ -88,11 +86,11 @@ export const fetchAPI = async (query, obj) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(obj.word)
-    }
-      );
+        body: JSON.stringify(obj.word),
+      }
+    );
     const content = await rawResponse.json();
-    return content; 
+    return content;
   }
 
   if (query === "users-get-statistics") {
@@ -137,7 +135,36 @@ export const fetchAPI = async (query, obj) => {
           },
 
         }),
-      },
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "users-set-start-statistics") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/statistics`,
+      {
+        method: "PUT",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          learnedWords: 999,
+          optional: {
+            statsSavanna: { 0: 0 },
+            gamePuzzle: { 0: 0 },
+            audioCall: { 0: 0 },
+            speakIt: { 0: 0 },
+            sprintGame: { 0: 0 },
+            fortuneGame: { 0: 0 },
+            appStats: { 0: 0 },
+          },
+        }),
+      }
     );
     const content = await rawResponse.json();
     return content;

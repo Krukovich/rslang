@@ -88,7 +88,6 @@ class SpeakIt extends React.Component {
   }
 
   setWordMistake = (index) => {
-    debugger;
     const words = [...this.state.words];
     const word = {...words[index], mistake: true };
     words[index] = word;

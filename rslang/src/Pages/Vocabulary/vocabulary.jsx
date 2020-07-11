@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import WordsToLearn from './WordsToLearn/WordsToLearn';
 import Pagination from './Pagination/Pagination';
 import { connect } from 'react-redux';
-import {setDeleteWords} from '../../Store/PlayZonePage/actions'
+import {setDeleteWords, setDayLearningWords} from '../../Store/PlayZonePage/actions';
+import {checkDeleteWords} from '../../service'
 
 const mapStateToProps = (store) => {
   return { 
     learningWords: store.playZone.dayLearningWords,
+    deleteWords: store.playZone.deleteWords,
   }
 }
 
 const mapActionToProps = {
   setDeleteWords,
+  setDayLearningWords,
 }
 
 
@@ -37,7 +40,10 @@ const Vocabulary = (props) => {
       ...posts.slice(0, index),
       ...posts.slice(index + 1)
     ];
-    _THIS.setDeleteWords(posts[index])
+    if (!checkDeleteWords(props.deleteWords, posts[index].id)) {
+      _THIS.setDeleteWords(posts[index])
+      _THIS.setDayLearningWords(newArr)
+    }
     setPosts(newArr);
   }
 

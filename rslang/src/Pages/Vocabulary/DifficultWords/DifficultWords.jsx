@@ -8,22 +8,28 @@ const mapStateToProps = (store) => {
 }
 
 const DifficultWords = (props) => {
-  return(
-    <ul className="list-group mb-4">
-    {props.difficultWords.map((item) => {
-
-      return (
-        <li key={item.id} className="d-flex list-group-item justify-content-between align-items-center">
-
-          <div className="d-flex justify-content-start align-items-center">
-            <span className="mr-3 text-capitalize">{item.word}</span>
-          </div>
-
-        </li>
-      )
-    })}
-  </ul>
-  )
+  return (
+    <div className="d-flex justify-content-center">
+      <ul className="list-group w-25 mb-4 mt-4">
+        {props.difficultWords.map((item) => {
+          return (
+            <li
+              key={item.id}
+              className="d-flex list-group-item justify-content-between align-items-center"
+            >
+              <div className="d-flex justify-content-center align-items-center">
+                <span className="mr-3 text-capitalize">{item.word}</span>
+                <span className="mr-3">{item.transcription}</span>
+                <span className="mr-3 text-capitalize">
+                  {item.wordTranslate}
+                </span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(DifficultWords);
