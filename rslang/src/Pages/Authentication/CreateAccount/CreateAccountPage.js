@@ -53,8 +53,9 @@ export class CreateAccount extends React.Component {
   }
 
   loginResult = (answer) => {
-    if (answer.message === "Authenticated") {
+    if (answer.message === "Authenticated") {      
       this.setLoginCookie(answer.userId, answer.token);
+      fetchAPI('users-set-start-statistics')
     }
   }
 
