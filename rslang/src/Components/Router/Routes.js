@@ -120,16 +120,7 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-<<<<<<< HEAD
-    path: '/createanaccount',
-    component: CreateAccount,
-    exact: true,
-  },
-  {
-    path: '/savanna',
-=======
     path: "/savanna",
->>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
     component: SavannaStartPage,
     exact: true,
   },

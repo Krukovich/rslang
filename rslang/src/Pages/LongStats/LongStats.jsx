@@ -10,19 +10,10 @@ import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
 
 const miniGameStats = (store) => {
-<<<<<<< HEAD
-  const { minigameSavannaStats } = store.savanna;
-  
+  const { minigameSavannaStats } = store.savanna; 
   const { difficulty } = store.fortuneGame;
-  return {
-    minigameSavannaStats: minigameSavannaStats,
-=======
-  const { statsSavanna } = store.savanna;
-  const { difficulty } = store.fortuneGame;
-
   return {
     statsSavanna: statsSavanna,
->>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
     difficulty: difficulty,
 }}
 
@@ -117,7 +108,7 @@ class LongStats extends React.Component {
           break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-<<<<<<< HEAD
+
           state.count = this.state.count;
           break;
         case 3: 
@@ -134,10 +125,6 @@ class LongStats extends React.Component {
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.minigameSavannaStats;
-=======
-         
-          break;
-        case 3: 
           console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`); 
           break; 
         case 4 :
@@ -155,7 +142,6 @@ class LongStats extends React.Component {
         case 6 : 
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
           state.count = this.props.statsSavanna;
->>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
           break;  
       }   
       return { items };  
@@ -233,8 +219,4 @@ class LongStats extends React.Component {
   }
 }
 
-<<<<<<< HEAD
 export default connect(miniGameStats, changeMiniStats)(LongStats);
-=======
-export default connect(miniGameStats, changeMiniStats)(LongStats);
->>>>>>> ed1e6808e9abb5e8fef19623e484c6e4c59e3d8b
