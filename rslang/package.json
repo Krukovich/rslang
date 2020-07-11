@@ -43,6 +43,7 @@
     "@testing-library/jest-dom": "^5.10.0",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^11.4.2",
+    "css-loader": "^3.6.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.21.2",
@@ -51,6 +52,7 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "node-sass": "^4.14.1",
     "react-url-loader": "0.0.3",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1"
   }
 }

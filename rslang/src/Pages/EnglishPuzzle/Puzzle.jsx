@@ -18,6 +18,7 @@ import Info from './Components/Info/Info';
 import Control from './Components/Control/Control';
 import Words from './Components/Words/Words';
 
+import './playZone.scss';
  
 const Puzzle = ({ level, page, selectChange }) => {
 

@@ -1,0 +1,50 @@
+body {
+  background-image: url("/images/bg/bg-02.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.play-card {
+  margin-top: 3rem;
+
+  .game-image-place {
+    position: relative;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100% !important;
+    }
+  
+    .mask-image {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 1;
+      background-image: url("/public/images/bg/bg-04.jpg");
+      background-position: center center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .play-zone {
+    min-height: 100px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    max-width: 1560px;
+  }
+}
+
+@media screen and (max-width: 100px) {
+  .game-image-place {
+    position: relative;
+    min-height: 620px;
+  }
+} 

@@ -1,7 +1,6 @@
 import React from "react";
 import RouteMap from "./Components/Router/Routes";
 import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
-import VocabularyRouter from "./Pages/Vocabulary/VocabularyRouter/VocabularyRouter";
 
 
 const App = () => {
