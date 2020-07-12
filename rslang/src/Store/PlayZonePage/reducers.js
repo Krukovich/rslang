@@ -53,11 +53,9 @@ export const playZonePageReducer = (state = initialState, action) => {
         let newObj = oldObj;
         fetchAPI("users-set-statistics", newObj.optional);
       });
-      const appStats = state.appStats;
-      appStats[action.payload.dateTime] = action.payload.successCount
       return {
         ...state,
-        appStats: appStats,
+        appStats: {...state.appStats, [action.payload.dateTime]: action.payload.successCount},
       };
   }
   return state;

@@ -5,7 +5,6 @@ const initialState = {
   speakIt: []
 };
 
-
 export const speakItReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_SPEAKIT_STATS:
@@ -15,11 +14,9 @@ export const speakItReducer = (state = initialState, action) => {
         let newObj = oldObj;
         fetchAPI("users-set-statistics", newObj.optional);
       });
-      const speakIt = state.speakIt;
-      speakIt[action.payload.dateTime] = action.payload.successCount
       return {
         ...state,
-        speakIt: speakIt,
+        speakIt: {...state.speakIt, [action.payload.dateTime]: action.payload.successCount},
       };
     default:
       return state;
