@@ -6,9 +6,9 @@ import {
   Link
 } from 'react-router-dom';
 
-import Vocabulary from '../vocabulary';
-import DifficultWords from '../DifficultWords/DifficultWords';
-import DeletedWords from '../DeletedWords/DeletedWords';
+import Vocabulary from '../vocabulary.jsx';
+import DifficultWords from '../DifficultWords/DifficultWords.jsx';
+import DeletedWords from '../DeletedWords/DeletedWords.jsx';
 
 const VocabularyRouter = () => {
   return (
@@ -40,8 +40,8 @@ const VocabularyRouter = () => {
           <DifficultWords />
         </Route>
         <Route exact path="/deleted-words">
+          {/* <DeletedWords /> */}
           <DeletedWords />
-          {/* <DeletedWords posts={currentPost} restore={restore}/> */}
         </Route>
       </Switch>
 
