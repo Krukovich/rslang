@@ -12,7 +12,6 @@ import ShortStats from "../ShortStats/ShortStats";
 import Settings from "../../Pages/Settings/Settings";
 import SpeakItStart from "../../Pages/SpeakIt/SpeakItStart.jsx";
 import LongStats from "../../Pages/LongStats/LongStats";
-import { AudioCall } from "../../Pages/MiniGames/AudioCall/AudioCall.jsx";
 import MainPage from "../../Pages/MainPage/MainPage";
 import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter.jsx";
 import FortuneGame from "../../Pages/FortuneGame/FortuneGame.jsx";
@@ -24,7 +23,9 @@ import AboutPage from "../../Pages/AboutPage/AboutPage.jsx";
 import Training from "../../Pages/Training/Training.jsx";
 import { fetchAPI } from "../Tools/fetchAPI";
 import Promo from "../../Pages/Promo/Promo.jsx";
-import PuzzleStart from "../../Pages/EnglishPuzzle/PuzzleStart.jsx";
+import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
+import { AudioCallStartPage } from '../../Pages/AudioCall/components/StartPage/StartPage';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -90,18 +91,6 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: "/audiocall",
-    component: () => (
-      <AudioCall
-        token={
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI3MDhjOThmZmJmMDAxNzQ1ODExNiIsImlhdCI6MTU5MjY3NDA0NywiZXhwIjoxNTkyNjg4NDQ3fQ.PwtU073aA-BfxwDgT5E5grLqtVtFTMED9ZMYrUaR3wU"
-        }
-        userId={"5eeb708c98ffbf0017458116"}
-      />
-    ),
-    exact: true,
-  },
-  {
     path: "/settings",
     component: Settings,
     exact: true,
@@ -124,6 +113,11 @@ const sourceCloseRoutes = [
   {
     path: "/savanna",
     component: SavannaStartPage,
+    exact: true,
+  },
+  {
+    path: "/audiocall",
+    component: AudioCallStartPage,
     exact: true,
   },
   {
