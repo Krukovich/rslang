@@ -58,7 +58,7 @@ const Vocabulary = (props) => {
   //     ...props.deleteWords(index + 1)
   //   ];
   //   _THIS.setDayLearningWords(a);
-  //   _THIS.setDeleteWords(b);
+  //   _THIS.setDeleteWords(b)
   //   setPosts(a);
   // }
 

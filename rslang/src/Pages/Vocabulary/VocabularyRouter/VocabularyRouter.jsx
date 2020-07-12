@@ -42,6 +42,7 @@ const VocabularyRouter = () => {
         <Route exact path="/deleted-words">
           {/* <DeletedWords /> */}
           <DeletedWords />
+          {/* <DeletedWords posts={currentPost} restore={restore}/> */}
         </Route>
       </Switch>
 
