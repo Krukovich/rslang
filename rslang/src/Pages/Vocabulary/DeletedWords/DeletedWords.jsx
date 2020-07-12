@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+// import RestoreBtn from '../VocabularyBtn/RestoreBtn';
 
 const mapStateToProps = (store) => {
-  return {
+  return { 
     deleteWords: store.playZone.deleteWords,
-  };
-};
+  }
+}
+
 
 const DeletedWords = (props) => {
   return (
@@ -18,6 +20,7 @@ const DeletedWords = (props) => {
               className="d-flex list-group-item justify-content-between align-items-center"
             >
               <div className="d-flex justify-content-center align-items-center">
+                {/* <RestoreBtn index={index} restore={restore}/> */}
                 <span className="mr-3 text-capitalize">{item.word}</span>
                 <span className="mr-3">{item.transcription}</span>
                 <span className="mr-3 text-capitalize">
