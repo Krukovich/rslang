@@ -38,7 +38,7 @@ class MiniGamesPage extends Component {
       savannahCard: {
         title: 'Savanna',
         description: '',
-        href: 'Savannah',
+        href: 'Savanna',
         class: 'Card-Image_savanna',
         pic: SavannaLogo
       },
