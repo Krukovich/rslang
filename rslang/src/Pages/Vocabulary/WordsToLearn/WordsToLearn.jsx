@@ -1,6 +1,7 @@
 import React from 'react';
 import PlayBtn from '../VocabularyBtn/PlayBtn.jsx';
 import RemoveBtn from '../VocabularyBtn/RemoveBtn.jsx';
+import { removeTagsFromString } from '../../../service';
 
 
 const WordsToLearn = ({ posts, remove }) => {
@@ -20,7 +21,7 @@ const WordsToLearn = ({ posts, remove }) => {
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center mb-2">
-              <span className="mr-3">{post.textExample}</span>
+              <span className="mr-3">{removeTagsFromString(post.textExample)}</span>
               <span className="mr-3">{post.textExampleTranslate}</span>
             </div>
 
