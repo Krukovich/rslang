@@ -2,7 +2,6 @@ import React from "react";
 import MiniStatsItem from "../MiniStatsItem/MiniStatsItem";
 
 const MiniStats = ({ stats, miniGame }) => {
-  console.log("minigame naim in component", miniGame, stats, stats[miniGame]);
   const elems = [];
 
   for (let timestamp in stats[miniGame]) {
@@ -16,7 +15,6 @@ const MiniStats = ({ stats, miniGame }) => {
       );
     }
   }
-
   return <ul>{elems}</ul>;
 };
 

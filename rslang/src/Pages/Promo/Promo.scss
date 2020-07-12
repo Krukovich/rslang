@@ -1,18 +1,22 @@
-.PromoCard-Learn  {
-    background-image: url('./assets/learn.gif');
+.PromoCard-Learn {
+  background-image: url("./assets/learn.gif");
 }
 
 .PromoCard-Stats {
-    background-image: url('./assets/stats.gif');
+  background-image: url("./assets/stats.gif");
 }
 
 .PromoCard-Voc {
-    background-image: url('./assets/voc.gif');
+  background-image: url("./assets/voc.gif");
 }
 
 .PromoCard-Img {
-    width: 500px !important;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.tx {
+  font-size: 2rem;
 }

@@ -47,21 +47,6 @@ const Vocabulary = (props) => {
     setPosts(newArr);
   }
 
-  // restore words from deleted/difficult to learning
-  // const restore = (index) => {
-  //   const a = [
-  //     ...props.learningWords,
-  //     deleteWords[index]
-  //   ];
-  //   const b = [
-  //     ...props.deleteWords(0, index),
-  //     ...props.deleteWords(index + 1)
-  //   ];
-  //   _THIS.setDayLearningWords(a);
-  //   _THIS.setDeleteWords(b);
-  //   setPosts(a);
-  // }
-
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;

@@ -5,6 +5,7 @@ import {
   CHANGE_DELETE_WORDS,
   CHANGE_APP_STATS,
   RESTORE_DELETE_WORDS,
+  DELETE_DIFFICULT_WORDS,
 } from './actions';
 import { fetchAPI } from '../../Components/Tools/fetchAPI';
 
@@ -41,6 +42,15 @@ export const playZonePageReducer = (state = initialState, action) => {
         ...state,
         dayLearningWords: action.payload,
       };
+    case DELETE_DIFFICULT_WORDS:
+      const newInitialState = [
+        ...state.difficultWords.slice(0, action.payload),
+        ...state.difficultWords.slice(action.payload + 1)
+      ];
+      return {
+        ...state,
+        difficultWords: newInitialState,
+      };
     case CHANGE_DIFFICULT_WORDS:
       return {
         ...state,
@@ -53,11 +63,9 @@ export const playZonePageReducer = (state = initialState, action) => {
         let newObj = oldObj;
         fetchAPI("users-set-statistics", newObj.optional);
       });
-      const appStats = state.appStats;
-      appStats[action.payload.dateTime] = action.payload.successCount
       return {
         ...state,
-        appStats: appStats,
+        appStats: {...state.appStats, [action.payload.dateTime]: action.payload.successCount},
       };
   }
   return state;

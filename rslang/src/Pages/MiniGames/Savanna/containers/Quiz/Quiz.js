@@ -5,6 +5,11 @@ import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
 import { setSavannaStats } from '../../../../../Store/Savanna/actions';
 
+import pew from '../../assets/good.mp3'
+import wrongPew from '../../assets/bad.mp3'
+import rez from '../../assets/rez.mp3'
+
+
 const mapStateToProps = (store) => {
   const {
     dayLearningWords,
@@ -46,14 +51,14 @@ class Quiz extends Component {
       activeQuestion: 0,
       answerState: null, // { [id]: 'success' 'error' }
       quiz: props.quiz,
-
     }
-
   }
 
   finishQuestionWithError = () => {
-    const results = this.state.results
+    const results = this.state.results  
     results[this.state.activeQuestion] = 'error'
+    const audio = new Audio(wrongPew);
+      audio.play();
     this.setState({
       answerState: { 'timeLeft': 'error' },
       results
@@ -63,13 +68,6 @@ class Quiz extends Component {
 
   onAnswerClickHandler = (answerId) => {
 
-    // if (this.state.answerState) {
-    //   const key = Object.keys(this.state.answerState)[0]
-    //   if (this.state.answerState[key] === 'success') {
-    //     return
-    //   }
-    // } 
-    //если дожидаться пока пользователь правильно не ответит
     const question = this.state.quiz[this.state.activeQuestion]
     const results = this.state.results
 
@@ -77,14 +75,17 @@ class Quiz extends Component {
       if (!results[this.state.activeQuestion]) {
         results[this.state.activeQuestion] = 'success'
       }
-
+      const audio = new Audio(pew);
+    audio.play();
       this.setState({
         answerState: { [answerId]: 'success' },
         results
       })
 
     } else {
-      results[this.state.activeQuestion] = 'error'
+      results[this.state.activeQuestion] = 'error';
+      const audio = new Audio(wrongPew);
+      audio.play();
       this.setState({
         answerState: { [answerId]: 'error' },
         results
@@ -97,6 +98,8 @@ class Quiz extends Component {
   finishQuestion() {
     const timeout = window.setTimeout(() => {
       if (this.isQuizFinished()) {
+        const audio = new Audio(rez);
+        audio.play();
         this.setState({
           isFinished: true
         })

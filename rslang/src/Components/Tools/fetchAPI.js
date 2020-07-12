@@ -160,6 +160,36 @@ export const fetchAPI = async (query, obj) => {
     return content;
   }
 
+  if (query === "setSettingsStart") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/settings`,
+      {
+        method: "PUT",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          optional: {
+            level: 1,
+            playExampleSound: true,
+            showTranslateWord: true,
+            showExampleString: true,
+            showExplanationString: true,
+            showWordTranscription: true,
+            showWordImage: true,
+            showBtnShowAgreeAnswer: true,
+            showBtnDeleteWord: true,
+            showBtnDifficultWord: true,
+            newWordsCount: 10,
+          },
+        }),
+      }
+    );
+  }
+
   if (query === "setSettings") {
     const rawResponse = await fetch(
       Const.API_LINK + `users/${getCookie("userId")}/settings`,
@@ -193,10 +223,11 @@ export const fetchAPI = async (query, obj) => {
         }
       );
       const content = await rawResponse.json();
-      console.log(content.optional);
       return content.optional;
     } catch (err) {
-      console.log("Первый раз)");
+      console.log(
+        "Ошбика, настройки установлены по умолчанию. Попробуйте еще раз."
+      );
       return {
         level: 1,
         playExampleSound: true,
@@ -204,7 +235,7 @@ export const fetchAPI = async (query, obj) => {
         showExampleString: true,
         showExplanationString: true,
         showWordTranscription: true,
-        showWordImage: false,
+        showWordImage: true,
         showBtnShowAgreeAnswer: true,
         showBtnDeleteWord: true,
         showBtnDifficultWord: true,

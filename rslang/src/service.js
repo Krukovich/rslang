@@ -158,3 +158,9 @@ export const sortData = (words) => {
   }
   return newArray;
 }
+
+export const removeTagsFromString = (str) => {
+  const regexp = /<[^<>]+>/g;
+  const newStr = str.replace(regexp, '');
+  return newStr
+}
