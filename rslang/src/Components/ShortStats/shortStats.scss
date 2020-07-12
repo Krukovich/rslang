@@ -1,24 +1,25 @@
 .shortStats {
     background-color: rgba(135, 207, 235, 0.3);
     font-family: cursive;
+    border-radius: 30px;
 }
 
 .shortStatsHeader {
     font-size: 2rem;
     font-weight: bold;
-    color: blue;
-    margin-top: 2 rem;
+    margin-top: 2rem;
     h1 {
         margin-top: 2rem;
-    }
-    img {
-        border-radius: 30px;
+        color: blue;
     }
 }
 
 .shortStatsInfo {
     font-size: 1.5rem;
     margin-top: 2rem;
+    img {
+        border-radius: 30px;
+    }
     &-item {
         margin-top: 2rem;
         width: 459px;
@@ -37,4 +38,9 @@
             margin-bottom: 2rem;
         }
     }
+}
+
+ul.row.shortStatsInfo {
+    background-color: rgba(255, 228, 196, 0.76);
+    border-radius: 30px;
 }
