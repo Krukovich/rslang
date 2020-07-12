@@ -36,9 +36,6 @@ export class SavannaStartPage extends Component {
     this.state.quizQ = await createQuize(this.state.quizQ);
     console.log("start page", this.state.quizQ);
     this.setState({ gameStart: true });
-    this.setState({ gameStart: true });
-    console.log("start page", this.state.quizQ);
-    this.setState({ gameStart: true });
   }
 
   optionSpawner = (amount, key) => {
