@@ -8,33 +8,23 @@ import { getCookie } from '../../Components/Tools/getCookie';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
+import { fetchAPI } from '../../Components/Tools/fetchAPI'
+
 
 const miniGameStats = (store) => {
   const { statsSavanna } = store.savanna;
   const { difficulty } = store.fortuneGame;
+  const { level } = store.sprintGame;
+
   return {
     statsSavanna: statsSavanna,
     difficulty: difficulty,
+    level: level,
 }}
 
 const changeMiniStats = {
   setSavannaStats,
 }
-
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  let stats = content.optional.optional;
-  return stats;
-};
 
 const ProgressLabel = () => {
   return (
@@ -48,6 +38,7 @@ class LongStats extends React.Component {
     this.state = {
       wordsNow: 0,// Math.ceil((props.totalNewWords[props.totalNewWords.length - 1] * 100) / this.props.totalWords),
       labels: [], // props.dataLabels,
+      minigameSelect: 'audioCall',
       datasets: [
         {
           label: 'Прогресс',
@@ -65,17 +56,17 @@ class LongStats extends React.Component {
         }
       ],
       items: [
-        { 'id': 1, label: 'Аудио Вызов', 'visible': false },
-        { 'id': 2, label: 'Спринт', 'visible': false },
-        { 'id': 3, label: 'Саванна', 'visible': false },
-        { 'id': 4, label: 'Паззл', 'visible': false },
-        { 'id': 5, label: 'Скажи Слово', 'visible': false },
-        { 'id': 6, label: 'Поле Чудес', 'visible': false },
+        { 'id': 1, label: 'Аудио Вызов', 'visible': false, apiName: 'audioCall' },
+        { 'id': 2, label: 'Спринт', 'visible': false, apiName: 'sprintGame' },
+        { 'id': 3, label: 'Саванна', 'visible': false, apiName: 'statsSavanna' },
+        { 'id': 4, label: 'Паззл', 'visible': false, apiName: 'gamePuzzle' },
+        { 'id': 5, label: 'Скажи Слово', 'visible': false, apiName: 'speakIt' },
+        { 'id': 6, label: 'Поле Чудес', 'visible': false, apiName: 'fortuneGame' },
       ],
       count: [
-        {"timestamp":1593114322795,"newWords":7},
-        {"timestamp":1593224622795,"newWords":2},
-        {newWords: 4, timestamp: 1593375922795},
+        {1593114322795: 7},
+        {1593224622795: 2},
+        {1593375922795: 5},
       ],
 
     }
@@ -96,52 +87,32 @@ class LongStats extends React.Component {
   };
 
   showStats = (id) => {
+    console.log('statsname',this.state.items[id-1].apiName);
+    this.setState({minigameSelect: this.state.items[id-1].apiName})//alexger
     this.setState((state) => {
       const items = this.toggleProp(state.items, id, 'visible');
       switch (id) {
         case 1:
-          this.state.count =  [
-            {"timestamp":1591114322795,"newWords":17},
-            {"timestamp":1591224622795,"newWords":12},
-            {newWords: 14, timestamp: 1591375922795},
-          ];
+          
+
           break;
         case 2 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-
-          state.count = this.state.count;
+        
           break;
         case 3:
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.minigameSavannaStats}`);
+          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.level}`);
           break;
         case 4 :
           console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.minigameSavannaStats;
-
+          // state.count = this.props.statsSavanna;
           break;
         case 5 :
-          state.count = (state.count).map(elem => elem.newWords + 2);
+          
           break;
         case 6 :
           console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.minigameSavannaStats;
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.statsSavanna}`);
-          break;
-        case 4 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
-          state.count = this.props.statsSavanna;
-
-          break;
-        case 5 :
-          state.count = (this.state.count).map(elem => {
-
-            elem.newWords += 2;
-           return elem
-          });
-          break;
-        case 6 :
-          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          state.count = this.props.statsSavanna;
+          // state.count = this.props.difficulty;
           break;
       }
       return { items };
@@ -156,25 +127,32 @@ class LongStats extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this._asyncRequest = getStats().then(
-      result => {
-        const resultWords = result.wordStat.map((item) => {
-          const elem = item.newWords;
-          return elem;
-        });
-        const resultDate = result.wordStat.map((item) => {
-          const date = new Date(item.timestamp).toString().slice(4, 15);
+  async componentDidMount() {
+  let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
+      this.setState({count: result.optional})
+      let appStats = result.optional.appStats;
+      delete appStats[0];
+      console.log("appSTats", appStats)
+        
+        const resultWords = Object.values(appStats);
+        const resultDate = Object.keys(appStats).map((item) => {
+          const data = Number(item);
+          const date = new Date(data).toString().slice(4, 15);
+          console.log(date)
           return date;
-        })
+        });
         this.state.datasets[0].data = this.getSum(resultWords);
         this.state.datasets[1].data = resultWords;
         this.state.labels = resultDate;
         this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
         this._asyncRequest = null;
         this.setState({result});
-      }
-    );
+      
+    
+  }
+
+  minigameSelect(selector) {
+    this.setState({minigameSelect: selector});
   }
 
   render() {
@@ -209,7 +187,10 @@ class LongStats extends React.Component {
             <div className="longStatsElem">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
-              <MiniStats count={this.state.count} />
+              <MiniStats 
+              stats={this.state.count} 
+              miniGame={this.state.minigameSelect}
+              />
               </div>
             </div>
             </div>
