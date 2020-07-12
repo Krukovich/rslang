@@ -3,8 +3,6 @@ import './longStats.scss';
 import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import { setSavannaStats } from '../../Store/Savanna/actions';
-import { getCookie } from '../../Components/Tools/getCookie';
-
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import BtnsBar from './BtnsBar/BtnsBar';
 import MiniStats from './MiniStats/MiniStats';
@@ -43,14 +41,14 @@ class LongStats extends React.Component {
         {
           label: 'Прогресс',
           borderColor: 'rgba(0,0,0,1)',
-          backgroundColor: 'orange',
+          backgroundColor: 'darkcyan',
           borderWidth: 2,
           data: [] //...props.totalNewWords
         },
         {
           label: 'Слов изучено в день',
-          borderColor: 'tomato',
-          backgroundColor: 'tomato',
+          borderColor: 'darkblue',
+          backgroundColor: 'darkblue',
           data: [], //...props.dailyNew,
           fill: false,
         }
@@ -63,11 +61,7 @@ class LongStats extends React.Component {
         { 'id': 5, label: 'Скажи Слово', 'visible': false, apiName: 'speakIt' },
         { 'id': 6, label: 'Поле Чудес', 'visible': false, apiName: 'fortuneGame' },
       ],
-      count: [
-        {1593114322795: 7},
-        {1593224622795: 2},
-        {1593375922795: 5},
-      ],
+      count: [],
 
     }
     // this.count = 0;
@@ -89,34 +83,34 @@ class LongStats extends React.Component {
   showStats = (id) => {
     console.log('statsname',this.state.items[id-1].apiName);
     this.setState({minigameSelect: this.state.items[id-1].apiName})//alexger
-    this.setState((state) => {
-      const items = this.toggleProp(state.items, id, 'visible');
-      switch (id) {
-        case 1:
+    // this.setState((state) => {
+    //   const items = this.toggleProp(state.items, id, 'visible');
+    //   switch (id) {
+    //     case 1:
           
 
-          break;
-        case 2 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
+    //       break;
+    //     case 2 :
+    //       console.log(`Clicked ${id} ${items[id-1].label}`);
         
-          break;
-        case 3:
-          console.log(`Clicked ${id} ${items[id-1].label} ${this.props.level}`);
-          break;
-        case 4 :
-          console.log(`Clicked ${id} ${items[id-1].label}`);
-          // state.count = this.props.statsSavanna;
-          break;
-        case 5 :
+    //       break;
+    //     case 3:
+    //       console.log(`Clicked ${id} ${items[id-1].label} ${this.props.level}`);
+    //       break;
+    //     case 4 :
+    //       console.log(`Clicked ${id} ${items[id-1].label}`);
+    //       // state.count = this.props.statsSavanna;
+    //       break;
+    //     case 5 :
           
-          break;
-        case 6 :
-          console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
-          // state.count = this.props.difficulty;
-          break;
-      }
-      return { items };
-    })
+    //       break;
+    //     case 6 :
+    //       console.log(`${id} ${items[id-1].label} ${this.props.difficulty}`);
+    //       // state.count = this.props.difficulty;
+    //       break;
+      // }
+      return this.state.items ;
+    
   }
 
   getSum(arr) {
@@ -181,10 +175,10 @@ class LongStats extends React.Component {
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
-            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+            <ProgressBar variant="info" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
 
-            <div className="longStatsElem">
+            <div className="longStatsElem container-fluid">
               <BtnsBar items={items} showStats={this.showStats} />
               <div className="longStatsElem-field">
               <MiniStats 
