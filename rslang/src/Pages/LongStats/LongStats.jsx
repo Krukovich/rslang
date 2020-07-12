@@ -26,6 +26,25 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
+<<<<<<< HEAD
+=======
+// const getStats = async () => {
+//   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
+//     method: 'GET',
+//     withCredentials: true,
+//     headers: {
+//       'Authorization': `Bearer ${getCookie("token")}`,
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//   });
+//   const content = await rawResponse.json();
+//   let stats = content.optional;
+//   console.log(stats)
+//   return stats;
+// };
+
+>>>>>>> short stats
 const ProgressLabel = () => {
   return (
     <div className="longStatsElem-label d-flex justify-content-center">Изучено слов из словаря</div>
@@ -136,6 +155,16 @@ class LongStats extends React.Component {
         
         const resultWords = Object.values(appStats);
         const resultDate = Object.keys(appStats).map((item) => {
+<<<<<<< HEAD
+=======
+  // componentDidMount() {
+  //   this._asyncRequest = fetchAPI('users-get-statistics').then(
+  //     result => {
+  //       console.log(result.appStats)
+  //       // delete appStats[0];
+  //       const resultWords = Object.values(result.appStats);
+        // const resultDate = Object.keys(result.appStats).map((item) => {
+>>>>>>> short stats
           const data = Number(item);
           const date = new Date(data).toString().slice(4, 15);
           console.log(date)
@@ -148,8 +177,13 @@ class LongStats extends React.Component {
         this._asyncRequest = null;
         this.setState({result});
       
+<<<<<<< HEAD
     
   }
+=======
+      }
+  
+>>>>>>> short stats
 
   minigameSelect(selector) {
     this.setState({minigameSelect: selector});

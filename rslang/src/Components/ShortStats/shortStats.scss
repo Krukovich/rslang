@@ -24,13 +24,13 @@
         width: 459px;
         justify-content: space-between;
         &:first-child {
-            color: tomato;
+            color: darkviolet;
         }
         &:nth-child(2) {
-            color: green;
+            color: darkgreen;
         }
         &:nth-child(3) {
-            color: rgb(131, 94, 2);
+            color: rgb(139, 86, 16);
         }
         &:last-child {
             color: darkred;
