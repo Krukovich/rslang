@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setSprintStats } from '../../Store/SprintGame/Actions';
 
-import SprintCard from "../../Components/SprintCard/SprintCard";
-import StartScreen from "./StartScreen/StartScreen";
-import EndScreen from "./EndScreen/EndScreen";
-import LevelSelect from "./LevelSelect/LevelSelect";
+import SprintCard from "../../Components/SprintCard/SprintCard.jsx";
+import StartScreen from "./StartScreen/StartScreen.jsx";
+import EndScreen from "./EndScreen/EndScreen.jsx";
+import LevelSelect from "./LevelSelect/LevelSelect.jsx";
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 import "./SprintGame.scss";
 
-import pew from './assets/pew.mp3'
-import wrongPew from './assets/wrongPew.mp3'
+import pew from './assets/pew.wav'
+import wrongPew from './assets/wrongPew.wav'
+import upgrade from './assets/upgrade.wav'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
@@ -137,6 +138,7 @@ class SprintGame extends Component {
       };
     });
     if (this.state.maxStreak === 3) {
+      this.audioHandler(upgrade);
       this.setState((prevState) => {
         return {
           modifier: prevState.modifier * 2,
@@ -377,7 +379,7 @@ class SprintGame extends Component {
               <h3 className="Sprint-Score">{this.state.score}</h3>
             </div>
           </div>
-          <div className="Sprint-Playboard row h-75">
+          <div className="Sprint-Playboard row">
             <div className="col-md-4"></div>
             <div className="col-md-4 d-flex justify-content-center">
               <SprintCard

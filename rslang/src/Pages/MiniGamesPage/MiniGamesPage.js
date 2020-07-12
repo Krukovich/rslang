@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Card from '../../Components/Card/Card';
 import './MiniGamesPage.scss';
 
-import sprint from './assets/sprint-logo.jpg';
+import sprint from './assets/sprint-logo.png';
 import FortuneLogo from './assets/fortune-logo.png';
 import SpeakItLogo from './assets/speakit-logo.png';
 import SavannaLogo from './assets/savanna-logo.png';
@@ -88,11 +88,11 @@ class MiniGamesPage extends Component {
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={audioCallCard.class}
-                pic={audioCallCard.pic}
-                href={audioCallCard.href}
-                title={audioCallCard.title}
-                description={audioCallCard.description}
+                class={fortuneCard.class}
+                pic={fortuneCard.pic}
+                href={fortuneCard.href}
+                title={fortuneCard.title}
+                description={fortuneCard.description}
               />
             </div>
           </div>
@@ -128,11 +128,11 @@ class MiniGamesPage extends Component {
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={fortuneCard.class}
-                pic={fortuneCard.pic}
-                href={fortuneCard.href}
-                title={fortuneCard.title}
-                description={fortuneCard.description}
+                class={audioCallCard.class}
+                pic={audioCallCard.pic}
+                href={audioCallCard.href}
+                title={audioCallCard.title}
+                description={audioCallCard.description}
               />
             </div>
           </div>

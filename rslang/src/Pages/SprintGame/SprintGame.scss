@@ -1,3 +1,11 @@
+.Sprint {
+    background-image: url('./assets/back.png');
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}
+
 .Sprint-Score {
     font-size: 2.4rem;
     user-select: none;
@@ -14,6 +22,7 @@
     font-size: 1.8rem;
     user-select: none;
     animation: pulse 1s infinite;
+    backdrop-filter: brightness(40%);
 
     @keyframes pulse {
         0% {transform:scale(1)}

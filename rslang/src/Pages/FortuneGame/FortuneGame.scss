@@ -2,8 +2,10 @@
     background-image: url('./assets/back.png');
     background-repeat: repeat;
     background-size: 200px;
-    // height: 100vh;
-    // padding-bottom: 20px;
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
 }
 
 .Fortune-Board {
