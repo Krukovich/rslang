@@ -93,7 +93,8 @@ class Promo extends React.Component {
                     gameDescription='Открывая правильные буквы на табло, 
                   чувствуешь себя суперфиналистом знаменитой телевизионной 
                   игры. Так и хочется крутануть барабан!'
-                    gameLink='/fortune-game'
+                  gameLink='/fortune-game'
+
                   />
                   <GamesCard
                     gameTitle='English Puzzle'
@@ -104,7 +105,6 @@ class Promo extends React.Component {
                     gameLink='/english-puzzle'
                   />
                 </div>
-
               </div>
             </div>
           </div>
