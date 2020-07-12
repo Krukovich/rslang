@@ -156,10 +156,14 @@ class LongStats extends React.Component {
       result => {
         console.log(result.appStats)
 <<<<<<< HEAD
+<<<<<<< HEAD
         delete appStats[0];
 =======
         
 >>>>>>> refactor
+=======
+        
+>>>>>>> ab7185f30cb680d6014a9d171a1367198f21a76d
         const resultWords = Object.values(result.appStats);
         const resultDate = Object.keys(result.appStats).map((item) => {
           const data = Number(item);
