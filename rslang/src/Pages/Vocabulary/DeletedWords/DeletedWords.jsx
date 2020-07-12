@@ -42,7 +42,7 @@ const DeletedWords = (props) => {
             >
               <div className="d-flex justify-content-center align-items-center">
                 <RestoreBtn index={index} restore={restore}/>
-                <span className="mr-3 text-capitalize">{item.word}</span>
+                <span className="ml-3 mr-3 text-capitalize">{item.word}</span>
                 <span className="mr-3">{item.transcription}</span>
                 <span className="mr-3 text-capitalize">
                   {item.wordTranslate}

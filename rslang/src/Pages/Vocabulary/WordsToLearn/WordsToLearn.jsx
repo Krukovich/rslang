@@ -17,7 +17,7 @@ const WordsToLearn = ({ posts, remove }) => {
               <PlayBtn src={post.audio} />
               <span className="mr-3 text-capitalize">{post.word}</span>
               <span className="mr-3">{post.transcription}</span>
-              <span className="text-capitalize">{post.wordTranslate}</span>
+              <span className="text-capitalize mr-3">{post.wordTranslate}</span>
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center mb-2">
