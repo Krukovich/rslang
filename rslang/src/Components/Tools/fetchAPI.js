@@ -122,6 +122,7 @@ export const fetchAPI = async (query, obj) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          learnedWords: 0,
           optional: obj,
         }),
       }

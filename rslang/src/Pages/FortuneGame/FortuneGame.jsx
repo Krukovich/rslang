@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
+import { setFortuneStats } from '../../Store/FortuneGame/Actions';
 
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
+import LevelSelect from './LevelSelect/LevelSelect';
 
 import './FortuneGame.scss';
 
@@ -13,12 +15,24 @@ import right2 from './assets/AudioSamples/right/right2.mp3'
 import right3 from './assets/AudioSamples/right/right3.mp3'
 import right4 from './assets/AudioSamples/right/right4.ogg'
 import right5 from './assets/AudioSamples/right/right5.mp3'
+import right6 from './assets/AudioSamples/right/right6.mp3'
+import right7 from './assets/AudioSamples/right/right7.mp3'
+import right8 from './assets/AudioSamples/right/right8.mp3'
 import wrong1 from './assets/AudioSamples/wrong/wrong1.mp3'
 import wrong2 from './assets/AudioSamples/wrong/wrong2.mp3'
 import wrong3 from './assets/AudioSamples/wrong/wrong3.mp3'
 import wrong4 from './assets/AudioSamples/wrong/wrong4.mp3'
 import wrong5 from './assets/AudioSamples/wrong/wrong5.mp3'
 import wrong6 from './assets/AudioSamples/wrong/wrong6.mp3'
+import wrong7 from './assets/AudioSamples/wrong/wrong7.mp3'
+import wrong8 from './assets/AudioSamples/wrong/wrong8.ogg'
+import wrong9 from './assets/AudioSamples/wrong/wrong9.mp3'
+import win1 from './assets/AudioSamples/win/win1.mp3'
+import win2 from './assets/AudioSamples/win/win2.mp3'
+import win3 from './assets/AudioSamples/win/win3.mp3'
+import win4 from './assets/AudioSamples/win/win4.mp3'
+import win5 from './assets/AudioSamples/win/win5.mp3'
+import lose2 from './assets/AudioSamples/lose/lose2.mp3'
 
 class FortuneGame extends Component {
     constructor() {
@@ -39,14 +53,21 @@ class FortuneGame extends Component {
             dialogue: 'Угадывайте!',
             continue: false,
             currentRound: 0,
+            answers: [],
+            difficulty: localStorage.getItem('fortuneDifficulty') === null ? 0 : localStorage.getItem('fortuneDifficulty'),
+            level: localStorage.getItem('fortuneLvl') === null ? 0 : localStorage.getItem('fortuneLvl'),
         }
         this.engWordRef = React.createRef();
-        this.selectRef = React.createRef();
+        this.difficultyRef = React.createRef();
+        this.lvlRef = React.createRef();
         this.audio = 0;
     }
 
-    async getWords(difficulty = this.props.difficulty) {
-        const responce = await fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}`);
+    async getWords(difficulty = this.state.difficulty, level = this.state.level) {
+        console.log(difficulty, level)
+        const responce = await fetch(
+            `https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}&page=${level}`
+        );
         const json = await responce.json();
         this.setState({
             words: json,
@@ -64,7 +85,6 @@ class FortuneGame extends Component {
     }
 
     loadWord = props => {
-        const defaultArr = this.state.words.slice(0);
         const cursed = this.state.cursed.slice(0);
 
         const randomNum = this.generateRandomNum(this.state.cursed, this.state.words);
@@ -72,14 +92,30 @@ class FortuneGame extends Component {
         this.setState({
             cursed: cursed,
         })
-        // alert(this.state.cursed)
+
         const wordObj = this.state.words[randomNum]
 
+        const rusWord = wordObj.wordTranslate;
+        const engWord = wordObj.word;
+        const audio = wordObj.audio;
+
         this.setState({
-            rusWordArr: wordObj.wordTranslate.toUpperCase().split(''),
-            engWordArr: wordObj.word.toUpperCase().split(''),
-            engWordArrCheck: wordObj.word.toUpperCase().split(''),
+            rusWordArr: rusWord.toUpperCase().split(''),
+            engWordArr: engWord.toUpperCase().split(''),
+            engWordArrCheck: engWord.toUpperCase().split(''),
+            audio: audio,
         });
+
+        this.updateLocalStats({ engWord, rusWord, audio }, this.state.answers);
+    }
+
+    updateLocalStats = (word, arr) => {
+        const wordArr = arr;
+        wordArr.push(word);
+
+        this.setState({
+            arr: wordArr
+        })
     }
 
     alphabetCheckHandler = (event) => {
@@ -94,13 +130,20 @@ class FortuneGame extends Component {
     }
 
     roundEndHandler = () => {
+        const audioVariants = [win1, win2, win3, win4, win5];
+        const dialogueVariants = ['И у нас победитель!!!',
+            'Поразительно! Это победа!', 'Победа!', 'Всё отгадано верно!!'];
+
         for (let char of this.state.engWordArrCheck) {
             if (char !== 0) return
         }
 
         this.setState({
+            dialogue: dialogueVariants[Math.floor(Math.random() * Math.floor(dialogueVariants.length))],
             continue: true,
         })
+
+        this.audioHandler(audioVariants);
     }
 
     letterClickHandler = (event) => {
@@ -119,7 +162,7 @@ class FortuneGame extends Component {
         const word = this.state.engWordArrCheck;
         const dialogueVariants = ['Абсолютно верно!',
             'Есть такая буква!', 'Правильно!', 'Это гениально!', 'Вопрос для детского сада!'];
-        const audioVariants = [right1, right2, right3, right4, right5];
+        const audioVariants = [right1, right2, right3, right4, right5, right6, right7, right8];
 
         for (let i = 0; i < word.length; i += 1) {
             if (props.target.textContent === word[i]) {
@@ -140,16 +183,49 @@ class FortuneGame extends Component {
             }
         });
 
-        const audio = new Audio(audioVariants[Math.floor(Math.random() * Math.floor(audioVariants.length))]);
-        audio.play();
+        this.audioHandler(audioVariants);
+        this.yakubShutHandler();
+        this.roundEndHandler();
+    }
 
+    wrongAnswerHandler = props => {
+        const dialogueVariants = ['Извините, ошибка!',
+            'Нет такой буквы!', 'Откройте букву... но в другом слове', 'Вы отвечаете не подумав!'];
+        const audioVariants = [wrong1, wrong2, wrong3, wrong4, wrong5, wrong6, wrong7, wrong8, wrong9];
+        this.audioHandler(audioVariants);
+
+        this.setState((prevState) => {
+            return {
+                dialogue: dialogueVariants[Math.floor(Math.random() * Math.floor(dialogueVariants.length))],
+                speak: true,
+                mistakeCount: prevState.mistakeCount + 1,
+            }
+        });
+
+        if (this.state.mistakeCount === 2) {
+            this.setState({
+                cursed: [],
+            })
+            this.gameEnd();
+        }
+
+        this.yakubShutHandler();
+    }
+
+    yakubShutHandler = () => {
         setTimeout(() => {
             this.setState({
                 speak: false,
             })
         }, 900)
+    }
 
-        this.roundEndHandler();
+    audioHandler = (audioVariants) => {
+        if (this.audio) {
+            this.audio.pause();
+        }
+        this.audio = new Audio(audioVariants[Math.floor(Math.random() * Math.floor(audioVariants.length))]);
+        this.audio.play();
     }
 
     cellClassHandler = (filler = [], cellClass, checkArray) => {
@@ -163,38 +239,6 @@ class FortuneGame extends Component {
             }
         }
         return content
-    }
-
-    wrongAnswerHandler = props => {
-        const dialogueVariants = ['Извините, ошибка!',
-            'Нет такой буквы!', 'Откройте букву... но в другом слове', 'Вы отвечаете не подумав!'];
-        const audioVariants = [wrong1, wrong2, wrong3, wrong4, wrong5, wrong6];
-
-        this.setState((prevState) => {
-            return {
-                dialogue: dialogueVariants[Math.floor(Math.random() * Math.floor(dialogueVariants.length))],
-                speak: true,
-                mistakeCount: prevState.mistakeCount + 1,
-            }
-        });
-
-        if (this.state.mistakeCount === 2) {
-            this.setState({
-                // gameEnded: true,
-                cursed: [],
-            })
-
-            this.gameEnd();
-        }
-
-        const audio = new Audio(audioVariants[Math.floor(Math.random() * Math.floor(audioVariants.length))]);
-        audio.play();
-
-        setTimeout(() => {
-            this.setState({
-                speak: false,
-            })
-        }, 900)
     }
 
     drawTranslation = (filler = []) => {
@@ -251,10 +295,8 @@ class FortuneGame extends Component {
 
             if (this.state.currentRound === this.state.words.length - 1) {
                 this.setState({
-                    // gameEnded: true,
                     cursed: [],
                 })
-
                 this.gameEnd();
             }
         } catch {
@@ -263,8 +305,6 @@ class FortuneGame extends Component {
     }
 
     restart = () => {
-        this.loadWord();
-
         this.setState({
             dialogue: 'Угадывайте!',
             alphabetCheck: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -273,94 +313,129 @@ class FortuneGame extends Component {
             gameEnded: false,
             score: 0,
             currentRound: 1,
+            answers: [],
         })
+
+        setTimeout(() => { this.loadWord(); }, 0)
     }
 
     componentDidMount() {
         this.getWords();
 
-        this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
+        this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
+        this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
     }
 
     addYakubClass() {
-        const buttonClass = ['Fortune-Yakub', 'mb-2', 'mt-2'];
+        const buttonClass = ['Fortune-Yakub', 'mt-2'];
         if (this.state.speak) {
             buttonClass.push('Fortune-Yakub_speak');
         }
         return buttonClass.join(' ')
     }
 
-    difficultyHandler = event => {
+    difficultyHandler = (event) => {
         const number = event.target.value;
-        this.props.onChangeDiff(number);
-        this.getWords(number);
+        this.setState({
+            difficulty: number,
+        })
+        this.getWords(number, this.state.level);
         localStorage.setItem('fortuneDifficulty', number);
+    };
+
+    levelHandler = (event) => {
+        const number = event.target.value;
+        this.setState({
+            level: number,
+        })
+        this.getWords(this.state.difficulty, number);
+        localStorage.setItem('fortuneLvl', number);
     }
 
     writeStats = async (statsObj) => {
         const content = await fetchAPI("users-set-statistics", statsObj);
-        // const arrayOfWords = this.levelGenerator(content);
-
-        // this.setState({ wordsArray: arrayOfWords });
         console.log("stats write");
         return content;
     };
 
     gameEnd = () => {
+        const audioVariants = [win1, win2, win3, win4, win5];
         this.setState({
             gameEnded: true,
         })
 
-        const score = this.state.score;
-        const time = Date.now();
-        const statsObj = { score, time }
+        const dateTime = Date.now();
+        const successCount = this.state.score;
+        console.log(successCount, dateTime)
+        this.props.setFortuneStats({
+            successCount, dateTime
+        })
 
-        this.writeStats(statsObj)
+        setTimeout(() => {
+            this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
+            this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
+        }, 0);
+
+        if (this.state.score === 0) {
+            this.audioHandler([lose2]);
+        } else {
+            this.audioHandler(audioVariants);
+        }
+    }
+
+    optionSpawner = (amount, key) => {
+        let content = [];
+        for (let i = 0; i <= amount; i += 1) {
+            content.push(<option key={key + i} value={i}>{i + 1}</option>)
+        }
+        return content
     }
 
     render() {
         if (!this.state.gameStarted) {
             return (
-                <div className="Fortune container Fortune-Startscreen pt-5">
-                    <div className="row">
-                        <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
-                            <div className="d-flex align-items-center">
-                                <span className="mr-2">Сложность:</span>
-                                <select ref={this.selectRef} onClick={this.difficultyHandler} className="d-inline-block">
-                                    <option value="0">1</option>
-                                    <option value="1">2</option>
-                                    <option value="2">3</option>
-                                    <option value="3">4</option>
-                                    <option value="4">5</option>
-                                    <option value="5">6</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div className="Fortune container-fluid pt-5">
+                    <LevelSelect
+                        difficultyRef={this.difficultyRef}
+                        lvlRef={this.lvlRef}
+                        difficultyHandler={this.difficultyHandler}
+                        levelHandler={this.levelHandler}
+                        optionSpawner={this.optionSpawner}
+                    />
                     <StartScreen gameStart={this.start} />
                 </div>
             )
         } else if (this.state.gameEnded) {
-            return <EndScreen
-                score={this.state.score}
-                restart={this.restart}
-            />
+            return (
+                <div className="Fortune container-fluid pt-5">
+                    <LevelSelect
+                        difficultyRef={this.difficultyRef}
+                        lvlRef={this.lvlRef}
+                        difficultyHandler={this.difficultyHandler}
+                        levelHandler={this.levelHandler}
+                        optionSpawner={this.optionSpawner}
+                    />
+                    <EndScreen
+                        score={this.state.score}
+                        restart={this.restart}
+                        answers={this.state.answers}
+                    />
+                </div>
+            )
         } else {
             return (
-                <div className="Fortune container pt-5">
-                    <div className="Fortune-Scoreboard row p-2">
-                    </div>
-                    <div className="Fortune-Playboard row h-75 p-2">
-                        <div className="col-md-2 d-flex justify-content-center align-items-center flex-column">
+                <div className="Fortune container-fluid pt-5">
+                    <div className="Fortune-Playboard row h-75 p-2 pt-4">
+                        <div className="col-md-2 col-sm-12 d-flex justify-content-center align-items-center flex-column">
                             <div className="Fortune-Dialogue DialogueBar">
                                 <div className="DialogueBar-Box">{this.state.dialogue}</div>
                                 <div className="DialogueBar-Triangle"></div>
                             </div>
                             <div className={this.addYakubClass()}></div>
-                            <Button onClick={() => { this.gameEnd(); this.setState({ cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1">В музей поля чудес (закончить)</Button>
-                            <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 Fortune-Btn_next_active" : "Fortune-Btn_next p-1"}>Следующее слово</Button>
+                            <Button onClick={() => { this.gameEnd(); this.setState({ cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1 mt-1">В музей поля чудес (закончить)</Button>
+                            <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 mb-2 Fortune-Btn_next_active" : "Fortune-Btn_next p-1 mb-2"}>Следующее слово</Button>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8 col-sm-12">
                             <div className="Fortune-Board w-100 h-100">
                                 <table className="Fortune-Table">
                                     <tbody>
@@ -384,12 +459,12 @@ class FortuneGame extends Component {
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div className="Fortune-Letters mt-2 d-flex">
-                                {this.drawLetters(this.state.alphabetCheck)}
+                                <div className="Fortune-Letters mt-2">
+                                    {this.drawLetters(this.state.alphabetCheck)}
+                                </div>
                             </div>
                         </div>
-                        <div className="col-md-2 d-flex justify-content-center align-items-center flex-column">
+                        <div className="Fortune-Character col-md-2 col-sm-12 d-flex justify-content-center align-items-center flex-column">
                             <h3 className="Fortune-Score">{this.state.score}</h3>
                             <div className="Fortune-Player mt-3"></div>
                             <div className="Fortune-Progressbar w-100 d-flex justify-content-center align-items-center">
@@ -405,17 +480,36 @@ class FortuneGame extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state)
+const mapStateToProps = (store) => {
+    const {
+        dayLearningWords,
+        difficultWords,
+        showBtnShowAgreeAnswer,
+        showTranslateWord,
+        showExplanationString,
+        playExampleSound,
+        showWordImage,
+        showWordsTranscription,
+        minigameFortuneStats,
+    } = store.appSettings;
+
     return {
-        difficulty: state.fortuneGame.difficulty
+        showWordsTranscription: showWordsTranscription,
+        showWordImage: showWordImage,
+        playExampleSound: playExampleSound,
+        showExplanationString: showExplanationString,
+        showTranslateWord: showTranslateWord,
+        showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+        difficultWords: difficultWords,
+        dayLearningWords: dayLearningWords,
+        cards: store.playZone.cards,
+        stats: minigameFortuneStats,
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        onChangeDiff: number => dispatch({ type: 'CHANGE_DIFF', payload: number })
-    }
+const mapActionToProps = {
+    setFortuneStats,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FortuneGame);
+export default connect(mapStateToProps, mapActionToProps)(FortuneGame);
+// export default FortuneGame

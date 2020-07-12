@@ -1,5 +1,4 @@
 import { CHANGE_MINIGAMESAVANNA_STATS } from "./actions";
-
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 const initialState = {
@@ -11,9 +10,8 @@ const initialState = {
     {"timestamp":1595122422795,"newWords":5},
     {newWords: 6, timestamp: 1599375922795}
   ]
-    
-  
 };
+
 
 export const savannaReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -34,5 +32,6 @@ export const savannaReducer = (state = initialState, action) => {
       };
     default:
       return state;
-  }
+    
+      }
 };

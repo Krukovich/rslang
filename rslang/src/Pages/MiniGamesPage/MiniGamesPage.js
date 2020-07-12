@@ -4,8 +4,10 @@ import Card from '../../Components/Card/Card';
 import './MiniGamesPage.scss';
 
 import pic1 from './assets/pic1.jpg';
-import FortuneLogo from './assets/logo-turbo.jpg';
+import sprint from './assets/sprint.jpg';
+import FortuneLogo from './assets/logo-turbo.png';
 import SpeakItLogo from './assets/enjoy_small.png';
+import EnglishPuzzle from './assets/english-language.jpg'
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -15,8 +17,8 @@ class MiniGamesPage extends Component {
         title: 'Sprint',
         description: '',
         href: 'SprintGame',
-        class: 'Card-Image_training',
-        pic: pic1
+        class: 'Card-Image_sprint',
+        pic: sprint
       },
       audioCallCard: {
         title: 'Audiocall',
@@ -29,28 +31,28 @@ class MiniGamesPage extends Component {
         title: 'Turbo Wheel of Fortune',
         description: '',
         href: 'fortune-game',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_fortune',
         pic: FortuneLogo
       },
-      savannaCard: {
-        title: 'Savanna',
+      savannahCard: {
+        title: 'Savannah',
         description: '',
-        href: 'Savanna',
+        href: 'Savannah',
         class: 'Card-Image_learning',
         pic: pic1
       },
       englishPuzzleCard: {
         title: 'English Puzzle',
         description: '',
-        href: 'englishpuzzle',
-        class: 'Card-Image_learning',
-        pic: pic1
+        href: 'english-puzzle',
+        pic: EnglishPuzzle,
+        class: 'Card-Image_englishpuzzle',
       },
       speakItCard: {
         title: 'Speak It',
         description: '',
         href: 'speakIt-start',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_speakit',
         pic: SpeakItLogo,
       },
       clicked: false,
@@ -65,7 +67,7 @@ class MiniGamesPage extends Component {
   render() {
     const sprintCard = this.state.sprintCard;
     const audioCallCard = this.state.audioCallCard;
-    const savannaCard = this.state.savannaCard;
+    const savannahCard = this.state.savannahCard;
     const fortuneCard = this.state.fortuneCard;
     const englishPuzzleCard = this.state.englishPuzzleCard;
     const speakItCard = this.state.speakItCard;
@@ -96,11 +98,11 @@ class MiniGamesPage extends Component {
           <div className="Cards row pt-2">
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={savannaCard.class}
-                pic={savannaCard.pic}
-                href={savannaCard.href}
-                title={savannaCard.title}
-                description={savannaCard.description}
+                class={savannahCard.class}
+                pic={savannahCard.pic}
+                href={savannahCard.href}
+                title={savannahCard.title}
+                description={savannahCard.description}
               />
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">

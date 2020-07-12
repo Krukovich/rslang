@@ -14,4 +14,4 @@ const MiniStats = ({ count }) => {
 	return (<ul>{elems}</ul>)
 }
 
-export default MiniStats;  
+export default MiniStats;

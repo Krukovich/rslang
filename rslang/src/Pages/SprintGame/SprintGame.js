@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setSprintStats } from '../../Store/SprintGame/Actions';
 
 import SprintCard from "../../Components/SprintCard/SprintCard";
 import StartScreen from "./StartScreen/StartScreen";
 import EndScreen from "./EndScreen/EndScreen";
+import LevelSelect from "./LevelSelect/LevelSelect";
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 
 import "./SprintGame.scss";
@@ -30,15 +32,23 @@ class SprintGame extends Component {
       mistakeCount: 0,
       words: 0,
       isSoundOn: true,
+      borderColor: '',
+      wrongAnswers: [],
+      rightAnswers: [],
+      difficulty: localStorage.getItem('sprintDifficulty') === null ? 0 : localStorage.getItem('sprintDifficulty'),
+      level: localStorage.getItem('sprintLvl') === null ? 0 : localStorage.getItem('sprintLvl'),
     };
     this.rightBtnRef = React.createRef();
     this.wrongBtnRef = React.createRef();
-    this.selectRef = React.createRef();
+    this.difficultyRef = React.createRef();
+    this.lvlRef = React.createRef();
+    this.timerCounter = 0;
+    this.timerStyle = 0;
   }
 
-  async getWords(difficulty = this.props.difficulty) {
+  async getWords(difficulty = this.state.difficulty, level = this.state.level) {
     const responce = await fetch(
-      `https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}`
+      `https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}&page=${level}}`
     );
     const json = await responce.json();
     this.setState({
@@ -52,7 +62,7 @@ class SprintGame extends Component {
     const defaultArr = this.state.words.slice(0);
     let mixedArr = [];
     defaultArr.map((a, i) => {
-      if (Math.random() > 0.3) {
+      if (Math.random() > 0.5) {
         let firstPart = Math.floor(
           Math.random() * Math.floor(defaultArr.length)
         );
@@ -68,12 +78,16 @@ class SprintGame extends Component {
 
         mixedArr.push({
           firstPartEng: defaultArr[firstPart].word,
+          firstPartRus: defaultArr[firstPart].wordTranslate,
+          audio: defaultArr[firstPart].audio,
           secondPartRus: defaultArr[secondPart].wordTranslate,
           isTrue: isTrue,
         });
       } else {
         mixedArr.push({
           firstPartEng: defaultArr[i].word,
+          firstPartRus: defaultArr[i].wordTranslate,
+          audio: defaultArr[i].audio,
           secondPartRus: defaultArr[i].wordTranslate,
           isTrue: true,
         });
@@ -85,7 +99,7 @@ class SprintGame extends Component {
   };
 
   timer = () => {
-    const timer = setInterval(() => {
+    this.timerCounter = setInterval(() => {
       this.setState((prevState) => {
         return {
           counter: prevState.counter - 1,
@@ -93,7 +107,6 @@ class SprintGame extends Component {
       });
 
       if (!this.state.counter) {
-        // clearInterval(timer);
         this.gameEnd();
       }
     }, 1000);
@@ -114,6 +127,8 @@ class SprintGame extends Component {
   };
 
   rightAnswerHandler = () => {
+    this.updateLocalStats(this.state.mixedArr[this.state.activeQuestion], this.state.rightAnswers);
+
     this.nextCard();
     this.setState((prevState) => {
       return {
@@ -130,13 +145,13 @@ class SprintGame extends Component {
       });
     }
 
-    if (this.state.isSoundOn) {
-      const audio = new Audio(pew);
-      audio.play();
-    }
+    this.audioHandler(pew);
+    this.borderPainter('green');
   };
 
   wrongAnswerHandler = () => {
+    this.updateLocalStats(this.state.mixedArr[this.state.activeQuestion], this.state.wrongAnswers);
+
     this.nextCard();
     this.setState((prevState) => {
       return {
@@ -149,12 +164,25 @@ class SprintGame extends Component {
       this.gameEnd();
     }
 
+    this.audioHandler(wrongPew);
+    this.borderPainter('red');
+  };
 
+  updateLocalStats = (word, arr) => {
+    const wordArr = arr;
+    wordArr.push(word);
+
+    this.setState({
+      arr: wordArr
+    })
+  }
+
+  audioHandler = (sound) => {
     if (this.state.isSoundOn) {
-      const audio = new Audio(wrongPew);
+      const audio = new Audio(sound);
       audio.play();
     }
-  };
+  }
 
   nextCard = () => {
     if (this.state.activeQuestion + 1 >= this.state.mixedArr.length) {
@@ -171,23 +199,22 @@ class SprintGame extends Component {
   keyPushHandler = (event) => {
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyA" || event.code === "ArrowLeft") {
-        try {
-          this.rightBtnRef.current.focus();
-          this.rightBtnRef.current.click();
-        } catch {
-          return
-        }
+        this.buttonClicker(this.rightBtnRef);
       }
       if (event.code === "KeyD" || event.code === "ArrowRight") {
-        try {
-          this.wrongBtnRef.current.focus();
-          this.wrongBtnRef.current.click();
-        } catch {
-          return
-        }
+        this.buttonClicker(this.wrongBtnRef);
       }
     });
   };
+
+  buttonClicker = (button) => {
+    try {
+      button.current.focus();
+      button.current.click();
+    } catch {
+      return
+    }
+  }
 
   gameStart = (props) => {
     try {
@@ -205,9 +232,6 @@ class SprintGame extends Component {
 
   writeStats = async (statsObj) => {
     const content = await fetchAPI("users-set-statistics", statsObj);
-    // const arrayOfWords = this.levelGenerator(content);
-
-    // this.setState({ wordsArray: arrayOfWords });
     console.log("stats write");
     return content;
   };
@@ -217,11 +241,17 @@ class SprintGame extends Component {
       gameEnded: true,
     })
 
-    const score = this.state.score;
-    const time = Date.now();
-    const statsObj = { score, time }
+    const dateTime = Date.now();
+    const successCount = this.state.score;
+    console.log(successCount, dateTime)
+    this.props.setSprintStats({
+      successCount, dateTime
+    })
 
-    this.writeStats(statsObj)
+    setTimeout(() => {
+      this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
+      this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
+    }, 0);
   }
 
   gameRestart = (props) => {
@@ -235,15 +265,28 @@ class SprintGame extends Component {
       modifier: 1,
       activeQuestion: 0,
       mistakeCount: 0,
+      rightAnswers: [],
+      wrongAnswers: [],
     });
   };
 
   difficultyHandler = (event) => {
     const number = event.target.value;
-    this.props.onChangeDiff(number);
-    this.getWords(number);
+    this.setState({
+      difficulty: number,
+    })
+    this.getWords(number, this.state.level);
     localStorage.setItem('sprintDifficulty', number);
   };
+
+  levelHandler = (event) => {
+    const number = event.target.value;
+    this.setState({
+      level: number,
+    })
+    this.getWords(this.state.difficulty, number);
+    localStorage.setItem('sprintLvl', number);
+  }
 
   volumeHandler = () => {
     this.setState(prevState => {
@@ -253,42 +296,82 @@ class SprintGame extends Component {
     })
   }
 
+  borderPainter = (color) => {
+    if (color === 'green') {
+      this.setState({
+        borderColor: 'rgba(30,130,76,0.9)',
+      })
+    } else if (color === 'red') {
+      this.setState({
+        borderColor: 'rgba(240,52,52,0.9)',
+      })
+    }
+  }
+
+  optionSpawner = (amount, key) => {
+    let content = [];
+    for (let i = 0; i <= amount; i += 1) {
+      content.push(<option key={key + i} value={i}>{i + 1}</option>)
+    }
+    return content
+  }
+
   componentDidMount() {
     this.getWords();
-    this.selectRef.current.children[this.props.difficulty].setAttribute('selected', 'selected');
+    this.difficultyRef.current.children[this.state.difficulty].setAttribute('selected', 'selected');
+    this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
+
+    this.timerStyle = setInterval(() => {
+      let bcolor = this.state.borderColor.split('');
+      if (bcolor[bcolor.length - 2] !== 0) {
+        bcolor[bcolor.length - 2] = bcolor[bcolor.length - 2] - 1;
+        this.setState({
+          borderColor: bcolor.join('')
+        })
+      }
+    }, 50)
   };
+
+  componentWillUnmount() {
+    clearInterval(this.timerStyle);
+    clearInterval(this.timerCounter);
+  }
 
   render() {
     if (!this.state.gameStarted) {
       return (
-        <div className="Sprint container mt-5">
-          <div className="row">
-            <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
-              <div className="d-flex align-items-center">
-                <span className="mr-2">Сложность:</span>
-                <select
-                  ref={this.selectRef}
-                  onClick={this.difficultyHandler}
-                  className="d-inline-block"
-                >
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                  <option value="2">3</option>
-                  <option value="3">4</option>
-                  <option value="4">5</option>
-                  <option value="5">6</option>
-                </select>
-              </div>
-            </div>
-          </div>
+        <div className="Sprint container-fluid pt-5">
+          <LevelSelect
+            difficultyRef={this.difficultyRef}
+            lvlRef={this.lvlRef}
+            difficultyHandler={this.difficultyHandler}
+            levelHandler={this.levelHandler}
+            optionSpawner={this.optionSpawner}
+          />
           <StartScreen gameStart={this.gameStart} />
         </div>
       );
     } else if (this.state.gameEnded) {
-      return <EndScreen score={this.state.score} restart={this.gameRestart} />;
+      return (
+        <div className="Sprint container-fluid pt-5">
+          <LevelSelect
+            difficultyRef={this.difficultyRef}
+            lvlRef={this.lvlRef}
+            difficultyHandler={this.difficultyHandler}
+            levelHandler={this.levelHandler}
+            optionSpawner={this.optionSpawner}
+          />
+          <EndScreen
+            score={this.state.score}
+            restart={this.gameRestart}
+            rightAnswers={this.state.rightAnswers}
+            wrongAnswers={this.state.wrongAnswers}
+          />
+        </div>
+      )
     } else {
       return (
-        <div className="Sprint container mt-5">
+        <div className="Sprint container-fluid pt-5">
           <div className="Sprint-Scoreboard row p-2">
             <div className="col-md-12 d-flex justify-content-center">
               <h3 className="Sprint-Score text-success">{this.state.score}</h3>
@@ -311,6 +394,7 @@ class SprintGame extends Component {
                 modifier={this.state.modifier}
                 onclick={this.buttonClickHandler}
                 onkey={this.keyPushHandler}
+                borderColor={this.state.borderColor}
               />
             </div>
             <div className="col-md-4"></div>
@@ -333,18 +417,36 @@ class SprintGame extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log("redux state", state);
+const mapStateToProps = (store) => {
+  const {
+    dayLearningWords,
+    difficultWords,
+    showBtnShowAgreeAnswer,
+    showTranslateWord,
+    showExplanationString,
+    playExampleSound,
+    showWordImage,
+    showWordsTranscription,
+    minigameSprintStats,
+  } = store.appSettings;
+
   return {
-    difficulty: state.sprintGame.difficulty,
-  };
+    showWordsTranscription: showWordsTranscription,
+    showWordImage: showWordImage,
+    playExampleSound: playExampleSound,
+    showExplanationString: showExplanationString,
+    showTranslateWord: showTranslateWord,
+    showBtnShowAgreeAnswer: showBtnShowAgreeAnswer,
+    difficultWords: difficultWords,
+    dayLearningWords: dayLearningWords,
+    cards: store.playZone.cards,
+    stats: minigameSprintStats,
+  }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onChangeDiff: (number) =>
-      dispatch({ type: "CHANGE_DIFF", payload: number }),
-  };
+const mapActionToProps = {
+  setSprintStats,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SprintGame);
+export default connect(mapStateToProps, mapActionToProps)(SprintGame);
+// export default SprintGame
