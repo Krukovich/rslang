@@ -18,6 +18,7 @@ const mapActionToProps = {
 
 const DeletedWords = (props) => {
 
+  // transfer words from category 'deleted words' to category 'words to learn'
   const restore = (index) => {
     const a = [
       ...props.learningWords,

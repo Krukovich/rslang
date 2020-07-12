@@ -5,6 +5,7 @@ import {
   CHANGE_DELETE_WORDS,
   CHANGE_APP_STATS,
   RESTORE_DELETE_WORDS,
+  DELETE_DIFFICULT_WORDS,
 } from './actions';
 import { fetchAPI } from '../../Components/Tools/fetchAPI';
 
@@ -40,6 +41,15 @@ export const playZonePageReducer = (state = initialState, action) => {
       return {
         ...state,
         dayLearningWords: action.payload,
+      };
+    case DELETE_DIFFICULT_WORDS:
+      const newInitialState = [
+        ...state.difficultWords.slice(0, action.payload),
+        ...state.difficultWords.slice(action.payload + 1)
+      ];
+      return {
+        ...state,
+        difficultWords: newInitialState,
       };
     case CHANGE_DIFFICULT_WORDS:
       return {
