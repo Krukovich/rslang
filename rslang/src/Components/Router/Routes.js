@@ -108,7 +108,7 @@ const sourceCloseRoutes = [
   },
   {
     path: "/long-stats",
-    component: () => <LongStats totalWords={80} />,
+    component: () => <LongStats totalWords={180} />,
     exact: true,
   },
   {

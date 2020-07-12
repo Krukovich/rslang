@@ -59,14 +59,14 @@ class LongStats extends React.Component {
         {
           label: 'Прогресс',
           borderColor: 'rgba(0,0,0,1)',
-          backgroundColor: 'orange',
+          backgroundColor: 'darkcyan',
           borderWidth: 2,
           data: [] //...props.totalNewWords
         },
         {
           label: 'Слов изучено в день',
-          borderColor: 'tomato',
-          backgroundColor: 'tomato',
+          borderColor: 'darkblue',
+          backgroundColor: 'darkblue',
           data: [], //...props.dailyNew,
           fill: false,
         }
@@ -207,7 +207,7 @@ class LongStats extends React.Component {
         </div>
         <div className="longStatsElem row d-flex justify-content-center">
           <div className="col-md-8">
-            <ProgressBar variant="success" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
+            <ProgressBar variant="info" min={0} now={this.state.wordsNow} label={`${this.state.wordsNow}%`} />
             <ProgressLabel />
 
             <div className="longStatsElem">
