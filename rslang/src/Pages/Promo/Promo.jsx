@@ -95,6 +95,14 @@ class Promo extends React.Component {
                   игры. Так и хочется крутануть барабан!'
                     gameLink='/fortune-game'
                   />
+                  <GamesCard
+                    gameTitle='English Puzzle'
+                    gameDescription=' Строить красивое и правильное предложение 
+                                      на английском языке поможет именно эта игра. 
+                                      Находим каждому слову свое место, как при 
+                                      складывании пазла!'
+                    gameLink='/english-puzzle'
+                  />
                 </div>
 
               </div>
