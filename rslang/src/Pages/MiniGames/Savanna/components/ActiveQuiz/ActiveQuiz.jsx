@@ -44,12 +44,12 @@ class ActiveQuiz extends React.Component {
   render() {
     return (
       <div className="ActiveQuiz">
-        <h2>{this.state.timeLeft}</h2>
+        <h2 className="ActiveQuiz-Timer">{this.state.timeLeft}</h2>
         <div id="question" className={`questionanimated`}>
           {this.props.question}
         </div>
         <p className="Question">
-          <span>
+          <span className="Question-Word mb-2">
             <strong>{this.props.answerNumber}.</strong>&nbsp;
             {this.props.question}
           </span>

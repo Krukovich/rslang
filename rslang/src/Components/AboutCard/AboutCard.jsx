@@ -11,7 +11,7 @@ const AboutCard = (props) => {
             <div className={"AboutCard-Image card-img-top " + props.pic} />
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
-                <p className="card-text">{props.description}</p>
+                <p className="AboutCard-Text card-text">{props.description}</p>
                 <div className="AboutCard-Footer card-footer mt-2">
                     <a className="AboutCard-Git mr-2" href={props.href[0]} target="_blank">
                         <img src={git} />
