@@ -11,48 +11,48 @@ class AboutPage extends Component {
             members: [
                 {
                     name: 'Евгений',
-                    description: 'Ментор',
+                    description: 'Ментор. Спасение утопающих',
                     href: ['https://github.com/ZennKa', 'https://github.com/ZennKa'],
                     classCSS: 'AboutCard-pic1'
                 },
                 {
                     name: 'Алексей',
-                    description: 'Тим лид',
+                    description: 'Тим лид. Настройка проекта, тренировка, изучение слов, english puzzle, SpeakIt, координация',
                     href: ['https://github.com/Krukovich',
                         'https://krukovich.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic2'
                 },
                 {
                     name: 'Александр',
-                    description: 'Участник',
+                    description: 'Роутер, логин и регистрация, audiocall, саванна',
                     href: ['https://github.com/alexger95',
                         'https://alexger95.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic3'
                 },
                 {
                     name: 'Дарья',
-                    description: 'Участник',
+                    description: 'Страница статистики и связанная с ней логика',
                     href: ['https://github.com/DaryaYa',
                         'https://daryaya.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic4'
                 },
                 {
                     name: 'Павел',
-                    description: 'Участник',
+                    description: 'Спринт, Поле Чудес, общая стилизация и разметка, саванна',
                     href: ['https://github.com/FightingRobot',
                         'https://fightingrobot.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic5'
                 },
                 {
                     name: 'Юрий',
-                    description: 'Участник',
+                    description: 'Страница настроек, связанная с ней логика и промо',
                     href: ['https://github.com/fizik003',
                         'https://fizik003.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic6'
                 },
                 {
                     name: 'Николай',
-                    description: 'Участник',
+                    description: 'Lingualeo,Lingvist, словарь и связанная логика, промо-ролик',
                     href: ['https://github.com/Nickolay-Dudaryk',
                         'https://nickolay-dudaryk.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic7'
