@@ -24,7 +24,7 @@ import AboutPage from "../../Pages/AboutPage/AboutPage";
 import Training from "../../Pages/Training/Training.jsx";
 import { fetchAPI } from "../Tools/fetchAPI";
 import Promo from "../../Pages/Promo/Promo.jsx";
-import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
+import PuzzleStart from "../../Pages/EnglishPuzzle/PuzzleStart.jsx";
 
 const mapStateToProps = (state) => {
   return {
@@ -132,12 +132,12 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/english-puzzle',
+    path: "/english-puzzle",
     component: PuzzleStart,
     exact: true,
   },
   {
-    path: '/SprintGame',
+    path: "/SprintGame",
     component: SprintGame,
     exact: true,
   },
