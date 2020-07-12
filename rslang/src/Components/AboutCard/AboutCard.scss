@@ -1,7 +1,7 @@
 .AboutCard {
-    // background-color: #C775FF !important;
     background-color: purple !important;
     color: white;
+    height: 345px;
 
     .card-title {
         font-weight: 700 !important;
@@ -65,4 +65,8 @@
         color: black;
         transform: scale(1.3);
     }
+}
+
+.AboutCard-Text {
+    font-size: 0.7rem !important;
 }
