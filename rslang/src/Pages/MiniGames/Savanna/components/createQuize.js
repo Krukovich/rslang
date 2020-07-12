@@ -24,7 +24,7 @@ export const createQuize = async (wordsArray) => {
       if (!newWordArr.includes(word)) {
         newWordArr.push(word);
       }
-      function shuffle(array) {
+    function shuffle(array) {
         let arr = array.slice(0);
         arr = arr.concat(array).concat(array).concat(array);
         // console.log(arr)
