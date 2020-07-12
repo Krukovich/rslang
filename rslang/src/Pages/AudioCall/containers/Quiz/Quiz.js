@@ -113,10 +113,13 @@ finishQuestion() {
         successCount, dateTime
       })
     } else {
+
       this.setState({
         activeQuestion: this.state.activeQuestion + 1,
         answerState: null
       })
+      this.audioPlay(this.state.quiz[this.state.activeQuestion].audio)
+      
     }
   }, 1500)
 }
@@ -133,8 +136,15 @@ finishQuestion() {
     })
   }
   componentDidMount() {
-
+    
   }
+
+  audioPlay = (strLink) => {
+    const audioL = new Audio(
+      "https://raw.githubusercontent.com/Krukovich/rslang-data/master/" + strLink
+    );
+    audioL.play();
+  };
 
   render() {
 
@@ -153,6 +163,7 @@ finishQuestion() {
                 finishQuestionError={this.finishQuestionWithError}
                 answers={this.state.quiz[this.state.activeQuestion].answers}
                 question={this.state.quiz[this.state.activeQuestion].audio}
+                questionText={this.state.quiz[this.state.activeQuestion].question}
                 onAnswerClick={this.onAnswerClickHandler}
                 quizLength={this.state.quiz.length}
                 answerNumber={this.state.activeQuestion + 1}

@@ -3,9 +3,9 @@ import './AnswersList.css'
 import AnswerItem from './AnswerItem/AnswerItem'
 
 const AnswersList = (props) => {
-  useEffect(() => {
-    props.play();
-  })
+  // useEffect(() => {
+  //   props.play();
+  // })
   return (
     <>
     <ul className='AnswersList'>
