@@ -8,24 +8,24 @@ import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 import english from './english.gif';
 
 const ShortStatsHeader = () => {
-    return (
-        <div className="row align-items-center flex-column shortStatsHeader">
-            <img src={english} alt="stats pic" />
-            <h1>Серия завершена</h1>
-        </div>
-    )
+  return (
+    <div className="row align-items-center flex-column shortStatsInfo">
+      <img src={english} alt="stats pic" />
+      <h1>Серия завершена</h1>
+    </div>
+  )
 }
 
 const ShortStatsInfo = (props) => {
-    const { total, right, newWords, rightInARow } = props; 
-    return (
-        <ul className="row align-items-center flex-column shortStatsInfo">
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faDragon } /> Карточек завершено:  </span><span>{total}</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCrown } /> Правильные ответы: </span> <span>{right}%</span></li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faCartPlus } /> Новые слова: </span> <span>{newWords}</span> </li>
-            <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={ faUserGraduate } /> Правильных ответов подряд: </span> <span>{rightInARow}</span> </li>
-        </ul>
-    )
+  const { total, right, newWords, rightInArrow } = props;
+  return (
+    <ul className="row align-items-center flex-column shortStatsInfo">
+      <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faDragon} /> Карточек завершено:  </span><span>{total}</span></li>
+      <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faCrown} /> Правильные ответы: </span> <span>{right}%</span></li>
+      <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faCartPlus} /> Новые слова: </span> <span>{newWords}</span> </li>
+      <li className="shortStatsInfo-item d-flex"><span><FontAwesomeIcon icon={faUserGraduate} /> Правильных ответов подряд: </span> <span>{rightInArrow}</span> </li>
+    </ul>
+  )
 }
 export default class ShortStats extends React.Component {
   render() {

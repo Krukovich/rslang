@@ -81,7 +81,7 @@ class SpeakIt extends React.Component {
   setImageSrc = (src) => {
     this.setState({ imageSrc: imageRender(src) });
   }
-  
+
   setTranslateWord = (word) => {
     this.setState({ translate: word });
   }
@@ -95,7 +95,7 @@ class SpeakIt extends React.Component {
 
   setWordMistake = (index) => {
     const words = [...this.state.words];
-    const word = {...words[index], mistake: true };
+    const word = { ...words[index], mistake: true };
     words[index] = word;
     this.setState({ words });
   }
@@ -117,22 +117,22 @@ class SpeakIt extends React.Component {
 
     return words.map((item, index) => {
       return (
-        <div className="col-6 col-sm-6 col-md-3 mt-2" key={ index }>
+        <div className="col-6 col-sm-6 col-md-3 mt-2" key={index}>
           <Button
-            index={ index }
-            word={ item }
-            insertWordImageSrc={ this.setImageSrc }
-            setTranslateWord={ this.setTranslateWord }
-            setCurrentWord={ this.setCurrentWord }
-            setCurrentIndex={ this.setCurrentIndex }
+            index={index}
+            word={item}
+            insertWordImageSrc={this.setImageSrc}
+            setTranslateWord={this.setTranslateWord}
+            setCurrentWord={this.setCurrentWord}
+            setCurrentIndex={this.setCurrentIndex}
           />
         </div>
-      ); 
+      );
     });
   }
 
   recordSound = () => {
-    const { currentWord } = this.state;  
+    const { currentWord } = this.state;
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.lang = SPEAK_LANGUAGE;
@@ -142,13 +142,13 @@ class SpeakIt extends React.Component {
       this.userWord = Array.from(event.results).map((res) => res[0]).map((res) => res.transcript).join('');
       this.setState({ inputValue: this.userWord });
       if (currentWord === this.userWord) {
-        const index = this.state.words.findIndex((word) => word.word === currentWord );
+        const index = this.state.words.findIndex((word) => word.word === currentWord);
         playAudio(SOUND.CORRECT);
         this.setWordDone(index);
         this.incrementScore();
         this.incrementStep();
       } else {
-        const index = this.state.words.findIndex((word) => word.word === currentWord );
+        const index = this.state.words.findIndex((word) => word.word === currentWord);
         playAudio(SOUND.ERROR);
         this.setWordMistake(index);
         this.decrementScore();
@@ -159,75 +159,75 @@ class SpeakIt extends React.Component {
 
   render() {
     const { isFinish } = this.state;
-    
+
     return (
       <React.Fragment>
-        { (!isFinish) ?
-        <section className="main mt-5" id="main">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-lg-4 mt-5">
-                <GroupButtons loadNewWords={ this.loadNewWords }/>
+        {(!isFinish) ?
+          <section className="main mt-5" id="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-lg-4 mt-5">
+                  <GroupButtons loadNewWords={this.loadNewWords} />
+                </div>
+                <div className="col-12 col-lg-8 mt-5">
+                  <Score score={this.state.score} />
+                </div>
               </div>
-              <div className="col-12 col-lg-8 mt-5">
-                <Score score={ this.state.score } />
+              <div className="row">
+                <div className="col-12 d-flex justify-content-center mt-2">
+                  <img
+                    className="img-fluid"
+                    src={this.state.imageSrc}
+                  />
+                </div>
+                <div className="col-12">
+                  <div className="alert text-white bg-primary mt-2 text-center" role="alert">
+                    <span id="translate">
+                      {this.state.translate}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-12 d-flex justify-content-center mt-2">
-                <img
-                  className="img-fluid"
-                  src={ this.state.imageSrc }
-                />
+              <div className="row">
+                <div className="container">
+                  <div className="col-12 mt-2 d-flex justify-content-center">
+                    <form>
+                      <div className="form-row">
+                        <div className="col-2">
+                          <FontAwesomeIcon icon={faMicrophoneAlt} color="white" />
+                        </div>
+                        <div className="col-10">
+                          <Input value={this.state.inputValue} />
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
-              <div className="col-12">
-                <div className="alert alert-info mt-2 text-center" role="alert">
-                  <span id="translate">
-                    { this.state.translate }
-                  </span>
+              <div className="row">
+                {this.renderWordButton()}
+              </div>
+              <div className="row">
+                <div className="col-12 col-md-3 mt-2 mb-5">
+                  <RestartButton
+                    setPlayWords={this.setPlayWords}
+                    resetScore={this.resetScore}
+                  />
+                </div>
+                <div className="col-12 col-md-6 mt-2 mb-5">
+                  <PlayGame recordSound={this.recordSound} />
+                </div>
+                <div className="col-12 col-md-3 mt-2 mb-5">
+                  <Stats
+                    words={this.state.words}
+                    score={this.state.score}
+                    setSpeakItStats={this.props.setSpeakItStats}
+                  />
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="container">
-                <div className="col-12 mt-2 d-flex justify-content-center">
-                  <form>
-                    <div className="form-row">
-                      <div className="col-2">
-                        <FontAwesomeIcon icon={ faMicrophoneAlt } />
-                      </div>
-                      <div className="col-10">
-                        <Input value={ this.state.inputValue } />
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              { this.renderWordButton() }
-            </div>
-            <div className="row">
-              <div className="col-12 col-md-3 mt-2 mb-5">
-                <RestartButton
-                  setPlayWords={ this.setPlayWords }
-                  resetScore={ this.resetScore }
-                />
-              </div>
-              <div className="col-12 col-md-6 mt-2 mb-5">
-                <PlayGame recordSound={ this.recordSound } />
-              </div>
-              <div className="col-12 col-md-3 mt-2 mb-5">
-                <Stats
-                  words={ this.state.words }
-                  score={ this.state.score }
-                  setSpeakItStats={ this.props.setSpeakItStats }
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-        : <SpeakItEnd score={ this.state.score } /> }
+          </section>
+          : <SpeakItEnd score={this.state.score} />}
       </React.Fragment>
     );
   }
