@@ -374,7 +374,7 @@ class SprintGame extends Component {
         <div className="Sprint container-fluid pt-5">
           <div className="Sprint-Scoreboard row p-2">
             <div className="col-md-12 d-flex justify-content-center">
-              <h3 className="Sprint-Score text-success">{this.state.score}</h3>
+              <h3 className="Sprint-Score">{this.state.score}</h3>
             </div>
           </div>
           <div className="Sprint-Playboard row h-75">
@@ -402,11 +402,11 @@ class SprintGame extends Component {
           <div className="Sprint-Tools row p-2 mt-1">
             <div className="col-md-4"></div>
             <div className="Sprint-TimerBar col-md-4 d-flex justify-content-center">
-              <h3 className="Sprint-Timer text-success">
+              <h3 className="Sprint-Timer">
                 {this.state.counter}
               </h3>
               <div className='Sprint-Volume' onClick={this.volumeHandler}>
-                {this.state.isSoundOn ? <FontAwesomeIcon icon={faVolumeUp} /> : <FontAwesomeIcon icon={faVolumeOff} />}
+                {this.state.isSoundOn ? <FontAwesomeIcon icon={faVolumeUp} color={'white'} /> : <FontAwesomeIcon icon={faVolumeOff} color={'white'} />}
               </div>
             </div>
             <div className="col-md-4"></div>

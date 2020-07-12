@@ -1,14 +1,14 @@
 import React from 'react';
 
 const RestartButton = ({ setPlayWords, resetScore }) => {
-  return(
+  return (
     <button
-      className="btn btn-info w-100"
+      className="btn btn-primary w-100"
       type="button"
-      onClick={ () => {
+      onClick={() => {
         setPlayWords();
         resetScore();
-      } }
+      }}
     >
       Рестарт
     </button>

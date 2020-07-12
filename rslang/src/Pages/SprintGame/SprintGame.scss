@@ -7,10 +7,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
-    width: 45px;
+    height: 55px;
+    width: 55px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 3px solid #C056C0;
     font-size: 1.8rem;
     user-select: none;
     animation: pulse 1s infinite;
@@ -32,4 +32,14 @@
     top: 10px;
     right: 15px;
     width: 20px !important;
+}
+
+.Sprint-Startscreen,
+.Sprint-Levelselect {
+    color: white !important;
+}
+
+.Sprint-Timer,
+.Sprint-Score {
+    color: white;
 }
