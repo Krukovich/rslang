@@ -24,7 +24,7 @@ class MiniGamesPage extends Component {
         title: 'Audiocall',
         description: '',
         href: 'audiocall',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_audiocall',
         pic: pic1
       },
       fortuneCard: {
@@ -38,7 +38,7 @@ class MiniGamesPage extends Component {
         title: 'Savannah',
         description: '',
         href: 'Savannah',
-        class: 'Card-Image_learning',
+        class: 'Card-Image_savanna',
         pic: pic1
       },
       englishPuzzleCard: {
