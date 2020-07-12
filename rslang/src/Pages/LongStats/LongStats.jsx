@@ -26,21 +26,21 @@ const changeMiniStats = {
   setSavannaStats,
 }
 
-const getStats = async () => {
-  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
-    method: 'GET',
-    withCredentials: true,
-    headers: {
-      'Authorization': `Bearer ${getCookie("token")}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  });
-  const content = await rawResponse.json();
-  let stats = content.optional;
-  console.log(stats)
-  return stats;
-};
+// const getStats = async () => {
+//   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${getCookie("userId")}/statistics`, {
+//     method: 'GET',
+//     withCredentials: true,
+//     headers: {
+//       'Authorization': `Bearer ${getCookie("token")}`,
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//   });
+//   const content = await rawResponse.json();
+//   let stats = content.optional;
+//   console.log(stats)
+//   return stats;
+// };
 
 const ProgressLabel = () => {
   return (
@@ -142,30 +142,22 @@ class LongStats extends React.Component {
     })
   }
 
-  // async componentDidMount() {
-  // let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
-  //     this.setState({count: result.optional})
-  //     let appStats = result.optional.appStats;
-  //     delete appStats[0];
-  //     console.log("appSTats", appStats)
+  async componentDidMount() {
+  let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
+      this.setState({count: result.optional})
+      let appStats = result.optional.appStats;
+      delete appStats[0];
+      console.log("appSTats", appStats)
         
-  //       const resultWords = Object.values(appStats);
-  //       const resultDate = Object.keys(appStats).map((item) => {
-  componentDidMount() {
-    this._asyncRequest = fetchAPI('users-get-statistics').then(
-      result => {
-        console.log(result.appStats)
-<<<<<<< HEAD
-<<<<<<< HEAD
-        delete appStats[0];
-=======
-        
->>>>>>> refactor
-=======
-        
->>>>>>> ab7185f30cb680d6014a9d171a1367198f21a76d
-        const resultWords = Object.values(result.appStats);
-        const resultDate = Object.keys(result.appStats).map((item) => {
+        const resultWords = Object.values(appStats);
+        const resultDate = Object.keys(appStats).map((item) => {
+  // componentDidMount() {
+  //   this._asyncRequest = fetchAPI('users-get-statistics').then(
+  //     result => {
+  //       console.log(result.appStats)
+  //       // delete appStats[0];
+  //       const resultWords = Object.values(result.appStats);
+        // const resultDate = Object.keys(result.appStats).map((item) => {
           const data = Number(item);
           const date = new Date(data).toString().slice(4, 15);
           console.log(date)
@@ -178,8 +170,8 @@ class LongStats extends React.Component {
         this._asyncRequest = null;
         this.setState({result});
       
-      })
-  }
+      }
+  
 
   minigameSelect(selector) {
     this.setState({minigameSelect: selector});
