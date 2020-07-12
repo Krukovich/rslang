@@ -30,7 +30,7 @@ const ShortStatsInfo = (props) => {
 export default class ShortStats extends React.Component {
   render() {
     return (
-      <div className="container shortStats">
+      <div className="container shortStats mt-5">
         <ShortStatsHeader />
         <ShortStatsInfo {...this.props} />
       </div>
