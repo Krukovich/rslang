@@ -3,7 +3,7 @@ import "./Quiz.css";
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz.jsx";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 import { connect } from "react-redux";
-import { setSavannaStats } from "../../../../Store/Savanna/actions";
+import { setAudioCallStats } from "../../../../Store/Savanna/actions";
 
 const mapStateToProps = (store) => {
   const {
@@ -33,7 +33,7 @@ const mapStateToProps = (store) => {
 };
 
 const mapActionToProps = {
-  setSavannaStats,
+  setAudioCallStats,
 };
 
 class Quiz extends Component {
@@ -41,10 +41,10 @@ class Quiz extends Component {
     super(props);
     this.state = {
       gameStart: false,
-      results: {}, // {[id]: success error}
+      results: {}, 
       isFinished: false,
       activeQuestion: 0,
-      answerState: null, // { [id]: 'success' 'error' }
+      answerState: null, 
       quiz: props.quiz,
     };
   }
@@ -60,13 +60,6 @@ class Quiz extends Component {
   };
 
   onAnswerClickHandler = (answerId) => {
-    // if (this.state.answerState) {
-    //   const key = Object.keys(this.state.answerState)[0]
-    //   if (this.state.answerState[key] === 'success') {
-    //     return
-    //   }
-    // }
-    //если дожидаться пока пользователь правильно не ответит
     const question = this.state.quiz[this.state.activeQuestion];
     const results = this.state.results;
 
@@ -107,7 +100,7 @@ class Quiz extends Component {
           0
         );
         const dateTime = Date.now();
-        this.props.setSavannaStats({
+        this.props.setAudioCallStats({
           successCount,
           dateTime,
         });
@@ -144,27 +137,35 @@ class Quiz extends Component {
 
   render() {
     return (
-      <div className="Quiz">
-        <div className="QuizWrapper">
-          <h1>Ответьте на все вопросы</h1>
-          {this.state.isFinished ? (
-            <FinishedQuiz
-              results={this.state.results}
-              quiz={this.state.quiz}
-              onRetry={this.retryHandler}
-            />
-          ) : (
-            <ActiveQuiz
-              finishQuestionError={this.finishQuestionWithError}
-              answers={this.state.quiz[this.state.activeQuestion].answers}
-              question={this.state.quiz[this.state.activeQuestion].audio}
-              questionText={this.state.quiz[this.state.activeQuestion].question}
-              onAnswerClick={this.onAnswerClickHandler}
-              quizLength={this.state.quiz.length}
-              answerNumber={this.state.activeQuestion + 1}
-              state={this.state.answerState}
-            />
-          )}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <div className="Quiz">
+              <div className="QuizWrapper">
+                <h1>Ответьте на все вопросы</h1>
+                {this.state.isFinished ? (
+                  <FinishedQuiz
+                    results={this.state.results}
+                    quiz={this.state.quiz}
+                    onRetry={this.retryHandler}
+                  />
+                ) : (
+                  <ActiveQuiz
+                    finishQuestionError={this.finishQuestionWithError}
+                    answers={this.state.quiz[this.state.activeQuestion].answers}
+                    question={this.state.quiz[this.state.activeQuestion].audio}
+                    questionText={
+                      this.state.quiz[this.state.activeQuestion].question
+                    }
+                    onAnswerClick={this.onAnswerClickHandler}
+                    quizLength={this.state.quiz.length}
+                    answerNumber={this.state.activeQuestion + 1}
+                    state={this.state.answerState}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

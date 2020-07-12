@@ -1,5 +1,4 @@
 .ActiveQuiz {
-    padding: 20px;
     color: #fff;
     border: 2px solid #fff;
     border-radius: 5px;
@@ -10,16 +9,21 @@
 .Question {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
-.questionanimated {
+.Question-Word {
+    font-size: 2rem;
+}
+
+.questionanimated {    
     position: fixed;
     color: white;
     top: 12%;
     left: 50%;
     font-size: 3em;
     transition: all 3s;
-
 }
 
 .muve {
@@ -28,4 +32,10 @@
 
 .hiden {
     display: none;
+}
+
+@media screen and (min-width: 900px) {
+    .AnswersList {
+        flex-wrap: wrap;
+    }
 }
