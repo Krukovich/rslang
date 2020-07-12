@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import './Settings.scss'
 
 import CheckBox from "../../Components/CheckBox/CheckBox";
 import TextInput from "../../Components/TextInput/TextInput";

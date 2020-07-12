@@ -1,3 +1,7 @@
+.Sprint-Endscreen {
+    color: white;
+}
+
 .SprintStats {
     min-width: 230px;
     display: flex;
@@ -5,6 +9,8 @@
     overflow-y: scroll;
     flex-direction: column;
     height: 140px;
+    color: white;
+    backdrop-filter: brightness(40%);
 }
 
 .SprintStats-Separator {
