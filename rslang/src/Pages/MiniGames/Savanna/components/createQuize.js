@@ -50,8 +50,6 @@ export const createQuize = async (wordsArray) => {
         return newWordArr
       }
 
-
-
       shuffle(wordsArray);
       let levelArray = [];
       let tempArray = [];
