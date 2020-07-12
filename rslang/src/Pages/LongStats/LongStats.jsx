@@ -61,7 +61,7 @@ export default class LongStats extends React.Component {
   };
 
   showStats = (id) => {
-    console.log('statsname',this.state.items[id-1].apiName);
+    
     this.setState({minigameSelect: this.state.items[id-1].apiName})//alexger
     return this.state.items;
   }
@@ -78,9 +78,7 @@ export default class LongStats extends React.Component {
   let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
       this.setState({count: result.optional})
       let appStats = result.optional.appStats;
-      delete appStats[0];
-      console.log("appSTats", appStats)
-        
+      delete appStats[0];      
         const resultWords = Object.values(appStats);
         const resultDate = Object.keys(appStats).map((item) => {
           const data = Number(item);
