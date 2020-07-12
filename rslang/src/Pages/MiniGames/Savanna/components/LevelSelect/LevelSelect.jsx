@@ -1,5 +1,4 @@
 import React from 'react';
-// import './LevelSelect.scss';
 import { Button } from 'react-bootstrap';
 
 const LevelSelect = (props) => {
