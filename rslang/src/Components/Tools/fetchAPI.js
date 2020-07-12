@@ -193,7 +193,6 @@ export const fetchAPI = async (query, obj) => {
         }
       );
       const content = await rawResponse.json();
-      console.log(content.optional);
       return content.optional;
     } catch (err) {
       console.log("Первый раз)");
