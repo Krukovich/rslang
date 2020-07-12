@@ -63,7 +63,7 @@ class Promo extends React.Component {
                   btnText='Посмотреть'
                   link="learning-words"
                 />
-                <div class="row">
+                <div className="row">
                   <GamesCard
                     gameTitle='Sprint'
                     gameDescription='Как играть: дано слово на английском 
