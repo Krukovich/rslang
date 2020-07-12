@@ -125,7 +125,6 @@ export const appSettingsReducer = (state = initialState, action) => {
         allUserWords: [...state.allUserWords, action.payload]
       };
     case Actions.ADD_ALL_USER_WORDS_FROM_SERVER:
-      console.log('ADD_ALL_USER_WORDS_FROM_SERVER ', action.payloads)
       return {
         ...state,
         allUserWords: [...action.payload]

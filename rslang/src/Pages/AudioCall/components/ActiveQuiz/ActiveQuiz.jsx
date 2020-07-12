@@ -23,7 +23,7 @@ componentDidMount() {
     return (
       <div className="ActiveQuiz">
         <div id="question" className={`questionanimated`}>
-        <Button onClick={() => this.audioPlay(this.props.question)} >Play</Button>
+        <button className="btn-primary" onClick={() => this.audioPlay(this.props.question)} >Play</button>
         </div>
         <p className="Question">
           <span>

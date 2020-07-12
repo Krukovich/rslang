@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
 
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
@@ -39,6 +40,7 @@ class Login extends React.Component {
       alertMessage: "wrong username or password",
       inputEmail: "",
       inputPassword: "",
+      showModal: false,
     };
 
     this.emailInputHandler = this.emailInputHandler.bind(this);
@@ -109,6 +111,22 @@ class Login extends React.Component {
           HeadText={"Login " + this.state.loginStatus}
           MainText={this.state.alertMessage}
         >
+          {this.state.showModal === true ?
+          <Modal.Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>Восстановление пароля невозможно!</Modal.Title>
+          </Modal.Header>
+        
+          <Modal.Body>
+            <p>API не может отправлять сообщения на почту, а дать права менять пароль в любом аккаунте очень неразумно.</p>
+          </Modal.Body>
+        
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => this.setState({showModal: false})}>Close</Button>
+          </Modal.Footer>
+        </Modal.Dialog>:null
+        }
+        {this.state.showModal === false ?
           <LoginLayout>
             <form onSubmit={(e) => this.requestSignin(e)}>
               <h2 className="text-center">Войти</h2>
@@ -138,7 +156,7 @@ class Login extends React.Component {
               </div>
               <div className="clearfix">
                 <label className="pull-left checkbox-inline"></label>
-                <NavLink to="#ForgotPassword" className="pull-right">
+                <NavLink to='#t' onClick={() => this.setState({showModal: true})} className="pull-right">
                   Забыли пароль?
                 </NavLink>
               </div>
@@ -146,7 +164,8 @@ class Login extends React.Component {
             <p className="text-center">
               <NavLink to="/createanaccount">Создать аккаунт</NavLink>
             </p>
-          </LoginLayout>
+          </LoginLayout>:null
+    }
         </AlertRed>
       );
     } else {

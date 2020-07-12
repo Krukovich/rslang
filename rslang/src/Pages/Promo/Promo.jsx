@@ -105,6 +105,7 @@ class Promo extends React.Component {
                                       складывании пазла!'
                     gameLink='/english-puzzle'
                   />
+                  
                   <GamesCard
                     gameTitle='Audiocall'
                     gameDescription="Проверить свой английский на слух поможет 

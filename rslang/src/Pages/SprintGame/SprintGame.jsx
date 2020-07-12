@@ -55,7 +55,6 @@ class SprintGame extends Component {
     this.setState({
       words: json,
     });
-    console.log("local state", this.state);
     return json;
   }
 
@@ -234,7 +233,6 @@ class SprintGame extends Component {
 
   writeStats = async (statsObj) => {
     const content = await fetchAPI("users-set-statistics", statsObj);
-    console.log("stats write");
     return content;
   };
 
@@ -245,7 +243,6 @@ class SprintGame extends Component {
 
     const dateTime = Date.now();
     const successCount = this.state.score;
-    console.log(successCount, dateTime)
     this.props.setSprintStats({
       successCount, dateTime
     })

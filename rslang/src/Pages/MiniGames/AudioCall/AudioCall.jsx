@@ -4,7 +4,7 @@ import { Words } from "../components/Words";
 import { AudioComp } from "../components/AudioComp";
 import "./AudioCall.scss";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
-import { Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom";
 
 export class AudioCall extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ export class AudioCall extends React.Component {
     const rand = Math.floor(Math.random() * 20);
     const wordFind = wordsArray[rand];
     const arrayOfWords = [];
-    arrayOfWords.push(wordFind); //избавится от перемешивания повторного
+    arrayOfWords.push(wordFind); 
     for (let i = 0; arrayOfWords.length < 5; i++) {
       const randTemp = Math.floor(Math.random() * 20);
       if (!arrayOfWords.includes(arrayOfWords[randTemp])) {
@@ -61,8 +61,6 @@ export class AudioCall extends React.Component {
   randomWords = async (page, group) => {
     const content = await fetchAPI("words", { page: page, group: group });
     const arrayOfWords = this.levelGenerator(content);
-    //this.setState({ wordsArray: arrayOfWords });
-    console.log("redy to game");
     return content;
   };
 
@@ -74,28 +72,21 @@ export class AudioCall extends React.Component {
     if (this.state.gameStage > 5) {
       this.endGame();
     }
-   // this.setState({ fail: false });
     const stageNow = this.state.gameStage;
     const stageNext = stageNow + 1;
-    //this.setState({ gameStage: stageNext });
     this.randomWords(Math.floor(Math.random() * 6), this.state.gameStage);
-    console.log("stage", this.state.gameStage);
   };
 
-  endGame() {    
+  endGame() {
     const time = Date.now();
     const stats = this.state.gameSuccessAnswer;
-    const obj = {time, stats};
+    const obj = { time, stats };
     this.writeStats(obj);
-    //this.setState({ showAlert: true });
   }
 
   writeStats = async (statsObj) => {
     const content = await fetchAPI("users-set-statistics", statsObj);
     const arrayOfWords = this.levelGenerator(content);
-
-    //this.setState({ wordsArray: arrayOfWords });
-    console.log("stats write");
     return content;
   };
 
@@ -103,7 +94,6 @@ export class AudioCall extends React.Component {
     if (this.state.wordsArray.length === 0) {
       this.randomWords(Math.floor(Math.random() * 6), this.state.gameStage);
     }
-    console.log("componentDidMount", this.state.wordsArray);
   }
 
   render() {
@@ -124,19 +114,21 @@ export class AudioCall extends React.Component {
               gameStage={this.state.gameStage}
             />
           </div>
-          {this.state.gameStart?
+          {this.state.gameStart ? (
             <AudioComp
-            gameFindWord={this.state.gameFindWord}
-            gameStage={this.state.gameStage}
-          /> : null
-          }
-          {this.state.gameStart?
+              gameFindWord={this.state.gameFindWord}
+              gameStage={this.state.gameStage}
+            />
+          ) : null}
+          {this.state.gameStart ? (
             <Words
-            state = { this.state }
-            styleFunction={(id, key) => this.wordsArraySwitch(id, key)}
-          /> : <div>слова не загружены</div>
-          }
-          
+              state={this.state}
+              styleFunction={(id, key) => this.wordsArraySwitch(id, key)}
+            />
+          ) : (
+            <div>слова не загружены</div>
+          )}
+
           <div className="text-center">
             <ButtonNextStage
               className="align-center"

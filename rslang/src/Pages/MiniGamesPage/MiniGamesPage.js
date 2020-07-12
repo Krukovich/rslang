@@ -35,7 +35,7 @@ class MiniGamesPage extends Component {
         class: 'Card-Image_fortune',
         pic: FortuneLogo
       },
-      savannahCard: {
+      savannaCard: {
         title: 'Savanna',
         description: '',
         href: 'Savanna',
@@ -68,7 +68,7 @@ class MiniGamesPage extends Component {
   render() {
     const sprintCard = this.state.sprintCard;
     const audioCallCard = this.state.audioCallCard;
-    const savannahCard = this.state.savannahCard;
+    const savannaCard = this.state.savannaCard;
     const fortuneCard = this.state.fortuneCard;
     const englishPuzzleCard = this.state.englishPuzzleCard;
     const speakItCard = this.state.speakItCard;
@@ -99,11 +99,11 @@ class MiniGamesPage extends Component {
           <div className="Cards row pt-2">
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={savannahCard.class}
-                pic={savannahCard.pic}
-                href={savannahCard.href}
-                title={savannahCard.title}
-                description={savannahCard.description}
+                class={savannaCard.class}
+                pic={savannaCard.pic}
+                href={savannaCard.href}
+                title={savannaCard.title}
+                description={savannaCard.description}
               />
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">

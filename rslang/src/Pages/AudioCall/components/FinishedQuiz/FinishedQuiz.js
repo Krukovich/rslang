@@ -34,7 +34,6 @@ const FinishedQuiz = props => {
 
       <div>
         <Button onClick={props.onRetry} type="primary">Повторить</Button>
-        <Button type="success">Перейти в список тестов</Button>
       </div>
     </div>
   )

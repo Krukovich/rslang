@@ -37,6 +37,5 @@ export const createQuize = async (level) => {
       ],
     });
   }
-  console.log("vfccbd уровня", levelArray)
   return levelArray;
 };
