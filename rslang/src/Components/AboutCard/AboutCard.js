@@ -17,7 +17,7 @@ const AboutCard = (props) => {
                         <img src={git} />
                     </a>
                     <a className="AboutCard-Cv" href={props.href[1]} target="_blank">
-                        <FontAwesomeIcon icon={faIdCard} />
+                        <FontAwesomeIcon icon={faIdCard} color={'white'} />
                     </a>
                 </div>
             </div>

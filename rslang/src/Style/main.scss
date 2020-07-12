@@ -2,12 +2,52 @@
 
 html, body {
     height: 100%;
-  }
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
   
 .vh-100 {
     min-height: 100vh;
 }
 
+hr {
+  background-color: #360031 !important;
+}
+
+.btn-primary {
+  background-color:  #360031 !important;
+}
+
+.btn-outline-primary {
+  color: white !important;
+  border-color: #360031 !important;
+}
+
+.badge-primary {
+  background-color:  #360031 !important;
+}
+
 .btn {
-  padding: 10px 15px !important
+  padding: 10px 15px !important;
+
+  &:hover {
+    background-color: #C056C0;
+  }
+
+  &:active {
+    background-color: #C056C0 !important;
+  }
+}
+
+.form-check-input {
+  background-color: #360031 !important;
+  color: #360031 !important;
+}
+
+.card {
+  background-color: purple !important;
+
+  .card-text {
+    color: white !important;
+  }
 }

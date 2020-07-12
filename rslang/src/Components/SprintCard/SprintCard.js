@@ -8,7 +8,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons';
 
 const SprintCard = (props) => {
   return (
-    <div className={"Sprint-Card SprintCard rounded mt-2 p-1 w-100 bg-light"} style={{ borderColor: props.borderColor }}>
+    <div className={"Sprint-Card SprintCard rounded mt-2 p-1 w-100"} style={{ borderColor: props.borderColor }}>
       <div className="SprintCard-Body card-body">
         <div className="SprintCard-Design w-100"></div>
         <div className="SprintCard-Modifierbar w-100 d-flex justify-content-center align-items-center">
@@ -21,7 +21,7 @@ const SprintCard = (props) => {
           <div className='SprintCard-ModifierCount'>{props.modifier}</div>
         </div>
         <h5 className="SprintCard-Title card-title text-center mt-4 mb-4">{props.eng}</h5>
-        <h6 className="SprintCard-Subtitle card-subtitle mb-5 text-muted text-center">{props.rus}</h6>
+        <h6 className="SprintCard-Subtitle card-subtitle mb-5 text-center">{props.rus}</h6>
         <div className="SprintCard-Footer card-footer p-3 d-flex justify-content-between">
           <Button ref={props.rightBtnRef} onClick={props.onclick} variant='success' className="SprintCard-Button_success">
             <span>Yes</span>
