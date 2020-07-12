@@ -3,7 +3,7 @@ canvas {
 }
 
 .longStatsElem {
-    margin: 7.5rem auto;
+    margin: 5rem auto;
     &-label {
         margin-top: 1rem;
         font-family: cursive;
@@ -11,7 +11,7 @@ canvas {
         font-weight: normal;
     }
     &-field {
-        height: 5rem;
+        height: 7.5rem;
         width: 100%;
         background-color: lavender;
         overflow: auto;
