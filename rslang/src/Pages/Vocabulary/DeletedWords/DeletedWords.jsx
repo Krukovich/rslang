@@ -34,12 +34,12 @@ const DeletedWords = (props) => {
 
   return (
     <div className="d-flex justify-content-center">
-      <ul className="list-group w-25 mb-4 mt-4">
+      <ul className="list-group w-100 mb-4 mt-4">
         {props.deleteWords.map((item, index) => {
           return (
             <li
               key={item.id}
-              className="d-flex list-group-item justify-content-between align-items-center"
+              className="d-flex list-group-item justify-content-start align-items-center"
             >
               <div className="d-flex justify-content-center align-items-center">
                 <RestoreBtn index={index} restore={restore}/>
