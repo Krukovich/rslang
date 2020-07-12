@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayBtn from '../VocabularyBtn/PlayBtn';
+import PlayBtn from '../VocabularyBtn/PlayBtn.jsx';
 
 
 const Posts = ({ posts }) => {
