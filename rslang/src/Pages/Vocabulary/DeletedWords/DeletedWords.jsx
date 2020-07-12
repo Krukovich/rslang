@@ -27,10 +27,8 @@ const DeletedWords = (props) => {
       ...props.deleteWords.slice(0, index),
       ...props.deleteWords.slice(index + 1)
     ];
-    debugger;
     props.setDayLearningWords(a);
     props.restoreDeleteWords(b);
-    // setPosts(a);
   }
 
   return (
