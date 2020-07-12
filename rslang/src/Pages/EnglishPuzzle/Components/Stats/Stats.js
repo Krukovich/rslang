@@ -78,13 +78,13 @@ class Stats extends Component {
           </MDBModalBody>
           <MDBModalFooter>
             <MDBBtn
-              color="secondary"
+              color="primary"
               onClick={ () => this.toggle() }
             >
               Закрыть
             </MDBBtn>
             <MDBBtn
-              color="secondary"
+              color="primary"
               onClick={ this.playContinue }
             >
               Продолжить

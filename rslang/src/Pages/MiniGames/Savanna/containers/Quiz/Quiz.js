@@ -55,10 +55,10 @@ class Quiz extends Component {
   }
 
   finishQuestionWithError = () => {
-    const results = this.state.results  
+    const results = this.state.results
     results[this.state.activeQuestion] = 'error'
     const audio = new Audio(wrongPew);
-      audio.play();
+    audio.play();
     this.setState({
       answerState: { 'timeLeft': 'error' },
       results
@@ -76,7 +76,7 @@ class Quiz extends Component {
         results[this.state.activeQuestion] = 'success'
       }
       const audio = new Audio(pew);
-    audio.play();
+      audio.play();
       this.setState({
         answerState: { [answerId]: 'success' },
         results
@@ -140,26 +140,28 @@ class Quiz extends Component {
   render() {
 
     return (
-      <div className='Quiz'>
-        <div className='QuizWrapper'>
-          <h1>Ответьте на все вопросы</h1>
-          {
-            this.state.isFinished
-              ? <FinishedQuiz
-                results={this.state.results}
-                quiz={this.state.quiz}
-                onRetry={this.retryHandler}
-              />
-              : <ActiveQuiz
-                finishQuestionError={this.finishQuestionWithError}
-                answers={this.state.quiz[this.state.activeQuestion].answers}
-                question={this.state.quiz[this.state.activeQuestion].question}
-                onAnswerClick={this.onAnswerClickHandler}
-                quizLength={this.state.quiz.length}
-                answerNumber={this.state.activeQuestion + 1}
-                state={this.state.answerState}
-              />
-          }
+      <div className='Quiz w-100'>
+        <div className='QuizWrapper row w-100 d-flex justify-content-center'>
+          <div className='col-md-8 col-sm-12'>
+            <h1>Ответьте на все вопросы</h1>
+            {
+              this.state.isFinished
+                ? <FinishedQuiz
+                  results={this.state.results}
+                  quiz={this.state.quiz}
+                  onRetry={this.retryHandler}
+                />
+                : <ActiveQuiz
+                  finishQuestionError={this.finishQuestionWithError}
+                  answers={this.state.quiz[this.state.activeQuestion].answers}
+                  question={this.state.quiz[this.state.activeQuestion].question}
+                  onAnswerClick={this.onAnswerClickHandler}
+                  quizLength={this.state.quiz.length}
+                  answerNumber={this.state.activeQuestion + 1}
+                  state={this.state.answerState}
+                />
+            }
+          </div>
         </div>
       </div>
     )

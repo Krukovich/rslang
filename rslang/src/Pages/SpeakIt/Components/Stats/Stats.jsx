@@ -59,10 +59,10 @@ const Stats = ({ words, score, setSpeakItStats }) => {
           </ListGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="secondary" onClick={() => saveStats()}>
+          <Button variant="primary" onClick={() => saveStats()}>
             Сохранить
           </Button>
         </Modal.Footer>
