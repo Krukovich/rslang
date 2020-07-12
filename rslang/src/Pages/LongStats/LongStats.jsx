@@ -73,24 +73,22 @@ export default class LongStats extends React.Component {
   }
 
   async componentDidMount() {
-  let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
-      this.setState({count: result.optional})
-      let appStats = result.optional.appStats;
-      delete appStats[0];      
-        const resultWords = Object.values(appStats);
-        const resultDate = Object.keys(appStats).map((item) => {
-          const data = Number(item);
-          const date = new Date(data).toString().slice(4, 15);
-          return date;
-        });
-        this.state.datasets[0].data = this.getSum(resultWords);
-        this.state.datasets[1].data = resultWords;
-        this.state.labels = resultDate;
-        this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length-1] * 100) / this.props.totalWords);
-        this._asyncRequest = null;
-        this.setState({result});
-      
-    
+    let result = await fetchAPI('users-get-statistics').then(console.log(('данные получены')));
+    this.setState({ count: result.optional })
+    let appStats = result.optional.appStats;
+    delete appStats[0];
+    const resultWords = Object.values(appStats);
+    const resultDate = Object.keys(appStats).map((item) => {
+      const data = Number(item);
+      const date = new Date(data).toString().slice(4, 15);
+      return date;
+    });
+    this.state.datasets[0].data = this.getSum(resultWords);
+    this.state.datasets[1].data = resultWords;
+    this.state.labels = resultDate;
+    this.state.wordsNow = Math.ceil((this.state.datasets[0].data[this.state.datasets[0].data.length - 1] * 100) / this.props.totalWords);
+    this._asyncRequest = null;
+    this.setState({ result });
   }
 
   minigameSelect(selector) {
