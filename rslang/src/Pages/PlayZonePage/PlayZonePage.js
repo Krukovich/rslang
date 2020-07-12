@@ -9,7 +9,7 @@ import Card from './Card/Card';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
-import ShortStats from '../../Components/ShortStats/ShortStats';
+import ShortStats from '../../Components/ShortStats/ShortStats.jsx';
 
 import './playZonePage.scss';
 

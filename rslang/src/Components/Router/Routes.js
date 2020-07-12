@@ -8,7 +8,7 @@ import Login from "../../Pages/Authentication/Login/LoginPage";
 import { LogOut } from "../../Pages/Authentication/Login/LogOut";
 import { CreateAccount } from "../../Pages/Authentication/CreateAccount/CreateAccountPage";
 import PlayZonePage from "../../Pages/PlayZonePage/PlayZonePage";
-import ShortStats from "../ShortStats/ShortStats";
+import ShortStats from "../ShortStats/ShortStats.jsx";
 import Settings from "../../Pages/Settings/Settings";
 import SpeakItStart from "../../Pages/SpeakIt/SpeakItStart.jsx";
 import LongStats from "../../Pages/LongStats/LongStats";
