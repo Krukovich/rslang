@@ -3,12 +3,15 @@ import {
   CHANGE_DAY_LEARNING_WORDS,
   CHANGE_DIFFICULT_WORDS,
   CHANGE_DELETE_WORDS,
+  CHANGE_APP_STATS,
 } from './actions';
+import { fetchAPI } from '../../Components/Tools/fetchAPI';
 
 const initialState = {
   deleteWords: [], // an array with delete words
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn
+  appStats: [],
 }
 
 export const playZonePageReducer = (state = initialState, action) => {
@@ -17,7 +20,7 @@ export const playZonePageReducer = (state = initialState, action) => {
       return {
         ...state,
         cards: action.payload,
-      }
+      };
     case CHANGE_DELETE_WORDS:
       return {
         ...state,
@@ -32,6 +35,19 @@ export const playZonePageReducer = (state = initialState, action) => {
       return {
         ...state,
         difficultWords: [...state.difficultWords, action.payload],
+      };
+    case CHANGE_APP_STATS:
+      fetchAPI("users-get-statistics").then((oldObj) => {
+        delete oldObj.id;
+        oldObj.optional.appStats[action.payload.dateTime] = action.payload.successCount;
+        let newObj = oldObj;
+        fetchAPI("users-set-statistics", newObj.optional);
+      });
+      const appStats = state.appStats;
+      appStats[action.payload.dateTime] = action.payload.successCount
+      return {
+        ...state,
+        appStats: appStats,
       };
   }
   return state;

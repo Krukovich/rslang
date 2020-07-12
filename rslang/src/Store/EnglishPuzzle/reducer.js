@@ -10,7 +10,6 @@ export const englishPuzzleReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_MINIGAMEPUZZLE_STATS:
       fetchAPI("users-get-statistics").then((oldObj) => {
-        debugger;
         delete oldObj.id;
         oldObj.optional.gamePuzzle[action.payload.dateTime] = action.payload.successCount;
         let newObj = oldObj;

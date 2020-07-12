@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
-import { setWordCards } from '../../Store/PlayZonePage/actions';
-import { setDifficultWords, setDeleteWords } from '../../Store/PlayZonePage/actions';
+import { setDifficultWords, setDeleteWords, setAppStats, setWordCards } from '../../Store/PlayZonePage/actions';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
@@ -50,6 +49,7 @@ const mapActionToProps = {
   setDeleteWords,
   setWordCards,
   setDifficultWords,
+  setAppStats,
 }
 
 class PlayZonePage extends React.Component {
@@ -73,6 +73,7 @@ class PlayZonePage extends React.Component {
     const { playStep, cards } = this.state;
     if (playStep + 1 === cards.length) {
       this.setState({ isFinish: true });
+      this.saveStats();
       return;
     } else {
       this.setState({
@@ -83,6 +84,12 @@ class PlayZonePage extends React.Component {
       });
       this.input.value = '';
     }
+  }
+
+  saveStats = () => {
+    const dateTime = Date.now();
+    const successCount = this.state.cards.length;
+    this.props.setAppStats({ successCount, dateTime });
   }
 
   decrementPlayStep = () => {

@@ -4,6 +4,7 @@ import { sprintGameReducer } from "./SprintGame/Reducers";
 import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
 import { englishPuzzleReducer } from './EnglishPuzzle/reducer';
+import { speakItReducer } from './SpekIt/reducer';
 import * as Actions from "./Actions";
 
 import { fetchAPI } from '../Components/Tools/fetchAPI';
@@ -140,5 +141,5 @@ export default combineReducers({
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
   fortuneGame: fortuneGameReducer,
- 
+  speakItGame: speakItReducer,
 });

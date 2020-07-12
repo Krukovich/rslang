@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { imageRender, playAudio, getWords } from '../../service';
 import { SOUND, POINT, MAX_WORDS_LENGTH, SPEAK_LANGUAGE } from '../../constant';
 import Score from './Components/Score/Score.jsx';
@@ -13,12 +14,17 @@ import GroupButtons from './Components/GroupButtons/GroupButtons.jsx';
 import Input from './Components/Input/Input.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
+import { setSpeakItStats } from '../../Store/SpekIt/action';
 
 const mapStateToProps = (state) => {
   return {
     level: state.appSettings.level,
     words: state.appSettings.dayLearningWords,
   }
+}
+
+const mapActionToProps = {
+  setSpeakItStats: setSpeakItStats,
 }
 
 class SpeakIt extends React.Component {
@@ -215,6 +221,7 @@ class SpeakIt extends React.Component {
                 <Stats
                   words={ this.state.words }
                   score={ this.state.score }
+                  setSpeakItStats={ this.props.setSpeakItStats }
                 />
               </div>
             </div>
@@ -226,4 +233,4 @@ class SpeakIt extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(SpeakIt);
+export default connect(mapStateToProps, mapActionToProps)(SpeakIt);
