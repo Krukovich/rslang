@@ -4,6 +4,7 @@ export const CHANGE_DAY_LEARNING_WORDS = "CHANGE_DAY_LEARNING_WORDS";
 export const CHANGE_DELETE_WORDS = "CHANGE_DELETE_WORDS";
 export const CHANGE_APP_STATS = 'CHANGE_APP_STATS';
 export const RESTORE_DELETE_WORDS = 'RESTORE_DELETE_WORDS';
+export const DELETE_DIFFICULT_WORDS = 'DELETE_DIFFICULT_WORDS';
 
 export const setWordCards = (cards) => ({
   type: CHANGE_WORD_CARDS,
@@ -32,5 +33,10 @@ export const setAppStats = (stats) => ({
 
 export const restoreDeleteWords = (array) => ({
   type: RESTORE_DELETE_WORDS,
+  payload: array,
+})
+
+export const deleteDifficultWords = (array) => ({
+  type: DELETE_DIFFICULT_WORDS,
   payload: array,
 })

@@ -18,6 +18,7 @@ const mapActionToProps = {
 
 const DeletedWords = (props) => {
 
+  // transfer words from category 'deleted words' to category 'words to learn'
   const restore = (index) => {
     const a = [
       ...props.learningWords,
@@ -27,24 +28,22 @@ const DeletedWords = (props) => {
       ...props.deleteWords.slice(0, index),
       ...props.deleteWords.slice(index + 1)
     ];
-    debugger;
     props.setDayLearningWords(a);
     props.restoreDeleteWords(b);
-    // setPosts(a);
   }
 
   return (
     <div className="d-flex justify-content-center">
-      <ul className="list-group w-25 mb-4 mt-4">
+      <ul className="list-group w-100 mb-4 mt-4">
         {props.deleteWords.map((item, index) => {
           return (
             <li
               key={item.id}
-              className="d-flex list-group-item justify-content-between align-items-center"
+              className="d-flex list-group-item justify-content-start align-items-center"
             >
               <div className="d-flex justify-content-center align-items-center">
                 <RestoreBtn index={index} restore={restore}/>
-                <span className="mr-3 text-capitalize">{item.word}</span>
+                <span className="ml-3 mr-3 text-capitalize">{item.word}</span>
                 <span className="mr-3">{item.transcription}</span>
                 <span className="mr-3 text-capitalize">
                   {item.wordTranslate}
