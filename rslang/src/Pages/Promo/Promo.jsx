@@ -115,6 +115,9 @@ class Promo extends React.Component {
                   />
 
                 </div>
+                <div className="video row justify-content-center mt-4 mb-4">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/IlmTlBs_mGk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
               </div>
             </div>
           </div>
