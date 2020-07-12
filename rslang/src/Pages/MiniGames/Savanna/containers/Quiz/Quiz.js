@@ -5,6 +5,11 @@ import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
 import { setSavannaStats } from '../../../../../Store/Savanna/actions';
 
+import pew from '../../assets/good.mp3'
+import wrongPew from '../../assets/bad.mp3'
+import rez from '../../assets/rez.mp3'
+
+
 const mapStateToProps = (store) => {
   const {
     dayLearningWords,
@@ -77,7 +82,8 @@ onAnswerClickHandler = (answerId) => {
     if (!results[this.state.activeQuestion]) {
       results[this.state.activeQuestion] = 'success'
     }
-
+    const audio = new Audio(pew);
+    audio.play();
     this.setState({
       answerState: {[answerId]: 'success'},
       results
@@ -85,6 +91,8 @@ onAnswerClickHandler = (answerId) => {
     
   } else {
     results[this.state.activeQuestion] = 'error'
+    const audio = new Audio(wrongPew);
+      audio.play();
     this.setState({
       answerState: {[answerId]: 'error'},
       results
@@ -97,6 +105,8 @@ onAnswerClickHandler = (answerId) => {
 finishQuestion() {
   const timeout = window.setTimeout(() => {
     if (this.isQuizFinished()) {
+      const audio = new Audio(rez);
+      audio.play();
       this.setState({
         isFinished: true
       })
