@@ -2,10 +2,11 @@ import React from 'react';
 import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
 
 import { GAME_LEVEL } from '../../../../constant';
+import Score from '../Score/Score';
 
 import './gameLevel.scss';
 
-const GameLevel = () => {
+const GameLevel = ({ score }) => {
   return (
     <MDBListGroup style={{ width: "5rem" }} className="game-level">
       { GAME_LEVEL.map((item, index) => {
@@ -24,6 +25,7 @@ const GameLevel = () => {
           </MDBListGroupItem>
         );
       }) }
+      <Score score={ score } />
     </MDBListGroup>
   );
 };

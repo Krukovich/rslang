@@ -14,7 +14,7 @@ import SpeakItStart from "../../Pages/SpeakIt/SpeakItStart.jsx";
 import LongStats from "../../Pages/LongStats/LongStats";
 import { AudioCall } from "../../Pages/MiniGames/AudioCall/AudioCall.jsx";
 import MainPage from "../../Pages/MainPage/MainPage";
-import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter";
+import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter.jsx";
 import FortuneGame from "../../Pages/FortuneGame/FortuneGame.jsx";
 import MiniGamesPage from "../../Pages/MiniGamesPage/MiniGamesPage";
 import { CheckLogin } from "../../Pages/Authentication/CheckLogin";

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 
-import { fetchAPI } from '../../../../Components/Tools/fetchAPI';
-
-const Stats = ({ words, score }) => {
+const Stats = ({ words, score, setSpeakItStats }) => {
 
   const [show, setShow] = useState(false);
 
@@ -11,13 +9,9 @@ const Stats = ({ words, score }) => {
   const handleShow = () => setShow(true);
 
   const saveStats = () => {
-    const speakIt = {
-      speakIt: {
-        date: new Date().getMilliseconds(),
-        score: score,
-      }
-    }
-    fetchAPI("users-set-statistics", speakIt);
+    const dateTime = Date.now();
+    const successCount = score;
+    setSpeakItStats({ successCount, dateTime });
     handleClose();
   }
 
@@ -65,10 +59,10 @@ const Stats = ({ words, score }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={ handleClose }>
-            Close
+            Закрыть
           </Button>
-          <Button variant="primary" onClick={ () => saveStats() }>
-            Save Changes
+          <Button variant="secondary" onClick={ () => saveStats() }>
+            Сохранить
           </Button>
         </Modal.Footer>
       </Modal>

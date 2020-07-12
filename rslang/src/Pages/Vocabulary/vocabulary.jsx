@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import WordsToLearn from './WordsToLearn/WordsToLearn';
-import Pagination from './Pagination/Pagination';
+import WordsToLearn from './WordsToLearn/WordsToLearn.jsx';
+import Pagination from './Pagination/Pagination.jsx';
 import { connect } from 'react-redux';
 import {setDeleteWords, setDayLearningWords} from '../../Store/PlayZonePage/actions';
 import {checkDeleteWords} from '../../service'
@@ -40,12 +40,27 @@ const Vocabulary = (props) => {
       ...posts.slice(0, index),
       ...posts.slice(index + 1)
     ];
-    if (!checkDeleteWords(props.deleteWords, posts[index].id)) {
+    if (!checkDeleteWords(props.deleteWords, posts[index].word)) {
       _THIS.setDeleteWords(posts[index])
       _THIS.setDayLearningWords(newArr)
     }
     setPosts(newArr);
   }
+
+  // restore words from deleted/difficult to learning
+  // const restore = (index) => {
+  //   const a = [
+  //     ...props.learningWords,
+  //     deleteWords[index]
+  //   ];
+  //   const b = [
+  //     ...props.deleteWords(0, index),
+  //     ...props.deleteWords(index + 1)
+  //   ];
+  //   _THIS.setDayLearningWords(a);
+  //   _THIS.setDeleteWords(b);
+  //   setPosts(a);
+  // }
 
 
   // Get current posts

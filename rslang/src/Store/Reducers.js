@@ -3,6 +3,8 @@ import { playZonePageReducer } from "./PlayZonePage/reducers";
 import { sprintGameReducer } from "./SprintGame/Reducers";
 import { fortuneGameReducer } from "./FortuneGame/Reducers";
 import { savannaReducer } from "./Savanna/reducers";
+import { englishPuzzleReducer } from './EnglishPuzzle/reducer';
+import { speakItReducer } from './SpekIt/reducer';
 import * as Actions from "./Actions";
 
 import { fetchAPI } from '../Components/Tools/fetchAPI';
@@ -133,10 +135,11 @@ export const appSettingsReducer = (state = initialState, action) => {
 };
 
 export default combineReducers({
+  englishPuzzle: englishPuzzleReducer,
   playZone: playZonePageReducer,
   savanna: savannaReducer,
   appSettings: appSettingsReducer,
   sprintGame: sprintGameReducer,
   fortuneGame: fortuneGameReducer,
- 
+  speakItGame: speakItReducer,
 });

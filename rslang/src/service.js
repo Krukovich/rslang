@@ -49,8 +49,8 @@ export const renderPlayString = (data, handlerChange) => {
   return parts;
 }
 
-export const checkDeleteWords = (array, id) => {
-  return array.filter((word) => word.id === id);
+export const checkDeleteWords = (array, w) => {
+  return array.find((word) => word.word === w);
 }
 
 export const saveWordsInLocalStorage = (startWords) => {

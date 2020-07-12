@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBView, MDBBtn } from "mdbreact";
+import { connect } from 'react-redux';
 
-import { gameData } from '../../constant';
+import { gameData, MAX_PAGE, POINT } from '../../constant';
 import Stats from './Components/Stats/Stats';
 import {
   getData,
@@ -12,15 +13,26 @@ import {
   colorLevelPoint,
   removeColorLevelPoint,
   getRandomPage,
+  sortData,
 } from "../../service";
 import GameLevel from './Components/GameLevel/GameLevel';
 import Info from './Components/Info/Info';
 import Control from './Components/Control/Control';
 import Words from './Components/Words/Words';
+import { setEnglishPuzzleStats } from '../../Store/EnglishPuzzle/action';
 
 import './playZone.scss';
+
+const mapStateToProps = (store) => {
+  const { englishPuzzle } = store.appSettings;
+  return { stats: englishPuzzle }
+}
+
+const mapActionToProps = {
+  setEnglishPuzzleStats,
+}
  
-const Puzzle = ({ level, page, selectChange }) => {
+const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
 
   const [isAgreeString, setIsAgreeString] = useState('');
   const [isPlayString, setIsPlayString] = useState('');
@@ -33,10 +45,16 @@ const Puzzle = ({ level, page, selectChange }) => {
   const [isPage, setIsPage] = useState('');
   const [isMistakeStrings, setIsMistakeStrings] = useState([]);
   const [isAgreeStrings, setIsAgreeStrings] = useState([]);
+  const [score, setScore] = useState(0);
 
   const startPlay = async () => {
+    let data = '';
+    if (words.length > POINT) {
+      data = sortData(words);
+    } else {
+      data = await getData(level, page);
+    }
     removeColorOnWord();
-    const data = await getData(level, page);
     setIsPlay(true);
     setIsPlayList(data);
     setIsAgreeString(data[isMovePoint].string);
@@ -57,6 +75,7 @@ const Puzzle = ({ level, page, selectChange }) => {
     if (checkString(isAgreeString)) {
       colorLevelPoint(isMovePoint, true);
       setIsTrue(true);
+      setScore(score + POINT);
       makeAgreeString();
     } else {
       colorLevelPoint(isMovePoint, false);
@@ -64,9 +83,16 @@ const Puzzle = ({ level, page, selectChange }) => {
     }
   }
 
+  const saveStats = () => {
+    const dateTime = Date.now();
+    const successCount = score;
+    setEnglishPuzzleStats({ successCount, dateTime });
+  }
+
   const nextStep = () => {
     if (isMovePoint === 10) {
       setIsFinish(false);
+      saveStats();
       restartGame();
       return;
     }
@@ -91,9 +117,7 @@ const Puzzle = ({ level, page, selectChange }) => {
     setIsMovePoint(0);
     moveImageMask(-1);
     const nextLevel = (level + 1 > 6) ? 6 : level + 1;
-    const data = await getData(nextLevel, page);
-    selectChange('level', nextLevel);
-    selectChange('page', getRandomPage(20));
+    const data = await getData(nextLevel, getRandomPage(MAX_PAGE));
     removeColorOnWord();
     setIsPlay(true);
     setIsPlayList(data);
@@ -142,8 +166,8 @@ const Puzzle = ({ level, page, selectChange }) => {
   }
 
   return (
-    <MDBContainer>
-      <GameLevel />
+    <MDBContainer className="mt-4">
+      <GameLevel score={ score } />
       <MDBRow>
         <Control
           src={ getSrcForControl() }
@@ -181,14 +205,14 @@ const Puzzle = ({ level, page, selectChange }) => {
               className="btn btn-outline-white btn-md"
               onClick={ startPlay }
             >
-              Start play
+              Начать играть
             </MDBBtn> }
           { (isPlay && isMovePoint !== 10) ? 
             <MDBBtn
               className="btn btn-outline-white btn-md"
               onClick={ checkHandler }
             >
-              Check
+              Проверить
             </MDBBtn> : 
             '' }
           { (isPlay && !isTrue && isMovePoint !== 10) ? 
@@ -196,7 +220,7 @@ const Puzzle = ({ level, page, selectChange }) => {
               className="btn btn-outline-white btn-md"
               onClick={ makeMistakeString }
             >
-              I don`t know
+              Подсказать
             </MDBBtn> : 
             '' }
           { (isPlay && isTrue) ?
@@ -204,7 +228,7 @@ const Puzzle = ({ level, page, selectChange }) => {
               className="btn btn-outline-white btn-md"
               onClick={ nextStep }
             >
-              Continue
+              Продолжить
             </MDBBtn> : 
             '' }
           { (isTrue && isMovePoint === 10) ?
@@ -219,4 +243,4 @@ const Puzzle = ({ level, page, selectChange }) => {
   );
 }
 
-export default Puzzle;
+export default connect(mapStateToProps, mapActionToProps)(Puzzle);
