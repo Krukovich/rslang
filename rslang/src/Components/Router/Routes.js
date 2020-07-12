@@ -25,6 +25,7 @@ import Training from "../../Pages/Training/Training.jsx";
 import { fetchAPI } from "../Tools/fetchAPI";
 import Promo from "../../Pages/Promo/Promo.jsx";
 import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
+import { AudioCallStartPage } from '../../Pages/AudioCall/components/StartPage/StartPage';
 
 const mapStateToProps = (state) => {
   return {
@@ -124,6 +125,11 @@ const sourceCloseRoutes = [
   {
     path: "/savanna",
     component: SavannaStartPage,
+    exact: true,
+  },
+  {
+    path: "/audiocallnew",
+    component: AudioCallStartPage,
     exact: true,
   },
   {

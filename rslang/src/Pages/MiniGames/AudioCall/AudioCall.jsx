@@ -117,7 +117,7 @@ export class AudioCall extends React.Component {
         <div className="AudioCall vh-100">
           <h1>AudioCall</h1>
 
-          <div className="text-center">
+          <div className="text-center p-5">
             <ButtonStartGame
               startGame={() => this.startGame()}
               gameStart={this.state.gameStart}
@@ -132,12 +132,8 @@ export class AudioCall extends React.Component {
           }
           {this.state.gameStart?
             <Words
-            wordsArray={this.state.wordsArray}
-            gameStart={this.state.gameStart}
-            wordsDisplayCount={this.state.wordsDisplayCount}
-            gameFindWord={this.state.gameFindWord}
+            state = { this.state }
             styleFunction={(id, key) => this.wordsArraySwitch(id, key)}
-            gameStage={this.state.gameStage}
           /> : <div>слова не загружены</div>
           }
           
