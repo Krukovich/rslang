@@ -11,15 +11,15 @@ class MainPage extends Component {
     super();
     this.state = {
       trainingCard: {
-        title: 'Training',
-        description: 'Study English',
+        title: 'Тренировка',
+        description: 'Повторяем Английский',
         href: 'training',
         class: 'Card-Image_training',
         pic: pic2
       },
       learningCard: {
-        title: 'Learning',
-        description: 'Learn English',
+        title: 'Изучение',
+        description: 'Учим Английский',
         href: 'play-zone',
         class: 'Card-Image_learning',
         pic: pic1
