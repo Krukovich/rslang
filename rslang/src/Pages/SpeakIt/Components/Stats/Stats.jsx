@@ -16,17 +16,17 @@ const Stats = ({ words, score, setSpeakItStats }) => {
   }
 
   const list = words.map((item) => {
-    return(
-      <ListGroup.Item key={ item.id } >
-        { (item.mistake) ? 
-            <span className="badge badge-danger">
-              { item.word }
-            </span>
+    return (
+      <ListGroup.Item key={item.id} >
+        {(item.mistake) ?
+          <span className="badge badge-danger">
+            {item.word}
+          </span>
           : item.word
         }
-        { (item.done) ? 
+        {(item.done) ?
           <span className="badge badge-success">
-            { item.word }
+            {item.word}
           </span>
           : item.word
         }
@@ -37,31 +37,32 @@ const Stats = ({ words, score, setSpeakItStats }) => {
   return (
     <React.Fragment>
       <Button
-        variant="info w-100"
-        onClick={ handleShow }
+        className={'btn-primary w-100'}
+        // variant=""
+        onClick={handleShow}
       >
         Статистика
       </Button>
 
-      <Modal show={ show } onHide={ handleClose } scrollable="true">
+      <Modal show={show} onHide={handleClose} scrollable="true">
         <Modal.Header closeButton>
           <Modal.Title>
             Статистика
             <span className="ml-3">
-              Ваш результат { score }
+              Ваш результат {score}
             </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ListGroup>
-            { list }
+            {list}
           </ListGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={ handleClose }>
+          <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="secondary" onClick={ () => saveStats() }>
+          <Button variant="secondary" onClick={() => saveStats()}>
             Сохранить
           </Button>
         </Modal.Footer>

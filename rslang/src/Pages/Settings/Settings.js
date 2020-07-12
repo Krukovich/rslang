@@ -118,7 +118,7 @@ class Settings extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-12 pt-5">
-              <div className="settingsContainer pt-5">
+              <div className="settingsContainer p-5">
                 <TextInput
                   text="Уровень"
                   defValue={this.props.level}

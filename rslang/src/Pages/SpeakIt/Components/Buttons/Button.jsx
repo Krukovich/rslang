@@ -25,18 +25,18 @@ const Button = (props) => {
 
   return (
     <button
-      id={ index }
+      id={index}
       type="button"
-      className="btn btn-outline-info w-100"
-      disabled={ word.done ? word.done : '' }
-      onClick={ () => playSound() }
+      className="btn btn-primary w-100"
+      disabled={word.done ? word.done : ''}
+      onClick={() => playSound()}
     >
-      <FontAwesomeIcon icon={ faVolumeUp } />
+      <FontAwesomeIcon icon={faVolumeUp} color='white' />
       <span className="word_label">
-        { word.word }
+        {word.word}
       </span><br />
       <span className="transcription_label">
-        { word.transcription }
+        {word.transcription}
       </span>
     </button>
   );
