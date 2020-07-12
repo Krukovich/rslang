@@ -2,6 +2,8 @@ import React from "react";
 import "./ActiveQuiz.css";
 import AnswersList from "./AnswersList/AnswersList";
 
+import sec from "../../assets/sec.mp3";
+
 class ActiveQuiz extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,7 @@ class ActiveQuiz extends React.Component {
       timeLeft: 7,
     };
   }
-  
+
   setTime() {
     this.setState({
       timeLeft: 7,
@@ -18,15 +20,17 @@ class ActiveQuiz extends React.Component {
 
   startTimer() {
     this.timer = setInterval(() => {
-        if (this.state.timeLeft === 0) {
-          this.setTime();
-          this.props.finishQuestionError();
-        } else {
-          this.setState({
-            timeLeft: this.state.timeLeft - 1,
-          })
-        }
-      }, 1000);
+      if (this.state.timeLeft === 0) {
+        this.setTime();
+        this.props.finishQuestionError();
+      } else {
+        const audio = new Audio(sec);
+        audio.play();
+        this.setState({
+          timeLeft: this.state.timeLeft - 1,
+        });
+      }
+    }, 1000);
   }
 
   componentDidMount() {
@@ -34,11 +38,10 @@ class ActiveQuiz extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
   render() {
-    
     return (
       <div className="ActiveQuiz">
         <h2>{this.state.timeLeft}</h2>
@@ -61,7 +64,6 @@ class ActiveQuiz extends React.Component {
           answers={this.props.answers}
           onAnswerClick={this.props.onAnswerClick}
           setTime={() => this.setTime()}
-          
         />
       </div>
     );
