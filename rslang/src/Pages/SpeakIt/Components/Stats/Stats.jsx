@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 
-import { fetchAPI } from '../../../../Components/Tools/fetchAPI';
-
-const Stats = ({ words, score }) => {
+const Stats = ({ words, score, setSpeakItStats }) => {
 
   const [show, setShow] = useState(false);
 
@@ -11,28 +9,24 @@ const Stats = ({ words, score }) => {
   const handleShow = () => setShow(true);
 
   const saveStats = () => {
-    const speakIt = {
-      speakIt: {
-        date: new Date().getMilliseconds(),
-        score: score,
-      }
-    }
-    fetchAPI("users-set-statistics", speakIt);
+    const dateTime = Date.now();
+    const successCount = score;
+    setSpeakItStats({ successCount, dateTime });
     handleClose();
   }
 
   const list = words.map((item) => {
-    return(
-      <ListGroup.Item key={ item.id } >
-        { (item.mistake) ? 
-            <span className="badge badge-danger">
-              { item.word }
-            </span>
+    return (
+      <ListGroup.Item key={item.id} >
+        {(item.mistake) ?
+          <span className="badge badge-danger">
+            {item.word}
+          </span>
           : item.word
         }
-        { (item.done) ? 
+        {(item.done) ?
           <span className="badge badge-success">
-            { item.word }
+            {item.word}
           </span>
           : item.word
         }
@@ -43,32 +37,33 @@ const Stats = ({ words, score }) => {
   return (
     <React.Fragment>
       <Button
-        variant="info w-100"
-        onClick={ handleShow }
+        className={'btn-primary w-100'}
+        // variant=""
+        onClick={handleShow}
       >
         Статистика
       </Button>
 
-      <Modal show={ show } onHide={ handleClose } scrollable="true">
+      <Modal show={show} onHide={handleClose} scrollable="true">
         <Modal.Header closeButton>
           <Modal.Title>
             Статистика
             <span className="ml-3">
-              Ваш результат { score }
+              Ваш результат {score}
             </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ListGroup>
-            { list }
+            {list}
           </ListGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={ handleClose }>
-            Close
+          <Button variant="secondary" onClick={handleClose}>
+            Закрыть
           </Button>
-          <Button variant="primary" onClick={ () => saveStats() }>
-            Save Changes
+          <Button variant="secondary" onClick={() => saveStats()}>
+            Сохранить
           </Button>
         </Modal.Footer>
       </Modal>

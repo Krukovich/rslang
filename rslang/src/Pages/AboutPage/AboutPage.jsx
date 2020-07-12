@@ -12,7 +12,7 @@ class AboutPage extends Component {
                 {
                     name: 'Евгений',
                     description: 'Ментор',
-                    href: ['https://github.com/ZennKa', '#'],
+                    href: ['https://github.com/ZennKa', 'https://github.com/ZennKa'],
                     classCSS: 'AboutCard-pic1'
                 },
                 {
@@ -67,7 +67,7 @@ class AboutPage extends Component {
 
         for (let i = 0; i < 7; i += 1) {
             content.push(
-                <div key={"card" + i} className="d-flex justify-content-center Cards-Wrapper mt-2 col-md-4 col-xs-12 col-sm-6 h-100">
+                <div key={"card" + i} className="d-flex justify-content-center Cards-Wrapper mt-2 col-md-4 col-xl-3 col-xs-12 col-sm-6 h-100">
                     <AboutCard
                         pic={members[i].classCSS}
                         name={members[i].name}

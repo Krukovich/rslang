@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import WordsToLearn from './WordsToLearn/WordsToLearn';
-import Pagination from './Pagination/Pagination';
+import WordsToLearn from './WordsToLearn/WordsToLearn.jsx';
+import Pagination from './Pagination/Pagination.jsx';
 import { connect } from 'react-redux';
 import {setDeleteWords, setDayLearningWords} from '../../Store/PlayZonePage/actions';
 import {checkDeleteWords} from '../../service'
@@ -40,7 +40,7 @@ const Vocabulary = (props) => {
       ...posts.slice(0, index),
       ...posts.slice(index + 1)
     ];
-    if (!checkDeleteWords(props.deleteWords, posts[index].id)) {
+    if (!checkDeleteWords(props.deleteWords, posts[index].word)) {
       _THIS.setDeleteWords(posts[index])
       _THIS.setDayLearningWords(newArr)
     }

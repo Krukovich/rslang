@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { playExampleSound } from '../../service';
 import { BTN_LABEL } from '../../constant';
-import { setWordCards } from '../../Store/PlayZonePage/actions';
-import { setDifficultWords, setDeleteWords } from '../../Store/PlayZonePage/actions';
+import { setDifficultWords, setDeleteWords, setAppStats, setWordCards } from '../../Store/PlayZonePage/actions';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Card from './Card/Card';
 import Badge from './Badge/Badge';
@@ -19,7 +18,7 @@ const mapStateToProps = (store) => {
     dayLearningWords,
     difficultWords,
   } = store.playZone;
-  
+
   const {
     showBtnDeleteWord,
     showBtnDifficultWord,
@@ -50,6 +49,7 @@ const mapActionToProps = {
   setDeleteWords,
   setWordCards,
   setDifficultWords,
+  setAppStats,
 }
 
 class PlayZonePage extends React.Component {
@@ -62,8 +62,9 @@ class PlayZonePage extends React.Component {
       isNotAgree: true,
       inputValue: '',
       isFinish: false,
-}
+    }
     this.difficultWordId = '';
+    this.rightAnswerArray = [];
     this.agreeCountAnswer = 0;
     this.agreeRow = 0;
     this.agreeStep = 0;
@@ -73,6 +74,7 @@ class PlayZonePage extends React.Component {
     const { playStep, cards } = this.state;
     if (playStep + 1 === cards.length) {
       this.setState({ isFinish: true });
+      this.saveStats();
       return;
     } else {
       this.setState({
@@ -83,6 +85,12 @@ class PlayZonePage extends React.Component {
       });
       this.input.value = '';
     }
+  }
+
+  saveStats = () => {
+    const dateTime = Date.now();
+    const successCount = this.state.cards.length;
+    this.props.setAppStats({ successCount, dateTime });
   }
 
   decrementPlayStep = () => {
@@ -120,22 +128,25 @@ class PlayZonePage extends React.Component {
   handlerSubmit = (event) => {
     event.preventDefault();
     const input = event.target[0];
-    const char = event.target[0].value;
+    const word = event.target[0].value;
     const { agreeWord, cards, playStep } = this.state;
 
-    if (!char) {
+    if (!word) {
       return;
     } else {
-      if (char === agreeWord) {
+      if (word === agreeWord) {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audioExample);
         }
         input.classList.remove('PlayCard_Mistake');
         input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
-        this.agreeCountAnswer += 1;
-        this.agreeStep += 1;
-        this.incrementAgreeRow();
+        if (!this.rightAnswerArray.includes(word)) {
+          this.agreeCountAnswer += 1;
+          this.agreeStep += 1;
+          this.incrementAgreeRow();
+          this.rightAnswerArray.push(word);
+        }
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -189,9 +200,12 @@ class PlayZonePage extends React.Component {
         this.input.classList.remove('PlayCard_Mistake');
         this.input.classList.add('PlayCard_Agree');
         this.setState({ isNotAgree: false });
-        this.agreeCountAnswer += 1;
-        this.agreeStep += 1;
-        this.incrementAgreeRow();
+        if (!this.rightAnswerArray.includes(inputValue)) {
+          this.agreeCountAnswer += 1;
+          this.agreeStep += 1;
+          this.incrementAgreeRow();
+          this.rightAnswerArray.push(inputValue);
+        }
       } else {
         if (this.props.playExampleSound) {
           playExampleSound(cards[playStep].audio);
@@ -219,71 +233,71 @@ class PlayZonePage extends React.Component {
 
     return (
       <React.Fragment>
-        { (!isFinish) ?
-        <div className="container">
-          <div className="row mt-5">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <Card
-                input={this.input}
-                isNotAgree={isNotAgree}
-                cards={cards}
-                playStep={playStep}
-                showWordImage={this.props.showWordImage}
-                showTranslateWord={this.props.showTranslateWord}
-                showExplanationString={this.props.showExplanationString}
-                showWordTranscription={this.props.showWordTranscription}
-                handlerChange={this.handlerInputChange}
-                handlerSubmit={this.handlerSubmit}
-              />
-              <VerticalMenu
-                showAnswer={this.showAnswer}
-                insertCardToDifficult={this.insertCardToDifficult}
-                deleteCard={this.deleteCard}
-                showBtnDeleteWord={this.props.showBtnDeleteWord}
-                showBtnDifficultWord={this.props.showBtnDifficultWord}
-                showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
-              />
+        {(!isFinish) ?
+          <div className="container">
+            <div className="row mt-5">
+              <div className="col-12 d-flex justify-content-center mt-5">
+                <Card
+                  input={this.input}
+                  isNotAgree={isNotAgree}
+                  cards={cards}
+                  playStep={playStep}
+                  showWordImage={this.props.showWordImage}
+                  showTranslateWord={this.props.showTranslateWord}
+                  showExplanationString={this.props.showExplanationString}
+                  showWordTranscription={this.props.showWordTranscription}
+                  handlerChange={this.handlerInputChange}
+                  handlerSubmit={this.handlerSubmit}
+                />
+                <VerticalMenu
+                  showAnswer={this.showAnswer}
+                  insertCardToDifficult={this.insertCardToDifficult}
+                  deleteCard={this.deleteCard}
+                  showBtnDeleteWord={this.props.showBtnDeleteWord}
+                  showBtnDifficultWord={this.props.showBtnDifficultWord}
+                  showBtnShowAgreeAnswer={this.props.showBtnShowAgreeAnswer}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-center mt-5">
-              <div className="btn-group" role="group" aria-label="Basic example">
-                <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
-                <button
-                  className="btn btn-primary"
-                  onClick={this.changeAnswer}
-                >
-                  Проверить
+            <div className="row">
+              <div className="col-12 d-flex justify-content-center mt-5">
+                <div className="btn-group" role="group" aria-label="Basic example">
+                  <Button decrementPlayStep={this.decrementPlayStep} label={BTN_LABEL.PREV} isNotAgree={!playStep ? true : false} />
+                  <button
+                    className="btn btn-primary"
+                    onClick={this.changeAnswer}
+                  >
+                    Проверить
                   </button>
-                <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
-              </div>
-            </div>
-          </div>
-          <div className="row justify-content-center mt-5">
-            <div className="col-12 col-md-6">
-              <div className="row">
-                <div className="col-2 text-center">
-                  <Badge playStep={playStep} />
-                </div>
-                <div className="col-8">
-                  <ProgressBar playStep={playStep} cards={cards} />
-                </div>
-                <div className="col-2 text-center">
-                  <Badge cards={cards} />
+                  <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
                 </div>
               </div>
             </div>
+            <div className="row justify-content-center mt-5">
+              <div className="col-12 col-md-6">
+                <div className="row">
+                  <div className="col-2 text-center">
+                    <Badge playStep={playStep} />
+                  </div>
+                  <div className="col-8">
+                    <ProgressBar playStep={playStep} cards={cards} />
+                  </div>
+                  <div className="col-2 text-center">
+                    <Badge cards={cards} />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        : 
-        <div className="row mt-5">
-          <ShortStats
-            total={ this.state.cards.length }
-            right={ (this.agreeCountAnswer / this.state.cards.length) * 100 }
-            newWords={ this.state.cards.length }
-            rightInArrow={ this.agreeRow }
-          />
-        </div>
+          :
+          <div className="row mt-5">
+            <ShortStats
+              total={this.state.cards.length}
+              right={(this.agreeCountAnswer / this.state.cards.length) * 100}
+              newWords={this.state.cards.length}
+              rightInArrow={this.agreeRow}
+            />
+          </div>
         }
       </React.Fragment>
     );

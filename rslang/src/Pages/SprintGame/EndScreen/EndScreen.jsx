@@ -29,13 +29,13 @@ class EndScreen extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="row">
+                <div className="Sprint-Endscreen row">
                     <div className="md-col-12 w-100 pt-2 pb-5 d-flex flex-column justify-content-center align-items-center">
                         <h1 className="mb-4">Игре конец!</h1>
                         <p>Твой счёт: {this.props.score}</p>
                         <div className="d-flex mt-4">
                             <Button onClick={this.props.restart} className="mr-2">ЕЩЁ РАЗ</Button>
-                            <Link className="SprintBtn-Main btn bg-primary rounded" to={'/main-page'}>НА ГЛАВНУЮ</Link>
+                            <Link className="SprintBtn-Main btn btn-primary rounded" to={'/main-page'}>НА ГЛАВНУЮ</Link>
                         </div>
                     </div>
                 </div>

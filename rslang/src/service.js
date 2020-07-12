@@ -8,18 +8,18 @@ export const getWords = (group, numberOfWords) => {
   const proms = [];
 
   for (let i = 0; i < count; i += 1) {
-    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ i }`).then((res) => res.json()));
+    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group - 1}&page=${i}`).then((res) => res.json()));
   }
   return Promise.allSettled(proms).then((wordLists) => wordLists.flatMap((wordList) => wordList.value).slice(0, numberOfWords));
 }
 
 export const imageRender = (src) => {
-  return `https://raw.githubusercontent.com/krukovich/rslang-data/master/${ src }`; 
+  return `https://raw.githubusercontent.com/krukovich/rslang-data/master/${src}`;
 }
 
 export const playExampleSound = (src) => {
   const myAudio = new Audio();
-  myAudio.src = `https://raw.githubusercontent.com/krukovich/rslang-data/master/${ src }`;
+  myAudio.src = `https://raw.githubusercontent.com/krukovich/rslang-data/master/${src}`;
   myAudio.play();
 }
 
@@ -32,25 +32,25 @@ export const playAudio = (src) => {
 export const renderPlayString = (data, handlerChange) => {
   const regexp = /<b>([^<]+)<\/b>/;
   const word = data.textExample.match(regexp)[1];
-  const inputStyle = { width: `${ word.length }9px` };
+  const inputStyle = { width: `${word.length}0px` };
   const input =
-    <span className="pl-1">
+    <span className="pl-1" key={data.id}>
       <input
         className="WordInput"
         type="text"
         autoFocus
-        onChange={ handlerChange }
-        maxLength={ word.length }
-        style={ inputStyle }
+        onChange={handlerChange}
+        maxLength={word.length}
+        style={inputStyle}
       />
     </span>
-  const parts = data.textExample.split(regexp).map((part) => <span className="pl-1">{ part }</span>)
+  const parts = data.textExample.split(regexp).map((part) => <span key={part} className="pl-1">{part}</span>)
   parts.splice(1, 1, input);
   return parts;
 }
 
-export const checkDeleteWords = (array, id) => {
-  return array.filter((word) => word.id === id);
+export const checkDeleteWords = (array, w) => {
+  return array.find((word) => word.word === w);
 }
 
 export const saveWordsInLocalStorage = (startWords) => {
@@ -101,18 +101,18 @@ export const getData = async (group, page) => {
   const maxLength = 10;
   const maxPage = 20;
 
-  const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ page }`;
+  const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${group - 1}&page=${page}`;
   const res = await fetch(url);
   const words = await res.json();
   prepareList.push(...sortData(words));
 
   if (prepareList.length < maxLength) {
-    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${ group - 1 }&page=${ getRandomPage(maxPage) }`;
+    const url = `https://afternoon-falls-25894.herokuapp.com/words?group=${group - 1}&page=${getRandomPage(maxPage)}`;
     const res = await fetch(url);
     const words = await res.json();
     prepareList.push(...sortData(words));
   }
-  return prepareList.slice(0, maxLength); 
+  return prepareList.slice(0, maxLength);
 }
 
 export const moveImageMask = (point) => {
@@ -120,7 +120,7 @@ export const moveImageMask = (point) => {
   if (point < 0) {
     mask.style.transform = `translateY(0)`;
   } else {
-    mask.style.transform = `translateY(${ point }0%)`;
+    mask.style.transform = `translateY(${point}0%)`;
   }
 }
 
@@ -157,4 +157,10 @@ export const sortData = (words) => {
     newArray.push(data);
   }
   return newArray;
+}
+
+export const removeTagsFromString = (str) => {
+  const regexp = /<[^<>]+>/g;
+  const newStr = str.replace(regexp, '');
+  return newStr
 }

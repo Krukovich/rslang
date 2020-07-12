@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import Card from '../../Components/Card/Card';
 import './MiniGamesPage.scss';
 
-import pic1 from './assets/pic1.jpg';
-import sprint from './assets/sprint.jpg';
-import FortuneLogo from './assets/logo-turbo.png';
-import SpeakItLogo from './assets/enjoy_small.png';
-import EnglishPuzzle from './assets/english-language.jpg'
+import sprint from './assets/sprint-logo.png';
+import FortuneLogo from './assets/fortune-logo.png';
+import SpeakItLogo from './assets/speakit-logo.png';
+import SavannaLogo from './assets/savanna-logo.png';
+import AudiocallLogo from './assets/audiocall-logo.png';
+import EnglishPuzzle from './assets/englishpuzzle-logo.png'
 
 class MiniGamesPage extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class MiniGamesPage extends Component {
         description: '',
         href: 'audiocall',
         class: 'Card-Image_audiocall',
-        pic: pic1
+        pic: AudiocallLogo
       },
       fortuneCard: {
         title: 'Turbo Wheel of Fortune',
@@ -35,11 +36,11 @@ class MiniGamesPage extends Component {
         pic: FortuneLogo
       },
       savannahCard: {
-        title: 'Savannah',
+        title: 'Savanna',
         description: '',
         href: 'Savannah',
         class: 'Card-Image_savanna',
-        pic: pic1
+        pic: SavannaLogo
       },
       englishPuzzleCard: {
         title: 'English Puzzle',
@@ -87,11 +88,11 @@ class MiniGamesPage extends Component {
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={audioCallCard.class}
-                pic={audioCallCard.pic}
-                href={audioCallCard.href}
-                title={audioCallCard.title}
-                description={audioCallCard.description}
+                class={fortuneCard.class}
+                pic={fortuneCard.pic}
+                href={fortuneCard.href}
+                title={fortuneCard.title}
+                description={fortuneCard.description}
               />
             </div>
           </div>
@@ -127,11 +128,11 @@ class MiniGamesPage extends Component {
             </div>
             <div className="Cards-Wrapper col-md-6 h-100">
               <Card
-                class={fortuneCard.class}
-                pic={fortuneCard.pic}
-                href={fortuneCard.href}
-                title={fortuneCard.title}
-                description={fortuneCard.description}
+                class={audioCallCard.class}
+                pic={audioCallCard.pic}
+                href={audioCallCard.href}
+                title={audioCallCard.title}
+                description={audioCallCard.description}
               />
             </div>
           </div>

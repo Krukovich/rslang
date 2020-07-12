@@ -36,7 +36,7 @@ class EndScreen extends Component {
                         <p>Ваш счёт: {this.props.score}</p>
                         <div className="d-flex mt-4">
                             <Button onClick={this.props.restart} className="mr-2">ЕЩЁ РАЗ</Button>
-                            <Link className="FotuneBtn-Main btn bg-primary rounded" to={'/main-page'}>НА ГЛАВНУЮ</Link>
+                            <Link className="FotuneBtn-Main btn btn-primary rounded" to={'/main-page'}>НА ГЛАВНУЮ</Link>
                         </div>
                     </div>
                 </div>

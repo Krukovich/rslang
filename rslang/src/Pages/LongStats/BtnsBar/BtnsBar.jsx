@@ -14,7 +14,7 @@ const BtnsBar = ({ items, showStats }) => {
       </div>
     )
   });
-  return (<ButtonGroup size="lg">{elements}</ButtonGroup>);
+  return (<ButtonGroup size="lg" className="flex-wrap">{elements}</ButtonGroup>);
 }
 
 export default BtnsBar;

@@ -1,35 +1,40 @@
-import React from 'react'
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
-} from 'react-router-dom';
+  NavLink,
+} from "react-router-dom";
 
-import Vocabulary from '../vocabulary';
-import DifficultWords from '../DifficultWords/DifficultWords';
-import DeletedWords from '../DeletedWords/DeletedWords';
+import Vocabulary from "../vocabulary.jsx";
+import DifficultWords from "../DifficultWords/DifficultWords.jsx";
+import DeletedWords from "../DeletedWords/DeletedWords.jsx";
 
 const VocabularyRouter = () => {
   return (
     <Router>
-
       <nav className="nav justify-content-center mb-3 mt-5 pt-3">
-        <Link to="/learning-words">
-          <button type="button" className="btn btn-primary mr-2">
-            <span>Изучаемые слова</span>
-          </button>
-        </Link>
-        <Link to="/difficult-words">
-          <button type="button" className="btn btn-light mr-2">
-            <span>Сложные слова</span>
-          </button>
-        </Link>
-        <Link to="/deleted-words">
-          <button type="button" className="btn btn-light mr-2">
-            <span>Удаленные слова</span>
-          </button>
-        </Link>
+        <NavLink
+          to="/learning-words"
+          className="btn btn-light mr-2"
+          activeClassName="btn btn-primary text-white mr-2"
+        >
+          Изучаемые слова
+        </NavLink>
+        <NavLink
+          to="/difficult-words"
+          className="btn btn-light mr-2"
+          activeClassName="btn btn-primary text-white mr-2"
+        >
+          Сложные слова
+        </NavLink>
+        <NavLink
+          to="/deleted-words"
+          className="btn btn-light mr-2"
+          activeClassName="btn btn-primary text-white mr-2"
+        >
+          Удаленные слова
+        </NavLink>
       </nav>
 
       <Switch>
@@ -43,9 +48,8 @@ const VocabularyRouter = () => {
           <DeletedWords />
         </Route>
       </Switch>
-
     </Router>
-  )
-}
+  );
+};
 
-export default VocabularyRouter
+export default VocabularyRouter;

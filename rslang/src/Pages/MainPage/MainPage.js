@@ -3,22 +3,23 @@ import React, { Component } from 'react';
 import Card from '../../Components/Card/Card';
 import './MainPage.scss'
 
-import pic1 from './pic1.jpg';
+import pic1 from './pic1.png';
+import pic2 from './pic2.png';
 
 class MainPage extends Component {
   constructor() {
     super();
     this.state = {
       trainingCard: {
-        title: 'Training',
-        description: 'Study English',
+        title: 'Тренировка',
+        description: 'Повторяем Английский',
         href: 'training',
         class: 'Card-Image_training',
-        pic: pic1
+        pic: pic2
       },
       learningCard: {
-        title: 'Learning',
-        description: 'Learn English',
+        title: 'Изучение',
+        description: 'Учим Английский',
         href: 'play-zone',
         class: 'Card-Image_learning',
         pic: pic1

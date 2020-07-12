@@ -11,7 +11,7 @@ const Header = (props) => {
   }
 
   return (
-    <nav className="Header p-2 w-100 d-flex justify-content-between">
+    <nav className="Header p-1 w-100 d-flex justify-content-between">
       <div className="Header-Left w-25 d-flex justify-content-start">
         <button
           onClick={props.asideToggler}

@@ -3,6 +3,14 @@
     cursor: pointer;
     user-select: none;
     height: 100% !important;
+    transition: 0.3s;
+
+    &:hover {
+        .Card-Left,
+        .Card-Right {
+            background-color: #C056C0;
+        }
+    }
 }
 
 .Card-Image {
@@ -36,7 +44,9 @@
 
 .Card-Left,
 .Card-Right {
-    background-color: #750EA6;
-    // background-color: #CC61FF;
+    // background-color: #750EA6;
+    // background-color: #C775FF;
+    transition: 0.3s;
+    background-color: purple;
 }
 

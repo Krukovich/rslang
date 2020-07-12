@@ -1,11 +1,11 @@
 import React from 'react';
 
 const PlayGame = ({ recordSound }) => {
-  return(
+  return (
     <button
-      className="btn btn-info w-100"
+      className="btn btn-primary w-100"
       type="button"
-      onClick={ recordSound }
+      onClick={recordSound}
     >
       Запись слова
     </button>

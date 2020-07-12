@@ -12,20 +12,20 @@ import ShortStats from "../ShortStats/ShortStats";
 import Settings from "../../Pages/Settings/Settings";
 import SpeakItStart from "../../Pages/SpeakIt/SpeakItStart.jsx";
 import LongStats from "../../Pages/LongStats/LongStats";
-import { AudioCall } from "../../Pages/MiniGames/AudioCall/AudioCall.jsx";
 import MainPage from "../../Pages/MainPage/MainPage";
-import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter";
+import VocabularyRouter from "../../Pages/Vocabulary/VocabularyRouter/VocabularyRouter.jsx";
 import FortuneGame from "../../Pages/FortuneGame/FortuneGame.jsx";
 import MiniGamesPage from "../../Pages/MiniGamesPage/MiniGamesPage";
 import { CheckLogin } from "../../Pages/Authentication/CheckLogin";
 import { SavannaStartPage } from "../../Pages/MiniGames/Savanna/components/StartPage/StartPage";
-import SprintGame from "../../Pages/SprintGame/SprintGame";
-import AboutPage from "../../Pages/AboutPage/AboutPage";
+import SprintGame from "../../Pages/SprintGame/SprintGame.jsx";
+import AboutPage from "../../Pages/AboutPage/AboutPage.jsx";
 import Training from "../../Pages/Training/Training.jsx";
 import { fetchAPI } from "../Tools/fetchAPI";
 import Promo from "../../Pages/Promo/Promo.jsx";
 import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
 import { AudioCallStartPage } from '../../Pages/AudioCall/components/StartPage/StartPage';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -91,25 +91,13 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: "/audiocall",
-    component: () => (
-      <AudioCall
-        token={
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI3MDhjOThmZmJmMDAxNzQ1ODExNiIsImlhdCI6MTU5MjY3NDA0NywiZXhwIjoxNTkyNjg4NDQ3fQ.PwtU073aA-BfxwDgT5E5grLqtVtFTMED9ZMYrUaR3wU"
-        }
-        userId={"5eeb708c98ffbf0017458116"}
-      />
-    ),
-    exact: true,
-  },
-  {
     path: "/settings",
     component: Settings,
     exact: true,
   },
   {
     path: "/long-stats",
-    component: () => <LongStats totalWords={80} />,
+    component: () => <LongStats totalWords={180} />,
     exact: true,
   },
   {
@@ -128,7 +116,7 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: "/audiocallnew",
+    path: "/audiocall",
     component: AudioCallStartPage,
     exact: true,
   },
@@ -138,12 +126,12 @@ const sourceCloseRoutes = [
     exact: true,
   },
   {
-    path: '/english-puzzle',
+    path: "/english-puzzle",
     component: PuzzleStart,
     exact: true,
   },
   {
-    path: '/SprintGame',
+    path: "/SprintGame",
     component: SprintGame,
     exact: true,
   },

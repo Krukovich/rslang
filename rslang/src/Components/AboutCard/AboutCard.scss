@@ -1,5 +1,15 @@
 .AboutCard {
-    background-color: #750EA6 !important;
+    // background-color: #C775FF !important;
+    background-color: purple !important;
+    color: white;
+
+    .card-title {
+        font-weight: 700 !important;
+    }
+    
+    .card-text {
+        color: white !important;
+    }
 }
 
 .AboutCard-Image {
