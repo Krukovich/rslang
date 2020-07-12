@@ -64,7 +64,6 @@ class FortuneGame extends Component {
     }
 
     async getWords(difficulty = this.state.difficulty, level = this.state.level) {
-        console.log(difficulty, level)
         const responce = await fetch(
             `https://afternoon-falls-25894.herokuapp.com/words?group=${difficulty}&page=${level}`
         );
@@ -354,7 +353,6 @@ class FortuneGame extends Component {
 
     writeStats = async (statsObj) => {
         const content = await fetchAPI("users-set-statistics", statsObj);
-        console.log("stats write");
         return content;
     };
 
@@ -366,7 +364,6 @@ class FortuneGame extends Component {
 
         const dateTime = Date.now();
         const successCount = this.state.score;
-        console.log(successCount, dateTime)
         this.props.setFortuneStats({
             successCount, dateTime
         })

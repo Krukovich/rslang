@@ -11,12 +11,15 @@ export class Words extends React.Component {
   }
 
   componentDidMount() {
-    console.log('component did mount ')
     audioPlay(this.gameFindWord.audio);
   }
 
-  render () {
-    return <div className="Words ">{wordRender(this.wordsArray, this.styleFunction)}</div>;
+  render() {
+    return (
+      <div className="Words ">
+        {wordRender(this.wordsArray, this.styleFunction)}
+      </div>
+    );
   }
 }
 
@@ -41,7 +44,6 @@ function wordRender(wordsArray, styleFunction) {
     </div>
   ));
 }
-
 
 function shuffle(arr) {
   let j, temp;

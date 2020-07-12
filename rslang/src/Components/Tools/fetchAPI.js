@@ -3,8 +3,6 @@ import { getCookie } from "./getCookie";
 import { connect } from "react-redux";
 
 export const fetchAPI = async (query, obj) => {
-  console.log("fetchAPI start query" + query);
-
   if (query === "signin") {
     const rawResponse = await fetch(Const.API_LINK + query, {
       method: "POST",
@@ -244,5 +242,4 @@ export const fetchAPI = async (query, obj) => {
     }
   }
 
-  // ADDYOUR
 };

@@ -23,9 +23,8 @@ import AboutPage from "../../Pages/AboutPage/AboutPage.jsx";
 import Training from "../../Pages/Training/Training.jsx";
 import { fetchAPI } from "../Tools/fetchAPI";
 import Promo from "../../Pages/Promo/Promo.jsx";
-import PuzzleStart from '../../Pages/EnglishPuzzle/PuzzleStart.jsx';
-import { AudioCallStartPage } from '../../Pages/AudioCall/components/StartPage/StartPage';
-
+import PuzzleStart from "../../Pages/EnglishPuzzle/PuzzleStart.jsx";
+import { AudioCallStartPage } from "../../Pages/AudioCall/components/StartPage/StartPage";
 
 const mapStateToProps = (state) => {
   return {
@@ -182,7 +181,6 @@ export default connect(mapStateToProps, mapActionToProps)(RouteMap);
 
 function checkUserStats() {
   fetchAPI("users-get-statistics").then((userStatsRemote) => {
-    console.log("stats nety", userStatsRemote);
     if (userStatsRemote.optional === undefined) {
       fetchAPI("users-set-start-statistics");
       return true;

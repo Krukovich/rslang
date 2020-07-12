@@ -111,7 +111,6 @@ class Quiz extends Component {
           return total
         }, 0)
         const dateTime = Date.now();
-        console.log(successCount, dateTime)
         this.props.setSavannaStats({
           successCount, dateTime
         })

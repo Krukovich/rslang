@@ -32,13 +32,7 @@ export class SavannaStartPage extends Component {
 
   async startHandler() {
     this.state.quizQ = await createQuize(this.state.quizQ);
-    console.log("start page", this.state.quizQ);
     this.setState({ gameStart: true });
-    // try {
-
-    // } catch {
-    //   alert('Подожди, пока не загрузятся слова!')
-    // }
   }
 
   optionSpawner = (amount, key) => {

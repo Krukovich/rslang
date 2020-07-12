@@ -41,7 +41,6 @@ export class CreateAccount extends React.Component {
         alertMessage: "Hellow User",
       });
     }
-    console.log("создан акк");
     this.requestl();
   };
   /*Login*/
@@ -52,7 +51,6 @@ export class CreateAccount extends React.Component {
     });
     this.loginResult(content);
     this.setState({ showAlert: true });
-    console.log("логин");
   };
 
   loginResult = (answer) => {
@@ -129,9 +127,6 @@ export class CreateAccount extends React.Component {
               </div>
               <div className="clearfix">
                 <label className="pull-left checkbox-inline"></label>
-                <NavLink to="#ForgotPassword" className="pull-right">
-                  Забыли пароль?
-                </NavLink>
               </div>
             </form>
             <p className="text-center">

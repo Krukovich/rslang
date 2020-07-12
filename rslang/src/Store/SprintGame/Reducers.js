@@ -15,7 +15,6 @@ export const sprintGameReducer = (state = initialState, action) => {
         fetchAPI("users-set-statistics", newObj.optional);
       });
 
-      console.log("reducer", action);
       const sprintGame = state.sprintGame;
       sprintGame[action.payload.dateTime] = action.payload.successCount
       return {

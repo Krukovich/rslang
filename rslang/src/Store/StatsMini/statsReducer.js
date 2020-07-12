@@ -19,7 +19,6 @@ function reducer(state = initialState, action) {
 }
 
 const Store = createStore(reducer);
-console.log(Store.getState())
 
 const changeDay = {
     type: CHANGE_DAY,
@@ -45,7 +44,5 @@ const changeScoreFunc = (newScore) => {
 };
 
 Store.dispatch(changeDay);
-console.log(Store.getState());
 Store.dispatch(changeScore);
-console.log(Store.getState());
 export default Store;

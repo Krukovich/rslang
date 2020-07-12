@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import './Quiz.css'
-import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz.jsx'
-import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
-import { connect } from 'react-redux';
-import { setSavannaStats } from '../../../../Store/Savanna/actions';
+import React, { Component } from "react";
+import "./Quiz.css";
+import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz.jsx";
+import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
+import { connect } from "react-redux";
+import { setSavannaStats } from "../../../../Store/Savanna/actions";
 
 const mapStateToProps = (store) => {
   const {
@@ -29,102 +29,99 @@ const mapStateToProps = (store) => {
     dayLearningWords: dayLearningWords,
     cards: store.playZone.cards,
     stats: minigameSavannaStats,
-  }
-}
+  };
+};
 
 const mapActionToProps = {
   setSavannaStats,
-}
+};
 
 class Quiz extends Component {
   constructor(props) {
     super(props);
-  this.state = {
-    gameStart: false,
-    results: {}, // {[id]: success error}
-    isFinished: false,
-    activeQuestion: 0,
-    answerState: null, // { [id]: 'success' 'error' }
-    quiz: props.quiz,
-
+    this.state = {
+      gameStart: false,
+      results: {}, // {[id]: success error}
+      isFinished: false,
+      activeQuestion: 0,
+      answerState: null, // { [id]: 'success' 'error' }
+      quiz: props.quiz,
+    };
   }
-  
-}
 
-finishQuestionWithError = () => {
-  const results = this.state.results
-      results[this.state.activeQuestion] = 'error'
-      this.setState({
-        answerState: {'timeLeft': 'error'},
-        results
-      })  
+  finishQuestionWithError = () => {
+    const results = this.state.results;
+    results[this.state.activeQuestion] = "error";
+    this.setState({
+      answerState: { timeLeft: "error" },
+      results,
+    });
     this.finishQuestion();
-}
+  };
 
-onAnswerClickHandler = (answerId) => {
-  
-  // if (this.state.answerState) {
-  //   const key = Object.keys(this.state.answerState)[0]
-  //   if (this.state.answerState[key] === 'success') {
-  //     return
-  //   }
-  // } 
-  //если дожидаться пока пользователь правильно не ответит
-  const question = this.state.quiz[this.state.activeQuestion]
-  const results = this.state.results
+  onAnswerClickHandler = (answerId) => {
+    // if (this.state.answerState) {
+    //   const key = Object.keys(this.state.answerState)[0]
+    //   if (this.state.answerState[key] === 'success') {
+    //     return
+    //   }
+    // }
+    //если дожидаться пока пользователь правильно не ответит
+    const question = this.state.quiz[this.state.activeQuestion];
+    const results = this.state.results;
 
-  if (question.rightAnswerId === answerId) {
-    if (!results[this.state.activeQuestion]) {
-      results[this.state.activeQuestion] = 'success'
-    }
+    if (question.rightAnswerId === answerId) {
+      if (!results[this.state.activeQuestion]) {
+        results[this.state.activeQuestion] = "success";
+      }
 
-    this.setState({
-      answerState: {[answerId]: 'success'},
-      results
-    })   
-    
-  } else {
-    results[this.state.activeQuestion] = 'error'
-    this.setState({
-      answerState: {[answerId]: 'error'},
-      results
-    })
-  }
-  this.finishQuestion();
-}
-//}
-
-finishQuestion() {
-  const timeout = window.setTimeout(() => {
-    if (this.isQuizFinished()) {
       this.setState({
-        isFinished: true
-      })
-      const successCount = Object.keys(this.state.results).reduce((total, key) => {
-        if (this.state.results[key] === 'success') {
-          total++
-        }
-    
-        return total
-      }, 0)
-      const dateTime = Date.now();
-      console.log(successCount, dateTime)
-      this.props.setSavannaStats({
-        successCount, dateTime
-      })
+        answerState: { [answerId]: "success" },
+        results,
+      });
     } else {
-
+      results[this.state.activeQuestion] = "error";
       this.setState({
-        activeQuestion: this.state.activeQuestion + 1,
-        answerState: null
-      })
-      this.audioPlay(this.state.quiz[this.state.activeQuestion].audio)
-      
+        answerState: { [answerId]: "error" },
+        results,
+      });
     }
-  }, 1500)
-}
+    this.finishQuestion();
+  };
+  //}
+
+  finishQuestion() {
+    const timeout = window.setTimeout(() => {
+      if (this.isQuizFinished()) {
+        this.setState({
+          isFinished: true,
+        });
+        const successCount = Object.keys(this.state.results).reduce(
+          (total, key) => {
+            if (this.state.results[key] === "success") {
+              total++;
+            }
+
+            return total;
+          },
+          0
+        );
+        const dateTime = Date.now();
+        this.props.setSavannaStats({
+          successCount,
+          dateTime,
+        });
+      } else {
+        this.setState({
+          activeQuestion: this.state.activeQuestion + 1,
+          answerState: null,
+        });
+        this.audioPlay(this.state.quiz[this.state.activeQuestion].audio);
+      }
+    }, 1500);
+  }
   isQuizFinished() {
-    return this.state.activeQuestion + 1 === this.state.quiz.length
+    return this.state.activeQuestion + 1 === this.state.quiz.length;
   }
 
   retryHandler = () => {
@@ -132,49 +129,46 @@ finishQuestion() {
       activeQuestion: 0,
       answerState: null,
       isFinished: false,
-      results: {}
-    })
-  }
-  componentDidMount() {
-    
-  }
+      results: {},
+    });
+  };
+  componentDidMount() {}
 
   audioPlay = (strLink) => {
     const audioL = new Audio(
-      "https://raw.githubusercontent.com/Krukovich/rslang-data/master/" + strLink
+      "https://raw.githubusercontent.com/Krukovich/rslang-data/master/" +
+        strLink
     );
     audioL.play();
   };
 
   render() {
-
     return (
-      <div className='Quiz'>
-        <div className='QuizWrapper'>
+      <div className="Quiz">
+        <div className="QuizWrapper">
           <h1>Ответьте на все вопросы</h1>
-          {
-            this.state.isFinished
-             ? <FinishedQuiz
-                  results={this.state.results}
-                  quiz={this.state.quiz}
-                  onRetry={this.retryHandler}
-                />
-             : <ActiveQuiz
-                finishQuestionError={this.finishQuestionWithError}
-                answers={this.state.quiz[this.state.activeQuestion].answers}
-                question={this.state.quiz[this.state.activeQuestion].audio}
-                questionText={this.state.quiz[this.state.activeQuestion].question}
-                onAnswerClick={this.onAnswerClickHandler}
-                quizLength={this.state.quiz.length}
-                answerNumber={this.state.activeQuestion + 1}
-                state={this.state.answerState}              
-              />
-          }
+          {this.state.isFinished ? (
+            <FinishedQuiz
+              results={this.state.results}
+              quiz={this.state.quiz}
+              onRetry={this.retryHandler}
+            />
+          ) : (
+            <ActiveQuiz
+              finishQuestionError={this.finishQuestionWithError}
+              answers={this.state.quiz[this.state.activeQuestion].answers}
+              question={this.state.quiz[this.state.activeQuestion].audio}
+              questionText={this.state.quiz[this.state.activeQuestion].question}
+              onAnswerClick={this.onAnswerClickHandler}
+              quizLength={this.state.quiz.length}
+              answerNumber={this.state.activeQuestion + 1}
+              state={this.state.answerState}
+            />
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
-
 
 export default connect(mapStateToProps, mapActionToProps)(Quiz);
