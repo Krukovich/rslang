@@ -190,8 +190,10 @@ function createUserWordsById(wordId, hard = false, deleted = false, coefficient 
 
 
 function addStandartUserWords() {
-  const standartUserWords = fetchAPI("words", { page: 1, group: 1 });
-  standartUserWords.map((obj) => createUserWordsById(obj.id));
+  fetchAPI("words", { page: 1, group: 1 }).then((standartUserWords) => {
+    standartUserWords.map((obj) => createUserWordsById(obj.id));
+  })
+  
 }
 
 function checkUserStats() {
@@ -202,6 +204,15 @@ function checkUserStats() {
       const allUserWords = fetchAPI('getAllUserWords');//это в редакс нужно положить
       return true;
     }
+    
+    fetchAPI('getAllUserWords').then(
+      (data) => {
+        if(data.length === 0 ) {
+          addStandartUserWords();
+        }
+        console.log("userWords", data)
+      })
+    
     return false;
   });
 }
