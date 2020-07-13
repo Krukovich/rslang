@@ -192,8 +192,7 @@ function createUserWordsById(wordId, hard = false, deleted = false, coefficient 
 function addStandartUserWords() {
   fetchAPI("words", { page: 1, group: 1 }).then((standartUserWords) => {
     standartUserWords.map((obj) => createUserWordsById(obj.id));
-  })
-  
+  })  
 }
 
 function checkUserStats() {
