@@ -179,10 +179,26 @@ const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
 
 export default connect(mapStateToProps, mapActionToProps)(RouteMap);
 
+function createUserWordsById(wordId, hard = false, deleted = false, coefficient = 1) {
+  let obj = {
+    "hard": hard,
+    "delete": deleted,
+    "coefficient": coefficient, 
+}
+  fetchAPI('createUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, " create"))
+}
+
+
+function addStandartUserWords() {
+  const standartUserWords = fetchAPI("words", { page: 1, group: 1 });
+  standartUserWords.map((obj) => createUserWordsById(obj.id));
+}
+
 function checkUserStats() {
   fetchAPI("users-get-statistics").then((userStatsRemote) => {
     if (userStatsRemote.optional === undefined) {
       fetchAPI("users-set-start-statistics");
+      addStandartUserWords();
       const allUserWords = fetchAPI('getAllUserWords');//это в редакс нужно положить
       return true;
     }
