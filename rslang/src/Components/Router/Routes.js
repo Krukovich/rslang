@@ -183,6 +183,7 @@ function checkUserStats() {
   fetchAPI("users-get-statistics").then((userStatsRemote) => {
     if (userStatsRemote.optional === undefined) {
       fetchAPI("users-set-start-statistics");
+      const allUserWords = fetchAPI('getAllUserWords');//это в редакс нужно положить
       return true;
     }
     return false;
