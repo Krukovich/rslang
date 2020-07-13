@@ -6,6 +6,8 @@ import './MainPage.scss'
 import pic1 from './pic1.png';
 import pic2 from './pic2.png';
 
+import {addMoreUserWords} from '../../Components/Tools/userWordsApi'
+
 class MainPage extends Component {
   constructor() {
     super();
@@ -61,6 +63,7 @@ class MainPage extends Component {
             </div>
           </div>
         </div>
+        <button onClick={() => addMoreUserWords(5, 3)}>Добавит 5 слов</button>
       </div>
     )
   }
