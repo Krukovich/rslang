@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createQuize } from "../../components/createQuize";
+import { Translation } from 'react-i18next';
 import LevelSelect from "../LevelSelect/LevelSelect";
 import './StartPage.scss';
 import App from "../../App";
@@ -84,18 +85,31 @@ export class AudioCallStartPage extends Component {
         />
         <section className="jumbotron Audiocall-jumbotron text-center">
           <div className="container">
-            <h1 className="jumbotron-heading">Аудио Вызов</h1>
+            <h1 className="jumbotron-heading">
+              {<Translation>
+                {
+                  (t) => <>{t('fortuneGame.2')}</>
+                }
+              </Translation>}
+            </h1>
             <p className="lead text-white">
-              Тренировка Аудио Вызов развивает словарный запас. Чем больше слов ты
-              знаешь, тем больше очков опыта получишь.
-          </p>
+              {<Translation>
+                {
+                  (t) => <>{t('audiocallGame.1')}</>
+                }
+              </Translation>}
+            </p>
             <p>
               <Button
                 variant="btn btn-primary my-2"
                 onClick={() => this.startHandler()}
               >
-                Начать игру
-            </Button>
+                {<Translation>
+                  {
+                    (t) => <>{t('audiocallGame.3')}</>
+                  }
+                </Translation>}
+              </Button>
             </p>
           </div>
         </section>

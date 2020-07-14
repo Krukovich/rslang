@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBView, MDBBtn } from "mdbreact";
 import { connect } from 'react-redux';
+import { Translation } from 'react-i18next';
 
 import { gameData, MAX_PAGE, POINT } from '../../constant';
 import Stats from './Components/Stats/Stats';
@@ -207,14 +208,22 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
               className="btn btn-outline-white btn-md"
               onClick={startPlay}
             >
-              Начать играть
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.3')}</>
+                }
+              </Translation>}
             </MDBBtn>}
           {(isPlay && isMovePoint !== 10) ?
             <MDBBtn
               className="btn btn-outline-white btn-md"
               onClick={checkHandler}
             >
-              Проверить
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.6')}</>
+                }
+              </Translation>}
             </MDBBtn> :
             ''}
           {(isPlay && !isTrue && isMovePoint !== 10) ?
@@ -222,7 +231,11 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
               className="btn btn-outline-white btn-md"
               onClick={makeMistakeString}
             >
-              Подсказать
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.7')}</>
+                }
+              </Translation>}
             </MDBBtn> :
             ''}
           {(isPlay && isTrue) ?
@@ -230,7 +243,11 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
               className="btn btn-outline-white btn-md"
               onClick={nextStep}
             >
-              Продолжить
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.8')}</>
+                }
+              </Translation>}
             </MDBBtn> :
             ''}
           {(isTrue && isMovePoint === 10) ?

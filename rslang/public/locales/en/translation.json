@@ -50,10 +50,10 @@
         "2": "Audiocall",
         "3": "START",
         "4": "Answer the questions:",
-        "5": "Right answers:",
+        "5": "Right answers: ",
         "6": "AGAIN",
         "7": "TO MAIN PAGE",
-        "8": "from",
+        "8": " from ",
         "9": "Hint"
     },
     "englishPuzzle": {
@@ -68,7 +68,9 @@
         "9": "Result",
         "10": "I don't know",
         "11": "I know",
-        "12": "CLOSE"
+        "12": "CLOSE",
+        "13": "Play example sound",
+        "14": "Translation"
     },
     "speakIt": {
         "1": "In SpeakIt you can listen pronunciation of english words and use Google Web Speech API to check how you pronounce it.",
