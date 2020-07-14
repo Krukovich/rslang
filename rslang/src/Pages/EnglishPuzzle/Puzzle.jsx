@@ -166,13 +166,15 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
   }
 
   return (
-    <MDBContainer className="mt-4">
-      <GameLevel score={score} />
-      <MDBRow>
+    <MDBContainer className="mt-5">
+      <div className="EnglishPuzzle-Tools">
+        <GameLevel score={score} />
         <Control
           src={getSrcForControl()}
           stringTranslate={getStringTranslate()}
         />
+      </div>
+      <MDBRow>
         <MDBCardBody className="play-card">
           <MDBRow>
             <MDBCol md="12">

@@ -1,4 +1,17 @@
 .control-panel {
-  position: fixed;
+  // position: fixed;
   z-index: 10;
+  max-width: 100px;
+
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+      display: flex !important;
+    }
+  }
 }

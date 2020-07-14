@@ -6,8 +6,6 @@ body {
 }
 
 .play-card {
-  margin-top: 3rem;
-
   .game-image-place {
     position: relative;
     height: 100%;
@@ -49,3 +47,18 @@ body {
     min-height: 620px;
   }
 } 
+
+.EnglishPuzzle-Tools {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10%;
+
+  @media screen and (max-width: 1020px) {
+    margin-top: 15%;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 25%;
+  }
+}

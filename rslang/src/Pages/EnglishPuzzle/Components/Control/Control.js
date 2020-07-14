@@ -11,8 +11,8 @@ const Control = ({ src, stringTranslate }) => {
   return (
     <MDBRow className="control-panel">
       <MDBCol xl="4" md="12">
-        <div className="btn-toolbar mt-5" role="toolbar">
-          <MDBBtnGroup className="mr-2">
+        <div className="btn-toolbar" role="toolbar">
+          <MDBBtnGroup>
             <MDBTooltip placement="bottom">
               <MDBBtn
                 color="white lighten-2"
