@@ -3,36 +3,84 @@ import { getCookie } from "./getCookie";
 import { connect } from "react-redux";
 import { fetchAPI } from "./fetchAPI";
 
-export const addMoreUserWords = async (countOfNewWords, levelOfWords = 3) => {
+export const addMoreUserWords = async (countOfNewWords, levelOfWords = 4) => {
   const allUserWords = await fetchAPI("getAllUserWords");
   let arrayOfOldWordsId = [];
-  let pageNow = 3;
-  const newUserWords = await fetchAPI("words", { page: pageNow, group: levelOfWords }); //нужно настроить получение с редакса или с сервера настроек
-  console.log("добавление новых слов: allUserWords", allUserWords, "newUserWords" , newUserWords)
-  let i = 0;
-
+  let pageNow = 4;
   allUserWords.map((allUserWordObj) => {
-      arrayOfOldWordsId.push(allUserWordObj.value.wordId);
-    });
+    arrayOfOldWordsId.push(allUserWordObj.value.wordId);
+  });
+  while (
+    checkAndAddNewWords(
+      pageNow,
+      levelOfWords,
+      arrayOfOldWordsId,
+      countOfNewWords
+    ) === false
+  ) {
+    pageNow++;
+  }
+};
 
+const checkAndAddNewWords = async (
+  page,
+  group,
+  arrayOfOldWordsId,
+  countOfNewWords
+) => {
+  let i = 0;
+  const newUserWords = await fetchAPI("words", {
+    page: page,
+    group: group,
+  });
   newUserWords.map((newUserWordObj, count) => {
-    if(count === 19) {
-      pageNow++;
-      
-      
+    if (count === 19) {
+      return false;
     }
-    if (!arrayOfOldWordsId.includes(newUserWordObj.id) & i < countOfNewWords) {
+    if (
+      !arrayOfOldWordsId.includes(newUserWordObj.id) &
+      (i < countOfNewWords)
+    ) {
       createUserWordsById(newUserWordObj.id);
-      i++
+      // console.log("get word info", getWordsById(newUserWordObj.id));
+      i++;
+      console.log("i", i);
+    }
+    if (i + 1 === countOfNewWords) {
+      return true;
+    } else {
+      return false;
     }
   });
 };
 
-function createUserWordsById(wordId, hard = false, deleted = false, coefficient = 1) {
+function createUserWordsById(
+  wordId,
+  hard = false,
+  deleted = false,
+  coefficient = 1
+) {
   let obj = {
-    "hard": hard,
-    "delete": deleted,
-    "coefficient": coefficient, 
+    hard: hard,
+    delete: deleted,
+    coefficient: coefficient,
+  };
+  fetchAPI("createUserWordsById", obj, wordId).then(() =>
+    console.log("wordId ", wordId, " create")
+  );
 }
-  fetchAPI('createUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, " create"))
-}
+
+export const getWordsById = async (wordId) => {
+  const rawResponse = await fetch(Const.API_LINK + `words/${wordId}`, {
+    method: "GET",
+    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${getCookie("token")}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  const content = await rawResponse.json();
+  return content;
+};
+

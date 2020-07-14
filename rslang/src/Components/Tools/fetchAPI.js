@@ -280,4 +280,47 @@ export const fetchAPI = async (query, obj, wordId) => {
     const content = await rawResponse.json();
     return content;
   }
+
+  if (query === "updateUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "PUT",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "getUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "GET",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
 };
