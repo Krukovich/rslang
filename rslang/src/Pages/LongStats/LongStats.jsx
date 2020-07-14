@@ -116,6 +116,7 @@ export default class LongStats extends React.Component {
                 mode: "index",
                 intersect: true,
               },
+              maintainAspectRatio: false,
             }}
           />
         </div>
