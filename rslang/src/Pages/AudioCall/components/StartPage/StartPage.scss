@@ -1,0 +1,16 @@
+.Audiocall-jumbotron {
+    background-color: transparent !important;
+    backdrop-filter: brightness(50%);
+    color: white !important;
+}
+
+.Audiocall {
+    background-image: url('../../assets/back.png') !important;
+    background-size: 250px !important;
+    background-position: center !important;
+    padding-top: 15% !important;
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}
