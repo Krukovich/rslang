@@ -1,6 +1,5 @@
 import * as Const from "../../constant";
 import { getCookie } from "./getCookie";
-import { connect } from "react-redux";
 
 export const fetchAPI = async (query, obj, wordId) => {
   if (query === "signin") {

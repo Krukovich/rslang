@@ -1,10 +1,10 @@
 import {
   CHANGE_WORD_CARDS,
   CHANGE_DAY_LEARNING_WORDS,
-  CHANGE_DIFFICULT_WORDS,
-  CHANGE_DELETE_WORDS,
+  ADD_DIFFICULT_WORDS,
+  ADD_DELETED_WORDS,
   CHANGE_APP_STATS,
-  RESTORE_DELETE_WORDS,
+  REMOVE_DELETED_WORDS,
   DELETE_DIFFICULT_WORDS,
 } from './actions';
 import { fetchAPI } from '../../Components/Tools/fetchAPI';
@@ -23,12 +23,12 @@ export const playZonePageReducer = (state = initialState, action) => {
         ...state,
         cards: action.payload,
       };
-    case CHANGE_DELETE_WORDS:
+    case ADD_DELETED_WORDS:
       return {
         ...state,
-        deleteWords: [...state.deleteWords, action.payload],
+        deleteWords: [...state.deleteWords, ...action.payload],
       };
-    case RESTORE_DELETE_WORDS:
+    case REMOVE_DELETED_WORDS:
       const newState = [
         ...state.deleteWords.slice(0, action.payload),
         ...state.deleteWords.slice(action.payload + 1)
@@ -51,10 +51,10 @@ export const playZonePageReducer = (state = initialState, action) => {
         ...state,
         difficultWords: newInitialState,
       };
-    case CHANGE_DIFFICULT_WORDS:
+    case ADD_DIFFICULT_WORDS:
       return {
         ...state,
-        difficultWords: [...state.difficultWords, action.payload],
+        difficultWords: [...state.difficultWords, ...action.payload],
       };
     case CHANGE_APP_STATS:
       fetchAPI("users-get-statistics").then((oldObj) => {

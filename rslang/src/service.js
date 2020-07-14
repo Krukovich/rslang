@@ -1,4 +1,43 @@
 import React from 'react';
+import { fetchAPI } from './Components/Tools/fetchAPI';
+
+export const filterOutDeletedWords = (words, userWords) => {
+  const wordIds = userWords
+    .filter((wordProps) => wordProps.value.optional.delete)
+    .map((wordProps) => wordProps.value.wordId);
+  return words.filter((word) => wordIds.includes(word.id));
+}
+
+export const addStandardUserWords = () => {
+  fetchAPI("words", { page: 1, group: 1 }).then((standardUserWords) => {
+    standardUserWords.map((obj) => createUserWordsById(obj.id));
+  });
+}
+
+export const filterOutDifficultWords = (words, userWords) => {
+  const wordIds = userWords
+    .filter((wordProps) => wordProps.value.optional.hard)
+    .map((wordProps) => wordProps.value.wordId);
+  return words.filter((word) => wordIds.includes(word.id));
+}
+
+export const putUserWordsById = (wordId, hard, deleted, coefficient) => {
+  const obj = {
+    "hard": hard ? hard : false,
+    "delete": deleted ? deleted : false,
+    "coefficient": coefficient ? coefficient : 1, 
+}
+  fetchAPI('putUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+}
+
+export const createUserWordsById = (wordId, hard = false, deleted = false, coefficient = 1) => {
+  const obj = {
+    "hard": hard,
+    "delete": deleted,
+    "coefficient": coefficient, 
+}
+  fetchAPI('createUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+}
 
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
 
