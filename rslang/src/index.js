@@ -9,6 +9,7 @@ import App from "./App";
 import Spinner from "./Components/Spinner/Spinner";
 import { fetchAPI } from "./Components/Tools/fetchAPI";
 import { getCookie } from "./Components/Tools/getCookie";
+import './i18n';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
