@@ -141,9 +141,9 @@ class Quiz extends Component {
 
     return (
       <div className='Quiz w-100'>
-        <div className='QuizWrapper row w-100 d-flex justify-content-center'>
+        <div className='QuizWrapper row w-100 pt-5 d-flex justify-content-center'>
           <div className='col-md-8 col-sm-12'>
-            <h1>Ответьте на все вопросы</h1>
+            <h1>Ответьте на вопросы:</h1>
             {
               this.state.isFinished
                 ? <FinishedQuiz

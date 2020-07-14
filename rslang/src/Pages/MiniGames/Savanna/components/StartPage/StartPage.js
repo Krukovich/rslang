@@ -4,6 +4,7 @@ import { createQuize } from '../../components/createQuize'
 import App from '../../App'
 import { Button } from 'react-bootstrap'
 import LevelSelect from '../LevelSelect/LevelSelect.jsx'
+import './StartPage.scss'
 
 export class SavannaStartPage extends Component {
   constructor(props) {
@@ -89,7 +90,7 @@ export class SavannaStartPage extends Component {
           levelHandler={this.levelHandler}
           optionSpawner={this.optionSpawner}
         />
-        <section className="jumbotron text-center text-white" >
+        <section className="jumbotron Savannah-jumbotron text-center text-white" >
           <div className="container">
             <h1 className="jumbotron-heading">САВАННА</h1>
             <p className="lead text-white">Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь.</p>

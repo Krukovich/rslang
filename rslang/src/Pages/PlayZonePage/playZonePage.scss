@@ -34,3 +34,10 @@
     border-bottom: 2px solid green;
   }
 }
+
+.Playzone-Playborad {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}

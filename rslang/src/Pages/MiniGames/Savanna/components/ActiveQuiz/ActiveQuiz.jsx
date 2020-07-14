@@ -43,7 +43,7 @@ class ActiveQuiz extends React.Component {
 
   render() {
     return (
-      <div className="ActiveQuiz">
+      <div className="ActiveQuiz p-3">
         <h2 className="ActiveQuiz-Timer">{this.state.timeLeft}</h2>
         <div id="question" className={`questionanimated`}>
           {this.props.question}

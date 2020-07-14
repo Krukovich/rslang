@@ -7,15 +7,15 @@ import { BTN_LABEL } from '../../../constant';
 const Button = ({ decrementPlayStep, incrementPlayStep, label, type, isNotAgree }) => {
   const func = decrementPlayStep ? decrementPlayStep : incrementPlayStep;
   const flag = isNotAgree ? isNotAgree : '';
-  
-  return(
+
+  return (
     <button
-      type={ type ? type : 'button' }
+      type={type ? type : 'button'}
       className="btn btn-primary"
-      disabled={ flag }
-      onClick={ () => func() } 
+      disabled={flag}
+      onClick={() => func()}
     >
-      { label === BTN_LABEL.NEXT ? <FontAwesomeIcon icon={ faAngleRight } /> : <FontAwesomeIcon icon={ faAngleLeft } /> } 
+      {label === BTN_LABEL.NEXT ? <FontAwesomeIcon icon={faAngleRight} /> : <FontAwesomeIcon icon={faAngleLeft} />}
     </button>
   );
 }
