@@ -10,12 +10,24 @@ export const addMoreUserWords = async (countOfNewWords, levelOfWords = 4) => {
   allUserWords.map((allUserWordObj) => {
     arrayOfOldWordsId.push(allUserWordObj.value.wordId);
   });
-while( checkAndAddNewWords(pageNow, levelOfWords, arrayOfOldWordsId, countOfNewWords) === false) {
-  pageNow++;
-}
+  while (
+    checkAndAddNewWords(
+      pageNow,
+      levelOfWords,
+      arrayOfOldWordsId,
+      countOfNewWords
+    ) === false
+  ) {
+    pageNow++;
+  }
 };
 
-const checkAndAddNewWords = async (page, group, arrayOfOldWordsId, countOfNewWords) => {
+const checkAndAddNewWords = async (
+  page,
+  group,
+  arrayOfOldWordsId,
+  countOfNewWords
+) => {
   let i = 0;
   const newUserWords = await fetchAPI("words", {
     page: page,
@@ -23,25 +35,24 @@ const checkAndAddNewWords = async (page, group, arrayOfOldWordsId, countOfNewWor
   });
   newUserWords.map((newUserWordObj, count) => {
     if (count === 19) {
-      return false
+      return false;
     }
     if (
       !arrayOfOldWordsId.includes(newUserWordObj.id) &
       (i < countOfNewWords)
     ) {
       createUserWordsById(newUserWordObj.id);
-     // console.log("get word info", getWordsById(newUserWordObj.id));
+      // console.log("get word info", getWordsById(newUserWordObj.id));
       i++;
-      console.log("i", i)
-    } 
+      console.log("i", i);
+    }
     if (i + 1 === countOfNewWords) {
-      return true 
+      return true;
     } else {
-      return false
+      return false;
     }
   });
-
-}
+};
 
 function createUserWordsById(
   wordId,
@@ -72,3 +83,4 @@ export const getWordsById = async (wordId) => {
   const content = await rawResponse.json();
   return content;
 };
+
