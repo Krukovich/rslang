@@ -3,6 +3,7 @@ import MiniStatsItem from "../MiniStatsItem/MiniStatsItem";
 
 const MiniStats = ({ stats, miniGame }) => {
   const elems = [];
+  if (!stats[miniGame]) return <p className="d-flex justify-content-around miniStats-elem">Данных пока нет</p>
 
   for (let timestamp in stats[miniGame]) {
     if (timestamp !== "0") {
