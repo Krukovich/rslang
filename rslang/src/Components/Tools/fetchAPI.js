@@ -1,6 +1,5 @@
 import * as Const from "../../constant";
 import { getCookie } from "./getCookie";
-import { connect } from "react-redux";
 
 export const fetchAPI = async (query, obj, wordId) => {
   if (query === "signin") {
@@ -265,6 +264,26 @@ export const fetchAPI = async (query, obj, wordId) => {
       Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
       {
         method: "POST",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+  if (query === "putUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "PUT",
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${getCookie("token")}`,
