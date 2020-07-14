@@ -1,10 +1,10 @@
 import React from 'react';
-// import './LevelSelect.scss';
+import './LevelSelect.scss';
 import { Button } from 'react-bootstrap';
 
 const LevelSelect = (props) => {
     return (
-        <div className="Sprint-Levelselect row">
+        <div className="Sprint-Levelselect LevelselectScreen row">
             <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
                 <div className="d-flex align-items-center">
                     <span className="mr-2">Сложность:</span>

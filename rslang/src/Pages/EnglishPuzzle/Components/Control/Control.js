@@ -7,7 +7,7 @@ import { playExampleSound } from '../../../../service';
 import '../Control/control.scss';
 
 const Control = ({ src, stringTranslate }) => {
-  
+
   return (
     <MDBRow className="control-panel">
       <MDBCol xl="4" md="12">
@@ -16,14 +16,14 @@ const Control = ({ src, stringTranslate }) => {
             <MDBTooltip placement="bottom">
               <MDBBtn
                 color="white lighten-2"
-                onClick={ () => playExampleSound(src) }
+                onClick={() => playExampleSound(src)}
               >
                 <img src="https://img.icons8.com/nolan/24/low-volume.png" alt="icon" />
               </MDBBtn>
               <div>Play example sound</div>
             </MDBTooltip>
             <Translate
-              stringTranslate={ stringTranslate }
+              stringTranslate={stringTranslate}
             />
           </MDBBtnGroup>
         </div>

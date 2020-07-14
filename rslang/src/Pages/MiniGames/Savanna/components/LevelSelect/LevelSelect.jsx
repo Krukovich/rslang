@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import './LevelSelect.scss'
 
 const LevelSelect = (props) => {
     return (
-        <div className="Savanna-Levelselect row text-white">
+        <div className="Savanna-Levelselect LevelselectScreen row text-white">
             <div className="md-col-12 w-100 p-3 d-flex flex-column justify-content-center align-items-center">
                 <div className="d-flex align-items-center">
                     <span className="mr-2">Сложность:</span>

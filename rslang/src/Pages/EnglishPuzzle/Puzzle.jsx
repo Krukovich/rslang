@@ -31,7 +31,7 @@ const mapStateToProps = (store) => {
 const mapActionToProps = {
   setEnglishPuzzleStats,
 }
- 
+
 const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
 
   const [isAgreeString, setIsAgreeString] = useState('');
@@ -68,7 +68,7 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
     const page = getRandomPage(data.length);
     const src = data[page];
     setIsPage(page);
-    setIsImageSrc(`https://raw.githubusercontent.com/krukovich/rslang_data_paintings/master/${ src.cutSrc }`);
+    setIsImageSrc(`https://raw.githubusercontent.com/krukovich/rslang_data_paintings/master/${src.cutSrc}`);
   }
 
   const checkHandler = () => {
@@ -167,11 +167,11 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
 
   return (
     <MDBContainer className="mt-4">
-      <GameLevel score={ score } />
+      <GameLevel score={score} />
       <MDBRow>
         <Control
-          src={ getSrcForControl() }
-          stringTranslate={ getStringTranslate() }
+          src={getSrcForControl()}
+          stringTranslate={getStringTranslate()}
         />
         <MDBCardBody className="play-card">
           <MDBRow>
@@ -179,7 +179,7 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
               <MDBCard reverse>
                 <MDBView className="game-image-place" hover cascade waves>
                   <img
-                    src={ isImageSrc }
+                    src={isImageSrc}
                     alt="images"
                     className="img-fluid"
                   />
@@ -188,8 +188,8 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
                 </MDBView>
                 <MDBCardBody cascade className="play-zone text-center">
                   <MDBRow className="justify-content-center">
-                    { (isAgreeString && !isFinish) ? <Words string={ isPlayString } /> : '' }
-                    { isFinish ? <Info data={ gameData[`level${ level }`][isPage] } /> : '' } 
+                    {(isAgreeString && !isFinish) ? <Words string={isPlayString} /> : ''}
+                    {isFinish ? <Info data={gameData[`level${level}`][isPage]} /> : ''}
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>
@@ -199,45 +199,45 @@ const Puzzle = ({ level, page, words, setEnglishPuzzleStats }) => {
       </MDBRow>
       <MDBRow>
         <MDBCol md="12 text-center">
-          { isPlay ? 
-            '' : 
+          {isPlay ?
+            '' :
             <MDBBtn
               className="btn btn-outline-white btn-md"
-              onClick={ startPlay }
+              onClick={startPlay}
             >
               Начать играть
-            </MDBBtn> }
-          { (isPlay && isMovePoint !== 10) ? 
+            </MDBBtn>}
+          {(isPlay && isMovePoint !== 10) ?
             <MDBBtn
               className="btn btn-outline-white btn-md"
-              onClick={ checkHandler }
+              onClick={checkHandler}
             >
               Проверить
-            </MDBBtn> : 
-            '' }
-          { (isPlay && !isTrue && isMovePoint !== 10) ? 
+            </MDBBtn> :
+            ''}
+          {(isPlay && !isTrue && isMovePoint !== 10) ?
             <MDBBtn
               className="btn btn-outline-white btn-md"
-              onClick={ makeMistakeString }
+              onClick={makeMistakeString}
             >
               Подсказать
-            </MDBBtn> : 
-            '' }
-          { (isPlay && isTrue) ?
+            </MDBBtn> :
+            ''}
+          {(isPlay && isTrue) ?
             <MDBBtn
               className="btn btn-outline-white btn-md"
-              onClick={ nextStep }
+              onClick={nextStep}
             >
               Продолжить
-            </MDBBtn> : 
-            '' }
-          { (isTrue && isMovePoint === 10) ?
+            </MDBBtn> :
+            ''}
+          {(isTrue && isMovePoint === 10) ?
             <Stats
-              isMistakeStrings={ isMistakeStrings }
-              isAgreeStrings={ isAgreeStrings }
-              nextStep={ nextStep }
+              isMistakeStrings={isMistakeStrings}
+              isAgreeStrings={isAgreeStrings}
+              nextStep={nextStep}
             /> : ''}
-        </MDBCol> 
+        </MDBCol>
       </MDBRow>
     </MDBContainer>
   );
