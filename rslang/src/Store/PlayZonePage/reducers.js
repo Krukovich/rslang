@@ -38,7 +38,6 @@ export const playZonePageReducer = (state = initialState, action) => {
       };
     case DELETE_DIFFICULT_WORDS:
       const list = state.difficultWords.filter((item) => item.id !== action.payload)
-      debugger;
       return { ...state, difficultWords: list }
     case ADD_DIFFICULT_WORDS:
       return {
