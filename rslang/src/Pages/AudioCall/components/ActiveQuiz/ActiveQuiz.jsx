@@ -2,6 +2,7 @@ import React from "react";
 import "./ActiveQuiz.css";
 import AnswersList from "./AnswersList/AnswersList";
 import Button from "../UI/Button/Button";
+import { Translation } from 'react-i18next';
 
 class ActiveQuiz extends React.Component {
   constructor(props) {
@@ -31,12 +32,22 @@ class ActiveQuiz extends React.Component {
             <button
               className="btn-primary"
               onClick={() => alert(this.props.questionText)}>
-              Подсказка
+              {<Translation>
+                {
+                  (t) => <>{t('audiocallGame.9')}</>
+                }
+              </Translation>}
             </button>
           </span>
 
           <small>
-            {this.props.answerNumber} из {this.props.quizLength}
+            {this.props.answerNumber}
+            {<Translation>
+              {
+                (t) => <>{t('audiocallGame.8')}</>
+              }
+            </Translation>}
+            {this.props.quizLength}
           </small>
         </p>
 

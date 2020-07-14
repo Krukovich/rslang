@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Quiz.css";
+import { Translation } from 'react-i18next';
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz.jsx";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 import { connect } from "react-redux";
@@ -142,7 +143,13 @@ class Quiz extends Component {
           <div className="col-12">
             <div className="Quiz Audiocall">
               <div className="QuizWrapper">
-                <h1>Ответьте на все вопросы</h1>
+                <h1>
+                  {<Translation>
+                    {
+                      (t) => <>{t('audiocallGame.4')}</>
+                    }
+                  </Translation>}
+                </h1>
                 {this.state.isFinished ? (
                   <FinishedQuiz
                     results={this.state.results}
