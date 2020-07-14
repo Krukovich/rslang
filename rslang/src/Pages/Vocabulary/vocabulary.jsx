@@ -58,7 +58,7 @@ const Vocabulary = (props) => {
 
   return (
     <React.Fragment>
-      <div className='container mt-5'>
+      <div className='container-fluid'>
         <WordsToLearn posts={currentPost} remove={remove} />
         <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
       </div>

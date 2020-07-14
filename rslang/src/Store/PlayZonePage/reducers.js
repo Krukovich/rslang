@@ -29,28 +29,17 @@ export const playZonePageReducer = (state = initialState, action) => {
         deleteWords: [...state.deleteWords, ...action.payload],
       };
     case REMOVE_DELETED_WORDS:
-      const newState = [
-        ...state.deleteWords.slice(0, action.payload),
-        ...state.deleteWords.slice(action.payload + 1)
-      ];
-      return {
-        ...state,
-        deleteWords: newState,
-      };
+      const newList = state.deleteWords.filter((item) => item.id !== action.payload)
+      return { ...state, deleteWords: newList }
     case CHANGE_DAY_LEARNING_WORDS:
       return {
         ...state,
         dayLearningWords: action.payload,
       };
     case DELETE_DIFFICULT_WORDS:
-      const newInitialState = [
-        ...state.difficultWords.slice(0, action.payload),
-        ...state.difficultWords.slice(action.payload + 1)
-      ];
-      return {
-        ...state,
-        difficultWords: newInitialState,
-      };
+      const list = state.difficultWords.filter((item) => item.id !== action.payload)
+      debugger;
+      return { ...state, difficultWords: list }
     case ADD_DIFFICULT_WORDS:
       return {
         ...state,

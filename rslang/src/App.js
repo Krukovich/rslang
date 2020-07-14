@@ -14,6 +14,7 @@ import {
   filterOutDifficultWords,
   filterOutDeletedWords,
   saveWordsInLocalStorage,
+  getRandomPage,
 } from './service';
 
 const mapStateToProps = (state) => {
@@ -29,14 +30,14 @@ const mapActionToProps = {
 }
 
 const App = (props) => {
+
   useEffect(() => {
-    fetchAPI('words', {page: props.level, group: 1}).then((words) => {
+    fetchAPI('words', {page: 1, group: 1}).then((words) => {
       fetchAPI('getAllUserWords').then(
         (userWords) => {
           if(userWords.length === 0 ) {
             addStandardUserWords();
           }
-
           const deleteWords = filterOutDeletedWords(words, userWords);
           if (deleteWords.length) {
             props.setDeleteWords(deleteWords);
