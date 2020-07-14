@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './EndScreen.scss';
+import { Translation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
@@ -32,11 +33,27 @@ class EndScreen extends Component {
             <React.Fragment>
                 <div className="row Fortune-Endscreen">
                     <div className="md-col-12 w-100 p-5 d-flex flex-column justify-content-center align-items-center">
-                        <h1 className="mb-4">Игре конец!</h1>
-                        <p>Ваш счёт: {this.props.score}</p>
+                        <h1 className="mb-4">{<Translation>
+                            {
+                                (t) => <>{t('fortuneGame.5')}</>
+                            }
+                        </Translation>}</h1>
+                        <p>{<Translation>
+                            {
+                                (t) => <>{t('fortuneGame.6')}</>
+                            }
+                        </Translation>} {this.props.score}</p>
                         <div className="d-flex mt-4">
-                            <Button onClick={this.props.restart} className="mr-2">ЕЩЁ РАЗ</Button>
-                            <Link className="FotuneBtn-Main btn btn-primary rounded" to={'/main-page'}>НА ГЛАВНУЮ</Link>
+                            <Button onClick={this.props.restart} className="mr-2">{<Translation>
+                                {
+                                    (t) => <>{t('fortuneGame.7')}</>
+                                }
+                            </Translation>}</Button>
+                            <Link className="FotuneBtn-Main btn btn-primary rounded" to={'/main-page'}>{<Translation>
+                                {
+                                    (t) => <>{t('fortuneGame.8')}</>
+                                }
+                            </Translation>}</Link>
                         </div>
                     </div>
                 </div>
@@ -44,7 +61,11 @@ class EndScreen extends Component {
                     <div className="FortuneStats md-col-4 p-2">
                         <div className='FortuneStats-iknow mb-2 w-100'>
                             <div className="FortuneStats-Title">
-                                <div>Слова</div>
+                                <div>{<Translation>
+                                    {
+                                        (t) => <>{t('fortuneGame.9')}</>
+                                    }
+                                </Translation>}</div>
                                 <div className="FortuneStats-Title_iknow bg-primary">{this.props.answers.length}</div>
                             </div>
                             <div className="FortuneStats-Separator"></div>
