@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Translation } from 'react-i18next';
 
 import './Card.scss';
 
@@ -14,8 +15,18 @@ const Card = (props) => {
         </div>
         <div className="col-md-8">
           <div className="Card-Right card-body" style={{ color: 'white' }}>
-            <h5 className="card-title">{props.title}</h5>
-            <p className="card-text">{props.description}</p>
+            <h5 className="card-title">
+              {<Translation>
+                {
+                  (t) => <>{t(props.title)}</>
+                }
+              </Translation>}
+            </h5>
+            <p className="card-text">{<Translation>
+              {
+                (t) => <>{t(props.description)}</>
+              }
+            </Translation>}</p>
           </div>
         </div>
       </div>

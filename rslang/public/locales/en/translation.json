@@ -1,0 +1,97 @@
+{
+    "settings": {
+        "1": "Level",
+        "2": "Show translation of words",
+        "3": "Auto word playback",
+        "4": "Sentence with example of word usage",
+        "5": "Show word's transcription",
+        "6": "Show image on a card",
+        "7": "'Answer' button",
+        "8": "'Delete' button",
+        "9": "'Difficult' button",
+        "10": "Amount of words to learn",
+        "11": "Save"
+    },
+    "sprintGame": {
+        "1": "Sprint",
+        "2": "Нow to play: you are given a word and a translation. If they match click 'Yes', if not - click 'No'. The streak of 4 right answers doubles your reward. 3 mistakes lead to game over.",
+        "3": "Good luck!",
+        "4": "START",
+        "5": "Game over!",
+        "6": "Your score:",
+        "7": "AGAIN",
+        "8": "TO MAIN PAGE",
+        "9": "Right",
+        "10": "Wrong"
+    },
+    "fortuneGame": {
+        "1": "You are given a Russian translation of a word. You must compose a word in English from letters on the bottom of the screen.",
+        "2": "START",
+        "3": "RETREAT",
+        "4": "NEXT WORD",
+        "5": "Game over!",
+        "6": "Your score:",
+        "7": "AGAIN",
+        "8": "TO MAIN PAGE",
+        "9": "Words"
+    },
+    "savannaGame": {
+        "1": "Savanna is a game which enlarges your vocabulary. The more words you know, the more scorepoints you will get.",
+        "2": "Savanna",
+        "3": "START",
+        "4": "Answer the questions:",
+        "5": "Right answers: ",
+        "6": "AGAIN",
+        "7": "TO MAIN PAGE",
+        "8": " from "
+    },
+    "audiocallGame": {
+        "1": "Audiocall is a game which should train you to listen english speech with ease.",
+        "2": "Audiocall",
+        "3": "START",
+        "4": "Answer the questions:",
+        "5": "Right answers:",
+        "6": "AGAIN",
+        "7": "TO MAIN PAGE",
+        "8": "from",
+        "9": "Hint"
+    },
+    "englishPuzzle": {
+        "1": "English-puzzle is a game goal of which is to compose words from randomly mixed english words.",
+        "2": "English-puzzle",
+        "3": "START",
+        "4": "To continue press start!",
+        "5": "Score:",
+        "6": "CHECK",
+        "7": "HINT",
+        "8": "CONTINUE",
+        "9": "Result",
+        "10": "I don't know",
+        "11": "I know",
+        "12": "CLOSE"
+    },
+    "speakIt": {
+        "1": "In SpeakIt you can listen pronunciation of english words and use Google Web Speech API to check how you pronounce it.",
+        "2": "Speakit",
+        "3": "START",
+        "4": "To continue press start!",
+        "5": "Score:",
+        "6": "Translate",
+        "7": "RECORDING",
+        "8": "RESTART",
+        "9": "STATISTICS",
+        "10": "YOUR RESULT",
+        "11": "SAVE",
+        "12": "CLOSE"
+    },
+    "difficultySelect": {
+        "1": "Diffitulty:",
+        "2": "Level:"
+    },
+    "mainPage": {
+        "1": "Training",
+        "2": "Study English",
+        "3": "Learning",
+        "4": "Train English"
+    }
+}

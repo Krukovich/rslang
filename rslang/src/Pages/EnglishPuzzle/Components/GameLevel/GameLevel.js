@@ -9,23 +9,23 @@ import './gameLevel.scss';
 const GameLevel = ({ score }) => {
   return (
     <MDBListGroup style={{ width: "5rem" }} className="game-level">
-      { GAME_LEVEL.map((item, index) => {
+      {GAME_LEVEL.map((item, index) => {
         return (
           <MDBListGroupItem
             className="d-flex justify-content-center"
-            key={ index }
+            key={index}
           >
             <MDBBadge
               className="level-point"
               color="secondary"
               pills="true"
             >
-              { item }
+              {item}
             </MDBBadge>
           </MDBListGroupItem>
         );
-      }) }
-      <Score score={ score } />
+      })}
+      <Score score={score} />
     </MDBListGroup>
   );
 };

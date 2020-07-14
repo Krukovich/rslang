@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { createQuize } from '../../components/createQuize'
+import { Translation } from 'react-i18next';
 import App from '../../App'
 import { Button } from 'react-bootstrap'
 import LevelSelect from '../LevelSelect/LevelSelect.jsx'
+import './StartPage.scss'
 
 export class SavannaStartPage extends Component {
   constructor(props) {
@@ -32,7 +34,13 @@ export class SavannaStartPage extends Component {
 
   async startHandler() {
     this.state.quizQ = await createQuize(this.state.quizQ);
+    console.log("start page", this.state.quizQ);
     this.setState({ gameStart: true });
+    // try {
+
+    // } catch {
+    //   alert('Подожди, пока не загрузятся слова!')
+    // }
   }
 
   optionSpawner = (amount, key) => {
@@ -83,12 +91,30 @@ export class SavannaStartPage extends Component {
           levelHandler={this.levelHandler}
           optionSpawner={this.optionSpawner}
         />
-        <section className="jumbotron text-center text-white" >
+        <section className="jumbotron Savannah-jumbotron text-center text-white" >
           <div className="container">
-            <h1 className="jumbotron-heading">САВАННА</h1>
-            <p className="lead text-white">Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь.</p>
+            <h1 className="jumbotron-heading">
+              {<Translation>
+                {
+                  (t) => <>{t('savannaGame.2')}</>
+                }
+              </Translation>}
+            </h1>
+            <p className="lead text-white">
+              {<Translation>
+                {
+                  (t) => <>{t('savannaGame.1')}</>
+                }
+              </Translation>}
+            </p>
             <p>
-              <Button variant="btn btn-primary my-2" onClick={() => this.startHandler()}>Начать игру</Button>
+              <Button variant="btn btn-primary my-2" onClick={() => this.startHandler()}>
+                {<Translation>
+                  {
+                    (t) => <>{t('savannaGame.3')}</>
+                  }
+                </Translation>}
+              </Button>
             </p>
           </div>
         </section>

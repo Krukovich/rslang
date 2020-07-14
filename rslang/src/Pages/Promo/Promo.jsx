@@ -13,7 +13,7 @@ class Promo extends React.Component {
           <div className="row">
             <div className="col-12 pt-5">
               <div className="settingsContainer pt-5">
-                <div className="jumbotron">
+                <div className="jumbotron settingsContainer-jumbotron">
                   <p>
                     Играть и изучать английский одновременно?
                     Легко! Особенно вместе c  rslang. Чем удобно
@@ -94,7 +94,7 @@ class Promo extends React.Component {
                     gameDescription='Открывая правильные буквы на табло, 
                                     чувствуешь себя суперфиналистом знаменитой телевизионной 
                                     игры. Так и хочется крутануть барабан!'
-                  gameLink='/fortune-game'
+                    gameLink='/fortune-game'
 
                   />
                   <GamesCard
@@ -105,7 +105,7 @@ class Promo extends React.Component {
                                       складывании пазла!'
                     gameLink='/english-puzzle'
                   />
-                  
+
                   <GamesCard
                     gameTitle='Audiocall'
                     gameDescription="Проверить свой английский на слух поможет 
@@ -117,7 +117,7 @@ class Promo extends React.Component {
 
                 </div>
                 <div className="video row justify-content-center mt-4 mb-4">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/IlmTlBs_mGk" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/IlmTlBs_mGk" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
               </div>
             </div>

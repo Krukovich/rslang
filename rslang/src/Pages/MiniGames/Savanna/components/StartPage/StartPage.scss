@@ -1,0 +1,13 @@
+.Savannah-jumbotron {
+    background-color: transparent !important;
+    backdrop-filter: brightness(50%);
+}
+
+.Savanna {
+    background-image: url('../../assets/back.png');
+    background-size: 150px;
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}

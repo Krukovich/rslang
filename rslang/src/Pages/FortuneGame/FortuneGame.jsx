@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
 import { setFortuneStats } from '../../Store/FortuneGame/Actions';
+import { Translation } from 'react-i18next';
 
 import StartScreen from './StartScreen/StartScreen';
 import EndScreen from './EndScreen/EndScreen';
@@ -429,8 +430,20 @@ class FortuneGame extends Component {
                                 <div className="DialogueBar-Triangle"></div>
                             </div>
                             <div className={this.addYakubClass()}></div>
-                            <Button onClick={() => { this.gameEnd(); this.setState({ cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1 mt-1">В музей поля чудес (закончить)</Button>
-                            <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 mb-2 Fortune-Btn_next_active" : "Fortune-Btn_next p-1 mb-2"}>Следующее слово</Button>
+                            <Button onClick={() => { this.gameEnd(); this.setState({ cursed: [] }) }} className="Fortune-Btn_exit p-0 mb-1 mt-1">
+                                {<Translation>
+                                    {
+                                        (t) => <>{t('fortuneGame.3')}</>
+                                    }
+                                </Translation>}
+                            </Button>
+                            <Button onClick={this.start} variant="success" className={this.state.continue === true ? "Fortune-Btn_next p-1 mb-2 Fortune-Btn_next_active" : "Fortune-Btn_next p-1 mb-2"}>
+                                {<Translation>
+                                    {
+                                        (t) => <>{t('fortuneGame.4')}</>
+                                    }
+                                </Translation>}
+                            </Button>
                         </div>
                         <div className="col-md-8 col-sm-12">
                             <div className="Fortune-Board w-100 h-100">
@@ -509,4 +522,3 @@ const mapActionToProps = {
 }
 
 export default connect(mapStateToProps, mapActionToProps)(FortuneGame);
-// export default FortuneGame

@@ -1,10 +1,10 @@
 .ActiveQuiz {
-    /* padding: 5px; */
     color: #fff;
     border: 2px solid #fff;
     border-radius: 5px;
     margin: 0 10px;
     box-sizing: border-box;
+    backdrop-filter: brightness(60%);
 }
 
 .Question {
@@ -24,6 +24,7 @@
     justify-content: center;
     border: 2px solid white;
     animation: pulse 1s infinite;
+    margin-bottom: 10px;
 }
 
 .Question-Word {

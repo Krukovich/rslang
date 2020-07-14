@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import './Settings.scss'
+import { Translation } from 'react-i18next';
+import './Settings.scss';
+import i18n from "../../i18n";
 
 import CheckBox from "../../Components/CheckBox/CheckBox";
 import TextInput from "../../Components/TextInput/TextInput";
@@ -112,6 +114,10 @@ class Settings extends React.Component {
     });
   };
 
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -119,69 +125,121 @@ class Settings extends React.Component {
           <div className="row">
             <div className="col-12 pt-5">
               <div className="settingsContainer p-5">
+
                 <TextInput
-                  text="Уровень"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.1')}</>
+                    }
+                  </Translation>}
                   defValue={this.props.level}
                   onChange={this.changesSettings("level")}
                 />
                 <CheckBox
-                  text="Показывать перевод слов"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.2')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showTranslateWord}
                   onChange={this.changesSettings("showTranslateWord")}
                 />
                 <CheckBox
-                  text="Проигрывать слово автоматически"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.3')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.playExampleSound}
                   onChange={this.changesSettings("playExampleSound")}
                 />
                 <CheckBox
-                  text="Пердложения с объяснением значения слова"
+                  // text="Предложения с объяснением значения слова"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.4')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showExplanationString}
                   onChange={this.changesSettings("showExplanationString")}
                 />
                 <CheckBox
-                  text="Предложение с примером использования слова"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.4')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showExampleString}
                   onChange={this.changesSettings("showExampleString")}
                 />
                 <CheckBox
-                  text="Показать транскрипцию слова"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.5')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showWordTranscription}
                   onChange={this.changesSettings("showWordTranscription")}
                 />
                 <CheckBox
-                  text="Показывать изображение на карточке"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.6')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showWordImage}
                   onChange={this.changesSettings("showWordImage")}
                 />
                 <CheckBox
-                  text='Кнопка "Показать ответ"'
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.7')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showBtnShowAgreeAnswer}
                   onChange={this.changesSettings("showBtnShowAgreeAnswer")}
                 />
                 <CheckBox
-                  text='Кнопка "Удалить"'
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.8')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showBtnDeleteWord}
                   onChange={this.changesSettings("showBtnDeleteWord")}
                 />
                 <CheckBox
-                  text='Добавить кнопку "Поместить в сложное"'
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.9')}</>
+                    }
+                  </Translation>}
                   isChecked={this.props.showBtnDifficultWord}
                   onChange={this.changesSettings("showBtnDifficultWord")}
                 />
                 <TextInput
-                  text="Количество слов, которое хотите выучить"
+                  text={<Translation>
+                    {
+                      (t) => <>{t('settings.10')}</>
+                    }
+                  </Translation>}
                   defValue={this.props.newWordsCount}
                   onChange={this.changesSettings("newWordsCount")}
                 />
+                <button className="btn btn-primary" onClick={() => this.handleClick('en')}>EN</button>
+                <button className="btn btn-primary" onClick={() => this.handleClick('ru')}>RU</button>
               </div>
               <button className="btn btn-primary" onClick={this.sendSettings}>
-                Сохранить
+                {<Translation>
+                  {
+                    (t) => <>{t('settings.11')}</>
+                  }
+                </Translation>}
               </button>
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
