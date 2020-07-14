@@ -34,10 +34,8 @@ const checkAndAddNewWords = async (
     group: group,
   });
   newUserWords.map((newUserWordObj, count) => {
-    if(count === 19) {
-      pageNow++;
-      
-      
+    if (count === 19) {
+      return false;
     }
     if (
       !arrayOfOldWordsId.includes(newUserWordObj.id) &
