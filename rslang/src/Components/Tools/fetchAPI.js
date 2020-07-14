@@ -283,7 +283,6 @@ export const fetchAPI = async (query, obj, wordId) => {
     const content = await rawResponse.json();
     return content;
   }
-<<<<<<< HEAD
 
   if (query === "putUserWordsById") {
     const rawResponse = await fetch(
@@ -307,9 +306,6 @@ export const fetchAPI = async (query, obj, wordId) => {
   }
 
   if (query === "updateUserWordsById") {
-=======
-  if (query === "putUserWordsById") {
->>>>>>> 9e1eba7... feat: change get users words
     const rawResponse = await fetch(
       Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
       {
@@ -329,7 +325,6 @@ export const fetchAPI = async (query, obj, wordId) => {
     const content = await rawResponse.json();
     return content;
   }
-<<<<<<< HEAD
 
   if (query === "getUserWordsById") {
     const rawResponse = await fetch(
@@ -351,7 +346,4 @@ export const fetchAPI = async (query, obj, wordId) => {
     const content = await rawResponse.json();
     return content;
   }
-
-=======
->>>>>>> 9e1eba7... feat: change get users words
 };
