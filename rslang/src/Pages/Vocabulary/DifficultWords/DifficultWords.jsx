@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
+
 import DeleteBtn from '../VocabularyBtn/DeleteBtn';
 import { deleteDifficultWords } from '../../../Store/PlayZonePage/actions';
+import { putUserWordsById } from '../../../service';
 
 const mapStateToProps = (store) => {
   return { 
@@ -15,13 +17,9 @@ const mapActionToProps = {
 
 const DifficultWords = (props) => {
 
-  // delete words from category 'difficult words'
   const del = (index) => {
-    const newArr = [
-      ...props.difficultWords.slice(0, index),
-      ...props.difficultWords.slice(index + 1)
-    ];
-    props.deleteDifficultWords(newArr);
+    props.deleteDifficultWords(props.difficultWords[index].id);
+    putUserWordsById(props.difficultWords[index].id, false, null, null);
   }
 
   return (

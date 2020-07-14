@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { playExampleSound, putUserWordsById } from '../../service';
+import { playExampleSound, putUserWordsById, checkDeleteWords } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setDifficultWords, setDeleteWords, setAppStats, setWordCards } from '../../Store/PlayZonePage/actions';
 import ProgressBar from './ProgressBar/ProgressBar';
@@ -112,7 +112,7 @@ class PlayZonePage extends React.Component {
       cards: cards,
       agreeWord: cards[playStep].word,
     });
-    putUserWordsById(card[playStep].id, null, true, 1);
+    putUserWordsById(card[playStep].id, null, true, null);
     this.props.setDeleteWords(card);
   }
 
@@ -123,7 +123,9 @@ class PlayZonePage extends React.Component {
     } else {
       this.difficultWordId = cards[playStep].id;
       putUserWordsById(cards[playStep].id, true, null, 1);
-      this.props.setDifficultWords(cards[playStep]);
+      if (checkDeleteWords(this.props.difficultWords, cards[playStep].word)) {
+        this.props.setDifficultWords([cards[playStep]]);
+      }
     }
   }
 
