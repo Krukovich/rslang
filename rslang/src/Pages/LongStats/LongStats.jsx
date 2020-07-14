@@ -58,8 +58,8 @@ export default class LongStats extends React.Component {
     return [...arr.slice(0, idx), item, ...arr.slice(idx + 1)];
   };
 
-  showStats = (id) => {
-    this.setState({ minigameSelect: this.state.items[id - 1].apiName }); //alexger
+  showStats = (id) => {  
+    this.setState({minigameSelect: this.state.items[id-1].apiName})//alexger
     return this.state.items;
   };
 
@@ -121,6 +121,7 @@ export default class LongStats extends React.Component {
                 mode: "index",
                 intersect: true,
               },
+              maintainAspectRatio: false,
             }}
           />
         </div>

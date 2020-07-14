@@ -234,9 +234,9 @@ class PlayZonePage extends React.Component {
     return (
       <React.Fragment>
         {(!isFinish) ?
-          <div className="container">
+          <div className="Playzone container">
             <div className="row mt-5">
-              <div className="col-12 d-flex justify-content-center mt-5">
+              <div className="Playzone-Playborad col-12 d-flex justify-content-center mt-5">
                 <Card
                   input={this.input}
                   isNotAgree={isNotAgree}

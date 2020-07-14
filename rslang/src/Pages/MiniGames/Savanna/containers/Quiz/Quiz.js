@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Quiz.css'
+import { Translation } from 'react-i18next';
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz.jsx'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 import { connect } from 'react-redux';
@@ -141,9 +142,15 @@ class Quiz extends Component {
 
     return (
       <div className='Quiz w-100'>
-        <div className='QuizWrapper row w-100 d-flex justify-content-center'>
+        <div className='QuizWrapper row w-100 pt-5 d-flex justify-content-center'>
           <div className='col-md-8 col-sm-12'>
-            <h1>Ответьте на все вопросы</h1>
+            <h1>
+              {<Translation>
+                {
+                  (t) => <>{t('savannaGame.4')}</>
+                }
+              </Translation>}
+            </h1>
             {
               this.state.isFinished
                 ? <FinishedQuiz

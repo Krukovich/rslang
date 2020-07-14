@@ -6,22 +6,22 @@ import './MainPage.scss'
 import pic1 from './pic1.png';
 import pic2 from './pic2.png';
 
-import {addMoreUserWords} from '../../Components/Tools/userWordsApi'
+import { addMoreUserWords } from '../../Components/Tools/userWordsApi'
 
 class MainPage extends Component {
   constructor() {
     super();
     this.state = {
       trainingCard: {
-        title: 'Тренировка',
-        description: 'Повторяем Английский',
+        title: 'mainPage.1',
+        description: 'mainPage.2',
         href: 'training',
         class: 'Card-Image_training',
         pic: pic2
       },
       learningCard: {
-        title: 'Изучение',
-        description: 'Учим Английский',
+        title: 'mainPage.3',
+        description: 'mainPage.4',
         href: 'play-zone',
         class: 'Card-Image_learning',
         pic: pic1

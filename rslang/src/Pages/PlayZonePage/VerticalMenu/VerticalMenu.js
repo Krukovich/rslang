@@ -12,49 +12,37 @@ const VerticalMenu = (props) => {
   } = props;
 
   return (
-    <div className="btn-group-vertical Vertical-Menu ml-3">
-      <div className="row">
-        <div className="col-12 mb-1">
-          { showBtnDeleteWord ?
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={ deleteCard }
-            >
-              Удалить
+    <div className="Playzone-VerticalMenu btn-group-vertical">
+      {showBtnDeleteWord ?
+        <button
+          type="button"
+          className="Playzone-Btn btn btn-primary"
+          onClick={deleteCard}
+        >
+          Удалить
             </button>
-            : ''
-          }
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12 mb-1">
-          { showBtnDifficultWord ?
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={ insertCardToDifficult }
-            >
-              Сложное
+        : ''
+      }
+      {showBtnDifficultWord ?
+        <button
+          type="button"
+          className="Playzone-Btn btn btn-primary"
+          onClick={insertCardToDifficult}
+        >
+          Сложное
             </button>
-            : ''
-          }
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12 mb-1">
-        { showBtnShowAgreeAnswer ? 
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={ showAnswer }
-          >
-            Показать ответ
+        : ''
+      }
+      {showBtnShowAgreeAnswer ?
+        <button
+          type="button"
+          className="Playzone-Btn btn btn-primary"
+          onClick={showAnswer}
+        >
+          Ответ
           </button>
-          : ''
-        }
-        </div>
-      </div>
+        : ''
+      }
     </div>
   );
 }
