@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { fetchAPI } from './Components/Tools/fetchAPI';
+import { getWordsById } from './Components/Tools/userWordsApi';
 
 export const filterOutDeletedWords = (words, userWords) => {
   const wordIds = userWords
@@ -40,6 +42,14 @@ export const createUserWordsById = (wordId, hard = false, deleted = false, coeff
 }
 
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
+
+export const getUserWordsById = (array) => {
+  const promise = [];
+  for (let i = 0; i < array.length; i += 1) {
+    promise.push(getWordsById(array[i].value.wordId));
+  }
+  return Promise.allSettled(promise).then((wordLists) => wordLists.flatMap((wordList) => wordList.value));
+}
 
 export const getWords = (group, numberOfWords) => {
   const wordsToGet = Math.min(numberOfWords, 600);
