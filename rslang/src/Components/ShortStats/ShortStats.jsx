@@ -54,7 +54,7 @@ const ShortStatsInfo = (props) => {
               {
                 (t) => <>{t('playzone.8')}</>
               }
-            </Translation>} </span><span>{newWords}</span>
+            </Translation>} </span><span>{newWords ? newWords : 0}</span>
         </li>
         <li className="shortStatsInfo-item d-flex">
           <span><FontAwesomeIcon icon={faUserGraduate} />

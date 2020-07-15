@@ -71,7 +71,7 @@ function createUserWordsById(
 }
 
 export const getWordsById = async (wordId) => {
-  const rawResponse = await fetch(Const.API_LINK + `words/${wordId}`, {
+  const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/words/${wordId}?noAssets=true`, {
     method: "GET",
     withCredentials: true,
     headers: {
