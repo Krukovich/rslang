@@ -94,6 +94,7 @@ class Quiz extends Component {
     }
     this.finishQuestion();
   }
+  //}
 
   finishQuestion() {
     const timeout = window.setTimeout(() => {

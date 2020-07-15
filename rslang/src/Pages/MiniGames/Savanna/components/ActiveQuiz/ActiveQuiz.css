@@ -48,3 +48,9 @@
 .hiden {
     display: none;
 }
+
+@media screen and (max-width: 767px) {
+    .Question-Word {
+        font-size: 1.1rem;
+    }
+}
