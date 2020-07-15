@@ -63,15 +63,17 @@ const App = (props) => {
   });
 
   return (
-    <AppWrapper>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-12">
-            <RouteMap />
+    <Suspense fallback={<div>Loading...</div>}>
+      <AppWrapper>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-lg-12">
+              <RouteMap />
+            </div>
           </div>
         </div>
-      </div>
-    </AppWrapper>
+      </AppWrapper>
+    </Suspense>
   );
 };
 
