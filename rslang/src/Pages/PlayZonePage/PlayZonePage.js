@@ -127,8 +127,8 @@ class PlayZonePage extends React.Component {
       return;
     } else {
       this.difficultWordId = cards[playStep].id;
-      putUserWordsById(cards[playStep].id, true, null, 1);
-      if (checkDeleteWords(this.props.difficultWords, cards[playStep].word)) {
+      putUserWordsById(cards[playStep].id, true, null, null);
+      if (!checkDeleteWords(this.props.difficultWords, cards[playStep].word)) {
         this.props.setDifficultWords([cards[playStep]]);
       }
     }

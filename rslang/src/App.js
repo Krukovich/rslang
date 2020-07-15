@@ -45,7 +45,7 @@ const App = (props) => {
           addStandardUserWords();
           props.setDayLearningWords(words);
         }
-
+      
         getUserWordsById(userWords).then((list) => {
           const deleteWords = filterOutDeletedWords(list, userWords);
           if (deleteWords.length) {
@@ -59,6 +59,7 @@ const App = (props) => {
 
           const wordsToLearn = list.filter((word) =>
             !deleteWords.find((deleteWord) => deleteWord.id === word.id));
+
             if (wordsToLearn.length <= Number(props.count)) {
               const tempArray = words.slice(0, words.length - userWords.length);
               props.setNewWords(tempArray.length);
