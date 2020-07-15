@@ -102,7 +102,7 @@ export class SavannaStartPage extends Component {
           levelHandler={this.levelHandler}
           optionSpawner={this.optionSpawner}
         />
-        <section className="jumbotron Savannah-jumbotron text-center text-white" >
+        <section className="jumbotron Savanna-jumbotron text-center text-white" >
           <div className="container">
             <h1 className="jumbotron-heading">
               {<Translation>
@@ -118,7 +118,7 @@ export class SavannaStartPage extends Component {
                 }
               </Translation>}
             </p>
-            <div className="Savannah-Startscreen_btns">
+            <div className="Savanna-Startscreen_btns">
               <Button variant="btn btn-primary my-2" onClick={() => this.startHandler()}>
                 {<Translation>
                   {
@@ -126,7 +126,7 @@ export class SavannaStartPage extends Component {
                   }
                 </Translation>}
               </Button>
-              <Button variant={'primary'}>
+              <Button variant={'primary'} onClick={() => this.startHandler()}>
                 {<Translation>
                   {
                     (t) => <>{t('sprintGame.12')}</>
