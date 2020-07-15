@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 
 export class LoginLayout extends Component {
   render() {
@@ -6,7 +6,9 @@ export class LoginLayout extends Component {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="Login">{this.props.children}</div>
+            <Suspense fallback={<div>Loading...</div>}>
+              <div className="Login">{this.props.children}</div>
+            </Suspense>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Translation } from 'react-i18next';
 
 import AboutCard from '../../Components/AboutCard/AboutCard'
 import './AboutPage.scss'
@@ -10,49 +11,49 @@ class AboutPage extends Component {
         this.state = {
             members: [
                 {
-                    name: 'Евгений',
-                    description: 'Ментор. Спасение утопающих',
+                    name: 'team.1.1',
+                    description: 'team.1.2',
                     href: ['https://github.com/ZennKa', 'https://github.com/ZennKa'],
                     classCSS: 'AboutCard-pic1'
                 },
                 {
-                    name: 'Алексей',
-                    description: 'Тим лид. Настройка проекта, тренировка, изучение слов, english puzzle, SpeakIt, координация',
+                    name: 'team.2.1',
+                    description: 'team.2.2',
                     href: ['https://github.com/Krukovich',
                         'https://krukovich.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic2'
                 },
                 {
-                    name: 'Александр',
-                    description: 'Роутер, логин и регистрация, audiocall, саванна',
+                    name: 'team.3.1',
+                    description: 'team.3.2',
                     href: ['https://github.com/alexger95',
                         'https://alexger95.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic3'
                 },
                 {
-                    name: 'Дарья',
-                    description: 'Страница статистики и связанная с ней логика',
+                    name: 'team.4.1',
+                    description: 'team.4.2',
                     href: ['https://github.com/DaryaYa',
                         'https://daryaya.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic4'
                 },
                 {
-                    name: 'Павел',
-                    description: 'Спринт, Поле Чудес, общая стилизация и разметка, саванна',
+                    name: 'team.5.1',
+                    description: 'team.5.2',
                     href: ['https://github.com/FightingRobot',
                         'https://fightingrobot.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic5'
                 },
                 {
-                    name: 'Юрий',
-                    description: 'Страница настроек, связанная с ней логика и промо',
+                    name: 'team.6.1',
+                    description: 'team.6.2',
                     href: ['https://github.com/fizik003',
                         'https://fizik003.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic6'
                 },
                 {
-                    name: 'Николай',
-                    description: 'Lingualeo,Lingvist, словарь и связанная логика, промо-ролик',
+                    name: 'team.7.1',
+                    description: 'team.7.2',
                     href: ['https://github.com/Nickolay-Dudaryk',
                         'https://nickolay-dudaryk.github.io/rsschool-cv/'],
                     classCSS: 'AboutCard-pic7'

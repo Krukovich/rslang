@@ -1,4 +1,5 @@
 import React from "react";
+import { Translation } from 'react-i18next';
 import { MDBTooltip, MDBBtn, MDBBtnGroup, MDBCol, MDBRow } from "mdbreact";
 
 import Translate from '../Translate/Translate';
@@ -20,7 +21,13 @@ const Control = ({ src, stringTranslate }) => {
               >
                 <img src="https://img.icons8.com/nolan/24/low-volume.png" alt="icon" />
               </MDBBtn>
-              <div>Play example sound</div>
+              <div>
+                {<Translation>
+                  {
+                    (t) => <>{t('englishPuzzle.13')}</>
+                  }
+                </Translation>}
+              </div>
             </MDBTooltip>
             <Translate
               stringTranslate={stringTranslate}

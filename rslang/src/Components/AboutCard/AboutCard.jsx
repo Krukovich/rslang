@@ -1,5 +1,6 @@
 import React from 'react';
 import './AboutCard.scss';
+import { Translation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +11,20 @@ const AboutCard = (props) => {
         <div className="AboutCard card" style={{ width: '18rem' }}>
             <div className={"AboutCard-Image card-img-top " + props.pic} />
             <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
-                <p className="AboutCard-Text card-text">{props.description}</p>
+                <h5 className="card-title">
+                    {<Translation>
+                        {
+                            (t) => <>{t(props.name)}</>
+                        }
+                    </Translation>}
+                </h5>
+                <p className="AboutCard-Text card-text">
+                    {<Translation>
+                        {
+                            (t) => <>{t(props.description)}</>
+                        }
+                    </Translation>}
+                </p>
                 <div className="AboutCard-Footer card-footer mt-2">
                     <a className="AboutCard-Git mr-2" href={props.href[0]} target="_blank">
                         <img src={git} />

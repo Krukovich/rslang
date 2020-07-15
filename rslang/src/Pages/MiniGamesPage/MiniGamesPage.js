@@ -15,42 +15,42 @@ class MiniGamesPage extends Component {
     super();
     this.state = {
       sprintCard: {
-        title: 'Sprint',
+        title: 'minigames.1',
         description: '',
         href: 'SprintGame',
         class: 'Card-Image_sprint',
         pic: sprint
       },
       audioCallCard: {
-        title: 'Audiocall',
+        title: 'minigames.6',
         description: '',
         href: 'audiocall',
         class: 'Card-Image_audiocall',
         pic: AudiocallLogo
       },
       fortuneCard: {
-        title: 'Turbo Wheel of Fortune',
+        title: 'minigames.2',
         description: '',
         href: 'fortune-game',
         class: 'Card-Image_fortune',
         pic: FortuneLogo
       },
       savannaCard: {
-        title: 'Savanna',
+        title: 'minigames.3',
         description: '',
         href: 'Savanna',
         class: 'Card-Image_savanna',
         pic: SavannaLogo
       },
       englishPuzzleCard: {
-        title: 'English Puzzle',
+        title: 'minigames.4',
         description: '',
         href: 'english-puzzle',
         pic: EnglishPuzzle,
         class: 'Card-Image_englishpuzzle',
       },
       speakItCard: {
-        title: 'Speak It',
+        title: 'minigames.5',
         description: '',
         href: 'speakIt-start',
         class: 'Card-Image_speakit',

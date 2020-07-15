@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 const Content = () => {
   return (
@@ -7,13 +8,25 @@ const Content = () => {
         <div className="row">
           <div className="col-12 mt-5 text-center">
             <h1 className="mt-5 font-weight-bold text-white">
-              Игра English-puzzle
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.2')}</>
+                }
+              </Translation>}
             </h1>
             <p className="mt-5 text-white">
-              English-puzzle - мини-игра, цель которой собрать предложения из размещённых в случайном порядке английских слов.
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.1')}</>
+                }
+              </Translation>}
             </p>
             <p className="mt-5 text-white">
-              Для продолжения нажмите играть!
+              {<Translation>
+                {
+                  (t) => <>{t('englishPuzzle.4')}</>
+                }
+              </Translation>}
             </p>
           </div>
         </div>

@@ -1,10 +1,15 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 const Score = ({ score }) => {
-  return(
+  return (
     <span className="badge badge-secondary">
-      Счет: { score }
-  </span>
+      {<Translation>
+        {
+          (t) => <>{t('englishPuzzle.5')}</>
+        }
+      </Translation>} {score}
+    </span>
   );
 }
 
