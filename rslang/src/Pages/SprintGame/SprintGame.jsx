@@ -19,7 +19,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { faVolumeOff } from '@fortawesome/free-solid-svg-icons';
 
 class SprintGame extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       gameStarted: false,
@@ -337,14 +337,23 @@ class SprintGame extends Component {
   }
 
   getUserwords = () => {
-    // this.setState({
-    //     words: userwords,
-    // })
+    console.log('props', this.props.dayLearningWords)
+    if (this.props.dayLearningWords.length !== 0) {
+      this.setState({
+        words: this.props.dayLearningWords,
+      })
+    } else {
+      throw Error();
+    }
   }
 
   startWithUserwords = () => {
-    this.getUserwords();
-    this.start();
+    try {
+      this.getUserwords();
+      this.gameStart();
+    } catch {
+      alert(`Подожди пока слова не загрузятся`)
+    }
   }
 
   render() {
@@ -359,7 +368,7 @@ class SprintGame extends Component {
             optionSpawner={this.optionSpawner}
             startWithUserwords={this.startWithUserwords}
           />
-          <StartScreen gameStart={this.gameStart} />
+          <StartScreen startWithUserwords={this.startWithUserwords} gameStart={this.gameStart} />
         </div>
       );
     } else if (this.state.gameEnded) {
@@ -430,7 +439,6 @@ class SprintGame extends Component {
 
 const mapStateToProps = (store) => {
   const {
-    dayLearningWords,
     difficultWords,
     showBtnShowAgreeAnswer,
     showTranslateWord,
@@ -440,6 +448,8 @@ const mapStateToProps = (store) => {
     showWordsTranscription,
     minigameSprintStats,
   } = store.appSettings;
+
+  const { dayLearningWords } = store.playZone;
 
   return {
     showWordsTranscription: showWordsTranscription,

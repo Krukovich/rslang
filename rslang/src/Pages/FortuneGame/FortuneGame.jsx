@@ -36,7 +36,7 @@ import win5 from './assets/AudioSamples/win/win5.mp3'
 import lose2 from './assets/AudioSamples/lose/lose2.mp3'
 
 class FortuneGame extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             speak: false,
@@ -325,14 +325,22 @@ class FortuneGame extends Component {
     }
 
     getUserwords = () => {
-        // this.setState({
-        //     words: userwords,
-        // })
+        if (this.props.dayLearningWords.length !== 0) {
+            this.setState({
+                words: this.props.dayLearningWords,
+            })
+        } else {
+            throw Error();
+        }
     }
 
     startWithUserwords = () => {
-        this.getUserwords();
-        this.start();
+        try {
+            this.getUserwords();
+            this.start();
+        } catch {
+            alert(`Подожди пока слова не загрузятся`)
+        }
     }
 
     addYakubClass() {
@@ -410,7 +418,7 @@ class FortuneGame extends Component {
                         optionSpawner={this.optionSpawner}
                         startWithUserwords={this.startWithUserwords}
                     />
-                    <StartScreen gameStart={this.start} />
+                    <StartScreen startWithUserwords={this.startWithUserwords} gameStart={this.start} />
                 </div>
             )
         } else if (this.state.gameEnded) {
@@ -502,7 +510,6 @@ class FortuneGame extends Component {
 
 const mapStateToProps = (store) => {
     const {
-        dayLearningWords,
         difficultWords,
         showBtnShowAgreeAnswer,
         showTranslateWord,
@@ -512,6 +519,8 @@ const mapStateToProps = (store) => {
         showWordsTranscription,
         minigameFortuneStats,
     } = store.appSettings;
+
+    const { dayLearningWords } = store.playZone;
 
     return {
         showWordsTranscription: showWordsTranscription,
