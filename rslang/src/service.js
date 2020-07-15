@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { fetchAPI } from './Components/Tools/fetchAPI';
+import { getWordsById } from './Components/Tools/userWordsApi';
 
 export const filterOutDeletedWords = (words, userWords) => {
   const wordIds = userWords
