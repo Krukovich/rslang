@@ -1,0 +1,61 @@
+.Sprint {
+    background-image: url('./assets/back.png');
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}
+
+.Sprint-Start,
+.Sprint-End {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Sprint-Score {
+    font-size: 2.4rem;
+    user-select: none;
+}
+
+.Sprint-Timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 3px solid #C056C0;
+    font-size: 1.8rem;
+    user-select: none;
+    animation: pulse 1s infinite;
+    backdrop-filter: brightness(40%);
+
+    @keyframes pulse {
+        0% {transform:scale(1)}
+        50% {transform:scale(1.2)}
+        100%{transform:scale(1)}
+    }
+}
+
+.Sprint-TimerBar {
+    position: relative;
+}
+
+.Sprint-Volume {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 15px;
+    width: 20px !important;
+}
+
+.Sprint-Startscreen,
+.Sprint-Levelselect {
+    color: white !important;
+}
+
+.Sprint-Timer,
+.Sprint-Score {
+    color: white;
+}

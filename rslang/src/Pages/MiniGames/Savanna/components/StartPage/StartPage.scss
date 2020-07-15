@@ -1,0 +1,27 @@
+.Savanna-jumbotron {
+    background-color: transparent !important;
+    backdrop-filter: brightness(50%);
+}
+
+.Savanna {
+    background-image: url('../../assets/back.png');
+    background-size: 150px;
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}
+
+.Savanna-Startscreen_btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+        flex-direction: column;
+
+        button {
+            font-size: 0.7rem;
+        }
+    }
+}

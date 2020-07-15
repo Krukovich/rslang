@@ -1,0 +1,23 @@
+.Playzone-VerticalMenu {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  height: 30%;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: row !important;
+  }
+}
+
+.Playzone-Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px !important;
+  
+  @media screen and (max-width: 767px) {
+    font-size: 0.5rem !important;
+  }
+}

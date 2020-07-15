@@ -1,0 +1,51 @@
+.Card {
+    transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+    height: 100% !important;
+    transition: 0.3s;
+
+    &:hover {
+        .Card-Left,
+        .Card-Right {
+            background-color: #C056C0;
+        }
+    }
+}
+
+.Card-Image {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin: 15px;
+}
+
+.Card:hover {
+
+    img {
+        visibility: hidden;;
+    }
+}
+
+.Card-Image_training {
+    background-image: url(../../Pages/MainPage/picgif1.gif);
+}
+
+.Card-Image_learning {
+    background-image: url(../../Pages/MainPage/picgif2.gif);
+}
+
+.card-body {
+    height: 100%;
+}
+
+.Card-Left,
+.Card-Right {
+    transition: 0.3s;
+    background-color: purple;
+    opacity: 0.9 !important;
+}
+

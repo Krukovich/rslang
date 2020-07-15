@@ -1,0 +1,56 @@
+.ActiveQuiz {
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    backdrop-filter: brightness(60%);
+}
+
+.Question {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+        align-items: center;
+}
+
+.ActiveQuiz-Timer {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    animation: pulse 1s infinite;
+    margin-bottom: 10px;
+}
+
+.Question-Word {
+    font-size: 2rem;
+}
+
+.questionanimated {
+    visibility: hidden;
+    position: fixed;
+    color: white;
+    top: 12%;
+    left: 50%;
+    font-size: 3em;
+    transition: all 3s;
+}
+
+.muve {
+    transform: translateY(+900%);    
+}
+
+.hiden {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .Question-Word {
+        font-size: 1.1rem;
+    }
+}

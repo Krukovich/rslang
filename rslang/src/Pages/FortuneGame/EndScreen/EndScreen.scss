@@ -1,0 +1,51 @@
+.Fortune-Endscreen {
+    color: #ccc;
+}
+
+.FortuneStats {
+    color: #ccc;
+    min-width: 230px;
+    display: flex;
+    align-items: center;
+    overflow-y: scroll;
+    flex-direction: column;
+    height: 140px;
+
+    @media screen and (max-width: 767px) {
+        font-size: 0.6rem;
+    }
+}
+
+.FortuneStats-Separator {
+    margin: 5px 0;
+    height: 2px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.FortuneStats-Title {
+    display: flex;
+    align-items: center;
+
+    &_iknow {
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+}
+
+.FortuneEndscreen-Listen {
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(150, 150, 150);
+    }
+}
+
+.FotuneBtn-Main {
+    color: #fff !important;
+}

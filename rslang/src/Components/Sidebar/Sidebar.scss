@@ -1,0 +1,14 @@
+.Sidebar {
+    background-color: purple;
+}
+
+.aside {
+    width: 250px;
+    z-index: 50;
+    left: -250px;
+    transition: 0.3s;
+}
+
+.aside_active {
+    left: 0;
+}

@@ -1,0 +1,31 @@
+.Sprint-Card {
+    user-select: none;
+    position: relative;
+    outline: 5px solid rgba(0,0,0,0);
+    background-color: purple;
+    color: white !important;
+    background-image: url('../../Pages/SprintGame/assets/sonic.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.SprintCard-Subtitle {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.SprintCard-Question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: brightness(50%);
+}
+
+.SprintCard-Button_right,
+.SprintCard-Button_wrong {
+    position: relative;
+}
+
+.SprintCard-Button_prompt {
+    position: absolute;
+}

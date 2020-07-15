@@ -1,0 +1,14 @@
+.nav-link {
+    color: white;
+    background-color: #360031 !important;
+    font-size: 0.8rem;
+
+    &:hover {
+        color: white;
+        opacity: 0.8;
+    }
+}
+
+.nav-item:first-child {
+    margin-top: 20px !important;
+}

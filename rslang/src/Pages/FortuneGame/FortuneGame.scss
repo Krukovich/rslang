@@ -1,0 +1,169 @@
+.Fortune {
+    background-image: url('./assets/back.png');
+    background-repeat: repeat;
+    background-size: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: 1020px) {
+        height: 100vh;
+    }
+}
+
+.Fortune-Board {
+    height: 100px;
+    width: 100px;
+}
+
+.Fortune-Yakub {
+    background-image: url('./assets/wait.png');
+    background-size: cover;
+    width: 130px;
+    height: 130px;
+    border: 1px #ccc solid;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+}
+
+.Fortune-Yakub_speak {
+    @keyframes talk {
+        0% {background-image: url('./assets/speak.png');}
+        50% {background-image: url('./assets/wait.png');}
+        100%{background-image: url('./assets/speak.png');}
+    }
+
+    animation: talk 0.2s infinite;
+}
+
+.Fortune-Score {
+    font-size: 3rem;
+    color: #ccc;
+}
+
+.Fortune-Table {
+    width: 100%;
+    background-color: #ccc;
+
+    tr {
+        border: 1px solid black;
+    }
+
+    td {
+        min-width: 10px;
+        height: 55px;
+        border: 2px solid black;
+        vertical-align: middle;
+        text-align: center;
+
+        @media screen and (max-width: 767px) {
+            height: 25px;
+        }
+    }
+}
+
+.Fortune-Cell_active {
+    background-color: #505050;
+}
+
+.Fortune-Cell_closed {
+    background-color: #505050;
+    color: #505050;
+    user-select: none;
+}
+
+.Fortune-Btn_exit {
+    font-size: 0.7rem !important;
+}
+
+.Fortune-Letters {
+    display: flex;
+    justify-content: center;
+    // background-color: #ccc;
+
+    @media screen and (max-width: 767px) {
+        flex-wrap: wrap;
+    }
+}
+
+.Fortune-Letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 100%;    
+    width: 30px;
+    height: 50px;
+    min-height: 10px;
+    user-select: none;
+    background-color: #ccc;
+
+    &:hover {
+        color: white;
+        background-color: #505050;
+    }
+}
+
+.Fortune-Letter_inactive {
+    color: #505050;
+    background-color: #505050;
+
+    &:hover {
+        color: #505050;
+    }
+}
+
+.Fortune-Dialogue {
+    width: 100%;
+}
+
+.DialogueBar-Box {
+    background-color: #FFFF51;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    font-size: 0.8rem;
+
+    @media screen and (max-width: 767px) {
+        border-bottom-left-radius: 10px;
+    }
+}
+
+.DialogueBar-Triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 20px 0 0;
+    border-color: #FFFF51 transparent transparent transparent;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+}
+
+.Fortune-Btn_next {
+    font-size: 0.74rem !important;
+    visibility: hidden;
+}
+
+.Fortune-Btn_next_active {
+    visibility: visible;
+}
+
+.Fortune-Player {
+    background-image: url('./assets/Player.png');
+    width: 130px;
+    height: 175px;
+    background-position: center;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+}

@@ -1,0 +1,30 @@
+canvas {
+    background-color: lightcyan;
+    height: 100%;
+}
+
+.graph {
+    height: 60vh;
+}
+
+.longStatsElem {
+    margin: 5rem auto;
+    &-label {
+        margin-top: 1rem;
+        font-family: cursive;
+        color: lavender;
+        font-weight: normal;
+    }
+    &-field {
+        height: 7.5rem;
+        width: 100%;
+        background-color: lavender;
+        overflow: auto;
+    }
+}
+
+.miniStats-elem {
+    font-family: cursive;
+    line-height: 1.5rem;
+    color: darkslateblue;
+}

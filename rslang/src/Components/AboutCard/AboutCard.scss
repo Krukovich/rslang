@@ -1,0 +1,72 @@
+.AboutCard {
+    background-color: purple !important;
+    color: white;
+    height: 345px;
+
+    .card-title {
+        font-weight: 700 !important;
+    }
+    
+    .card-text {
+        color: white !important;
+    }
+}
+
+.AboutCard-Image {
+    height: 180px;
+    background-position: center;
+    background-size: cover;
+}
+
+.AboutCard-pic1 {
+    background-image: url('../../Pages/AboutPage/assets/pic1.jpg');
+}
+.AboutCard-pic2 {
+    background-image: url('../../Pages/AboutPage/assets/pic2.jpg');
+}
+.AboutCard-pic3 {
+    background-image: url('../../Pages/AboutPage/assets/pic3.jpg');
+}
+.AboutCard-pic4 {
+    background-image: url('../../Pages/AboutPage/assets/pic4.jpg');
+}
+.AboutCard-pic5 {
+    background-image: url('../../Pages/AboutPage/assets/pic5.jpg');
+}
+.AboutCard-pic6 {
+    background-image: url('../../Pages/AboutPage/assets/pic6.jpg');
+}
+.AboutCard-pic7 {
+    background-image: url('../../Pages/AboutPage/assets/pic7.png');
+}
+
+.AboutCard-Footer {
+    display: flex;
+    align-items: center;
+}
+
+.AboutCard-Git {
+    max-width: 20px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.AboutCard-Cv {
+    color: black;
+}
+
+.AboutCard-Cv,
+.AboutCard-Git {
+    transition: 0.1s;
+
+    &:hover {
+        color: black;
+        transform: scale(1.3);
+    }
+}
+
+.AboutCard-Text {
+    font-size: 0.7rem !important;
+}

@@ -1,0 +1,43 @@
+.PlayCard {
+  width: 300px;
+  box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+
+  .PlayString {
+    font-size: 1.5rem;
+    text-align: justify;
+  }
+
+  .WordInput {
+    border: none;
+    color: #338c99;
+    background-color: #e0ebef;
+    border-bottom: 2px solid #338c99;
+    border-radius: 5px;
+    transition: 1s;
+    font-size: 1rem;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .PlayCard_Mistake {
+    transition: 1s;
+    color: red;
+    border-bottom: 2px solid red;
+  }
+
+  .PlayCard_Agree {
+    transition: 1s;
+    color: green;
+    border-bottom: 2px solid green;
+  }
+}
+
+.Playzone-Playborad {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
