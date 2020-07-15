@@ -93,5 +93,26 @@
         "2": "Study English",
         "3": "Learning",
         "4": "Train English"
+    },
+    "promo": {
+        "1": "Looking to play and learn English at the same time? You got it! Especially with rslang. What makes this app so convenient? Everything that you need for an entertaining English learning experience is in one place. Let's see what it has to offer point by point:",
+        "2": "LEARNING WORDS",
+        "3": "I bet every time you are struggling to remember some English word you wish it weren't right on the tip of your tongue but rather got elegantly incorporated to the flow of speech. And this is exactly why it is crucial to improve your vocabulary. the 'learning words' section will help you shake up your active and passive lexicon. You will have to type missing words to complete the sentence. It's also a great opportunity to check your spelling skills! After typing the word you may check if it's correct as well as listen to the correct answer in English. In case of trouble you can push 'show the answer' button and go 'I knew it!'.",
+        "4": "Trying",
+        "5": "STATISTICS",
+        "6": "M is for Motivation! The key to success in any kind of venture! Checking the results and stats in 'Statistics' section will help you not to lose motivation as you proceed in your English learning journey. An easy to understand graph will show your progress in: words learned per day and brand new words from the dictionary. Take it step by step on the way to success!",
+        "7": "Your achievements",
+        "8": "DICTIONARY",
+        "9": "There is simply no way around it. Dictionary with the transcription and examples of word usage in a sentence. There are also pictures and audio versions of words included to make memorizing easier. It's an easy formula after all: read the word in a sentence than listen to it than see it on a picture and you get it 100% memorized!",
+        "10": "See it",
+        "11": "Mini-Games",
+        "12": "How to play: you get an English word and it's translation. If they are a match hit 'yes', if they don't hit 'no'. 4 correct answers combo doubles the reward. Three mistakes in a row and the game is over. You can adjust the difficulty level. That's quite a brain teaser! ",
+        "13": "Play",
+        "14": "It's pretty simple: the more words you know, the more points you get. Perfect for boosting your vocabulary.",
+        "15": "Want to speak like a native? Anything is possible! Practicing the correct pronunciation is now possible with Google Web Speech API technology. And it is easy too!",
+        "16": "Wheel of fortune",
+        "17": "You'll feel like the finalist of the timeless TV gameshow opening the letters on the gaming board. Cannot wait to spin that wheel already!",
+        "18": "This game will help you form correct and beautifully constructed and correct English sentences. Find the right spot for each word like you were doing a puzzle!",
+        "19": "Listen and test your vocabulary in this game. From now on you won't forget how each word sounds and will enrich your vocabulary on the way. Let's start!"
     }
 }
