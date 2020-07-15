@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import RouteMap from "./Components/Router/Routes";
 import { connect } from 'react-redux';
 
