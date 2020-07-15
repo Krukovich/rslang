@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 
 export class CreateAccountLayout extends Component {
   render() {
@@ -7,7 +7,7 @@ export class CreateAccountLayout extends Component {
         <div className="row">
           <div className="col-lg-12">
             <div className="CreateAccount">
-                {this.props.children}
+              {this.props.children}
             </div>
           </div>
         </div>

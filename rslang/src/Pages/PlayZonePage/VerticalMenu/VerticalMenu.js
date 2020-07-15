@@ -1,5 +1,6 @@
 import React from 'react';
 import './verticalMenu.scss';
+import { Translation } from 'react-i18next';
 
 const VerticalMenu = (props) => {
   const {
@@ -19,8 +20,12 @@ const VerticalMenu = (props) => {
           className="Playzone-Btn btn btn-primary"
           onClick={deleteCard}
         >
-          Удалить
-            </button>
+          {<Translation>
+            {
+              (t) => <>{t('playzone.1')}</>
+            }
+          </Translation>}
+        </button>
         : ''
       }
       {showBtnDifficultWord ?
@@ -29,8 +34,12 @@ const VerticalMenu = (props) => {
           className="Playzone-Btn btn btn-primary"
           onClick={insertCardToDifficult}
         >
-          Сложное
-            </button>
+          {<Translation>
+            {
+              (t) => <>{t('playzone.2')}</>
+            }
+          </Translation>}
+        </button>
         : ''
       }
       {showBtnShowAgreeAnswer ?
@@ -39,8 +48,12 @@ const VerticalMenu = (props) => {
           className="Playzone-Btn btn btn-primary"
           onClick={showAnswer}
         >
-          Ответ
-          </button>
+          {<Translation>
+            {
+              (t) => <>{t('playzone.3')}</>
+            }
+          </Translation>}
+        </button>
         : ''
       }
     </div>

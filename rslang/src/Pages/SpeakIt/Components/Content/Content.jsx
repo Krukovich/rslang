@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 const Content = () => {
   return (
@@ -7,13 +8,25 @@ const Content = () => {
         <div className="row">
           <div className="col-12 mt-5 text-center">
             <h1 className="mt-5 font-weight-bold text-white">
-              Игра Speakit
+              {<Translation>
+                {
+                  (t) => <>{t('speakIt.2')}</>
+                }
+              </Translation>}
             </h1>
             <p className="mt-5 text-white">
-              SpeakIt - одностраничное приложение, при помощи которого можно прослушать произношение английских слов и использовать технологию распознавания речи Google Web Speech API для проверки правильности произношения.
+              {<Translation>
+                {
+                  (t) => <>{t('speakIt.1')}</>
+                }
+              </Translation>}
             </p>
             <p className="mt-5 text-white">
-              Для продолжения нажмите играть!
+              {<Translation>
+                {
+                  (t) => <>{t('speakIt.4')}</>
+                }
+              </Translation>}
             </p>
           </div>
         </div>

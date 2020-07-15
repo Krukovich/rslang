@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
+import Spinner from '../../../Components/Spinner/Spinner'
 
 export class LoginLayout extends Component {
   render() {
