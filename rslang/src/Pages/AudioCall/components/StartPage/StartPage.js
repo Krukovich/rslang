@@ -99,7 +99,14 @@ export class AudioCallStartPage extends Component {
                 }
               </Translation>}
             </p>
-            <p>
+            <div className="Audiocall-Startscreen_btns">
+              <Button variant={'primary'}>
+                {<Translation>
+                  {
+                    (t) => <>{t('sprintGame.12')}</>
+                  }
+                </Translation>}
+              </Button>
               <Button
                 variant="btn btn-primary my-2"
                 onClick={() => this.startHandler()}
@@ -110,7 +117,7 @@ export class AudioCallStartPage extends Component {
                   }
                 </Translation>}
               </Button>
-            </p>
+            </div>
           </div>
         </section>
       </div>
