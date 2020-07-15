@@ -18,6 +18,7 @@ import {
   getRandomPage,
 } from './service';
 import { MAX_PAGE } from './constant';
+import Spinner from './Components/Spinner/Spinner';
 
 const mapStateToProps = (state) => {
   return {

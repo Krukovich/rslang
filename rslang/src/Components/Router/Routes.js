@@ -187,7 +187,6 @@ const checkUserStats = () => {
   fetchAPI("users-get-statistics").then((userStatsRemote) => {
     if (userStatsRemote.optional === undefined) {
       fetchAPI("users-set-start-statistics");
-      addStandardUserWords();
       return true;
     }
     return false;
@@ -201,10 +200,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       render={(props) => {
         if (CheckLogin()) {
           checkUserStats();         
-          // getWords(rest.level, rest.newWordsCount).then((words) => {
-          //   rest.setDayLearningWords(words);
-          //   saveWordsInLocalStorage(words);
-          // });
           return <Component {...props} />;
         } else {
           return <Redirect to="/" />;
