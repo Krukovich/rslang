@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 const RestartButton = ({ setPlayWords, resetScore }) => {
   return (
@@ -10,7 +11,11 @@ const RestartButton = ({ setPlayWords, resetScore }) => {
         resetScore();
       }}
     >
-      Рестарт
+      {<Translation>
+        {
+          (t) => <>{t('speakIt.8')}</>
+        }
+      </Translation>}
     </button>
   );
 }

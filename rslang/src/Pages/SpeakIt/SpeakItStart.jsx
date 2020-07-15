@@ -2,6 +2,7 @@ import React from 'react';
 
 import SpeakIt from './SpeakIt.jsx';
 import Content from './Components/Content/Content.jsx';
+import { Translation } from 'react-i18next';
 
 class SpeakItStart extends React.Component {
   constructor() {
@@ -10,27 +11,31 @@ class SpeakItStart extends React.Component {
       isStart: false,
     }
   }
-  
+
   setIsStart = () => {
     const { isStart } = this.state;
     this.setState({ isStart: !isStart });
   }
-  
+
   render() {
     const { isStart } = this.state;
 
-    return(
+    return (
       <React.Fragment>
-        { !isStart ? <Content /> : '' }
-        { isStart ? <SpeakIt /> : '' }
+        {!isStart ? <Content /> : ''}
+        {isStart ? <SpeakIt /> : ''}
         <div className="col-12 text-center mt-5">
-          { !isStart ?
+          {!isStart ?
             <button
               className="btn btn-primary"
-              onClick={ () => this.setIsStart() }
+              onClick={() => this.setIsStart()}
             >
-              Играть
-            </button> 
+              {<Translation>
+                {
+                  (t) => <>{t('speakIt.3')}</>
+                }
+              </Translation>}
+            </button>
             : ''
           }
         </div>

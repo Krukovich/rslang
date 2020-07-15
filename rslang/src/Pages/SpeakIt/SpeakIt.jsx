@@ -15,6 +15,7 @@ import Input from './Components/Input/Input.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
 import { setSpeakItStats } from '../../Store/SpekIt/action';
+import { Translation } from 'react-i18next';
 
 const mapStateToProps = (state) => {
   return {

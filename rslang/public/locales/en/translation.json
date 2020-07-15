@@ -95,5 +95,94 @@
         "2": "Study English",
         "3": "Learning",
         "4": "Train English"
+    },
+    "playzone": {
+        "1": "DELETE",
+        "2": "DIFFICULT",
+        "3": "ANSWER",
+        "4": "CHECK",
+        "5": "Series completed",
+        "6": "Cards completed:",
+        "7": "Right answers:",
+        "8": "New words:",
+        "9": "Correct answers in a row:",
+        "10": "ON MAIN"
+    },
+    "sidebar": {
+        "1": "MAIN PAGE",
+        "2": "LEARNING",
+        "3": "STATISTICS",
+        "4": "VOCABULARY",
+        "5": "MINI GAMES",
+        "6": "PROMO",
+        "7": "TEAM",
+        "8": "SETTINGS",
+        "9": "EXIT"
+    },
+    "stats": {
+        "1": "All words",
+        "2": "Progress",
+        "3": "Words learned in a day",
+        "4": "Words learned from vocabulary",
+        "5": "Audiocall",
+        "6": "Sprint",
+        "7": "Savannah",
+        "8": "English puzzle",
+        "9": "SpeakIt!",
+        "10": "Wheel of Fortune",
+        "11": "Date: ",
+        "12": "Score: "
+    },
+    "team": {
+        "1": {
+            "1": "Eugene",
+            "2": "Mentor. Rescue of the drowning"
+        },
+        "2": {
+            "1": "Alexei",
+            "2": "Team Lead. Project setup, training, word learning, english puzzle, SpeakIt, coordination, help to comrades"
+        },
+        "3": {
+            "1": "Alexander",
+            "2": "Router, login and registration, audiocall, savannah, fetchAPI, wordAPI"
+        },
+        "4": {
+            "1": "Darya",
+            "2": "Statistics page and related logic"
+        },
+        "5": {
+            "1": "Pavel",
+            "2": "Sprint, Wheel of Fortune, general styling and layout, completion of the savannah and audiocall, localization"
+        },
+        "6": {
+            "1": "Yuri",
+            "2": "Settings page and related logic, promo"
+        },
+        "7": {
+            "1": "Nikolay",
+            "2": "Lingualeo, Lingvist, vocabulary and related logic, promo-movie, promoo translation"
+        }
+    },
+    "voc": {
+        "1": "LEARNING WORDS",
+        "2": "DIFFICULT WORDS",
+        "3": "DELETED WORDS"
+    },
+    "minigames": {
+        "1": "Sprint",
+        "2": "Turbo Wheel of Fortune",
+        "3": "Savannah",
+        "4": "English Puzzle",
+        "5": "SpeakIt!",
+        "6": "Audiocall"
+    },
+    "auth": {
+        "1": "Sign in",
+        "2": "Forgot password?",
+        "3": "Create an account",
+        "4": "Sign up",
+        "5": "Password recovery is impossible!",
+        "6": "API cannot send letters on an email, sry.",
+        "7": "Close"
     }
 }

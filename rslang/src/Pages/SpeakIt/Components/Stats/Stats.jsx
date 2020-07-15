@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
+import { Translation } from 'react-i18next';
 
 const Stats = ({ words, score, setSpeakItStats }) => {
 
@@ -41,15 +42,27 @@ const Stats = ({ words, score, setSpeakItStats }) => {
         // variant=""
         onClick={handleShow}
       >
-        Статистика
+        {<Translation>
+          {
+            (t) => <>{t('speakIt.9')}</>
+          }
+        </Translation>}
       </Button>
 
       <Modal show={show} onHide={handleClose} scrollable="true">
         <Modal.Header closeButton>
           <Modal.Title>
-            Статистика
+            {<Translation>
+              {
+                (t) => <>{t('speakIt.9')}</>
+              }
+            </Translation>}
             <span className="ml-3">
-              Ваш результат {score}
+              {<Translation>
+                {
+                  (t) => <>{t('speakIt.5')}</>
+                }
+              </Translation>} {score}
             </span>
           </Modal.Title>
         </Modal.Header>
@@ -60,10 +73,18 @@ const Stats = ({ words, score, setSpeakItStats }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
-            Закрыть
+            {<Translation>
+              {
+                (t) => <>{t('speakIt.12')}</>
+              }
+            </Translation>}
           </Button>
           <Button variant="primary" onClick={() => saveStats()}>
-            Сохранить
+            {<Translation>
+              {
+                (t) => <>{t('speakIt.11')}</>
+              }
+            </Translation>}
           </Button>
         </Modal.Footer>
       </Modal>

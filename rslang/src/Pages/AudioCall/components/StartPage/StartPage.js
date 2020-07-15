@@ -88,7 +88,7 @@ export class AudioCallStartPage extends Component {
             <h1 className="jumbotron-heading">
               {<Translation>
                 {
-                  (t) => <>{t('fortuneGame.2')}</>
+                  (t) => <>{t('audiocallGame.2')}</>
                 }
               </Translation>}
             </h1>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDragon } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +16,13 @@ const ShortStatsHeader = () => {
   return (
     <div className="row align-items-center flex-column shortStatsInfo">
       <img src={english} alt="stats pic" />
-      <h1>Серия завершена</h1>
+      <h1>
+        {<Translation>
+          {
+            (t) => <>{t('playzone.5')}</>
+          }
+        </Translation>}
+      </h1>
     </div>
   )
 }
@@ -27,25 +34,41 @@ const ShortStatsInfo = (props) => {
       <ul className="row align-items-center flex-column shortStatsInfo">
         <li className="shortStatsInfo-item d-flex">
           <span><FontAwesomeIcon icon={faDragon} />
-            Карточек завершено: </span><span>{total}</span>
+            {<Translation>
+              {
+                (t) => <>{t('playzone.6')}</>
+              }
+            </Translation>} </span><span>{total}</span>
         </li>
         <li className="shortStatsInfo-item d-flex">
           <span><FontAwesomeIcon icon={faCrown} />
-            Правильные ответы: </span><span>{right}%</span>
+            {<Translation>
+              {
+                (t) => <>{t('playzone.7')}</>
+              }
+            </Translation>} </span><span>{right}%</span>
         </li>
         <li className="shortStatsInfo-item d-flex">
           <span><FontAwesomeIcon icon={faCartPlus} />
-            Новые слова: </span><span>{newWords}</span>
+            {<Translation>
+              {
+                (t) => <>{t('playzone.8')}</>
+              }
+            </Translation>} </span><span>{newWords}</span>
         </li>
         <li className="shortStatsInfo-item d-flex">
           <span><FontAwesomeIcon icon={faUserGraduate} />
-            Правильных ответов подряд: </span><span>{rightInArrow}</span>
+            {<Translation>
+              {
+                (t) => <>{t('playzone.9')}</>
+              }
+            </Translation>} </span><span>{rightInArrow}</span>
         </li>
       </ul>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 col-lg-4 text-center p-3">
-            <NavItem href='/main-page' title='Главная' />
+            <NavItem href='/main-page' title='playzone.10' />
           </div>
         </div>
       </div>
