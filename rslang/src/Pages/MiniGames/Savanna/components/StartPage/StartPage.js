@@ -107,7 +107,7 @@ export class SavannaStartPage extends Component {
                 }
               </Translation>}
             </p>
-            <p>
+            <div className="Savannah-Startscreen_btns">
               <Button variant="btn btn-primary my-2" onClick={() => this.startHandler()}>
                 {<Translation>
                   {
@@ -115,7 +115,14 @@ export class SavannaStartPage extends Component {
                   }
                 </Translation>}
               </Button>
-            </p>
+              <Button variant={'primary'}>
+                {<Translation>
+                  {
+                    (t) => <>{t('sprintGame.12')}</>
+                  }
+                </Translation>}
+              </Button>
+            </div>
           </div>
         </section>
       </div>

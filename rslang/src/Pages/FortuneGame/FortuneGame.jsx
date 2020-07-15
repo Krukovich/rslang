@@ -57,6 +57,7 @@ class FortuneGame extends Component {
             answers: [],
             difficulty: localStorage.getItem('fortuneDifficulty') === null ? 0 : localStorage.getItem('fortuneDifficulty'),
             level: localStorage.getItem('fortuneLvl') === null ? 0 : localStorage.getItem('fortuneLvl'),
+            userwords: []
         }
         this.engWordRef = React.createRef();
         this.difficultyRef = React.createRef();
@@ -323,6 +324,17 @@ class FortuneGame extends Component {
         this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
     }
 
+    getUserwords = () => {
+        // this.setState({
+        //     words: userwords,
+        // })
+    }
+
+    startWithUserwords = () => {
+        this.getUserwords();
+        this.start();
+    }
+
     addYakubClass() {
         const buttonClass = ['Fortune-Yakub', 'mt-2'];
         if (this.state.speak) {
@@ -396,6 +408,7 @@ class FortuneGame extends Component {
                         difficultyHandler={this.difficultyHandler}
                         levelHandler={this.levelHandler}
                         optionSpawner={this.optionSpawner}
+                        startWithUserwords={this.startWithUserwords}
                     />
                     <StartScreen gameStart={this.start} />
                 </div>
