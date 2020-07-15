@@ -1,11 +1,13 @@
 import React, { Suspense } from "react";
 import RouteMap from "./Components/Router/Routes";
 import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
+import Spinner from "./Components/Spinner/Spinner";
 
 
 const App = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+
+    <Suspense fallback={<Spinner />}>
       <AppWrapper>
         <div className="container-fluid">
           <div className="row">

@@ -7,9 +7,7 @@ export class CreateAccountLayout extends Component {
         <div className="row">
           <div className="col-lg-12">
             <div className="CreateAccount">
-              <Suspense fallback={<div>Loading...</div>}>
-                {this.props.children}
-              </Suspense>
+              {this.props.children}
             </div>
           </div>
         </div>
