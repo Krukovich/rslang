@@ -1,6 +1,7 @@
-import React from 'react'
-import './FinishedQuiz.css'
-import Button from '../UI/Button/Button'
+import React from 'react';
+import { Link } from "react-router-dom";
+import './FinishedQuiz.css';
+import Button from '../UI/Button/Button';
 import { Translation } from 'react-i18next';
 
 const FinishedQuiz = props => {
@@ -46,13 +47,20 @@ const FinishedQuiz = props => {
         {props.quiz.length}</p>
 
       <div>
-        <Button onClick={props.onRetry} type="primary">
+        <Button onClick={props.onRetry} type="btn btn-primary rounded">
           {<Translation>
             {
               (t) => <>{t('audiocallGame.6')}</>
             }
           </Translation>}
         </Button>
+        <Link className="btn btn-primary rounded" to={'/mini-games'}>
+          {<Translation>
+            {
+              (t) => <>{t('sprintGame.11')}</>
+            }
+          </Translation>}
+        </Link>
       </div>
     </div>
   )

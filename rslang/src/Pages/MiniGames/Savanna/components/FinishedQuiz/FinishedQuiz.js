@@ -1,5 +1,6 @@
 import React from 'react'
 import './FinishedQuiz.css'
+import { Link } from "react-router-dom";
 import { Translation } from 'react-i18next';
 import Button from '../UI/Button/Button'
 
@@ -45,20 +46,20 @@ const FinishedQuiz = props => {
         {props.quiz.length}</p>
 
       <div>
-        <Button onClick={props.onRetry} type="primary">
+        <Button onClick={props.onRetry} type="btn btn-primary rounded">
           {<Translation>
             {
               (t) => <>{t('savannaGame.6')}</>
             }
           </Translation>}
         </Button>
-        <Button type="success">
+        <Link className="btn btn-primary rounded" to={'/mini-games'}>
           {<Translation>
             {
-              (t) => <>{t('savannaGame.7')}</>
+              (t) => <>{t('sprintGame.11')}</>
             }
           </Translation>}
-        </Button>
+        </Link>
       </div>
     </div>
   )
