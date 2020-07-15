@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
+import { Translation } from 'react-i18next';
 
 import { AlertRed } from "../../../Components/Alert/Alert";
 import { LoginLayout } from "./LoginLayout";
@@ -112,60 +113,93 @@ class Login extends React.Component {
           MainText={this.state.alertMessage}
         >
           {this.state.showModal === true ?
-          <Modal.Dialog>
-          <Modal.Header closeButton>
-            <Modal.Title>Восстановление пароля невозможно!</Modal.Title>
-          </Modal.Header>
-        
-          <Modal.Body>
-            <p>API не может отправлять сообщения на почту, а дать права менять пароль в любом аккаунте очень неразумно.</p>
-          </Modal.Body>
-        
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => this.setState({showModal: false})}>Close</Button>
-          </Modal.Footer>
-        </Modal.Dialog>:null
-        }
-        {this.state.showModal === false ?
-          <LoginLayout>
-            <form onSubmit={(e) => this.requestSignin(e)}>
-              <h2 className="text-center">Войти</h2>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  required="required"
-                  onChange={this.emailInputHandler}
-                ></input>
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  pattern={Const.PASSWORD_PATTERN}
-                  className="form-control"
-                  placeholder="Password"
-                  required="required"
-                  onChange={this.passwordInputHandler}
-                ></input>
-              </div>
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Войти
-                </button>
-              </div>
-              <div className="clearfix">
-                <label className="pull-left checkbox-inline"></label>
-                <NavLink to='#t' onClick={() => this.setState({showModal: true})} className="pull-right">
-                  Забыли пароль?
-                </NavLink>
-              </div>
-            </form>
-            <p className="text-center">
-              <NavLink to="/createanaccount">Создать аккаунт</NavLink>
-            </p>
-          </LoginLayout>:null
-    }
+            <Modal.Dialog>
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  <Translation>
+                    {
+                      (t) => <>{t('auth.5')}</>
+                    }
+                  </Translation>
+                </Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p><Translation>
+                  {
+                    (t) => <>{t('auth.6')}</>
+                  }
+                </Translation></p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary" onClick={() => this.setState({ showModal: false })}>
+                  <Translation>
+                    {
+                      (t) => <>{t('auth.7')}</>
+                    }
+                  </Translation></Button>
+              </Modal.Footer>
+            </Modal.Dialog> : null
+          }
+          {this.state.showModal === false ?
+            <LoginLayout>
+              <form onSubmit={(e) => this.requestSignin(e)}>
+                <h2 className="text-center">
+                  <Translation>
+                    {
+                      (t) => <>{t('auth.1')}</>
+                    }
+                  </Translation>
+                </h2>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    required="required"
+                    onChange={this.emailInputHandler}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    pattern={Const.PASSWORD_PATTERN}
+                    className="form-control"
+                    placeholder="Password"
+                    required="required"
+                    onChange={this.passwordInputHandler}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-block">
+                    <Translation>
+                      {
+                        (t) => <>{t('auth.1')}</>
+                      }
+                    </Translation>
+                  </button>
+                </div>
+                <div className="clearfix">
+                  <label className="pull-left checkbox-inline"></label>
+                  <NavLink to='#t' onClick={() => this.setState({ showModal: true })} className="pull-right">
+                    <Translation>
+                      {
+                        (t) => <>{t('auth.2')}</>
+                      }
+                    </Translation>
+                  </NavLink>
+                </div>
+              </form>
+              <p className="text-center">
+                <NavLink to="/createanaccount"><Translation>
+                  {
+                    (t) => <>{t('auth.3')}</>
+                  }
+                </Translation></NavLink>
+              </p>
+            </LoginLayout> : null
+          }
         </AlertRed>
       );
     } else {

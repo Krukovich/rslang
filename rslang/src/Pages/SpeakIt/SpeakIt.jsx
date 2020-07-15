@@ -15,6 +15,7 @@ import Input from './Components/Input/Input.jsx';
 import RestartButton from './Components/Buttons/RestartButton.jsx';
 import PlayGame from './Components/Buttons/PlayGame.jsx';
 import { setSpeakItStats } from '../../Store/SpekIt/action';
+import { Translation } from 'react-i18next';
 
 const mapStateToProps = (state) => {
   return {
@@ -166,7 +167,7 @@ class SpeakIt extends React.Component {
           <section className="main mt-5" id="main">
             <div className="container">
               <div className="row">
-                <div className="col-12 col-lg-4 mt-5">
+                <div className="col-12 col-lg-4 mt-5 d-flex justify-content-center">
                   <GroupButtons loadNewWords={this.loadNewWords} />
                 </div>
                 <div className="col-12 col-lg-8 mt-5">

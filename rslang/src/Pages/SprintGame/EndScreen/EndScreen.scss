@@ -3,7 +3,7 @@
 }
 
 .SprintStats {
-    min-width: 230px;
+    max-width: 230px;
     display: flex;
     align-items: center;
     overflow-y: scroll;
@@ -11,6 +11,10 @@
     height: 140px;
     color: white;
     backdrop-filter: brightness(40%);
+    
+    @media screen and (max-width: 767px) {
+        font-size: 0.6rem;
+    }
 }
 
 .SprintStats-Separator {

@@ -10,3 +10,17 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.Fortune-Startscreen_btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+        flex-direction: column;
+
+        button {
+            font-size: 0.7rem;
+        }
+    }
+}

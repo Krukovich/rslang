@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import WordsToLearn from './WordsToLearn/WordsToLearn.jsx';
 import Pagination from './Pagination/Pagination.jsx';
 import { connect } from 'react-redux';
-import {setDeleteWords, setDayLearningWords} from '../../Store/PlayZonePage/actions';
-import {checkDeleteWords} from '../../service'
+import { setDeleteWords, setDayLearningWords } from '../../Store/PlayZonePage/actions';
+import { checkDeleteWords } from '../../service';
 
 const mapStateToProps = (store) => {
   return { 
@@ -58,7 +58,7 @@ const Vocabulary = (props) => {
 
   return (
     <React.Fragment>
-      <div className='container mt-5'>
+      <div className='container-fluid'>
         <WordsToLearn posts={currentPost} remove={remove} />
         <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
       </div>

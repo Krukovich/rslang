@@ -1,6 +1,66 @@
 import React from 'react';
 
+import { fetchAPI } from './Components/Tools/fetchAPI';
+import { getWordsById } from './Components/Tools/userWordsApi';
+
+export const filterOutDeletedWords = (words, userWords) => {
+  const wordIds = userWords
+    .filter((wordProps) => wordProps.value.optional.delete)
+    .map((wordProps) => wordProps.value.wordId);
+  return words.filter((word) => wordIds.includes(word.id));
+}
+
+export const addStandardUserWords = () => {
+  fetchAPI("words", { page: 1, group: 1 }).then((standardUserWords) => {
+    standardUserWords.map((obj) => createUserWordsById(obj.id));
+  });
+}
+
+export const filterOutDifficultWords = (words, userWords) => {
+  const wordIds = userWords
+    .filter((wordProps) => wordProps.value.optional.hard)
+    .map((wordProps) => wordProps.value.wordId);
+  return words.filter((word) => wordIds.includes(word.id));
+}
+
+export const putUserWordsById = (wordId, hard, deleted, coefficient) => {
+  const obj = {
+    "hard": hard ? hard : false,
+    "delete": deleted ? deleted : false,
+    "coefficient": coefficient ? coefficient : 1, 
+}
+  fetchAPI('updateUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+}
+
+export const updateUserWordsById = (wordId, hard, deleted, coefficient) => {
+  const obj = {
+    "hard": hard ? hard : false,
+    "delete": deleted ? deleted : false,
+    "coefficient": coefficient ? coefficient : 1, 
+}
+  fetchAPI('updateUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+}
+
+export const createUserWordsById = (wordId, hard = false, deleted = false, coefficient = 1) => {
+  const obj = {
+    "hard": hard,
+    "delete": deleted,
+    "coefficient": coefficient, 
+}
+  fetchAPI('createUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+}
+
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
+
+export const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+
+export const getUserWordsById = (array) => {
+  const promise = [];
+  for (let i = 0; i < array.length; i += 1) {
+    promise.push(getWordsById(array[i].value.wordId));
+  }
+  return Promise.allSettled(promise).then((wordLists) => wordLists.flatMap((wordList) => wordList.value));
+}
 
 export const getWords = (group, numberOfWords) => {
   const wordsToGet = Math.min(numberOfWords, 600);
@@ -8,7 +68,7 @@ export const getWords = (group, numberOfWords) => {
   const proms = [];
 
   for (let i = 0; i < count; i += 1) {
-    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group - 1}&page=${i}`).then((res) => res.json()));
+    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${ getRandomPage(20) }`).then((res) => res.json()));
   }
   return Promise.allSettled(proms).then((wordLists) => wordLists.flatMap((wordList) => wordList.value).slice(0, numberOfWords));
 }

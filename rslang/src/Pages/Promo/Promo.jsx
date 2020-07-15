@@ -1,4 +1,6 @@
 import React from 'react';
+import i18n from "../../i18n";
+import { Translation } from 'react-i18next';
 
 import { PromoCard } from '../../Components/Promo/PromoCard';
 import { GamesCard } from '../../Components/Promo/GamesCard';
@@ -6,6 +8,11 @@ import { GamesCard } from '../../Components/Promo/GamesCard';
 import './Promo.scss'
 
 class Promo extends React.Component {
+
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -13,111 +20,182 @@ class Promo extends React.Component {
           <div className="row">
             <div className="col-12 pt-5">
               <div className="settingsContainer pt-5">
-                <div className="jumbotron">
-                  <p>
-                    Играть и изучать английский одновременно?
-                    Легко! Особенно вместе c  rslang. Чем удобно
-                    это приложение? Все самое необходимое для
-                    увлекательного изучения английского языка
-                    в одном месте. Обо всем по порядку.
+                <div className="jumbotron settingsContainer-jumbotron">
+                  <p>{
+                      <Translation>
+                      {
+                        (t) => <>{t('promo.1')}</>
+                      }
+                    </Translation>
+                  }
                 </p>
                 </div>
                 <PromoCard
-                  cardTitle='ИЗУЧЕНИЕ СЛОВ'
+                  cardTitle={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.2')}</>
+                      }
+                    </Translation>
+                  }
                   classN={'PromoCard-Learn'}
-                  cardText='Каждый раз вспоминания то или иное 
-                            слово на английском, хочется, чтобы оно 
-                            не вертелось где-то на языке, а сразу же 
-                            красиво вливалось в речь. Именно поэтому так важно 
-                            пополнять свой словарный запас. Раздел «Изучение слов» 
-                            поможет как следует встряхнуть ваш активный и пассивный 
-                            словарь. Здесь необходимо правильно вписать подходящее по смыслу 
-                            слово в предложении. Отличная возможность проверить орфографию! 
-                            После написания слова можно проверить себя, а также прослушать 
-                            верный вариант на английском. В случае затруднения можно нажать 
-                            на «показать ответ» и произнести вслух то самое «Я так и знал!»'
-                  btnText='Попробовать'
+                  cardText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.3')}</>
+                      }
+                    </Translation>
+                  }
+                  btnText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.4')}</>
+                      }
+                    </Translation>
+                  }
                   link="/play-zone"
                 />
 
                 <PromoCard
-                  cardTitle='СТАТИСТИКА'
+                  cardTitle={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.5')}</>
+                      }
+                    </Translation>
+                  }
                   classN={'PromoCard-Stats'}
-                  cardText='М-мотивация! Ключ к успеху в любом деле! Не терять свою 
-                            мотивацию в изучении английского поможет отслеживание результатов 
-                            в разделе «Статистика». Простой для восприятия график покажет ваш 
-                            прогресс: изученные слова в день, новые слова из словаря. 
-                            Шаг за шагом на пути к успеху!'
-                  btnText='Ваши успехи'
+                  cardText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.6')}</>
+                      }
+                    </Translation>
+                  }
+                  btnText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.7')}</>
+                      }
+                    </Translation>
+                  }
                   link="/long-stats"
                 />
 
                 <PromoCard
-                  cardTitle='СЛОВАРЬ'
+                  cardTitle={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.8')}</>
+                      }
+                    </Translation>
+                  }
                   // cardImg={voc}
                   classN={'PromoCard-Voc'}
-                  cardText='Куда без него? Словарь с транскрипцией и примерами употребления 
-                            слов в контексте. Для лучшего запоминания есть наглядности в виде картинок, 
-                            а также звуковое оформление слов. Формула проста: прослушал +прочел 
-                            в предложении +увидел = 100% запоминание!'
-                  btnText='Посмотреть'
+                  cardText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.9')}</>
+                      }
+                    </Translation>
+                  }
+                  btnText={
+                    <Translation>
+                      {
+                        (t) => <>{t('promo.10')}</>
+                      }
+                    </Translation>
+                  }
                   link="learning-words"
                 />
-                <div className="row justify-content-center mt-4 mb-4"><h2 className='tx' >Мини игры</h2></div>
+                <div className="row justify-content-center mt-4 mb-4">
+                  <h2 className='tx' >
+                    <Translation>
+                        {
+                          (t) => <>{t('promo.11')}</>
+                        }
+                      </Translation>
+                  </h2>
+                </div>
                 <div className="row">
                   <GamesCard
                     gameTitle='Sprint'
-                    gameDescription='Как играть: дано слово на английском 
-                                      и его перевод. Если они совпадают, нажми "Yes", 
-                                      если нет, нажми "No". Комбо из четырёх правильных 
-                                      ответов удваивает награду. Три ошибки ведут к проигрышу. 
-                                      Можно выставлять уровень сложности. Ох и мозговая встряска! '
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.12')}</>
+                        }
+                      </Translation>
+                    }
                     gameLink='/SprintGame'
                   />
                   <GamesCard
                     gameTitle='Savanna'
-                    gameDescription='Все просто: чем больше слов знаете, 
-                                    тем больше очков зарабатываете. Идеально для прокачки 
-                                    словарного запаса.'
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.14')}</>
+                        }
+                      </Translation>
+                    }
                     gameLink='/Savanna'
                   />
                   <GamesCard
                     gameTitle='Speak It'
-                    gameDescription='Говорить как носитель английского языка? 
-                                      Все возможно!  Практика устной речи при помощи 
-                                      технологии распознавания речи Google Web Speech 
-                                      API для проверки правильности произношения. It’s easy!'
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.15')}</>
+                        }
+                      </Translation>
+                    }
                     gameLink='/speakIt-start'
                   />
                   <GamesCard
-                    gameTitle='Поле Чудес'
-                    gameDescription='Открывая правильные буквы на табло, 
-                                    чувствуешь себя суперфиналистом знаменитой телевизионной 
-                                    игры. Так и хочется крутануть барабан!'
-                  gameLink='/fortune-game'
+                    gameTitle={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.16')}</>
+                        }
+                      </Translation>
+                    }
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.17')}</>
+                        }
+                      </Translation>
+                    }
+                    gameLink='/fortune-game'
 
                   />
                   <GamesCard
                     gameTitle='English Puzzle'
-                    gameDescription=' Строить красивое и правильное предложение 
-                                      на английском языке поможет именно эта игра. 
-                                      Находим каждому слову свое место, как при 
-                                      складывании пазла!'
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.18')}</>
+                        }
+                      </Translation>
+                    }
                     gameLink='/english-puzzle'
                   />
-                  
+
                   <GamesCard
                     gameTitle='Audiocall'
-                    gameDescription="Проверить свой английский на слух поможет 
-                                      эта игра. Вы уже точно не забудете, 
-                                      как звучит то или иное слово на английском, 
-                                      и, конечно, обогатите свой словарный запас! Let's start!"
+                    gameDescription={
+                      <Translation>
+                        {
+                          (t) => <>{t('promo.19')}</>
+                        }
+                      </Translation>
+                    }
                     gameLink='/audiocall'
                   />
 
                 </div>
                 <div className="video row justify-content-center mt-4 mb-4">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/IlmTlBs_mGk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hoOlURkumCE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
               </div>
             </div>

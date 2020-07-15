@@ -1,6 +1,8 @@
-import React from 'react'
-import './FinishedQuiz.css'
-import Button from '../UI/Button/Button'
+import React from 'react';
+import { Link } from "react-router-dom";
+import './FinishedQuiz.css';
+import Button from '../UI/Button/Button';
+import { Translation } from 'react-i18next';
 
 const FinishedQuiz = props => {
   const successCount = Object.keys(props.results).reduce((total, key) => {
@@ -15,8 +17,8 @@ const FinishedQuiz = props => {
   return (
     <div className='FinishedQuiz'>
       <ul>
-        { props.quiz.map((quizItem, index) => {
-          let cls = 'fa ' +  props.results[quizItem.id] === 'error ' ? 'fa-times ' : 'fa-check ' + props.results[quizItem.id];          
+        {props.quiz.map((quizItem, index) => {
+          let cls = 'fa ' + props.results[quizItem.id] === 'error ' ? 'fa-times ' : 'fa-check ' + props.results[quizItem.id];
           return (
             <li
               key={index}
@@ -27,13 +29,38 @@ const FinishedQuiz = props => {
             </li>
           )
 
-        }) }
+        })}
       </ul>
 
-      <p>Правильно {successCount} из {props.quiz.length}</p>
+      <p>
+        {<Translation>
+          {
+            (t) => <>{t('audiocallGame.5')}</>
+          }
+        </Translation>}
+        {successCount}
+        {<Translation>
+          {
+            (t) => <>{t('audiocallGame.8')}</>
+          }
+        </Translation>}
+        {props.quiz.length}</p>
 
       <div>
-        <Button onClick={props.onRetry} type="primary">Повторить</Button>
+        <Button onClick={props.onRetry} type="btn btn-primary rounded">
+          {<Translation>
+            {
+              (t) => <>{t('audiocallGame.6')}</>
+            }
+          </Translation>}
+        </Button>
+        <Link className="btn btn-primary rounded" to={'/mini-games'}>
+          {<Translation>
+            {
+              (t) => <>{t('sprintGame.11')}</>
+            }
+          </Translation>}
+        </Link>
       </div>
     </div>
   )

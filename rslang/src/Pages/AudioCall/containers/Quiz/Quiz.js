@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Quiz.css";
+import { Translation } from 'react-i18next';
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz.jsx";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 import { connect } from "react-redux";
@@ -41,10 +42,10 @@ class Quiz extends Component {
     super(props);
     this.state = {
       gameStart: false,
-      results: {}, 
+      results: {},
       isFinished: false,
       activeQuestion: 0,
-      answerState: null, 
+      answerState: null,
       quiz: props.quiz,
     };
   }
@@ -125,12 +126,12 @@ class Quiz extends Component {
       results: {},
     });
   };
-  componentDidMount() {}
+  componentDidMount() { }
 
   audioPlay = (strLink) => {
     const audioL = new Audio(
       "https://raw.githubusercontent.com/Krukovich/rslang-data/master/" +
-        strLink
+      strLink
     );
     audioL.play();
   };
@@ -140,9 +141,15 @@ class Quiz extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <div className="Quiz">
+            <div className="Quiz Audiocall">
               <div className="QuizWrapper">
-                <h1>Ответьте на все вопросы</h1>
+                <h1>
+                  {<Translation>
+                    {
+                      (t) => <>{t('audiocallGame.4')}</>
+                    }
+                  </Translation>}
+                </h1>
                 {this.state.isFinished ? (
                   <FinishedQuiz
                     results={this.state.results}
@@ -150,19 +157,19 @@ class Quiz extends Component {
                     onRetry={this.retryHandler}
                   />
                 ) : (
-                  <ActiveQuiz
-                    finishQuestionError={this.finishQuestionWithError}
-                    answers={this.state.quiz[this.state.activeQuestion].answers}
-                    question={this.state.quiz[this.state.activeQuestion].audio}
-                    questionText={
-                      this.state.quiz[this.state.activeQuestion].question
-                    }
-                    onAnswerClick={this.onAnswerClickHandler}
-                    quizLength={this.state.quiz.length}
-                    answerNumber={this.state.activeQuestion + 1}
-                    state={this.state.answerState}
-                  />
-                )}
+                    <ActiveQuiz
+                      finishQuestionError={this.finishQuestionWithError}
+                      answers={this.state.quiz[this.state.activeQuestion].answers}
+                      question={this.state.quiz[this.state.activeQuestion].audio}
+                      questionText={
+                        this.state.quiz[this.state.activeQuestion].question
+                      }
+                      onAnswerClick={this.onAnswerClickHandler}
+                      quizLength={this.state.quiz.length}
+                      answerNumber={this.state.activeQuestion + 1}
+                      state={this.state.answerState}
+                    />
+                  )}
               </div>
             </div>
           </div>

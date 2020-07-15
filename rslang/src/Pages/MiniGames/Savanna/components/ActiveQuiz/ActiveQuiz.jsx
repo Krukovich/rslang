@@ -1,5 +1,6 @@
 import React from "react";
 import "./ActiveQuiz.css";
+import { Translation } from 'react-i18next';
 import AnswersList from "./AnswersList/AnswersList";
 
 import sec from "../../assets/sec.mp3";
@@ -43,7 +44,7 @@ class ActiveQuiz extends React.Component {
 
   render() {
     return (
-      <div className="ActiveQuiz">
+      <div className="ActiveQuiz p-3">
         <h2 className="ActiveQuiz-Timer">{this.state.timeLeft}</h2>
         <div id="question" className={`questionanimated`}>
           {this.props.question}
@@ -55,7 +56,11 @@ class ActiveQuiz extends React.Component {
           </span>
 
           <small>
-            {this.props.answerNumber} из {this.props.quizLength}
+            {this.props.answerNumber} {<Translation>
+              {
+                (t) => <>{t('savannaGame.8')}</>
+              }
+            </Translation>} {this.props.quizLength}
           </small>
         </p>
 

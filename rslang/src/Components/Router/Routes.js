@@ -2,8 +2,8 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { setDayLearningWords } from "../../Store/PlayZonePage/actions";
-import { getWords, saveWordsInLocalStorage } from "../../service";
+import { setDayLearningWords, setDeleteWords, setDifficultWords } from "../../Store/PlayZonePage/actions";
+import { addStandardUserWords, saveWordsInLocalStorage } from "../../service";
 import Login from "../../Pages/Authentication/Login/LoginPage";
 import { LogOut } from "../../Pages/Authentication/Login/LogOut";
 import { CreateAccount } from "../../Pages/Authentication/CreateAccount/CreateAccountPage";
@@ -35,6 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = {
   setDayLearningWords,
+  setDeleteWords,
+  setDifficultWords,
 };
 
 const sourceOpenRoutes = [
@@ -96,7 +98,7 @@ const sourceCloseRoutes = [
   },
   {
     path: "/long-stats",
-    component: () => <LongStats totalWords={180} />,
+    component: () => <LongStats totalWords={500} />,
     exact: true,
   },
   {
@@ -154,7 +156,7 @@ const sourceCloseRoutes = [
   },
 ];
 
-const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
+const RouteMap = ({ level, newWordsCount, setDayLearningWords, setDeleteWords, setDifficultWords}) => {
   return (
     <div className="router">
       <Switch>
@@ -164,6 +166,8 @@ const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
         {sourceCloseRoutes.map(({ path, component }, key) => (
           <PrivateRoute
             setDayLearningWords={setDayLearningWords}
+            setDeleteWords={setDeleteWords}
+            setDifficultWords={setDifficultWords}
             level={level}
             newWordsCount={newWordsCount}
             exact
@@ -179,7 +183,7 @@ const RouteMap = ({ level, newWordsCount, setDayLearningWords }) => {
 
 export default connect(mapStateToProps, mapActionToProps)(RouteMap);
 
-function checkUserStats() {
+const checkUserStats = () => {
   fetchAPI("users-get-statistics").then((userStatsRemote) => {
     if (userStatsRemote.optional === undefined) {
       fetchAPI("users-set-start-statistics");
@@ -189,17 +193,13 @@ function checkUserStats() {
   });
 }
 
-function PrivateRoute({ component: Component, ...rest }) {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
         if (CheckLogin()) {
-          checkUserStats();
-          getWords(rest.level, rest.newWordsCount).then((words) => {
-            rest.setDayLearningWords(words);
-            saveWordsInLocalStorage(words);
-          });
+          checkUserStats();         
           return <Component {...props} />;
         } else {
           return <Redirect to="/" />;

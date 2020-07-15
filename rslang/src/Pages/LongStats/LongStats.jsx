@@ -5,11 +5,16 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import BtnsBar from "./BtnsBar/BtnsBar";
 import MiniStats from "./MiniStats/MiniStats";
 import { fetchAPI } from "../../Components/Tools/fetchAPI";
+import { Translation } from 'react-i18next';
 
 const ProgressLabel = () => {
   return (
     <div className="longStatsElem-label d-flex justify-content-center">
-      Изучено слов из словаря
+      {<Translation>
+        {
+          (t) => <>{t('stats.4')}</>
+        }
+      </Translation>}
     </div>
   );
 };
@@ -23,14 +28,14 @@ export default class LongStats extends React.Component {
       minigameSelect: "audioCall",
       datasets: [
         {
-          label: "Прогресс",
+          label: 'Прогресс',
           borderColor: "rgba(0,0,0,1)",
           backgroundColor: "darkcyan",
           borderWidth: 2,
           data: [], //...props.totalNewWords
         },
         {
-          label: "Слов изучено в день",
+          label: "Изучено слов из словаря",
           borderColor: "darkblue",
           backgroundColor: "darkblue",
           data: [], //...props.dailyNew,
@@ -38,12 +43,12 @@ export default class LongStats extends React.Component {
         },
       ],
       items: [
-        { id: 1, label: "Аудио Вызов", visible: false, apiName: "audioCall" },
-        { id: 2, label: "Спринт", visible: false, apiName: "sprintGame" },
-        { id: 3, label: "Саванна", visible: false, apiName: "statsSavanna" },
-        { id: 4, label: "Паззл", visible: false, apiName: "gamePuzzle" },
-        { id: 5, label: "Скажи Слово", visible: false, apiName: "speakIt" },
-        { id: 6, label: "Поле Чудес", visible: false, apiName: "fortuneGame" },
+        { id: 1, label: "stats.5", visible: false, apiName: "audioCall" },
+        { id: 2, label: "stats.6", visible: false, apiName: "sprintGame" },
+        { id: 3, label: "stats.7", visible: false, apiName: "statsSavanna" },
+        { id: 4, label: "stats.8", visible: false, apiName: "gamePuzzle" },
+        { id: 5, label: "stats.9", visible: false, apiName: "speakIt" },
+        { id: 6, label: "stats.10", visible: false, apiName: "fortuneGame" },
       ],
       count: [],
     };
@@ -90,7 +95,7 @@ export default class LongStats extends React.Component {
     this.state.wordsNow = Math.ceil(
       (this.state.datasets[0].data[this.state.datasets[0].data.length - 1] *
         100) /
-        this.props.totalWords
+      this.props.totalWords
     );
     this._asyncRequest = null;
     this.setState({ result });
@@ -121,6 +126,7 @@ export default class LongStats extends React.Component {
                 mode: "index",
                 intersect: true,
               },
+              maintainAspectRatio: false,
             }}
           />
         </div>

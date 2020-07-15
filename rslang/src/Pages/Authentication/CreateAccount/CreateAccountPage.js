@@ -7,6 +7,7 @@ import * as Const from "../../../constant";
 import { fetchAPI } from "../../../Components/Tools/fetchAPI";
 import { getCookie } from "../../../Components/Tools/getCookie";
 import { Redirect } from "react-router-dom";
+import { Translation } from 'react-i18next';
 
 export class CreateAccount extends React.Component {
   constructor(props) {
@@ -99,7 +100,13 @@ export class CreateAccount extends React.Component {
         >
           <CreateAccountLayout>
             <form onSubmit={(e) => this.request(e)}>
-              <h2 className="text-center">Создать аккаунт</h2>
+              <h2 className="text-center">
+                <Translation>
+                  {
+                    (t) => <>{t('auth.3')}</>
+                  }
+                </Translation>
+              </h2>
               <div className="form-group">
                 <input
                   type="email"
@@ -122,7 +129,11 @@ export class CreateAccount extends React.Component {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-block">
-                  Регистрация
+                  <Translation>
+                    {
+                      (t) => <>{t('auth.4')}</>
+                    }
+                  </Translation>
                 </button>
               </div>
               <div className="clearfix">
@@ -130,7 +141,13 @@ export class CreateAccount extends React.Component {
               </div>
             </form>
             <p className="text-center">
-              <NavLink to="/">Войти</NavLink>
+              <NavLink to="/">
+                <Translation>
+                  {
+                    (t) => <>{t('auth.1')}</>
+                  }
+                </Translation>
+              </NavLink>
             </p>
           </CreateAccountLayout>
         </AlertRed>

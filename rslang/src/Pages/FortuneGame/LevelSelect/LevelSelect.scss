@@ -1,4 +1,9 @@
 .Fortune-LevelSelect {
     color: #ccc;
-    font-size: 0.8rem;
+}
+
+.LevelselectScreen {
+    @media screen and (max-width: 767px) {
+        font-size: 0.75rem; 
+    }
 }

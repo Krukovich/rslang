@@ -3,3 +3,17 @@
     backdrop-filter: brightness(40%);
     margin: 0 10px !important;
 }
+
+.Sprint-Startscreen_btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+        flex-direction: column;
+
+        button {
+            font-size: 0.7rem;
+        }
+    }
+}

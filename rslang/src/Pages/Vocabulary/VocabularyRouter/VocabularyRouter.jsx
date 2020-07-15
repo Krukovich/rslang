@@ -1,4 +1,5 @@
 import React from "react";
+import { Translation } from 'react-i18next';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,21 +20,33 @@ const VocabularyRouter = () => {
           className="btn btn-light mr-2"
           activeClassName="btn btn-primary text-white mr-2"
         >
-          Изучаемые слова
+          {<Translation>
+            {
+              (t) => <>{t('voc.1')}</>
+            }
+          </Translation>}
         </NavLink>
         <NavLink
           to="/difficult-words"
           className="btn btn-light mr-2"
           activeClassName="btn btn-primary text-white mr-2"
         >
-          Сложные слова
+          {<Translation>
+            {
+              (t) => <>{t('voc.2')}</>
+            }
+          </Translation>}
         </NavLink>
         <NavLink
           to="/deleted-words"
           className="btn btn-light mr-2"
           activeClassName="btn btn-primary text-white mr-2"
         >
-          Удаленные слова
+          {<Translation>
+            {
+              (t) => <>{t('voc.3')}</>
+            }
+          </Translation>}
         </NavLink>
       </nav>
 

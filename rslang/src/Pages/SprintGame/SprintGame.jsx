@@ -19,7 +19,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { faVolumeOff } from '@fortawesome/free-solid-svg-icons';
 
 class SprintGame extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       gameStarted: false,
@@ -336,23 +336,44 @@ class SprintGame extends Component {
     clearInterval(this.timerCounter);
   }
 
+  getUserwords = () => {
+    console.log('props', this.props.dayLearningWords)
+    if (this.props.dayLearningWords.length !== 0) {
+      this.setState({
+        words: this.props.dayLearningWords,
+      })
+    } else {
+      throw Error();
+    }
+  }
+
+  startWithUserwords = () => {
+    try {
+      this.getUserwords();
+      this.gameStart();
+    } catch {
+      alert(`Подожди пока слова не загрузятся`)
+    }
+  }
+
   render() {
     if (!this.state.gameStarted) {
       return (
-        <div className="Sprint container-fluid pt-5">
+        <div className="Sprint Sprint-Start container-fluid pt-5">
           <LevelSelect
             difficultyRef={this.difficultyRef}
             lvlRef={this.lvlRef}
             difficultyHandler={this.difficultyHandler}
             levelHandler={this.levelHandler}
             optionSpawner={this.optionSpawner}
+            startWithUserwords={this.startWithUserwords}
           />
-          <StartScreen gameStart={this.gameStart} />
+          <StartScreen startWithUserwords={this.startWithUserwords} gameStart={this.gameStart} />
         </div>
       );
     } else if (this.state.gameEnded) {
       return (
-        <div className="Sprint container-fluid pt-5">
+        <div className="Sprint Sprint-End container-fluid pt-5">
           <LevelSelect
             difficultyRef={this.difficultyRef}
             lvlRef={this.lvlRef}
@@ -418,7 +439,6 @@ class SprintGame extends Component {
 
 const mapStateToProps = (store) => {
   const {
-    dayLearningWords,
     difficultWords,
     showBtnShowAgreeAnswer,
     showTranslateWord,
@@ -428,6 +448,8 @@ const mapStateToProps = (store) => {
     showWordsTranscription,
     minigameSprintStats,
   } = store.appSettings;
+
+  const { dayLearningWords } = store.playZone;
 
   return {
     showWordsTranscription: showWordsTranscription,

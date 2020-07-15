@@ -1,8 +1,8 @@
 import * as Const from "../../constant";
 import { getCookie } from "./getCookie";
-import { connect } from "react-redux";
+import { getWords } from '../../service';
 
-export const fetchAPI = async (query, obj) => {
+export const fetchAPI = async (query, obj, wordId) => {
   if (query === "signin") {
     const rawResponse = await fetch(Const.API_LINK + query, {
       method: "POST",
@@ -30,6 +30,9 @@ export const fetchAPI = async (query, obj) => {
   }
 
   if (query === "words") {
+    if (obj.count !== undefined) {
+      return getWords(obj.group, obj.count);
+    }
     const rawResponse = await fetch(
       Const.API_LINK + query + "?page=" + obj.page + "&group=" + obj.group
     );
@@ -241,5 +244,106 @@ export const fetchAPI = async (query, obj) => {
       };
     }
   }
+  
+  if (query === "getAllUserWords") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words`,
+      {
+        method: "GET",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "createUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "POST",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "putUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "POST",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "updateUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "PUT",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
+
+  if (query === "getUserWordsById") {
+    const rawResponse = await fetch(
+      Const.API_LINK + `users/${getCookie("userId")}/words/${wordId}`,
+      {
+        method: "GET",
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "difficulty": "string",
+          "optional": obj,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    return content;
+  }
 };
