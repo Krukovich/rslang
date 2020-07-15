@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import RestoreBtn from '../VocabularyBtn/RestoreBtn';
 import {restoreDeleteWords, setDayLearningWords} from '../../../Store/PlayZonePage/actions';
-import { putUserWordsById } from '../../../service';
+import { updateUserWordsById } from '../../../service';
 
 const mapStateToProps = (store) => {
   return { 
@@ -27,7 +27,7 @@ const DeletedWords = (props) => {
     ];
     props.setDayLearningWords(a);
     props.restoreDeleteWords(props.deleteWords[index].id);
-    putUserWordsById(props.deleteWords[index].id, null, false, null);
+    updateUserWordsById(props.deleteWords[index].id, null, false, null);
   }
 
   return (

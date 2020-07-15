@@ -15,11 +15,13 @@ import {
   filterOutDeletedWords,
   saveWordsInLocalStorage,
   getUserWordsById,
+  getRandomPage,
 } from './service';
 
 const mapStateToProps = (state) => {
   return {
-    level: state.appSettings.level
+    level: state.appSettings.level,
+    count: state.appSettings.newWordsCount,
   };
 }
 
@@ -32,12 +34,13 @@ const mapActionToProps = {
 const App = (props) => {
 
   useEffect(() => {
-    fetchAPI('words', { page: 1, group: 1 }).then((words) => {
+    fetchAPI('words', { page: getRandomPage(30), group: props.level, count: props.count }).then((words) => {
       fetchAPI('getAllUserWords').then((userWords) => {
         if (userWords.length === 0) {
           addStandardUserWords();
-          saveWordsInLocalStorage(words);
+          props.setDayLearningWords(words);
         }
+
         getUserWordsById(userWords).then((list) => {
           const deleteWords = filterOutDeletedWords(list, userWords);
           if (deleteWords.length) {
@@ -52,7 +55,7 @@ const App = (props) => {
           const wordsToLearn = list.filter((word) =>
             !deleteWords.find((deleteWord) => deleteWord.id === word.id));
           props.setDayLearningWords(wordsToLearn);
-          saveWordsInLocalStorage(list);
+          saveWordsInLocalStorage(wordsToLearn);
         });
       });
     });

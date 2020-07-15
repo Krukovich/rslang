@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import DeleteBtn from '../VocabularyBtn/DeleteBtn';
 import { deleteDifficultWords } from '../../../Store/PlayZonePage/actions';
-import { putUserWordsById } from '../../../service';
+import { updateUserWordsById } from '../../../service';
 
 const mapStateToProps = (store) => {
   return { 
@@ -19,7 +19,7 @@ const DifficultWords = (props) => {
 
   const del = (index) => {
     props.deleteDifficultWords(props.difficultWords[index].id);
-    putUserWordsById(props.difficultWords[index].id, false, null, null);
+    updateUserWordsById(props.difficultWords[index].id, false, null, null);
   }
 
   return (

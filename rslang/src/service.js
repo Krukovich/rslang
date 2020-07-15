@@ -29,7 +29,16 @@ export const putUserWordsById = (wordId, hard, deleted, coefficient) => {
     "delete": deleted ? deleted : false,
     "coefficient": coefficient ? coefficient : 1, 
 }
-  fetchAPI('putUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write"))
+  fetchAPI('putUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write", obj))
+}
+
+export const updateUserWordsById = (wordId, hard, deleted, coefficient) => {
+  const obj = {
+    "hard": hard ? hard : false,
+    "delete": deleted ? deleted : false,
+    "coefficient": coefficient ? coefficient : 1, 
+}
+  fetchAPI('updateUserWordsById', obj, wordId).then(() => console.log("wordId ", wordId, "re-write", obj))
 }
 
 export const createUserWordsById = (wordId, hard = false, deleted = false, coefficient = 1) => {
