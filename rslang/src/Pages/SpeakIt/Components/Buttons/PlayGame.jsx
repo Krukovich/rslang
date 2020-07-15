@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 const PlayGame = ({ recordSound }) => {
   return (
@@ -7,7 +8,12 @@ const PlayGame = ({ recordSound }) => {
       type="button"
       onClick={recordSound}
     >
-      Запись слова
+
+      {<Translation>
+        {
+          (t) => <>{t('speakIt.7')}</>
+        }
+      </Translation>}
     </button>
   );
 }

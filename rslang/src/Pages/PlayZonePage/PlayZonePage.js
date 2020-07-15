@@ -10,6 +10,7 @@ import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import VerticalMenu from './VerticalMenu/VerticalMenu';
 import ShortStats from '../../Components/ShortStats/ShortStats.jsx';
+import { Translation } from 'react-i18next';
 
 import './playZonePage.scss';
 
@@ -271,7 +272,11 @@ class PlayZonePage extends React.Component {
                     className="btn btn-primary"
                     onClick={this.changeAnswer}
                   >
-                    Проверить
+                    {<Translation>
+                      {
+                        (t) => <>{t('playzone.4')}</>
+                      }
+                    </Translation>}
                   </button>
                   <Button incrementPlayStep={this.incrementPlayStep} label={BTN_LABEL.NEXT} isNotAgree={isNotAgree} />
                 </div>
