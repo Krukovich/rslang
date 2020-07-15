@@ -6,7 +6,8 @@ import {
   CHANGE_APP_STATS,
   REMOVE_DELETED_WORDS,
   DELETE_DIFFICULT_WORDS,
-} from './actions';
+  CHANGE_NEW_WORDS,
+} from './actions.js';
 import { fetchAPI } from '../../Components/Tools/fetchAPI';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   difficultWords: [], // an array with the words in which errors were made
   dayLearningWords: [], //an array of words to learn
   appStats: [],
+  newWords: '',
 }
 
 export const playZonePageReducer = (state = initialState, action) => {
@@ -22,6 +24,11 @@ export const playZonePageReducer = (state = initialState, action) => {
       return {
         ...state,
         cards: action.payload,
+      };
+    case CHANGE_NEW_WORDS:
+      return {
+        ...state,
+        newWords: action.payload,
       };
     case ADD_DELETED_WORDS:
       return {

@@ -5,6 +5,12 @@ export const ADD_DELETED_WORDS = "ADD_DELETED_WORDS";
 export const CHANGE_APP_STATS = 'CHANGE_APP_STATS';
 export const REMOVE_DELETED_WORDS = 'REMOVE_DELETE_WORDS';
 export const DELETE_DIFFICULT_WORDS = 'DELETE_DIFFICULT_WORDS';
+export const CHANGE_NEW_WORDS = 'CHANGE_NEW_WORDS';
+
+export const setNewWords = (number) => ({
+  type: CHANGE_NEW_WORDS,
+  payload: number,
+});
 
 export const setWordCards = (cards) => ({
   type: CHANGE_WORD_CARDS,

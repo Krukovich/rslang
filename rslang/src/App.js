@@ -6,6 +6,7 @@ import {
   setDayLearningWords,
   setDeleteWords,
   setDifficultWords,
+  setNewWords,
 } from './Store/PlayZonePage/actions';
 import { AppWrapper } from "./Components/AppWrapper/AppWrapper";
 import { fetchAPI } from './Components/Tools/fetchAPI';
@@ -16,6 +17,7 @@ import {
   saveWordsInLocalStorage,
   getUserWordsById,
   getRandomPage,
+  shuffle,
 } from './service';
 import { MAX_PAGE } from './constant';
 import Spinner from './Components/Spinner/Spinner';
@@ -28,13 +30,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapActionToProps = {
+  setNewWords,
   setDayLearningWords,
   setDeleteWords,
   setDifficultWords,
 }
 
 const App = (props) => {
-
+  
   useEffect(() => {
     fetchAPI('words', { page: getRandomPage(MAX_PAGE), group: props.level, count: props.count }).then((words) => {
       fetchAPI('getAllUserWords').then((userWords) => {
@@ -56,8 +59,16 @@ const App = (props) => {
 
           const wordsToLearn = list.filter((word) =>
             !deleteWords.find((deleteWord) => deleteWord.id === word.id));
-          props.setDayLearningWords(wordsToLearn);
-          saveWordsInLocalStorage(wordsToLearn);
+            if (wordsToLearn.length <= Number(props.count)) {
+              const tempArray = words.slice(0, words.length - userWords.length);
+              props.setNewWords(tempArray.length);
+              const newArray = [...wordsToLearn, ...tempArray];
+              props.setDayLearningWords(shuffle(newArray));
+              saveWordsInLocalStorage(newArray);
+            } else {
+              props.setDayLearningWords(shuffle(wordsToLearn.slice(0, props.count)));
+              saveWordsInLocalStorage(wordsToLearn);
+            }
         });
       });
     });

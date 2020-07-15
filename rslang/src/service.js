@@ -52,6 +52,8 @@ export const createUserWordsById = (wordId, hard = false, deleted = false, coeff
 
 export const getRandomPage = (max) => Math.floor(Math.random() * Math.floor(max));
 
+export const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+
 export const getUserWordsById = (array) => {
   const promise = [];
   for (let i = 0; i < array.length; i += 1) {
@@ -66,7 +68,7 @@ export const getWords = (group, numberOfWords) => {
   const proms = [];
 
   for (let i = 0; i < count; i += 1) {
-    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group - 1}&page=${i}`).then((res) => res.json()));
+    proms.push(fetch(`https://afternoon-falls-25894.herokuapp.com/words?group=${group}&page=${ getRandomPage(20) }`).then((res) => res.json()));
   }
   return Promise.allSettled(proms).then((wordLists) => wordLists.flatMap((wordList) => wordList.value).slice(0, numberOfWords));
 }

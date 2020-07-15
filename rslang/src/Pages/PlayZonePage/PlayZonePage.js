@@ -18,6 +18,7 @@ const mapStateToProps = (store) => {
   const {
     dayLearningWords,
     difficultWords,
+    newWords,
   } = store.playZone;
 
   const {
@@ -32,6 +33,7 @@ const mapStateToProps = (store) => {
   } = store.appSettings;
 
   return {
+    newWords: newWords,
     showWordImage: showWordImage,
     showWordTranscription: showWordTranscription,
     playExampleSound: playExampleSound,
@@ -55,6 +57,7 @@ const mapActionToProps = {
 
 class PlayZonePage extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       cards: props.dayLearningWords,
@@ -63,6 +66,7 @@ class PlayZonePage extends React.Component {
       isNotAgree: true,
       inputValue: '',
       isFinish: false,
+      newWords: props.newWords,
     }
     this.difficultWordId = '';
     this.rightAnswerArray = [];
@@ -233,7 +237,7 @@ class PlayZonePage extends React.Component {
       cards,
       playStep,
       isNotAgree,
-      isFinish
+      isFinish,
     } = this.state;
 
     return (
@@ -303,7 +307,7 @@ class PlayZonePage extends React.Component {
             <ShortStats
               total={this.state.cards.length}
               right={(this.agreeCountAnswer / this.state.cards.length) * 100}
-              newWords={this.state.cards.length}
+              newWords={this.state.newWords}
               rightInArrow={this.agreeRow}
             />
           </div>
