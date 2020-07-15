@@ -121,7 +121,7 @@ export class AudioCallStartPage extends Component {
                   }
                 </Translation>}
               </Button>
-              <Button variant={'primary'}>
+              <Button onClick={() => this.startHandler()} variant={'primary'}>
                 {<Translation>
                   {
                     (t) => <>{t('sprintGame.12')}</>

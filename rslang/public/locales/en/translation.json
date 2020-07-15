@@ -150,7 +150,7 @@
         "4": "Words learned from vocabulary",
         "5": "Audiocall",
         "6": "Sprint",
-        "7": "Savannah",
+        "7": "Savanna",
         "8": "English puzzle",
         "9": "SpeakIt!",
         "10": "Wheel of Fortune",
@@ -168,7 +168,7 @@
         },
         "3": {
             "1": "Alexander",
-            "2": "Router, login and registration, audiocall, savannah, fetchAPI, wordAPI"
+            "2": "Router, login and registration, audiocall, savanna, fetchAPI, wordAPI"
         },
         "4": {
             "1": "Darya",
@@ -176,7 +176,7 @@
         },
         "5": {
             "1": "Pavel",
-            "2": "Sprint, Wheel of Fortune, general styling and layout, completion of the savannah and audiocall, localization"
+            "2": "Sprint, Wheel of Fortune, general styling and layout, completion of the savanna and audiocall, localization"
         },
         "6": {
             "1": "Yuri",
@@ -195,7 +195,7 @@
     "minigames": {
         "1": "Sprint",
         "2": "Turbo Wheel of Fortune",
-        "3": "Savannah",
+        "3": "Savanna",
         "4": "English Puzzle",
         "5": "SpeakIt!",
         "6": "Audiocall"
