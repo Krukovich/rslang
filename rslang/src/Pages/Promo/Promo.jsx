@@ -21,11 +21,7 @@ class Promo extends React.Component {
             <div className="col-12 pt-5">
               <div className="settingsContainer pt-5">
                 <div className="jumbotron settingsContainer-jumbotron">
-                  <div className="d-flex justify-content-center">
-                    <button className="btn btn-primary" onClick={() => this.handleClick('en')}>EN</button>
-                    <button className="btn btn-primary" onClick={() => this.handleClick('ru')}>RU</button>
-                  </div>
-                  <p className="mt-3">{
+                  <p>{
                       <Translation>
                       {
                         (t) => <>{t('promo.1')}</>
