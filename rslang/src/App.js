@@ -32,28 +32,29 @@ const mapActionToProps = {
 const App = (props) => {
 
   useEffect(() => {
-    fetchAPI('words', {page: 1, group: 1}).then((words) => {
-      fetchAPI('getAllUserWords').then(
-        (userWords) => {
-          if(userWords.length) {
-            addStandardUserWords();
-          }
-
-          const deleteWords = filterOutDeletedWords(words, userWords);
+    fetchAPI('words', { page: 1, group: 1 }).then((words) => {
+      fetchAPI('getAllUserWords').then((userWords) => {
+        if (userWords.length === 0) {
+          addStandardUserWords();
+          saveWordsInLocalStorage(words);
+        }
+        getUserWordsById(userWords).then((list) => {
+          const deleteWords = filterOutDeletedWords(list, userWords);
           if (deleteWords.length) {
             props.setDeleteWords(deleteWords);
           }
 
-          const difficultWords = filterOutDifficultWords(words, userWords);
+          const difficultWords = filterOutDifficultWords(list, userWords);
           if (difficultWords.length) {
             props.setDifficultWords(difficultWords);
           }
 
-          const wordsToLearn = words.filter((word) =>
+          const wordsToLearn = list.filter((word) =>
             !deleteWords.find((deleteWord) => deleteWord.id === word.id));
           props.setDayLearningWords(wordsToLearn);
-          saveWordsInLocalStorage(words);
+          saveWordsInLocalStorage(list);
         });
+      });
     });
   });
 
