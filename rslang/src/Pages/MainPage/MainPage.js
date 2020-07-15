@@ -63,7 +63,6 @@ class MainPage extends Component {
             </div>
           </div>
         </div>
-        <button onClick={() => addMoreUserWords(5, 3)}>Добавит 5 слов</button>
       </div>
     )
   }
