@@ -49,9 +49,9 @@ class EndScreen extends Component {
                                     (t) => <>{t('sprintGame.7')}</>
                                 }
                             </Translation>}</Button>
-                            <Link className="SprintBtn-Main btn btn-primary rounded" to={'/main-page'}>{<Translation>
+                            <Link className="SprintBtn-Main btn btn-primary rounded" to={'/mini-games'}>{<Translation>
                                 {
-                                    (t) => <>{t('sprintGame.8')}</>
+                                    (t) => <>{t('sprintGame.11')}</>
                                 }
                             </Translation>}</Link>
                         </div>

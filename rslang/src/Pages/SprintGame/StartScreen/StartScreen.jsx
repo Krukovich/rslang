@@ -27,13 +27,22 @@ const StartScreen = (props) => {
                         }
                     </Translation>}
                 </p>
-                <Button onClick={props.gameStart} variant={'primary'}>
-                    {<Translation>
-                        {
-                            (t) => <>{t('sprintGame.4')}</>
-                        }
-                    </Translation>}
-                </Button>
+                <div className="Sprint-Startscreen_btns">
+                    <Button onClick={props.gameStart} variant={'primary'}>
+                        {<Translation>
+                            {
+                                (t) => <>{t('sprintGame.4')}</>
+                            }
+                        </Translation>}
+                    </Button>
+                    <Button variant={'primary'}>
+                        {<Translation>
+                            {
+                                (t) => <>{t('sprintGame.12')}</>
+                            }
+                        </Translation>}
+                    </Button>
+                </div>
             </div>
         </div>
     )

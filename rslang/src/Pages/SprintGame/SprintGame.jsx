@@ -336,23 +336,35 @@ class SprintGame extends Component {
     clearInterval(this.timerCounter);
   }
 
+  getUserwords = () => {
+    // this.setState({
+    //     words: userwords,
+    // })
+  }
+
+  startWithUserwords = () => {
+    this.getUserwords();
+    this.start();
+  }
+
   render() {
     if (!this.state.gameStarted) {
       return (
-        <div className="Sprint container-fluid pt-5">
+        <div className="Sprint Sprint-Start container-fluid pt-5">
           <LevelSelect
             difficultyRef={this.difficultyRef}
             lvlRef={this.lvlRef}
             difficultyHandler={this.difficultyHandler}
             levelHandler={this.levelHandler}
             optionSpawner={this.optionSpawner}
+            startWithUserwords={this.startWithUserwords}
           />
           <StartScreen gameStart={this.gameStart} />
         </div>
       );
     } else if (this.state.gameEnded) {
       return (
-        <div className="Sprint container-fluid pt-5">
+        <div className="Sprint Sprint-End container-fluid pt-5">
           <LevelSelect
             difficultyRef={this.difficultyRef}
             lvlRef={this.lvlRef}

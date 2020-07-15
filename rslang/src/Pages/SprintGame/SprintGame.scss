@@ -6,6 +6,13 @@
     }
 }
 
+.Sprint-Start,
+.Sprint-End {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .Sprint-Score {
     font-size: 2.4rem;
     user-select: none;

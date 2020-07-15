@@ -57,6 +57,7 @@ class FortuneGame extends Component {
             answers: [],
             difficulty: localStorage.getItem('fortuneDifficulty') === null ? 0 : localStorage.getItem('fortuneDifficulty'),
             level: localStorage.getItem('fortuneLvl') === null ? 0 : localStorage.getItem('fortuneLvl'),
+            userwords: []
         }
         this.engWordRef = React.createRef();
         this.difficultyRef = React.createRef();
@@ -101,8 +102,8 @@ class FortuneGame extends Component {
 
         this.setState({
             rusWordArr: rusWord.toUpperCase().split(''),
-            engWordArr: engWord.toUpperCase().split(''),
-            engWordArrCheck: engWord.toUpperCase().split(''),
+            engWordArr: engWord.toUpperCase().split(' ').join('').split(''),
+            engWordArrCheck: engWord.toUpperCase().split(' ').join('').split(''),
             audio: audio,
         });
 
@@ -130,7 +131,6 @@ class FortuneGame extends Component {
     }
 
     roundEndHandler = () => {
-        const audioVariants = [win1, win2, win3, win4, win5];
         const dialogueVariants = ['И у нас победитель!!!',
             'Поразительно! Это победа!', 'Победа!', 'Всё отгадано верно!!'];
 
@@ -142,8 +142,6 @@ class FortuneGame extends Component {
             dialogue: dialogueVariants[Math.floor(Math.random() * Math.floor(dialogueVariants.length))],
             continue: true,
         })
-
-        this.audioHandler(audioVariants);
     }
 
     letterClickHandler = (event) => {
@@ -326,6 +324,17 @@ class FortuneGame extends Component {
         this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
     }
 
+    getUserwords = () => {
+        // this.setState({
+        //     words: userwords,
+        // })
+    }
+
+    startWithUserwords = () => {
+        this.getUserwords();
+        this.start();
+    }
+
     addYakubClass() {
         const buttonClass = ['Fortune-Yakub', 'mt-2'];
         if (this.state.speak) {
@@ -399,6 +408,7 @@ class FortuneGame extends Component {
                         difficultyHandler={this.difficultyHandler}
                         levelHandler={this.levelHandler}
                         optionSpawner={this.optionSpawner}
+                        startWithUserwords={this.startWithUserwords}
                     />
                     <StartScreen gameStart={this.start} />
                 </div>
