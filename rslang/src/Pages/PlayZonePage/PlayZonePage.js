@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { playExampleSound } from '../../service';
+import { playExampleSound, putUserWordsById, checkDeleteWords } from '../../service';
 import { BTN_LABEL } from '../../constant';
 import { setDifficultWords, setDeleteWords, setAppStats, setWordCards } from '../../Store/PlayZonePage/actions';
 import ProgressBar from './ProgressBar/ProgressBar';
@@ -18,6 +18,7 @@ const mapStateToProps = (store) => {
   const {
     dayLearningWords,
     difficultWords,
+    newWords,
   } = store.playZone;
 
   const {
@@ -32,6 +33,7 @@ const mapStateToProps = (store) => {
   } = store.appSettings;
 
   return {
+    newWords: newWords,
     showWordImage: showWordImage,
     showWordTranscription: showWordTranscription,
     playExampleSound: playExampleSound,
@@ -55,6 +57,7 @@ const mapActionToProps = {
 
 class PlayZonePage extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       cards: props.dayLearningWords,
@@ -63,6 +66,7 @@ class PlayZonePage extends React.Component {
       isNotAgree: true,
       inputValue: '',
       isFinish: false,
+      newWords: props.newWords,
     }
     this.difficultWordId = '';
     this.rightAnswerArray = [];
@@ -113,7 +117,8 @@ class PlayZonePage extends React.Component {
       cards: cards,
       agreeWord: cards[playStep].word,
     });
-    this.props.setDeleteWords(...card);
+    putUserWordsById(card[playStep].id, null, true, null);
+    this.props.setDeleteWords(card);
   }
 
   insertCardToDifficult = () => {
@@ -122,7 +127,10 @@ class PlayZonePage extends React.Component {
       return;
     } else {
       this.difficultWordId = cards[playStep].id;
-      this.props.setDifficultWords(cards[playStep]);
+      putUserWordsById(cards[playStep].id, true, null, 1);
+      if (checkDeleteWords(this.props.difficultWords, cards[playStep].word)) {
+        this.props.setDifficultWords([cards[playStep]]);
+      }
     }
   }
 
@@ -229,7 +237,7 @@ class PlayZonePage extends React.Component {
       cards,
       playStep,
       isNotAgree,
-      isFinish
+      isFinish,
     } = this.state;
 
     return (
@@ -299,7 +307,7 @@ class PlayZonePage extends React.Component {
             <ShortStats
               total={this.state.cards.length}
               right={(this.agreeCountAnswer / this.state.cards.length) * 100}
-              newWords={this.state.cards.length}
+              newWords={this.state.newWords}
               rightInArrow={this.agreeRow}
             />
           </div>

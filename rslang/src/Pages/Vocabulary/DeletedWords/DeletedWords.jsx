@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import RestoreBtn from '../VocabularyBtn/RestoreBtn';
 import {restoreDeleteWords, setDayLearningWords} from '../../../Store/PlayZonePage/actions';
+import { updateUserWordsById } from '../../../service';
 
 const mapStateToProps = (store) => {
   return { 
@@ -18,18 +20,14 @@ const mapActionToProps = {
 
 const DeletedWords = (props) => {
 
-  // transfer words from category 'deleted words' to category 'words to learn'
   const restore = (index) => {
     const a = [
       ...props.learningWords,
       props.deleteWords[index]
     ];
-    const b = [
-      ...props.deleteWords.slice(0, index),
-      ...props.deleteWords.slice(index + 1)
-    ];
     props.setDayLearningWords(a);
-    props.restoreDeleteWords(b);
+    props.restoreDeleteWords(props.deleteWords[index].id);
+    updateUserWordsById(props.deleteWords[index].id, null, false, null);
   }
 
   return (
