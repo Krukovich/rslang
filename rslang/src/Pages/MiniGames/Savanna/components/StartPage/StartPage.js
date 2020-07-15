@@ -69,6 +69,17 @@ export class SavannaStartPage extends Component {
     localStorage.setItem('savannaLvl', number);
   }
 
+  getUserwords = () => {
+    // this.setState({
+    //     words: userwords,
+    // })
+  }
+
+  startWithUserwords = () => {
+    this.getUserwords();
+    this.start();
+  }
+
   componentDidMount() {
     this.getWords(this.state.difficulty, this.state.level);
 

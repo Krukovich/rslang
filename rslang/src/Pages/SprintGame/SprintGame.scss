@@ -1,12 +1,16 @@
 .Sprint {
     background-image: url('./assets/back.png');
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     @media screen and (min-width: 1020px) {
         height: 100vh;
     }
+}
+
+.Sprint-Start,
+.Sprint-End {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Sprint-Score {

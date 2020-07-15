@@ -70,6 +70,17 @@ export class AudioCallStartPage extends Component {
     this.lvlRef.current.children[this.state.level].setAttribute('selected', 'selected');
   }
 
+  getUserwords = () => {
+    // this.setState({
+    //     words: userwords,
+    // })
+  }
+
+  startWithUserwords = () => {
+    this.getUserwords();
+    this.start();
+  }
+
   render() {
     if (this.state.gameStart) {
       return <App quiz={this.state.quizQ} />;
@@ -100,13 +111,6 @@ export class AudioCallStartPage extends Component {
               </Translation>}
             </p>
             <div className="Audiocall-Startscreen_btns">
-              <Button variant={'primary'}>
-                {<Translation>
-                  {
-                    (t) => <>{t('sprintGame.12')}</>
-                  }
-                </Translation>}
-              </Button>
               <Button
                 variant="btn btn-primary my-2"
                 onClick={() => this.startHandler()}
@@ -114,6 +118,13 @@ export class AudioCallStartPage extends Component {
                 {<Translation>
                   {
                     (t) => <>{t('audiocallGame.3')}</>
+                  }
+                </Translation>}
+              </Button>
+              <Button variant={'primary'}>
+                {<Translation>
+                  {
+                    (t) => <>{t('sprintGame.12')}</>
                   }
                 </Translation>}
               </Button>
