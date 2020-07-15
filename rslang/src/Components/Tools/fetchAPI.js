@@ -184,7 +184,7 @@ export const fetchAPI = async (query, obj, wordId) => {
             showBtnShowAgreeAnswer: true,
             showBtnDeleteWord: true,
             showBtnDifficultWord: true,
-            newWordsCount: 10,
+            newWordsCount: 20,
           },
         }),
       }
