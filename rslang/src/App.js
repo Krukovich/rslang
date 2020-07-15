@@ -17,6 +17,7 @@ import {
   getUserWordsById,
   getRandomPage,
 } from './service';
+import { MAX_PAGE } from './constant';
 
 const mapStateToProps = (state) => {
   return {
@@ -34,7 +35,7 @@ const mapActionToProps = {
 const App = (props) => {
 
   useEffect(() => {
-    fetchAPI('words', { page: getRandomPage(30), group: props.level, count: props.count }).then((words) => {
+    fetchAPI('words', { page: getRandomPage(MAX_PAGE), group: props.level, count: props.count }).then((words) => {
       fetchAPI('getAllUserWords').then((userWords) => {
         if (userWords.length === 0) {
           addStandardUserWords();
