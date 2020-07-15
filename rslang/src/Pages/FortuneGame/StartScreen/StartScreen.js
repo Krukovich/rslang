@@ -21,7 +21,7 @@ const StartScreen = (props) => {
                             }
                         </Translation>}
                     </Button>
-                    <Button variant={'primary'}>
+                    <Button onClick={props.startWithUserwords} variant={'primary'}>
                         {<Translation>
                             {
                                 (t) => <>{t('sprintGame.12')}</>

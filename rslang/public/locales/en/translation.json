@@ -24,7 +24,8 @@
         "9": "Right",
         "10": "Wrong",
         "11": "TO MINIGAMES",
-        "12": "START WITH USERWORDS"
+        "12": "START WITH USERWORDS",
+        "13": "Wait for the words to load!"
     },
     "fortuneGame": {
         "1": "You are given a Russian translation of a word. You must compose a word in English from letters on the bottom of the screen.",
