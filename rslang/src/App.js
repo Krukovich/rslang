@@ -63,7 +63,8 @@ const App = (props) => {
   });
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+
+    <Suspense fallback={<Spinner />}>
       <AppWrapper>
         <div className="container-fluid">
           <div className="row">
